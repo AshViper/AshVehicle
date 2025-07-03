@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MLM",
+    "RAR",
+    "SBS"
+  ],
+  "key": {
+    "L": {"item": "superbwarfare:large_propeller"},
+    "A": {"item": "superbwarfare:medium_armament_module"},
+    "M": {"item": "superbwarfare:large_motor"},
+    "B": {"item": "superbwarfare:medium_battery_pack"},
+    "R": {"item": "superbwarfare:tungsten_rod"},
+    "S": {"item": "superbwarfare:steel_block"}
+  },
+  "result": {
+    "item": "superbwarfare:container",
+    "nbt": {
+      "BlockEntityTag": {
+        "EntityType": "ashvehicle:f-39e"
+      }
+    }
+  }
+}

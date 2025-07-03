@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BSA",
+    "MSM",
+    "TST"
+  ],
+  "key": {
+    "B": { "item": "superbwarfare:medium_battery_pack" },
+    "T": { "item": "superbwarfare:track" },
+    "M": { "item": "superbwarfare:large_motor" },
+    "S": { "item": "superbwarfare:steel_block" },
+    "A": { "item": "superbwarfare:heavy_armament_module" }
+  },
+  "result": {
+    "item": "superbwarfare:container",
+    "nbt": {
+      "BlockEntityTag": {
+        "EntityType": "ashvehicle:t_90"
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "tech.lq0.ashvehicle.mixin",
+  "package": "Aru.Aru.ashvehicle.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "extensiontest.refmap.json",
   "mixins": [

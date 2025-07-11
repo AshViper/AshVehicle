@@ -3,7 +3,7 @@
 This is an example project of showing how to make an extension mod
 for [SuperbWarfare](https://github.com/Mercurows/SuperbWarfare).
 
-This mod added an example vehicle of [Tom F7F](./src/main/java/tech/lq0/ashvehicle/entity/Tom7Entity.java), which is
+This mod added an example vehicle of [Tom F7F](./src/main/java/Aru/Aru/ashvehicle/entity/Tom7Entity.java), which is
 an enhanced version of the original Tom F6F from SuperbWarfare.
 
 To get started, check out [build.gradle](build.gradle) first, add SuperbWarfare as a dependency mod, then just write

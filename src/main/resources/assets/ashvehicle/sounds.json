@@ -1,0 +1,72 @@
+{
+  "m1a1_engine": {
+    "sounds": [
+      "ashvehicle:m1a1_engine"
+    ]
+  },
+  "m1a1_fire": {
+    "sounds": [
+      "ashvehicle:m1a1_fire"
+    ]
+  },
+  "su57_engine": {
+    "sounds": [
+      "ashvehicle:su57-engine"
+    ]
+  },
+  "m1a1_reload": {
+    "sounds": [
+      "minecraft:item.crossbow.loading_end"
+    ]
+  },
+  "wheel_step": {
+    "sounds": [
+      "minecraft:block.gravel.step"
+    ]
+  },
+  "yx_100_fire_1p": {
+    "sounds": [
+      "minecraft:entity.generic.explode"
+    ]
+  },
+  "yx_100_fire_3p": {
+    "sounds": [
+      "minecraft:entity.generic.explode"
+    ]
+  },
+  "yx_100_far": {
+    "sounds": [
+      "minecraft:entity.generic.explode"
+    ]
+  },
+  "yx_100_veryfar": {
+    "sounds": [
+      "minecraft:entity.generic.explode"
+    ]
+  },
+  "yx_100_reload": {
+    "sounds": [
+      "minecraft:block.iron_door.close"
+    ]
+  },
+  "m_2_fire_1p": {
+    "sounds": [
+      "minecraft:entity.firework_rocket.blast"
+    ]
+  },
+  "m_2_fire_3p": {
+    "sounds": [
+      "minecraft:entity.firework_rocket.blast"
+    ]
+  },
+  "m_2_far": {
+    "sounds": [
+      "minecraft:entity.firework_rocket.blast"
+    ]
+  },
+  "m_2_veryfar": {
+    "sounds": [
+      "minecraft:entity.firework_rocket.blast_far"
+    ]
+  }
+} 

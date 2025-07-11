@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LBD",
+    "MRM",
+    "SSS"
+  ],
+  "key": {
+    "L": {"item": "superbwarfare:large_propeller"},
+    "D": {"item": "superbwarfare:propeller"},
+    "R": {"item": "superbwarfare:light_armament_module"},
+    "M": {"item": "superbwarfare:large_motor"},
+    "B": {"item": "superbwarfare:medium_battery_pack"},
+    "S": {"item": "superbwarfare:steel_block"}
+  },
+  "result": {
+    "item": "superbwarfare:container",
+    "nbt": {
+      "BlockEntityTag": {
+        "EntityType": "ashvehicle:mh_60m"
+      }
+    }
+  }
+}

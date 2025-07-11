@@ -1,0 +1,26 @@
+{
+  "item_group.ashvehicle.ash-air": "Ash Vehicle Tab (Air)",
+  "item_group.ashvehicle.ash-tank": "Ash Vehicle Tab (Tank)",
+
+  "entity.ashvehicle.uh_60": "UH-60 Black Hawk",
+  "entity.ashvehicle.mh_60m": "MH-60M Black Hawk",
+  "entity.ashvehicle.f_16": "F-16 Fighting Falcon",
+  "entity.ashvehicle.f-18": "F-18 Hornet",
+  "entity.ashvehicle.f_4": "F-4 Phantom II",
+  "entity.ashvehicle.f-39e": "JAS-39E Gripen",
+  "entity.ashvehicle.f-35": "F-35",
+  "entity.ashvehicle.f-22": "F-22",
+  "entity.ashvehicle.b-2": "B-2",
+  "entity.ashvehicle.f-117": "F-117 Nighthawk",
+  "entity.ashvehicle.mig_15": "MiG-15",
+  "entity.ashvehicle.mig_29": "MiG-29",
+  "entity.ashvehicle.su-33": "Su-33",
+  "entity.ashvehicle.su-34": "Su-34",
+  "entity.ashvehicle.su-25": "Su-25",
+  "entity.ashvehicle.t_90": "T-90",
+  "entity.ashvehicle.m1a1abrams": "M1A2 Abrams",
+  "entity.ashvehicle.kv-2": "KV-2",
+  "entity.ashvehicle.gepard-1a2": "Gepard 1A2",
+  "entity.ashvehicle.m3a3-bradley": "M3A3 Bradley",
+  "entity.ashvehicle.su-57": "Su-57"
+}

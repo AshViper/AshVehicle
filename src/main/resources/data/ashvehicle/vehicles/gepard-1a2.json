@@ -1,0 +1,120 @@
+{
+  "ID": "ashvehicle:gepard-1a2",
+  "MaxHealth": 500,
+  "MaxEnergy": 20000000,
+  "UpStep": 2.25,
+  "Mass": 70,
+  "DamageModifiers": [
+    {
+      "Type": "Immunity",
+      "Source": "minecraft:arrow"
+    },
+    {
+      "Type": "Immunity",
+      "Source": "minecraft:trident"
+    },
+    {
+      "Type": "Immunity",
+      "Source": "minecraft:mob_attack"
+    },
+    {
+      "Type": "Immunity",
+      "Source": "minecraft:mob_attack_no_aggro"
+    },
+    {
+      "Type": "Immunity",
+      "Source": "minecraft:mob_projectile"
+    },
+    {
+      "Type": "Immunity",
+      "Source": "minecraft:player_attack"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 3,
+      "Source": "@#superbwarfare:aerial_bomb"
+    },
+    {
+      "Type": "Immunity",
+      "Source": "#superbwarfare:projectile"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 0.2
+    },
+    {
+      "Type": "Multiply",
+      "Value": 2.5,
+      "Source": "superbwarfare:vehicle_strike"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 2,
+      "Source": "minecraft:explosion"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 0.75,
+      "Source": "superbwarfare:custom_explosion"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 0.75,
+      "Source": "superbwarfare:projectile_boom"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 0.5,
+      "Source": "superbwarfare:mine"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 0.5,
+      "Source": "superbwarfare:lunge_mine"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 1.5,
+      "Source": "superbwarfare:cannon_fire"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 0.15,
+      "Source": "#superbwarfare:projectile_absolute"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 0.375,
+      "Source": "@superbwarfare:small_cannon_shell"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 4,
+      "Source": "@superbwarfare:c4"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 1.5,
+      "Source": "@superbwarfare:rpg_rocket"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 2,
+      "Source": "@superbwarfare:gun_grenade"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 2,
+      "Source": "@superbwarfare:mortar_shell"
+    },
+    {
+      "Type": "Multiply",
+      "Value": 2.5,
+      "Source": "@superbwarfare:tm_62"
+    },
+    {
+      "Type": "Reduce",
+      "Value": 9
+    }
+  ]
+}

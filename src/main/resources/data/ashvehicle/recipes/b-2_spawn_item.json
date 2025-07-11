@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LML",
+    "RZR",
+    "CHC"
+  ],
+  "key": {
+    "C": {"item": "superbwarfare:cemented_carbide_block"},
+    "L": {"item": "superbwarfare:large_propeller"},
+    "M": {"item": "superbwarfare:large_motor"},
+    "R": {"item": "superbwarfare:tungsten_rod"},
+    "H": {"item": "superbwarfare:medium_battery_pack"},
+    "Z": {"item": "superbwarfare:ancient_cpu"}
+  },
+  "result": {
+    "item": "superbwarfare:container",
+    "nbt": {
+      "BlockEntityTag": {
+        "EntityType": "ashvehicle:b-2"
+      }
+    }
+  }
+}

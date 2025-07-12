@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
-import Aru.Aru.ashvehicle.entity.F22Entity;
+import Aru.Aru.ashvehicle.entity.vehicle.F22Entity;
 
 public class F22GlowLayer extends GeoRenderLayer<F22Entity> {
     private static final ResourceLocation GLOW_TEXTURE = new ResourceLocation("ashvehicle", "textures/entity/f22_glow_fixed.png");

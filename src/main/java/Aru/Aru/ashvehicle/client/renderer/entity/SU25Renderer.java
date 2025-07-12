@@ -12,8 +12,8 @@ import net.minecraft.util.Mth;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.SU25Model;
-import Aru.Aru.ashvehicle.entity.SU25Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.SU25Model;
+import Aru.Aru.ashvehicle.entity.vehicle.SU25Entity;
 
 public class SU25Renderer extends GeoEntityRenderer<SU25Entity> {
     public SU25Renderer(EntityRendererProvider.Context renderManager) {

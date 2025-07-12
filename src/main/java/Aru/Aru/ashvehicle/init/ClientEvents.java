@@ -8,7 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import Aru.Aru.ashvehicle.ExtensionTest;
 import Aru.Aru.ashvehicle.client.screen.CoordinateInputScreen;
-import Aru.Aru.ashvehicle.entity.SapsanEntity;
+import Aru.Aru.ashvehicle.entity.vehicle.SapsanEntity;
 
 @Mod.EventBusSubscriber(modid = ExtensionTest.MODID, value = Dist.CLIENT)
 public class ClientEvents {

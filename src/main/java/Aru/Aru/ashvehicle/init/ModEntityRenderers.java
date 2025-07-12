@@ -44,6 +44,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.SU_57.get(), SU57Renderer::new);
         event.registerEntityRenderer(ModEntities.JASSM_XR.get(), JassmXRRenderer::new);
         event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
+        event.registerEntityRenderer(ModEntities.NAPALM_BOMB.get(), NapalmBombRenderer::new);
     }
 }
 

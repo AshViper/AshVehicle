@@ -15,8 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.T90Model;
-import Aru.Aru.ashvehicle.entity.T90Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.T90Model;
+import Aru.Aru.ashvehicle.entity.vehicle.T90Entity;
 
 public class T90Renderer  extends GeoEntityRenderer<T90Entity> {
     public T90Renderer(EntityRendererProvider.Context renderManager) {

@@ -14,8 +14,8 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import Aru.Aru.ashvehicle.client.layer.F35GlowLayer;
-import Aru.Aru.ashvehicle.client.model.F35Model;
-import Aru.Aru.ashvehicle.entity.F35Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.F35Model;
+import Aru.Aru.ashvehicle.entity.vehicle.F35Entity;
 
 public class F35Renderer extends GeoEntityRenderer<F35Entity> {
     public F35Renderer(EntityRendererProvider.Context renderManager) {

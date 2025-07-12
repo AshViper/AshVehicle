@@ -12,8 +12,8 @@ import net.minecraft.util.Mth;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.F4Model;
-import Aru.Aru.ashvehicle.entity.F4Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.F4Model;
+import Aru.Aru.ashvehicle.entity.vehicle.F4Entity;
 
 public class F4Renderer extends GeoEntityRenderer<F4Entity> {
     public F4Renderer(EntityRendererProvider.Context renderManager) {

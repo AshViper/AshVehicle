@@ -12,8 +12,8 @@ import net.minecraft.util.Mth;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.SU34Model;
-import Aru.Aru.ashvehicle.entity.SU34Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.SU34Model;
+import Aru.Aru.ashvehicle.entity.vehicle.SU34Entity;
 
 public class SU34Renderer extends GeoEntityRenderer<SU34Entity> {
     public SU34Renderer(EntityRendererProvider.Context renderManager) {

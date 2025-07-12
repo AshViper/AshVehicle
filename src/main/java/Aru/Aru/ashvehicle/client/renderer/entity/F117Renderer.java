@@ -12,8 +12,8 @@ import net.minecraft.util.Mth;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.F117Model;
-import Aru.Aru.ashvehicle.entity.F117Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.F117Model;
+import Aru.Aru.ashvehicle.entity.vehicle.F117Entity;
 
 public class F117Renderer extends GeoEntityRenderer<F117Entity> {
     public F117Renderer(EntityRendererProvider.Context renderManager) {

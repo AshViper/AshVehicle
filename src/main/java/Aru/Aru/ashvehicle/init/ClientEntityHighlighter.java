@@ -18,9 +18,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import Aru.Aru.ashvehicle.ExtensionTest;
 import Aru.Aru.ashvehicle.entity.Class.BaseAircraftEntity;
-import Aru.Aru.ashvehicle.entity.GepardEntity;
+import Aru.Aru.ashvehicle.entity.vehicle.GepardEntity;
 import com.atsuishio.superbwarfare.init.ModEntities;
-import Aru.Aru.ashvehicle.entity.ZumwaltEntity;
+import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 
 import java.util.List;
 import java.util.Set;

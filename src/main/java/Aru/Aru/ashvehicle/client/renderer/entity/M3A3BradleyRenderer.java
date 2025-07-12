@@ -15,8 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.M3A3BradleyModel;
-import Aru.Aru.ashvehicle.entity.M3A3BradleyEntity;
+import Aru.Aru.ashvehicle.client.model.vehicle.M3A3BradleyModel;
+import Aru.Aru.ashvehicle.entity.vehicle.M3A3BradleyEntity;
 
 public class M3A3BradleyRenderer extends GeoEntityRenderer<M3A3BradleyEntity> {
     public M3A3BradleyRenderer(EntityRendererProvider.Context renderManager) {

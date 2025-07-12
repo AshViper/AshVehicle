@@ -1,5 +1,6 @@
 package Aru.Aru.ashvehicle.init;
 
+import Aru.Aru.ashvehicle.entity.vehicle.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -9,8 +10,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import Aru.Aru.ashvehicle.ExtensionTest;
-import Aru.Aru.ashvehicle.entity.*;
-import Aru.Aru.ashvehicle.entity.F39EEntity;
 import Aru.Aru.ashvehicle.entity.weapon.*;
 
 import java.util.function.BiFunction;
@@ -67,6 +66,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<NuclearBombEntity>> NUCLEAR_BOMB = registerSimple("nuclear-bomb", NuclearBombEntity::new, NuclearBombEntity::new, SMALL_WIDTH, SMALL_HEIGHT);
     public static final RegistryObject<EntityType<JassmXREntity>> JASSM_XR = registerSimple("jassm-xr", JassmXREntity::new, JassmXREntity::new, SMALL_WIDTH, SMALL_HEIGHT);
     public static final RegistryObject<EntityType<BallisticMissileEntity>> BALLISTIC_MISSILE = registerSimple("ballistic-missile", BallisticMissileEntity::new, BallisticMissileEntity::new, SMALL_WIDTH, SMALL_HEIGHT);
+    public static final RegistryObject<EntityType<NapalmBombEntity>> NAPALM_BOMB = registerSimple("napalm-bomb", NapalmBombEntity::new, NapalmBombEntity::new, SMALL_WIDTH, SMALL_HEIGHT);
 
     // ===== ヘルパー =====
     private static <T extends Entity> RegistryObject<EntityType<T>> registerSimple(

@@ -15,8 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.GepardModel;
-import Aru.Aru.ashvehicle.entity.GepardEntity;
+import Aru.Aru.ashvehicle.client.model.vehicle.GepardModel;
+import Aru.Aru.ashvehicle.entity.vehicle.GepardEntity;
 
 public class GepardRenderer extends GeoEntityRenderer<GepardEntity> {
     public GepardRenderer(EntityRendererProvider.Context renderManager) {

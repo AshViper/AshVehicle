@@ -12,8 +12,8 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.Tom7Model;
-import Aru.Aru.ashvehicle.entity.Tom7Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.Tom7Model;
+import Aru.Aru.ashvehicle.entity.vehicle.Tom7Entity;
 
 public class Tom7Renderer extends GeoEntityRenderer<Tom7Entity> {
 

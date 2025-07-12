@@ -13,8 +13,8 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import Aru.Aru.ashvehicle.client.layer.F22GlowLayer;
-import Aru.Aru.ashvehicle.client.model.F22Model;
-import Aru.Aru.ashvehicle.entity.F22Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.F22Model;
+import Aru.Aru.ashvehicle.entity.vehicle.F22Entity;
 
 public class F22Renderer extends GeoEntityRenderer<F22Entity> {
     public F22Renderer(EntityRendererProvider.Context renderManager) {

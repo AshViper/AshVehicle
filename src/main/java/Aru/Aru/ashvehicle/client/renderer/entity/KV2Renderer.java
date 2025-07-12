@@ -15,8 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.KV2Model;
-import Aru.Aru.ashvehicle.entity.KV2Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.KV2Model;
+import Aru.Aru.ashvehicle.entity.vehicle.KV2Entity;
 
 public class KV2Renderer extends GeoEntityRenderer<KV2Entity> {
     public KV2Renderer(EntityRendererProvider.Context renderManager) {

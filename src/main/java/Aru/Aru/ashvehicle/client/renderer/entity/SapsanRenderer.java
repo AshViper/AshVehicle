@@ -16,8 +16,8 @@ import net.minecraft.world.entity.player.Player;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.SapsanModel;
-import Aru.Aru.ashvehicle.entity.SapsanEntity;
+import Aru.Aru.ashvehicle.client.model.vehicle.SapsanModel;
+import Aru.Aru.ashvehicle.entity.vehicle.SapsanEntity;
 
 public class SapsanRenderer extends GeoEntityRenderer<SapsanEntity> {
     public SapsanRenderer(EntityRendererProvider.Context renderManager) {

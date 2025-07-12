@@ -12,8 +12,8 @@ import net.minecraft.util.Mth;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.MQ9Model;
-import Aru.Aru.ashvehicle.entity.MQ9Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.MQ9Model;
+import Aru.Aru.ashvehicle.entity.vehicle.MQ9Entity;
 
 public class MQ9Renderer extends GeoEntityRenderer<MQ9Entity> {
     public MQ9Renderer(EntityRendererProvider.Context renderManager) {

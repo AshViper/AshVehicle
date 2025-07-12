@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
-import Aru.Aru.ashvehicle.entity.F35Entity;
+import Aru.Aru.ashvehicle.entity.vehicle.F35Entity;
 
 public class F35GlowLayer extends GeoRenderLayer<F35Entity> {
     private static final ResourceLocation GLOW_TEXTURE = new ResourceLocation("ashvehicle", "textures/entity/f-35-glow.png");

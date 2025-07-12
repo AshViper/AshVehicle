@@ -19,8 +19,8 @@ import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.ZumwaltModel;
-import Aru.Aru.ashvehicle.entity.ZumwaltEntity;
+import Aru.Aru.ashvehicle.client.model.vehicle.ZumwaltModel;
+import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 
 public class ZumwaltRenderer extends GeoEntityRenderer<ZumwaltEntity> {
     public ZumwaltRenderer(EntityRendererProvider.Context renderManager) {

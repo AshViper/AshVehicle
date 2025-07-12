@@ -12,8 +12,8 @@ import net.minecraft.util.Mth;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.client.model.B2Model;
-import Aru.Aru.ashvehicle.entity.B2Entity;
+import Aru.Aru.ashvehicle.client.model.vehicle.B2Model;
+import Aru.Aru.ashvehicle.entity.vehicle.B2Entity;
 
 public class B2Renderer extends GeoEntityRenderer<B2Entity> {
     public B2Renderer(EntityRendererProvider.Context renderManager) {

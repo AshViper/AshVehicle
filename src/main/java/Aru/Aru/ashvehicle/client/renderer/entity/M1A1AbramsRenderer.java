@@ -15,8 +15,8 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import Aru.Aru.ashvehicle.ExtensionTest;
-import Aru.Aru.ashvehicle.client.model.M1A1AbramsModel;
-import Aru.Aru.ashvehicle.entity.M1A1AbramsEntity;
+import Aru.Aru.ashvehicle.client.model.vehicle.M1A1AbramsModel;
+import Aru.Aru.ashvehicle.entity.vehicle.M1A1AbramsEntity;
 
 public class M1A1AbramsRenderer extends GeoEntityRenderer<M1A1AbramsEntity> {
 

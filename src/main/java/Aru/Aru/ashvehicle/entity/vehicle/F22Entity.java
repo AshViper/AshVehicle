@@ -1,5 +1,6 @@
 package Aru.Aru.ashvehicle.entity.vehicle;
 
+import Aru.Aru.ashvehicle.AshVehicle;
 import com.atsuishio.superbwarfare.Mod;
 import com.atsuishio.superbwarfare.config.server.VehicleConfig;
 import com.atsuishio.superbwarfare.entity.projectile.SmallCannonShellEntity;
@@ -38,7 +39,6 @@ import org.jetbrains.annotations.NotNull;
 import org.joml.Math;
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
-import Aru.Aru.ashvehicle.ExtensionTest;
 import Aru.Aru.ashvehicle.entity.Class.BaseAircraftEntity;
 import Aru.Aru.ashvehicle.entity.weapon.Aam4Entity;
 import Aru.Aru.ashvehicle.entity.weapon.Aam4Weapon;
@@ -220,7 +220,7 @@ public class F22Entity extends BaseAircraftEntity {
 
     @Override
     public ResourceLocation getVehicleIcon() {
-        return new ResourceLocation(ExtensionTest.MODID, "textures/icon/vehicle/f-22-icon.png");
+        return new ResourceLocation(AshVehicle.MODID, "textures/icon/vehicle/f-22-icon.png");
     }
     private boolean wasFiring;
     @Override

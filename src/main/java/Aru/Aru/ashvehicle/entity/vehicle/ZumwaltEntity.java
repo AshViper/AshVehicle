@@ -59,7 +59,7 @@ import Aru.Aru.ashvehicle.entity.weapon.Aam4Entity;
 import Aru.Aru.ashvehicle.entity.weapon.Aam4Weapon;
 import Aru.Aru.ashvehicle.init.ModEntities;
 import Aru.Aru.ashvehicle.init.ModNetwork;
-import Aru.Aru.ashvehicle.init.MultiLockTargetPacket;
+import Aru.Aru.ashvehicle.Packet.MultiLockTargetPacket;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;

@@ -1,23 +1,23 @@
 package Aru.Aru.ashvehicle;
 
+import Aru.Aru.ashvehicle.client.particle.AfterburnerFlameParticleProvider;
+import Aru.Aru.ashvehicle.init.*;
 import com.mojang.logging.LogUtils;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import Aru.Aru.ashvehicle.init.ModEntities;
-import Aru.Aru.ashvehicle.init.ModNetwork;
-import Aru.Aru.ashvehicle.init.ModSounds;
-import Aru.Aru.ashvehicle.init.ModTabs;
 
-@Mod(ExtensionTest.MODID)
-public class ExtensionTest {
+@Mod(AshVehicle.MODID)
+public class AshVehicle {
     public static final String MODID = "ashvehicle";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public ExtensionTest() {
+    public AshVehicle() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register entities for your extension mod
@@ -27,6 +27,7 @@ public class ExtensionTest {
         // TODO directly register into SuperbWarfare's containers
         ModTabs.TABS.register(bus);
         ModSounds.REGISTRY.register(bus);
+        ModParticleTypes.register(bus);
         bus.addListener(this::commonSetup);
         ModNetwork.register();
         MinecraftForge.EVENT_BUS.register(this);

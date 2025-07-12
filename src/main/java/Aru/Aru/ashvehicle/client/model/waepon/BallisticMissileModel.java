@@ -1,9 +1,9 @@
 package Aru.Aru.ashvehicle.client.model.waepon;
 
 
+import Aru.Aru.ashvehicle.AshVehicle;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
-import Aru.Aru.ashvehicle.ExtensionTest;
 import Aru.Aru.ashvehicle.entity.weapon.BallisticMissileEntity;
 
 public class BallisticMissileModel extends GeoModel<BallisticMissileEntity> {
@@ -15,10 +15,10 @@ public class BallisticMissileModel extends GeoModel<BallisticMissileEntity> {
     }
 
     public ResourceLocation getModelResource(BallisticMissileEntity entity) {
-        return new ResourceLocation(ExtensionTest.MODID, "geo/aam-4.geo.json");
+        return new ResourceLocation(AshVehicle.MODID, "geo/aam-4.geo.json");
     }
 
     public ResourceLocation getTextureResource(BallisticMissileEntity entity) {
-        return new ResourceLocation(ExtensionTest.MODID, "textures/weapon/aam-4.png");
+        return new ResourceLocation(AshVehicle.MODID, "textures/weapon/aam-4.png");
     }
 }

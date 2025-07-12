@@ -7,7 +7,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import Aru.Aru.ashvehicle.entity.vehicle.SapsanEntity;
 import Aru.Aru.ashvehicle.init.ModNetwork;
-import Aru.Aru.ashvehicle.init.SetMissileTargetPacket;
+import Aru.Aru.ashvehicle.Packet.SetMissileTargetPacket;
 
 public class CoordinateInputScreen extends Screen {
     private final SapsanEntity vehicle;

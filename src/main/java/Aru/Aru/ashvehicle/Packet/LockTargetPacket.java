@@ -1,5 +1,6 @@
-package Aru.Aru.ashvehicle.init;
+package Aru.Aru.ashvehicle.Packet;
 
+import Aru.Aru.ashvehicle.init.ClientTargetingData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;

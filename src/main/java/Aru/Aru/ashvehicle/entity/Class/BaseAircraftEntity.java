@@ -58,9 +58,9 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
-import Aru.Aru.ashvehicle.init.LockTargetPacket;
+import Aru.Aru.ashvehicle.Packet.LockTargetPacket;
 import Aru.Aru.ashvehicle.init.ModNetwork;
-import Aru.Aru.ashvehicle.init.MultiLockTargetPacket;
+import Aru.Aru.ashvehicle.Packet.MultiLockTargetPacket;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
@@ -337,6 +337,67 @@ public abstract class BaseAircraftEntity extends ContainerMobileVehicleEntity im
         this.refreshDimensions();
     }
 
+    // 複数の座標を受け取りパーティクルを出すメソッド
+    public void spawnAfterburnerParticles(List<Vec3> localPositions) {
+        if (!this.level().isClientSide()) return;
+
+        Vec3 basePos = this.position();
+        Vec3 look = this.getLookAngle().normalize();
+
+        // ───── 機体の角度取得 ─────
+        float yawDeg = this.getYRot();   // +右回り
+        float pitchDeg = this.getXRot(); // +上向き
+        float rollDeg = this.getRoll();  // +右に傾く（自作変数）
+
+        // ラジアン変換（Yawの正方向を維持する）
+        double yaw = Math.toRadians(yawDeg + 90);
+        double pitch = Math.toRadians(pitchDeg);
+        double roll = Math.toRadians(-(rollDeg - 90)); // ← ★ Rollを90°補正（Z軸がワールド座標に合うように）
+
+        // 回転行列成分（Yaw → Pitch → Roll）
+        double cy = Math.cos(yaw),   sy = Math.sin(yaw);
+        double cp = Math.cos(pitch), sp = Math.sin(pitch);
+        double cr = Math.cos(roll),  sr = Math.sin(roll);
+
+        for (Vec3 local : localPositions) {
+            double x = local.x;
+            double y = local.y;
+            double z = local.z;
+
+            // 回転行列 R = Yaw * Pitch * Roll に local ベクトルを適用
+            double wx =
+                    x * (cp * cy) +
+                            y * (sr * sp * cy - cr * sy) +
+                            z * (cr * sp * cy + sr * sy);
+
+            double wy =
+                    x * (cp * sy) +
+                            y * (sr * sp * sy + cr * cy) +
+                            z * (cr * sp * sy - sr * cy);
+
+            double wz =
+                    x * (-sp) +
+                            y * (sr * cp) +
+                            z * (cr * cp);
+
+            Vec3 worldOffset = new Vec3(wx, wz, wy);
+            Vec3 spawnPos = basePos.add(worldOffset);
+
+            this.level().addParticle(
+                    Aru.Aru.ashvehicle.init.ModParticleTypes.AFTERBURNER_FLAME.get(),
+                    spawnPos.x, spawnPos.y, spawnPos.z,
+                    look.x * -0.2, 0.01, look.z * -0.2
+            );
+        }
+    }
+
+    public List<Vec3> getAfterburnerParticlePositions() {
+        List<Vec3> positions = new ArrayList<>();
+        // 後方2.2、上1.0、左右-7と7（Z軸を左右方向とした場合）
+        positions.add(new Vec3(-10, 2.0, -1));  // ローカル座標
+        positions.add(new Vec3(-10, 2.0, 1));
+        return positions;
+    }
 
     public void lowHealthWarning() {
         Matrix4f transform = this.getVehicleTransform(1.0F);
@@ -700,12 +761,18 @@ public abstract class BaseAircraftEntity extends ContainerMobileVehicleEntity im
             if (passenger != null && !this.isInWater()) {
                 if (passenger instanceof Player) {
                     if (this.getEnergy() > 0) {
+                        float newPower = this.entityData.get(POWER);
                         if (this.forwardInputDown) {
                             this.entityData.set(POWER, Math.min((Float)this.entityData.get(POWER) + 0.004F, this.sprintInputDown ? 1.0F : 0.0575F));
                         }
 
                         if (this.backInputDown) {
                             this.entityData.set(POWER, Math.max((Float)this.entityData.get(POWER) - 0.002F, -0.2F));
+                        }
+
+                        if(newPower > 0.06F){
+                            // 🔥 アフターバーナーパーティクル（クライアント側）
+                            this.spawnAfterburnerParticles(getAfterburnerParticlePositions());
                         }
                     }
 

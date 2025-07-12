@@ -447,6 +447,13 @@ public class F35Entity extends BaseAircraftEntity {
         }else if (this.getWeaponIndex(0) == 2) {
             this.entityData.set(AMMO, (Integer)this.getEntityData().get(LOADED_MISSILE));
         }
+    }
 
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        List<Vec3> positions = new ArrayList<>();
+        // 後方2.2、上1.0、左右-7と7（Z軸を左右方向とした場合）
+        positions.add(new Vec3(-8, 2.0, 0));  // ローカル座標
+        return positions;
     }
 }

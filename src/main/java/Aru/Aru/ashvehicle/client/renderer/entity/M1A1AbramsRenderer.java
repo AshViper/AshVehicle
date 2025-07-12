@@ -1,5 +1,6 @@
 package Aru.Aru.ashvehicle.client.renderer.entity;
 
+import Aru.Aru.ashvehicle.AshVehicle;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.CameraType;
@@ -14,7 +15,6 @@ import com.mojang.math.Axis;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import Aru.Aru.ashvehicle.ExtensionTest;
 import Aru.Aru.ashvehicle.client.model.vehicle.M1A1AbramsModel;
 import Aru.Aru.ashvehicle.entity.vehicle.M1A1AbramsEntity;
 
@@ -37,7 +37,7 @@ public class M1A1AbramsRenderer extends GeoEntityRenderer<M1A1AbramsEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(M1A1AbramsEntity animatable) {
-        return new ResourceLocation(ExtensionTest.MODID, "textures/entity/m1a1abrams.png");
+        return new ResourceLocation(AshVehicle.MODID, "textures/entity/m1a1abrams.png");
     }
 
     @Override

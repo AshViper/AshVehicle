@@ -1,8 +1,8 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
+import Aru.Aru.ashvehicle.AshVehicle;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
-import Aru.Aru.ashvehicle.ExtensionTest;
 import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 
 public class ZumwaltModel extends GeoModel<ZumwaltEntity> {
@@ -13,8 +13,8 @@ public class ZumwaltModel extends GeoModel<ZumwaltEntity> {
     }
 
     @Override
-    public ResourceLocation getModelResource(ZumwaltEntity entity) {return new ResourceLocation(ExtensionTest.MODID,"geo/zumwalt.geo.json");}
+    public ResourceLocation getModelResource(ZumwaltEntity entity) {return new ResourceLocation(AshVehicle.MODID,"geo/zumwalt.geo.json");}
 
     @Override
-    public ResourceLocation getTextureResource(ZumwaltEntity entity) {return new ResourceLocation(ExtensionTest.MODID,"textures/entity/zumwalt.png");}
+    public ResourceLocation getTextureResource(ZumwaltEntity entity) {return new ResourceLocation(AshVehicle.MODID,"textures/entity/zumwalt.png");}
 }

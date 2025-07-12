@@ -16,7 +16,7 @@ import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-import Aru.Aru.ashvehicle.ExtensionTest;
+import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.entity.Class.BaseAircraftEntity;
 import Aru.Aru.ashvehicle.entity.vehicle.GepardEntity;
 import com.atsuishio.superbwarfare.init.ModEntities;
@@ -25,7 +25,7 @@ import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 import java.util.List;
 import java.util.Set;
 
-@Mod.EventBusSubscriber(modid = ExtensionTest.MODID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
 public class ClientEntityHighlighter {
 
     @SubscribeEvent

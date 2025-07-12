@@ -22,6 +22,9 @@ import org.joml.Vector4f;
 import Aru.Aru.ashvehicle.entity.Class.BaseAircraftEntity;
 import Aru.Aru.ashvehicle.init.ModEntities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class F117Entity extends BaseAircraftEntity{
     private static final int MAX_BOMB_SLOTS = 3;
     public F117Entity(EntityType<?> pEntityType, Level pLevel) {
@@ -105,5 +108,10 @@ public class F117Entity extends BaseAircraftEntity{
             // 残弾数を1減らす
             this.getEntityData().set(LOADED_BOMB, this.getEntityData().get(LOADED_BOMB) - 1);
         }
+    }
+
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        return new ArrayList<>();
     }
 }

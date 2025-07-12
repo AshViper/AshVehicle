@@ -1,11 +1,11 @@
 package Aru.Aru.ashvehicle.init;
 
+import Aru.Aru.ashvehicle.AshVehicle;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import Aru.Aru.ashvehicle.ExtensionTest;
 
 /**
  * Класс для регистрации звуков, используемых в моде
@@ -13,7 +13,7 @@ import Aru.Aru.ashvehicle.ExtensionTest;
 public class ModSounds {
     // Создаем регистр для звуков
     public static final DeferredRegister<SoundEvent> REGISTRY = 
-            DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, ExtensionTest.MODID);
+            DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, AshVehicle.MODID);
     
     // Регистрируем звуки для M1A1 Abrams
     public static final RegistryObject<SoundEvent> M1A1_ABRAMS_FIRE = register("m1a1_fire");
@@ -33,6 +33,6 @@ public class ModSounds {
      * @return RegistryObject для звукового события
      */
     private static RegistryObject<SoundEvent> register(String name) {
-        return REGISTRY.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ExtensionTest.MODID, name)));
+        return REGISTRY.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(AshVehicle.MODID, name)));
     }
 } 

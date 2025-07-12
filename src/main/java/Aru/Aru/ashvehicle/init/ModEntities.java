@@ -1,5 +1,6 @@
 package Aru.Aru.ashvehicle.init;
 
+import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.entity.vehicle.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -9,7 +10,6 @@ import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import Aru.Aru.ashvehicle.ExtensionTest;
 import Aru.Aru.ashvehicle.entity.weapon.*;
 
 import java.util.function.BiFunction;
@@ -17,7 +17,7 @@ import java.util.function.BiFunction;
 public class ModEntities {
 
     public static final DeferredRegister<EntityType<?>> REGISTRY =
-            DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, ExtensionTest.MODID);
+            DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, AshVehicle.MODID);
 
     // ===== サイズ定数 =====
     private static final float AIRCRAFT_WIDTH = 7.0f;

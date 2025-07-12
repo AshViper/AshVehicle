@@ -1,9 +1,9 @@
 package Aru.Aru.ashvehicle.client.model.waepon;
 
 
+import Aru.Aru.ashvehicle.AshVehicle;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
-import Aru.Aru.ashvehicle.ExtensionTest;
 import Aru.Aru.ashvehicle.entity.weapon.JassmXREntity;
 
 public class JassmXRModel extends GeoModel<JassmXREntity> {
@@ -11,14 +11,14 @@ public class JassmXRModel extends GeoModel<JassmXREntity> {
     }
 
     public ResourceLocation getAnimationResource(JassmXREntity entity) {
-        return new ResourceLocation(ExtensionTest.MODID, "animations/jassm-xr.animation.json");
+        return new ResourceLocation(AshVehicle.MODID, "animations/jassm-xr.animation.json");
     }
 
     public ResourceLocation getModelResource(JassmXREntity entity) {
-        return new ResourceLocation(ExtensionTest.MODID, "geo/jassm-xr.geo.json");
+        return new ResourceLocation(AshVehicle.MODID, "geo/jassm-xr.geo.json");
     }
 
     public ResourceLocation getTextureResource(JassmXREntity entity) {
-        return new ResourceLocation(ExtensionTest.MODID, "textures/weapon/jassm-xr.png");
+        return new ResourceLocation(AshVehicle.MODID, "textures/weapon/jassm-xr.png");
     }
 }

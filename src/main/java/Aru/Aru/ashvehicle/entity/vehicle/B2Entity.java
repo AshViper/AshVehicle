@@ -23,6 +23,9 @@ import Aru.Aru.ashvehicle.entity.weapon.GBU57Entity;
 import Aru.Aru.ashvehicle.entity.weapon.GBU57Weapon;
 import Aru.Aru.ashvehicle.init.ModEntities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class B2Entity extends BaseAircraftEntity {
     public B2Entity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -145,5 +148,10 @@ public class B2Entity extends BaseAircraftEntity {
             }
             this.entityData.set(LOADED_MISSILE, (Integer)this.getEntityData().get(LOADED_MISSILE) - 1);
         }
+    }
+
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        return new ArrayList<>();
     }
 }

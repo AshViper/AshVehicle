@@ -1,4 +1,4 @@
-package Aru.Aru.ashvehicle.init;
+package Aru.Aru.ashvehicle.Packet;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;

@@ -9,11 +9,11 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-import Aru.Aru.ashvehicle.ExtensionTest;
+import Aru.Aru.ashvehicle.AshVehicle;
 
 @SuppressWarnings("unused")
 public class ModTabs {
-    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ExtensionTest.MODID);
+    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AshVehicle.MODID);
 
     public static final RegistryObject<CreativeModeTab> BLOCKTANK_TAB = TABS.register("ash-tank",
             () -> CreativeModeTab.builder()

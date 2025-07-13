@@ -1,5 +1,7 @@
 package Aru.Aru.ashvehicle.entity.vehicle;
 
+import Aru.Aru.ashvehicle.entity.weapon.*;
+import Aru.Aru.ashvehicle.init.CoordinateTargetVehicle;
 import com.atsuishio.superbwarfare.Mod;
 import com.atsuishio.superbwarfare.config.server.ExplosionConfig;
 import com.atsuishio.superbwarfare.config.server.VehicleConfig;
@@ -55,8 +57,6 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
-import Aru.Aru.ashvehicle.entity.weapon.Aam4Entity;
-import Aru.Aru.ashvehicle.entity.weapon.Aam4Weapon;
 import Aru.Aru.ashvehicle.init.ModEntities;
 import Aru.Aru.ashvehicle.init.ModNetwork;
 import Aru.Aru.ashvehicle.Packet.MultiLockTargetPacket;
@@ -64,7 +64,7 @@ import Aru.Aru.ashvehicle.Packet.MultiLockTargetPacket;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 
-public class ZumwaltEntity extends ContainerMobileVehicleEntity implements GeoEntity, ArmedVehicleEntity, WeaponVehicleEntity, LandArmorEntity, OBBEntity {
+public class ZumwaltEntity extends ContainerMobileVehicleEntity implements GeoEntity, ArmedVehicleEntity, WeaponVehicleEntity, LandArmorEntity, OBBEntity, CoordinateTargetVehicle {
     private final AnimatableInstanceCache cache;
     public OBB obb2;
     private final Map<UUID, Integer> lockTargets = new HashMap<>();
@@ -72,6 +72,7 @@ public class ZumwaltEntity extends ContainerMobileVehicleEntity implements GeoEn
     public int reloadCoolDownMissile;
     public boolean locked;
     public static final EntityDataAccessor<Integer> LOADED_MISSILE;
+    private boolean shotToggled;
 
     public ZumwaltEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.ZYNWALT.get(), world);
@@ -81,6 +82,10 @@ public class ZumwaltEntity extends ContainerMobileVehicleEntity implements GeoEn
         super(type, world);
         this.cache = GeckoLibUtil.createInstanceCache(this);
         this.obb2 = new OBB(this.position().toVector3f(), new Vector3f(10F, 5.0F, 80.0F), new Quaternionf(), OBB.Part.BODY);
+    }
+
+    public int getId() {
+        return super.getId();
     }
 
     static {
@@ -104,7 +109,8 @@ public class ZumwaltEntity extends ContainerMobileVehicleEntity implements GeoEn
                     .sound3p((SoundEvent)ModSounds.M_2_HB_FIRE_3P.get())
                     .sound3pFar((SoundEvent)ModSounds.M_2_HB_FAR.get())
                     .sound3pVeryFar((SoundEvent)ModSounds.M_2_HB_VERYFAR.get()),
-                (new Aam4Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get())
+                (new Aam4Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get()),
+                (new TomahawkWeapon().sound(ModSounds.INTO_MISSILE.get()))
         }};
     }
 
@@ -196,65 +202,57 @@ public class ZumwaltEntity extends ContainerMobileVehicleEntity implements GeoEn
         this.refreshDimensions();
     }
 
-    public void customOBBCollisionAndFloorTick() {
-        for (Entity entity : this.level().getEntities(null, this.getBoundingBox().inflate(3))) {
-            if (entity == this || !entity.isAlive() || entity.noPhysics) continue;
+    public void shootMissileTo(Player player, Vec3 targetPos) {
+        if (this.cannotFire) return;
+        if (this.getWeaponIndex(0) != 2) return;
 
-            Vec3 entityCenter = entity.getBoundingBox().getCenter();
-            AABB entityBox = entity.getBoundingBox();
-
-            boolean stoodOnOBB = false;
-
-            for (OBB obb : getOBBs()) {
-                // 1) 通過防止判定（壁など）
-                if (OBB.isColliding(obb, entityBox)) {
-                    Vector3f normal = obb.getClosestFaceNormal(entityCenter);
-                    Vec3 pushVec = new Vec3(normal.x(), normal.y(), normal.z()).scale(0.1);
-
-                    entity.setPos(entity.getX() + pushVec.x, entity.getY() + pushVec.y, entity.getZ() + pushVec.z);
-
-                    Vec3 vel = entity.getDeltaMovement();
-                    Vec3 canceled = vel.subtract(
-                            pushVec.x != 0 ? vel.x : 0,
-                            pushVec.y != 0 ? vel.y : 0,
-                            pushVec.z != 0 ? vel.z : 0);
-                    entity.setDeltaMovement(canceled);
-                }
-
-                // 2) 上に乗れる判定（床）
-                OBB.ClosestFaceResult faceResult = OBB.findClosestFace(List.of(obb), entityCenter);
-                if (faceResult == null) continue;
-
-                if (faceResult.faceNormal().y() >= 0.3f) {
-                    double halfHeight = entity.getBbHeight() / 2.0;
-                    double snapY = faceResult.faceCenter().y() + halfHeight + 0.001;
-
-                    // Y座標をOBBの床面にスナップ
-                    entity.setPos(entity.getX(), snapY, entity.getZ());
-
-                    // 水平に引き寄せ（XZ平面での安定化）
-                    Vector3f center = faceResult.faceCenter();
-                    double dx = center.x() - entity.getX();
-                    double dz = center.z() - entity.getZ();
-
-                    if (entity instanceof LivingEntity living && dx * dx + dz * dz < 0.5) {
-                        Vec3 vel = living.getDeltaMovement();
-                        living.setDeltaMovement(vel.add(dx * 0.1, 0, dz * 0.1));
-                    }
-
-                    // 落下停止＆地面状態
-                    entity.setDeltaMovement(entity.getDeltaMovement().multiply(1, 0, 1));
-                    entity.fallDistance = 0.0f;
-                    entity.setOnGround(true);
-
-                    stoodOnOBB = true;
+        boolean hasCreativeAmmo = false;
+        for (int i = 0; i < this.getMaxPassengers() - 1; ++i) {
+            Entity y = this.getNthEntity(i);
+            if (y instanceof Player pPlayer) {
+                if (InventoryTool.hasCreativeAmmoBox(pPlayer)) {
+                    hasCreativeAmmo = true;
                 }
             }
+        }
 
-            // 床に乗っていなければ自由落下
-            if (!stoodOnOBB && entity instanceof LivingEntity living) {
-                living.setOnGround(false);
-            }
+        Matrix4f transform = this.getBarrelTransform(1.0F);
+
+        float x = shotToggled ? -1F : 1F; // 左右切り替え
+        float y = 1.0F;
+        float z = -10F;
+        this.shotToggled = !this.shotToggled;
+
+        Vector4f worldPosition = this.transformPosition(transform, x, y, z);
+
+        // 誘導弾道ミサイル生成
+        TomahawkEntity missile = ((TomahawkWeapon) this.getWeapon(0)).create(player);
+        missile.setPos(worldPosition.x, worldPosition.y, worldPosition.z);
+
+        // 目標座標セット（誘導開始）
+        missile.setXRot(90);
+        missile.setYRot(180);
+        missile.setTargetPosition(targetPos);
+
+        this.level().addFreshEntity(missile);
+
+        // 発射エフェクト
+        ParticleTool.sendParticle((ServerLevel) this.level(), ParticleTypes.LARGE_SMOKE,
+                worldPosition.x, worldPosition.y, worldPosition.z,
+                10, 0.1, 0.1, 0.1, 0.0, false);
+
+        // サウンド・アニメーション
+        if (!player.level().isClientSide) {
+            this.playShootSound3p(player, 1, 10, 30, 60);
+        }
+        ShakeClientMessage.sendToNearbyPlayers(this, 6.0, 8.0, 6.0, 12.0);
+
+        this.entityData.set(CANNON_RECOIL_TIME, 60);
+        this.entityData.set(FIRE_ANIM, 3);
+
+        // 弾薬消費
+        if (!hasCreativeAmmo) {
+            // 弾薬消費処理をここに入れる（必要に応じて）
         }
     }
 

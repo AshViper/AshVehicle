@@ -1,5 +1,6 @@
 package Aru.Aru.ashvehicle.init;
 
+import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -25,8 +26,8 @@ public class ClientEvents {
 
         // 🚩 特定のエンティティに乗っているか確認（例：SapsanEntity）
         Entity vehicle = mc.player.getVehicle();
-        if (isQDown && !wasQDown && vehicle instanceof SapsanEntity) {
-            mc.setScreen(new CoordinateInputScreen((SapsanEntity) vehicle));
+        if (isQDown && !wasQDown && vehicle instanceof CoordinateTargetVehicle targetable) {
+            mc.setScreen(new CoordinateInputScreen(targetable));
         }
 
         wasQDown = isQDown;

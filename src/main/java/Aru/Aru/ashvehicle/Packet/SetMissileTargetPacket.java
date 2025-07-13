@@ -1,5 +1,6 @@
 package Aru.Aru.ashvehicle.Packet;
 
+import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -41,6 +42,9 @@ public class SetMissileTargetPacket {
             Entity entity = level.getEntity(msg.entityId);
             if (entity instanceof SapsanEntity sapsan) {
                 sapsan.shootMissileTo(player, new Vec3(msg.x, msg.y, msg.z));
+            }
+            if (entity instanceof ZumwaltEntity zumwalt) {
+                zumwalt.shootMissileTo(player, new Vec3(msg.x, msg.y, msg.z));
             }
         });
         ctx.get().setPacketHandled(true);

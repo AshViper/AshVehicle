@@ -1,5 +1,6 @@
 package Aru.Aru.ashvehicle.entity.vehicle;
 
+import Aru.Aru.ashvehicle.init.CoordinateTargetVehicle;
 import com.atsuishio.superbwarfare.Mod;
 import com.atsuishio.superbwarfare.config.server.ExplosionConfig;
 import com.atsuishio.superbwarfare.config.server.VehicleConfig;
@@ -59,7 +60,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public class SapsanEntity extends ContainerMobileVehicleEntity implements GeoEntity, LandArmorEntity, WeaponVehicleEntity {
+public class SapsanEntity extends ContainerMobileVehicleEntity implements GeoEntity, LandArmorEntity, WeaponVehicleEntity,CoordinateTargetVehicle {
     private final AnimatableInstanceCache cache;
     private boolean wasSprintInputDown = false; // 前回の入力状態
     private boolean sprintToggled;
@@ -74,6 +75,10 @@ public class SapsanEntity extends ContainerMobileVehicleEntity implements GeoEnt
     public SapsanEntity(EntityType<SapsanEntity> type, Level world) {
         super(type, world);
         this.cache = GeckoLibUtil.createInstanceCache(this);
+    }
+
+    public int getId() {
+        return super.getId();
     }
 
     @Override

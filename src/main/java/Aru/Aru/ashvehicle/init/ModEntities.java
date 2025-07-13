@@ -67,6 +67,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<JassmXREntity>> JASSM_XR = registerSimple("jassm-xr", JassmXREntity::new, JassmXREntity::new, SMALL_WIDTH, SMALL_HEIGHT);
     public static final RegistryObject<EntityType<BallisticMissileEntity>> BALLISTIC_MISSILE = registerSimple("ballistic-missile", BallisticMissileEntity::new, BallisticMissileEntity::new, SMALL_WIDTH, SMALL_HEIGHT);
     public static final RegistryObject<EntityType<NapalmBombEntity>> NAPALM_BOMB = registerSimple("napalm-bomb", NapalmBombEntity::new, NapalmBombEntity::new, SMALL_WIDTH, SMALL_HEIGHT);
+    public static final RegistryObject<EntityType<TomahawkEntity>> TOMAHAWK = registerSimple("tomahawk", TomahawkEntity::new, TomahawkEntity::new, SMALL_WIDTH, SMALL_HEIGHT);
 
     // ===== ヘルパー =====
     private static <T extends Entity> RegistryObject<EntityType<T>> registerSimple(

@@ -1,6 +1,5 @@
-package Aru.Aru.ashvehicle.Packet;
+package Aru.Aru.ashvehicle.init;
 
-import Aru.Aru.ashvehicle.init.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -46,6 +45,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.JASSM_XR.get(), JassmXRRenderer::new);
         event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
         event.registerEntityRenderer(ModEntities.NAPALM_BOMB.get(), NapalmBombRenderer::new);
+        event.registerEntityRenderer(ModEntities.TOMAHAWK.get(), TomahawkRenderer::new);
     }
 }
 

@@ -36,7 +36,9 @@ import Aru.Aru.ashvehicle.entity.weapon.Aam4Entity;
 import Aru.Aru.ashvehicle.entity.weapon.Aam4Weapon;
 import Aru.Aru.ashvehicle.init.ModEntities;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class Mig29Entity extends BaseAircraftEntity {
     public Mig29Entity(EntityType<?> entityType, Level level) {
@@ -255,6 +257,15 @@ public class Mig29Entity extends BaseAircraftEntity {
         this.lowHealthWarning();
         this.releaseDecoy();
         this.refreshDimensions();
+    }
+
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        List<Vec3> positions = new ArrayList<>();
+        // 後方2.2、上1.0、左右-7と7（Z軸を左右方向とした場合）
+        positions.add(new Vec3(-7, 1.0, -1));  // ローカル座標
+        positions.add(new Vec3(-7, 1.0, 1));
+        return positions;
     }
 }
 

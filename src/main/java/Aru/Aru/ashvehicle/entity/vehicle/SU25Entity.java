@@ -9,12 +9,16 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
 import Aru.Aru.ashvehicle.entity.Class.BaseAircraftEntity;
 import Aru.Aru.ashvehicle.init.ModEntities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SU25Entity extends BaseAircraftEntity {
     public SU25Entity(EntityType<?> pEntityType, Level pLevel) {
@@ -97,5 +101,10 @@ public class SU25Entity extends BaseAircraftEntity {
             this.entityData.set(AMMO, (Integer)this.getEntityData().get(LOADED_MISSILE));
         }
 
+    }
+
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        return new ArrayList<>();
     }
 }

@@ -441,4 +441,13 @@ public class SU57Entity extends BaseAircraftEntity {
     public SoundEvent getEngineSound() {
         return Aru.Aru.ashvehicle.init.ModSounds.SU57_ENGINE.get();
     }
+
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        List<Vec3> positions = new ArrayList<>();
+        // 後方2.2、上1.0、左右-7と7（Z軸を左右方向とした場合）
+        positions.add(new Vec3(-9, 2.0, -1));  // ローカル座標
+        positions.add(new Vec3(-9, 2.0, 1));
+        return positions;
+    }
 }

@@ -38,7 +38,9 @@ import Aru.Aru.ashvehicle.entity.weapon.Aam4Entity;
 import Aru.Aru.ashvehicle.entity.weapon.Aam4Weapon;
 import Aru.Aru.ashvehicle.init.ModEntities;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class SU33Entity extends BaseAircraftEntity {
     private boolean wasFiring;
@@ -225,5 +227,14 @@ public class SU33Entity extends BaseAircraftEntity {
 
             this.entityData.set(LOADED_MISSILE, (Integer)this.getEntityData().get(LOADED_MISSILE) - 1);
         }
+    }
+
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        List<Vec3> positions = new ArrayList<>();
+        // 後方2.2、上1.0、左右-7と7（Z軸を左右方向とした場合）
+        positions.add(new Vec3(-7, 1.5, -1));  // ローカル座標
+        positions.add(new Vec3(-7, 1.5, 1));
+        return positions;
     }
 }

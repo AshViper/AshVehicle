@@ -45,7 +45,9 @@ import Aru.Aru.ashvehicle.entity.weapon.Aam4Weapon;
 import Aru.Aru.ashvehicle.init.ModEntities;
 
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class F22Entity extends BaseAircraftEntity {
 
@@ -296,131 +298,11 @@ public class F22Entity extends BaseAircraftEntity {
     }
 
     @Override
-    public void travel() {
-        Entity passenger = this.getFirstPassenger();
-        if (this.getHealth() > 0.1F * this.getMaxHealth()) {
-            if (passenger != null && !this.isInWater()) {
-                if (passenger instanceof Player) {
-                    if (this.getEnergy() > 0) {
-                        float newPower = this.entityData.get(POWER);
-                        if (this.forwardInputDown) {
-                            newPower = Math.min(this.entityData.get(POWER) + 0.004F, this.sprintInputDown ? 1.0F : 0.0575F);
-                            this.entityData.set(POWER, newPower);
-                        }
-
-                        if (this.backInputDown) {
-                            this.entityData.set(POWER, Math.max(this.entityData.get(POWER) - 0.002F, -0.2F));
-                        }
-                        this.setAfterburnerActive(newPower > 0.06F);
-                    }
-
-                    if (!this.onGround()) {
-                        if (this.rightInputDown) {
-                            this.entityData.set(DELTA_ROT, (Float)this.entityData.get(DELTA_ROT) - 1.2F);
-                        } else if (this.leftInputDown) {
-                            this.entityData.set(DELTA_ROT, (Float)this.entityData.get(DELTA_ROT) + 1.2F);
-                        }
-                    }
-
-                    if (this.downInputDown) {
-                        if (this.onGround()) {
-                            this.entityData.set(POWER, (Float)this.entityData.get(POWER) * 0.8F);
-                            this.setDeltaMovement(this.getDeltaMovement().multiply(0.97, (double)1.0F, 0.97));
-                        } else {
-                            this.entityData.set(POWER, (Float)this.entityData.get(POWER) * 0.97F);
-                            this.setDeltaMovement(this.getDeltaMovement().multiply(0.994, (double)1.0F, 0.994));
-                        }
-
-                        this.entityData.set(PLANE_BREAK, Math.min((Float)this.entityData.get(PLANE_BREAK) + 10.0F, 60.0F));
-                    }
-                }
-            } else {
-                this.leftInputDown = false;
-                this.rightInputDown = false;
-                this.forwardInputDown = false;
-                this.backInputDown = false;
-                this.entityData.set(POWER, (Float)this.entityData.get(POWER) * 0.95F);
-                if (this.onGround()) {
-                    this.setDeltaMovement(this.getDeltaMovement().multiply(0.94, (double)1.0F, 0.94));
-                } else {
-                    this.setXRot(Mth.clamp(this.getXRot() + 0.1F, -89.0F, 89.0F));
-                }
-            }
-
-            if (this.getEnergy() > 0 && !this.level().isClientSide) {
-                this.consumeEnergy((int)(Mth.abs((Float)this.entityData.get(POWER)) * (float)(Integer)VehicleConfig.A_10_MAX_ENERGY_COST.get()));
-            }
-
-            float rotSpeed = 1.5F + 2.0F * Mth.abs(VectorTool.calculateY(this.getRoll()));
-            float addY = Mth.clamp(Math.max((this.onGround() ? 0.1F : 0.2F) * (float)this.getDeltaMovement().length(), 0.0F) * (Float)this.entityData.get(MOUSE_SPEED_X), -rotSpeed, rotSpeed);
-            float addX = Mth.clamp(Math.min((float)Math.max(this.getDeltaMovement().dot(this.getViewVector(1.0F)) - 0.24, 0.03), 0.4F) * (Float)this.entityData.get(MOUSE_SPEED_Y), -3.5F, 3.5F);
-            float addZ = (Float)this.entityData.get(DELTA_ROT) - (this.onGround() ? 0.0F : 0.004F) * (Float)this.entityData.get(MOUSE_SPEED_X) * (float)this.getDeltaMovement().dot(this.getViewVector(1.0F));
-            float i = this.getXRot() / 80.0F;
-            this.delta_x = addX;
-            this.delta_y = addY - VectorTool.calculateY(this.getXRot()) * addZ;
-            this.setYRot(this.getYRot() + this.delta_y);
-            if (!this.onGround()) {
-                this.setXRot(this.getXRot() + this.delta_x);
-                this.setZRot(this.getRoll() - addZ * (1.0F - Mth.abs(i)));
-            }
-
-            if (!this.onGround()) {
-                float speed = Mth.clamp(Mth.abs(this.roll) / 90.0F, 0.0F, 1.0F);
-                if (this.roll > 0.0F) {
-                    this.setZRot(this.roll - Math.min(speed, this.roll));
-                } else if (this.roll < 0.0F) {
-                    this.setZRot(this.roll + Math.min(speed, -this.roll));
-                }
-            }
-
-            this.setPropellerRot(this.getPropellerRot() + 30.0F * (Float)this.entityData.get(POWER));
-            if (this.upInputDown) {
-                this.upInputDown = false;
-                if ((Integer)this.entityData.get(GEAR_ROT) == 0 && !this.onGround()) {
-                    this.entityData.set(GEAR_UP, true);
-                } else if ((Integer)this.entityData.get(GEAR_ROT) == 85) {
-                    this.entityData.set(GEAR_UP, false);
-                }
-            }
-
-            if (this.onGround()) {
-                this.entityData.set(GEAR_UP, false);
-            }
-
-            if ((Boolean)this.entityData.get(GEAR_UP)) {
-                this.entityData.set(GEAR_ROT, Math.min((Integer)this.entityData.get(GEAR_ROT) + 5, 85));
-            } else {
-                this.entityData.set(GEAR_ROT, Math.max((Integer)this.entityData.get(GEAR_ROT) - 5, 0));
-            }
-
-            float flapX = (1.0F - Mth.abs(this.getRoll()) / 90.0F) * Mth.clamp((Float)this.entityData.get(MOUSE_SPEED_Y), -22.5F, 22.5F) - VectorTool.calculateY(this.getRoll()) * Mth.clamp((Float)this.entityData.get(MOUSE_SPEED_X), -22.5F, 22.5F);
-            this.setFlap1LRot(Mth.clamp(-flapX - 4.0F * addZ - (Float)this.entityData.get(PLANE_BREAK), -22.5F, 22.5F));
-            this.setFlap1RRot(Mth.clamp(-flapX + 4.0F * addZ - (Float)this.entityData.get(PLANE_BREAK), -22.5F, 22.5F));
-            this.setFlap1L2Rot(Mth.clamp(-flapX - 4.0F * addZ + (Float)this.entityData.get(PLANE_BREAK), -22.5F, 22.5F));
-            this.setFlap1R2Rot(Mth.clamp(-flapX + 4.0F * addZ + (Float)this.entityData.get(PLANE_BREAK), -22.5F, 22.5F));
-            this.setFlap2LRot(Mth.clamp(flapX - 4.0F * addZ, -22.5F, 22.5F));
-            this.setFlap2RRot(Mth.clamp(flapX + 4.0F * addZ, -22.5F, 22.5F));
-            float flapY = (1.0F - Mth.abs(this.getRoll()) / 90.0F) * Mth.clamp((Float)this.entityData.get(MOUSE_SPEED_X), -22.5F, 22.5F) + VectorTool.calculateY(this.getRoll()) * Mth.clamp((Float)this.entityData.get(MOUSE_SPEED_Y), -22.5F, 22.5F);
-            this.setFlap3Rot(flapY * 5.0F);
-        } else if (!this.onGround()) {
-            this.entityData.set(POWER, Math.max((Float)this.entityData.get(POWER) - 3.0E-4F, 0.02F));
-            this.destroyRot += 0.1F;
-            float diffX = 90.0F - this.getXRot();
-            this.setXRot(this.getXRot() + diffX * 0.001F * this.destroyRot);
-            this.setZRot(this.getRoll() - this.destroyRot);
-            this.setDeltaMovement(this.getDeltaMovement().add((double)0.0F, -0.03, (double)0.0F));
-            this.setDeltaMovement(this.getDeltaMovement().add((double)0.0F, (double)(-this.destroyRot) * 0.005, (double)0.0F));
-        }
-
-        this.entityData.set(POWER, (Float)this.entityData.get(POWER) * 0.99F);
-        this.entityData.set(DELTA_ROT, (Float)this.entityData.get(DELTA_ROT) * 0.85F);
-        this.entityData.set(PLANE_BREAK, (Float)this.entityData.get(PLANE_BREAK) * 0.8F);
-        Matrix4f transform = this.getVehicleTransform(1.0F);
-        double flapAngle = (double)((this.getFlap1LRot() + this.getFlap1RRot() + this.getFlap1L2Rot() + this.getFlap1R2Rot()) / 4.0F);
-        Vector4f force0 = this.transformPosition(transform, 0.0F, 0.0F, 0.0F);
-        Vector4f force1 = this.transformPosition(transform, 0.0F, 1.0F, 0.0F);
-        Vec3 force = (new Vec3((double)force0.x, (double)force0.y, (double)force0.z)).vectorTo(new Vec3((double)force1.x, (double)force1.y, (double)force1.z));
-        this.setDeltaMovement(this.getDeltaMovement().add(force.scale(this.getDeltaMovement().dot(this.getViewVector(1.0F)) * 0.022 * ((double)1.0F + Math.sin((this.onGround() ? (double)25.0F : flapAngle + (double)25.0F) * (double)((float)java.lang.Math.PI / 180F))))));
-        this.setDeltaMovement(this.getDeltaMovement().add(this.getViewVector(1.0F).scale(0.2 * (double)(Float)this.entityData.get(POWER))));
+    public List<Vec3> getAfterburnerParticlePositions() {
+        List<Vec3> positions = new ArrayList<>();
+        // 後方2.2、上1.0、左右-7と7（Z軸を左右方向とした場合）
+        positions.add(new Vec3(-7, 1.5, -0.8));  // ローカル座標
+        positions.add(new Vec3(-7, 1.5, 0.8));
+        return positions;
     }
 }

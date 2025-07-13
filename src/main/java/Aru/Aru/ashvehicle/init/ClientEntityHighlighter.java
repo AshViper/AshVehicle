@@ -5,14 +5,22 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -24,6 +32,8 @@ import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 
 import java.util.List;
 import java.util.Set;
+
+import static com.atsuishio.superbwarfare.event.ClientEventHandler.fov;
 
 @Mod.EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
 public class ClientEntityHighlighter {
@@ -122,10 +132,10 @@ public class ClientEntityHighlighter {
             int size = stealthTypes.contains(target.getType()) ? 6 : 10;
 
             // ✅ 単一ターゲットではなく、複数ロック中ターゲットをチェック
-            if (lockedTargets.contains(target) ) {
-                drawRectFrame(guiGraphics, (int)screenPos.x, (int)screenPos.y, size, 0xFFFFFF00); // 黄色
+            if (lockedTargets.contains(target)) {
+                drawRectFrame(guiGraphics, (int) screenPos.x, (int) screenPos.y, size, 0xFFFFFF00); // 黄色
             } else {
-                drawRectFrame(guiGraphics, (int)screenPos.x, (int)screenPos.y, size, 0xFF00FF00); // 緑
+                drawRectFrame(guiGraphics, (int) screenPos.x, (int) screenPos.y, size, 0xFF00FF00); // 緑
             }
 
             Vec3 targetVelocity = target.getDeltaMovement();
@@ -134,7 +144,7 @@ public class ClientEntityHighlighter {
             if (interceptScreenPos == null) continue;
 
             int interceptSize = size - 2;
-            drawRectFrameRotated(guiGraphics, poseStack, (int)interceptScreenPos.x, (int)interceptScreenPos.y, interceptSize, 35f, 0xFFFF0000);
+            drawRectFrameRotated(guiGraphics, poseStack, (int) interceptScreenPos.x, (int) interceptScreenPos.y, interceptSize, 35f, 0xFFFF0000);
         }
 
         poseStack.popPose();

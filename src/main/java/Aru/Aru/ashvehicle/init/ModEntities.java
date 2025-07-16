@@ -46,7 +46,6 @@ public class ModEntities {
     public static final RegistryObject<EntityType<M1A1AbramsEntity>> M1A1_ABRAMS = registerSimple("m1a1abrams", M1A1AbramsEntity::new, M1A1AbramsEntity::new, TANK_WIDTH, TANK_HEIGHT);
     public static final RegistryObject<EntityType<KV2Entity>> KV_2 = registerSimple("kv-2", KV2Entity::new, KV2Entity::new, TANK_WIDTH, LARGE_TANK_HEIGHT);
     public static final RegistryObject<EntityType<GepardEntity>> GEPARD_1A2 = registerSimple("gepard-1a2", GepardEntity::new, GepardEntity::new, TANK_WIDTH, LARGE_TANK_HEIGHT);
-    public static final RegistryObject<EntityType<MQ9Entity>> MQ_9 = registerSimple("mq-9", MQ9Entity::new, MQ9Entity::new, SMALL_WIDTH, SMALL_HEIGHT);
     public static final RegistryObject<EntityType<SU33Entity>> SU_33 = registerSimple("su-33", SU33Entity::new, SU33Entity::new, AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT);
     public static final RegistryObject<EntityType<SU34Entity>> SU_34 = registerSimple("su-34", SU34Entity::new, SU34Entity::new, AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT);
     public static final RegistryObject<EntityType<SU25Entity>> SU_25 = registerSimple("su-25", SU25Entity::new, SU25Entity::new, AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT);

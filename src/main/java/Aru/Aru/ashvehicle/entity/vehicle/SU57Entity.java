@@ -2,10 +2,10 @@ package Aru.Aru.ashvehicle.entity.vehicle;
 
 import com.atsuishio.superbwarfare.Mod;
 import com.atsuishio.superbwarfare.config.server.VehicleConfig;
-import com.atsuishio.superbwarfare.entity.projectile.HeliRocketEntity;
 import com.atsuishio.superbwarfare.entity.projectile.SmallCannonShellEntity;
-import com.atsuishio.superbwarfare.entity.vehicle.weapon.HeliRocketWeapon;
+import com.atsuishio.superbwarfare.entity.projectile.SmallRocketEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.weapon.SmallCannonShellWeapon;
+import com.atsuishio.superbwarfare.entity.vehicle.weapon.SmallRocketWeapon;
 import com.atsuishio.superbwarfare.entity.vehicle.weapon.VehicleWeapon;
 import com.atsuishio.superbwarfare.init.ModDamageTypes;
 import com.atsuishio.superbwarfare.init.ModItems;
@@ -79,7 +79,7 @@ public class SU57Entity extends BaseAircraftEntity {
                         .explosionRadius(((Double)VehicleConfig.A_10_CANNON_EXPLOSION_RADIUS.get()).floatValue())
                         .sound((SoundEvent) ModSounds.INTO_CANNON.get())
                         .icon(Mod.loc("textures/screens/vehicle_weapon/cannon_30mm.png")),
-                (new HeliRocketWeapon())
+                (new SmallRocketWeapon())
                         .damage((float)(Integer)VehicleConfig.A_10_ROCKET_DAMAGE.get())
                         .explosionDamage((float)(Integer)VehicleConfig.A_10_ROCKET_EXPLOSION_DAMAGE.get())
                         .explosionRadius(((Double)VehicleConfig.A_10_ROCKET_EXPLOSION_RADIUS.get()).floatValue())
@@ -139,7 +139,7 @@ public class SU57Entity extends BaseAircraftEntity {
 
             this.entityData.set(HEAT, (Integer)this.entityData.get(HEAT) + 2);
         } else if (this.getWeaponIndex(0) == 1 && (Integer)this.getEntityData().get(LOADED_ROCKET) > 0) {
-            HeliRocketEntity heliRocketEntity = ((HeliRocketWeapon)this.getWeapon(0)).create(player);
+            SmallRocketEntity heliRocketEntity = ((SmallRocketWeapon)this.getWeapon(0)).create(player);
             Vector4f worldPosition;
             Vector4f worldPosition2;
             if (this.fireIndex == 0) {
@@ -165,7 +165,7 @@ public class SU57Entity extends BaseAircraftEntity {
             heliRocketEntity.shoot(shootVec.x, shootVec.y, shootVec.z, 8.0F, 0.5F);
             player.level().addFreshEntity(heliRocketEntity);
             BlockPos pos = BlockPos.containing(new Vec3((double)worldPosition.x, (double)worldPosition.y, (double)worldPosition.z));
-            this.level().playSound((Player)null, pos, (SoundEvent) ModSounds.HELICOPTER_ROCKET_FIRE_3P.get(), SoundSource.PLAYERS, 4.0F, 1.0F);
+            this.level().playSound((Player)null, pos, (SoundEvent) ModSounds.SMALL_ROCKET_FIRE_3P.get(), SoundSource.PLAYERS, 4.0F, 1.0F);
             this.entityData.set(LOADED_ROCKET, (Integer)this.getEntityData().get(LOADED_ROCKET) - 1);
             Level level = player.level();
             Vec3 center = new Vec3(this.getX(), this.getEyeY(), this.getZ());
@@ -396,11 +396,11 @@ public class SU57Entity extends BaseAircraftEntity {
 
         boolean hasCreativeAmmoBox = var10000;
         int ammoCount = this.countItem((Item)ModItems.SMALL_SHELL.get());
-        if ((this.hasItem((Item)ModItems.ROCKET_70.get()) || hasCreativeAmmoBox) && this.reloadCoolDown == 0 && (Integer)this.getEntityData().get(LOADED_ROCKET) < 28) {
+        if ((this.hasItem((Item)ModItems.SMALL_ROCKET.get()) || hasCreativeAmmoBox) && this.reloadCoolDown == 0 && (Integer)this.getEntityData().get(LOADED_ROCKET) < 28) {
             this.entityData.set(LOADED_ROCKET, (Integer)this.getEntityData().get(LOADED_ROCKET) + 1);
             this.reloadCoolDown = 15;
             if (!hasCreativeAmmoBox) {
-                this.getItemStacks().stream().filter((stack) -> stack.is((Item)ModItems.ROCKET_70.get())).findFirst().ifPresent((stack) -> stack.shrink(1));
+                this.getItemStacks().stream().filter((stack) -> stack.is((Item)ModItems.SMALL_ROCKET.get())).findFirst().ifPresent((stack) -> stack.shrink(1));
             }
 
             this.level().playSound((Player)null, this, (SoundEvent)ModSounds.MISSILE_RELOAD.get(), this.getSoundSource(), 2.0F, 1.0F);

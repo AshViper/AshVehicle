@@ -7,8 +7,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class AfterburnerFlameParticle extends TextureSheetParticle {
     private final SpriteSet spriteSet;
+
     public AfterburnerFlameParticle(ClientLevel level, double x, double y, double z,
-                                    double dx, double dy, double dz,SpriteSet sprite) {
+                                    double dx, double dy, double dz, SpriteSet sprite) {
         super(level, x, y, z, dx, dy, dz);
         this.spriteSet = sprite;
         this.lifetime = 20 + this.random.nextInt(10); // 寿命
@@ -25,7 +26,6 @@ public class AfterburnerFlameParticle extends TextureSheetParticle {
     public void tick() {
         super.tick();
 
-        // 年齢割合（0.0F ～ 1.0F）
         float ageRatio = (float) this.age / (float) this.lifetime;
 
         // サイズと透明度を徐々に減らす
@@ -39,5 +39,10 @@ public class AfterburnerFlameParticle extends TextureSheetParticle {
     public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
-}
 
+    /** ✨ 光らせるために最大明るさを返す */
+    @Override
+    public int getLightColor(float partialTick) {
+        return 0xF000F0; // 最大光源値
+    }
+}

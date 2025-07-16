@@ -55,7 +55,7 @@ public class ClientEntityHighlighter {
 
         Set<EntityType<?>> excludedTypes = Set.of(
                 ModEntities.SMALL_CANNON_SHELL.get(),
-                ModEntities.HELI_ROCKET.get(),
+                ModEntities.SMALL_ROCKET.get(),
                 ModEntities.CANNON_SHELL.get(),
                 ModEntities.GUN_GRENADE.get(),
                 ModEntities.PROJECTILE.get(),

@@ -475,7 +475,7 @@ public class ZumwaltEntity extends ContainerMobileVehicleEntity implements GeoEn
         // 除外対象のエンティティタイプ
         Set<EntityType<?>> excluded = Set.of(
                 com.atsuishio.superbwarfare.init.ModEntities.SMALL_CANNON_SHELL.get(),
-                com.atsuishio.superbwarfare.init.ModEntities.HELI_ROCKET.get(),
+                com.atsuishio.superbwarfare.init.ModEntities.SMALL_ROCKET.get(),
                 com.atsuishio.superbwarfare.init.ModEntities.CANNON_SHELL.get(),
                 com.atsuishio.superbwarfare.init.ModEntities.GUN_GRENADE.get(),
                 com.atsuishio.superbwarfare.init.ModEntities.PROJECTILE.get(),

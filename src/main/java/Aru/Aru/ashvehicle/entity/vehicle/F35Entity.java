@@ -165,7 +165,7 @@ public class F35Entity extends BaseAircraftEntity {
             heliRocketEntity.shoot(shootVec.x, shootVec.y, shootVec.z, 8.0F, 0.5F);
             player.level().addFreshEntity(heliRocketEntity);
             BlockPos pos = BlockPos.containing(new Vec3((double)worldPosition.x, (double)worldPosition.y, (double)worldPosition.z));
-            this.level().playSound((Player)null, pos, (SoundEvent) ModSounds.HELICOPTER_ROCKET_FIRE_3P.get(), SoundSource.PLAYERS, 4.0F, 1.0F);
+            this.level().playSound((Player)null, pos, (SoundEvent) ModSounds.SMALL_ROCKET_FIRE_3P.get(), SoundSource.PLAYERS, 4.0F, 1.0F);
             this.entityData.set(LOADED_ROCKET, (Integer)this.getEntityData().get(LOADED_ROCKET) - 1);
             Level level = player.level();
             Vec3 center = new Vec3(this.getX(), this.getEyeY(), this.getZ());
@@ -221,7 +221,7 @@ public class F35Entity extends BaseAircraftEntity {
     @Override
     public @NotNull InteractionResult interact(Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getMainHandItem();
-        if (stack.getItem() == ModItems.ROCKET_70.get() && (Integer)this.entityData.get(LOADED_ROCKET) <= 4) {
+        if (stack.getItem() == ModItems.SMALL_ROCKET.get() && (Integer)this.entityData.get(LOADED_ROCKET) <= 4) {
             this.entityData.set(LOADED_ROCKET, (Integer)this.entityData.get(LOADED_ROCKET) + 1);
             if (!player.isCreative()) {
                 stack.shrink(1);
@@ -420,11 +420,11 @@ public class F35Entity extends BaseAircraftEntity {
 
         boolean hasCreativeAmmoBox = var10000;
         int ammoCount = this.countItem((Item)ModItems.SMALL_SHELL.get());
-        if ((this.hasItem((Item)ModItems.ROCKET_70.get()) || hasCreativeAmmoBox) && this.reloadCoolDown == 0 && (Integer)this.getEntityData().get(LOADED_ROCKET) < 4) {
+        if ((this.hasItem((Item)ModItems.SMALL_ROCKET.get()) || hasCreativeAmmoBox) && this.reloadCoolDown == 0 && (Integer)this.getEntityData().get(LOADED_ROCKET) < 4) {
             this.entityData.set(LOADED_ROCKET, (Integer)this.getEntityData().get(LOADED_ROCKET) + 1);
             this.reloadCoolDown = 200;
             if (!hasCreativeAmmoBox) {
-                this.getItemStacks().stream().filter((stack) -> stack.is((Item)ModItems.ROCKET_70.get())).findFirst().ifPresent((stack) -> stack.shrink(1));
+                this.getItemStacks().stream().filter((stack) -> stack.is((Item)ModItems.SMALL_ROCKET.get())).findFirst().ifPresent((stack) -> stack.shrink(1));
             }
 
             this.level().playSound((Player)null, this, (SoundEvent)ModSounds.MISSILE_RELOAD.get(), this.getSoundSource(), 2.0F, 1.0F);

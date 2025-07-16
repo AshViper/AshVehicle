@@ -3,15 +3,15 @@ package Aru.Aru.ashvehicle.entity.vehicle;
 import com.atsuishio.superbwarfare.Mod;
 import com.atsuishio.superbwarfare.config.server.ExplosionConfig;
 import com.atsuishio.superbwarfare.config.server.VehicleConfig;
-import com.atsuishio.superbwarfare.entity.projectile.HeliRocketEntity;
 import com.atsuishio.superbwarfare.entity.projectile.SmallCannonShellEntity;
+import com.atsuishio.superbwarfare.entity.projectile.SmallRocketEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.base.ContainerMobileVehicleEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.base.HelicopterEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.base.ThirdPersonCameraPosition;
 import com.atsuishio.superbwarfare.entity.vehicle.base.WeaponVehicleEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.damage.DamageModifier;
-import com.atsuishio.superbwarfare.entity.vehicle.weapon.HeliRocketWeapon;
 import com.atsuishio.superbwarfare.entity.vehicle.weapon.SmallCannonShellWeapon;
+import com.atsuishio.superbwarfare.entity.vehicle.weapon.SmallRocketWeapon;
 import com.atsuishio.superbwarfare.entity.vehicle.weapon.VehicleWeapon;
 import com.atsuishio.superbwarfare.event.ClientMouseHandler;
 import com.atsuishio.superbwarfare.init.ModDamageTypes;
@@ -86,7 +86,9 @@ public class MH60MEntity extends ContainerMobileVehicleEntity implements GeoEnti
     }
 
     public VehicleWeapon[][] initWeapons() {
-        return new VehicleWeapon[][]{{(new SmallCannonShellWeapon()).blockInteraction((Boolean)VehicleConfig.AH_6_CANNON_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP).damage(((Double)VehicleConfig.AH_6_CANNON_DAMAGE.get()).floatValue()).explosionDamage(((Double)VehicleConfig.AH_6_CANNON_EXPLOSION_DAMAGE.get()).floatValue()).explosionRadius(((Double)VehicleConfig.AH_6_CANNON_EXPLOSION_RADIUS.get()).floatValue()).sound((SoundEvent)ModSounds.INTO_CANNON.get()).icon(Mod.loc("textures/screens/vehicle_weapon/cannon_20mm.png")).sound1p((SoundEvent)ModSounds.HELICOPTER_CANNON_FIRE_1P.get()).sound3p((SoundEvent)ModSounds.HELICOPTER_CANNON_FIRE_3P.get()).sound3pFar((SoundEvent)ModSounds.HELICOPTER_CANNON_FAR.get()).sound3pVeryFar((SoundEvent)ModSounds.HELICOPTER_CANNON_VERYFAR.get()), (new HeliRocketWeapon()).damage(((Double)VehicleConfig.AH_6_ROCKET_DAMAGE.get()).floatValue()).explosionDamage(((Double)VehicleConfig.AH_6_ROCKET_EXPLOSION_DAMAGE.get()).floatValue()).explosionRadius(((Double)VehicleConfig.AH_6_ROCKET_EXPLOSION_RADIUS.get()).floatValue()).sound((SoundEvent)ModSounds.INTO_MISSILE.get()).sound1p((SoundEvent)ModSounds.HELICOPTER_ROCKET_FIRE_1P.get()).sound3p((SoundEvent)ModSounds.HELICOPTER_ROCKET_FIRE_3P.get())}};
+        return new VehicleWeapon[][]{{
+            (new SmallCannonShellWeapon()
+            ).blockInteraction((Boolean)VehicleConfig.AH_6_CANNON_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP).damage(((Double)VehicleConfig.AH_6_CANNON_DAMAGE.get()).floatValue()).explosionDamage(((Double)VehicleConfig.AH_6_CANNON_EXPLOSION_DAMAGE.get()).floatValue()).explosionRadius(((Double)VehicleConfig.AH_6_CANNON_EXPLOSION_RADIUS.get()).floatValue()).sound((SoundEvent)ModSounds.INTO_CANNON.get()).icon(Mod.loc("textures/screens/vehicle_weapon/cannon_20mm.png")).sound1p((SoundEvent)ModSounds.HELICOPTER_CANNON_FIRE_1P.get()).sound3p((SoundEvent)ModSounds.HELICOPTER_CANNON_FIRE_3P.get()).sound3pFar((SoundEvent)ModSounds.HELICOPTER_CANNON_FAR.get()).sound3pVeryFar((SoundEvent)ModSounds.HELICOPTER_CANNON_VERYFAR.get()), (new SmallRocketWeapon()).damage(((Double)VehicleConfig.AH_6_ROCKET_DAMAGE.get()).floatValue()).explosionDamage(((Double)VehicleConfig.AH_6_ROCKET_EXPLOSION_DAMAGE.get()).floatValue()).explosionRadius(((Double)VehicleConfig.AH_6_ROCKET_EXPLOSION_RADIUS.get()).floatValue()).sound((SoundEvent)ModSounds.INTO_MISSILE.get()).sound1p((SoundEvent)ModSounds.SMALL_ROCKET_FIRE_3P.get()).sound3p((SoundEvent)ModSounds.SMALL_ROCKET_FIRE_3P.get())}};
     }
 
     public ThirdPersonCameraPosition getThirdPersonCameraPosition(int index) {
@@ -125,7 +127,7 @@ public class MH60MEntity extends ContainerMobileVehicleEntity implements GeoEnti
 
     public @NotNull InteractionResult interact(Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getMainHandItem();
-        if (stack.getItem() == ModItems.ROCKET_70.get() && (Integer)this.entityData.get(LOADED_ROCKET) < 14) {
+        if (stack.getItem() == ModItems.SMALL_ROCKET.get() && (Integer)this.entityData.get(LOADED_ROCKET) < 14) {
             this.entityData.set(LOADED_ROCKET, (Integer)this.entityData.get(LOADED_ROCKET) + 1);
             if (!player.isCreative()) {
                 stack.shrink(1);
@@ -183,11 +185,11 @@ public class MH60MEntity extends ContainerMobileVehicleEntity implements GeoEnti
             Ammo var10001 = Ammo.HEAVY;
             Objects.requireNonNull(var10001);
             int var3 = var10000.mapToInt(stack -> var10001.get((ItemStack) stack)).sum() + this.countItem((Item)ModItems.SMALL_SHELL.get());
-            if ((this.hasItem((Item)ModItems.ROCKET_70.get()) || InventoryTool.hasCreativeAmmoBox(player)) && this.reloadCoolDown == 0 && (Integer)this.getEntityData().get(LOADED_ROCKET) < 14) {
+            if ((this.hasItem((Item)ModItems.SMALL_ROCKET.get()) || InventoryTool.hasCreativeAmmoBox(player)) && this.reloadCoolDown == 0 && (Integer)this.getEntityData().get(LOADED_ROCKET) < 14) {
                 this.entityData.set(LOADED_ROCKET, (Integer)this.getEntityData().get(LOADED_ROCKET) + 1);
                 this.reloadCoolDown = 25;
                 if (!InventoryTool.hasCreativeAmmoBox(player)) {
-                    this.getItemStacks().stream().filter((stack) -> stack.is((Item)ModItems.ROCKET_70.get())).findFirst().ifPresent((stack) -> stack.shrink(1));
+                    this.getItemStacks().stream().filter((stack) -> stack.is((Item)ModItems.SMALL_ROCKET.get())).findFirst().ifPresent((stack) -> stack.shrink(1));
                 }
 
                 this.level().playSound((Player)null, this, (SoundEvent)ModSounds.MISSILE_RELOAD.get(), this.getSoundSource(), 1.0F, 1.0F);
@@ -535,7 +537,7 @@ public class MH60MEntity extends ContainerMobileVehicleEntity implements GeoEnti
                 this.playShootSound3p(player, 0, 4, 12, 24);
             }
         } else if (this.getWeaponIndex(0) == 1 && (Integer)this.getEntityData().get(LOADED_ROCKET) > 0) {
-            HeliRocketEntity heliRocketEntity = ((HeliRocketWeapon)this.getWeapon(0)).create(player);
+            SmallRocketEntity heliRocketEntity = ((SmallRocketWeapon)this.getWeapon(0)).create(player);
             Vector4f worldPosition;
             Vector4f worldPosition2;
             if (this.fireIndex == 0) {

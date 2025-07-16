@@ -61,11 +61,11 @@ public class SU25Entity extends BaseAircraftEntity {
 
         boolean hasCreativeAmmoBox = var10000;
         int ammoCount = this.countItem((Item) ModItems.SMALL_SHELL.get());
-        if ((this.hasItem((Item)ModItems.ROCKET_70.get()) || hasCreativeAmmoBox) && this.reloadCoolDown == 0 && (Integer)this.getEntityData().get(LOADED_ROCKET) < 28) {
+        if ((this.hasItem((Item)ModItems.SMALL_ROCKET.get()) || hasCreativeAmmoBox) && this.reloadCoolDown == 0 && (Integer)this.getEntityData().get(LOADED_ROCKET) < 28) {
             this.entityData.set(LOADED_ROCKET, (Integer)this.getEntityData().get(LOADED_ROCKET) + 1);
             this.reloadCoolDown = 15;
             if (!hasCreativeAmmoBox) {
-                this.getItemStacks().stream().filter((stack) -> stack.is((Item)ModItems.ROCKET_70.get())).findFirst().ifPresent((stack) -> stack.shrink(1));
+                this.getItemStacks().stream().filter((stack) -> stack.is((Item)ModItems.SMALL_ROCKET.get())).findFirst().ifPresent((stack) -> stack.shrink(1));
             }
 
             this.level().playSound((Player)null, this, (SoundEvent) ModSounds.MISSILE_RELOAD.get(), this.getSoundSource(), 2.0F, 1.0F);

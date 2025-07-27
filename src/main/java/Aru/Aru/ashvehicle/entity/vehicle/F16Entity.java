@@ -2,7 +2,9 @@ package Aru.Aru.ashvehicle.entity.vehicle;
 
 import com.atsuishio.superbwarfare.Mod;
 import com.atsuishio.superbwarfare.config.server.VehicleConfig;
+import com.atsuishio.superbwarfare.entity.projectile.Agm65Entity;
 import com.atsuishio.superbwarfare.entity.projectile.SmallCannonShellEntity;
+import com.atsuishio.superbwarfare.entity.vehicle.weapon.Agm65Weapon;
 import com.atsuishio.superbwarfare.entity.vehicle.weapon.SmallCannonShellWeapon;
 import com.atsuishio.superbwarfare.entity.vehicle.weapon.VehicleWeapon;
 import com.atsuishio.superbwarfare.init.ModDamageTypes;
@@ -39,6 +41,7 @@ import Aru.Aru.ashvehicle.init.ModEntities;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 public class F16Entity extends BaseAircraftEntity {
     public F16Entity(EntityType<?> entityType, Level level) {
@@ -54,8 +57,8 @@ public class F16Entity extends BaseAircraftEntity {
         if (this.hasPassenger(passenger)) {
             Matrix4f transform = this.getVehicleTransform(1.0F);
             float x = 0.0F;
-            float y = 2.0F;
-            float z = 3.6F;
+            float y = 2.3F;
+            float z = 2.6F;
             y += (float)passenger.getMyRidingOffset();
             Vector4f worldPosition = this.transformPosition(transform, x, y, z );
             passenger.setPos((double)worldPosition.x, (double)worldPosition.y, (double)worldPosition.z);
@@ -73,7 +76,8 @@ public class F16Entity extends BaseAircraftEntity {
                         .explosionRadius(((Double)VehicleConfig.A_10_CANNON_EXPLOSION_RADIUS.get()).floatValue())
                         .sound((SoundEvent) ModSounds.INTO_CANNON.get())
                         .icon(Mod.loc("textures/screens/vehicle_weapon/cannon_30mm.png")),
-                (new Aam4Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get())
+                (new Aam4Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get()),
+                (new Agm65Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get())
         }};
     }
 
@@ -162,34 +166,71 @@ public class F16Entity extends BaseAircraftEntity {
                 }
             }
 
-            this.entityData.set(HEAT, (Integer)this.entityData.get(HEAT) + 2);
-        } else if (this.getWeaponIndex(0) == 1 && (Integer)this.getEntityData().get(LOADED_MISSILE) > 0) {
-            Aam4Entity aam4Entity = ((Aam4Weapon)this.getWeapon(0)).create(player);
+            this.entityData.set(HEAT, (Integer)this.entityData.get(HEAT) + 1);
+        } else if(this.getWeaponIndex(0) == 1 && this.getEntityData().get(LOADED_MISSILE) > 0) {
+            int loaded = this.getEntityData().get(LOADED_MISSILE);
+            int countToFire = Math.min(loaded, this.lockedTargets.size()); // ロック数か残弾数の少ない方
+
+            List<UUID> targets = new ArrayList<>(this.lockedTargets);
+            for (int i = 0; i < countToFire; i++) {
+                UUID targetUuid = targets.get(i);
+                Aam4Entity aam4Entity = ((Aam4Weapon)this.getWeapon(0)).create(player);
+
+                // 発射位置（番号ごとに変える）
+                Vector4f worldPosition;
+                switch (loaded) {
+                    case 4 -> worldPosition = this.transformPosition(transform, 5.28F, -1.76F, 1.87F);
+                    case 3 -> worldPosition = this.transformPosition(transform, -5.28F, -1.76F, 1.87F);
+                    case 2 -> worldPosition = this.transformPosition(transform, 6.63F, -1.55F, 1.83F);
+                    default -> worldPosition = this.transformPosition(transform, -6.63F, -1.55F, 1.83F);
+                }
+
+                aam4Entity.setTargetUuid(String.valueOf(targetUuid));
+                aam4Entity.setPos(worldPosition.x, worldPosition.y, worldPosition.z);
+                aam4Entity.shoot(this.shootVec(1.0F).x, this.shootVec(1.0F).y, this.shootVec(1.0F).z, (float)this.getDeltaMovement().length() + 1.0F, 1.0F);
+
+                player.level().addFreshEntity(aam4Entity);
+
+                BlockPos pos = BlockPos.containing(worldPosition.x, worldPosition.y, worldPosition.z);
+                this.level().playSound(null, pos, ModSounds.BOMB_RELEASE.get(), SoundSource.PLAYERS, 3.0F, 1.0F);
+
+                // ミサイル数と発射後の処理
+                loaded--;
+                this.entityData.set(LOADED_MISSILE, loaded);
+
+                if (loaded == 3) {
+                    this.reloadCoolDownMissile = 400;
+                }
+
+                if (loaded <= 0) break;
+            }
+        }else if (this.getWeaponIndex(0) == 2 && (Integer)this.getEntityData().get(LOADED_BOMB) > 0) {
+            Agm65Entity Agm65Entity = ((Agm65Weapon)this.getWeapon(0)).create(player);
             Vector4f worldPosition;
-            if ((Integer)this.getEntityData().get(LOADED_MISSILE) == 4) {
+            if ((Integer)this.getEntityData().get(LOADED_BOMB) == 4) {
                 worldPosition = this.transformPosition(transform, 5.28F, -1.76F, 1.87F);
-            } else if ((Integer)this.getEntityData().get(LOADED_MISSILE) == 3) {
+            } else if ((Integer)this.getEntityData().get(LOADED_BOMB) == 3) {
                 worldPosition = this.transformPosition(transform, -5.28F, -1.76F, 1.87F);
-            } else if ((Integer)this.getEntityData().get(LOADED_MISSILE) == 2) {
+            } else if ((Integer)this.getEntityData().get(LOADED_BOMB) == 2) {
                 worldPosition = this.transformPosition(transform, 6.63F, -1.55F, 1.83F);
             } else {
                 worldPosition = this.transformPosition(transform, -6.63F, -1.55F, 1.83F);
             }
 
             if (this.locked) {
-                aam4Entity.setTargetUuid(this.getTargetUuid());
+                Agm65Entity.setTargetUuid(this.getTargetUuid());
             }
 
-            aam4Entity.setPos((double)worldPosition.x, (double)worldPosition.y, (double)worldPosition.z);
-            aam4Entity.shoot(this.shootVec(1.0F).x, this.shootVec(1.0F).y, this.shootVec(1.0F).z, (float)this.getDeltaMovement().length() + 1.0F, 1.0F);
-            player.level().addFreshEntity(aam4Entity);
+            Agm65Entity.setPos((double)worldPosition.x, (double)worldPosition.y, (double)worldPosition.z);
+            Agm65Entity.shoot(this.shootVec(1.0F).x, this.shootVec(1.0F).y, this.shootVec(1.0F).z, (float)this.getDeltaMovement().length() + 1.0F, 1.0F);
+            player.level().addFreshEntity(Agm65Entity);
             BlockPos pos = BlockPos.containing(new Vec3((double)worldPosition.x, (double)worldPosition.y, (double)worldPosition.z));
             this.level().playSound((Player)null, pos, (SoundEvent)ModSounds.BOMB_RELEASE.get(), SoundSource.PLAYERS, 3.0F, 1.0F);
-            if ((Integer)this.getEntityData().get(LOADED_MISSILE) == 3) {
-                this.reloadCoolDownMissile = 100;
+            if ((Integer)this.getEntityData().get(LOADED_BOMB) == 3) {
+                this.reloadCoolDownMissile = 400;
             }
 
-            this.entityData.set(LOADED_MISSILE, (Integer)this.getEntityData().get(LOADED_MISSILE) - 1);
+            this.entityData.set(LOADED_BOMB, (Integer)this.getEntityData().get(LOADED_BOMB) - 1);
         }
     }
     private boolean wasFiring;
@@ -231,14 +272,15 @@ public class F16Entity extends BaseAircraftEntity {
             this.handleAmmo();
         }
 
-        Entity var4 = this.getFirstPassenger();
-        if (var4 instanceof Player player) {
+        Entity rider = this.getFirstPassenger();
+        if (rider instanceof Player player) {
             if (this.fireInputDown) {
-                if (this.getWeaponIndex(0) == 0) {
-                    if (((Integer)this.entityData.get(AMMO) > 0 || InventoryTool.hasCreativeAmmoBox(player)) && !this.cannotFire) {
-                        this.vehicleShoot(player, 0);
-                    }
-                } else if (this.getWeaponIndex(0) == 1 && (Integer)this.entityData.get(AMMO) > 0) {
+                int weaponIndex = this.getWeaponIndex(0);
+                int ammo = this.entityData.get(AMMO);
+
+                if (weaponIndex == 0 && (ammo > 0 || InventoryTool.hasCreativeAmmoBox(player))) {
+                    if (!this.cannotFire) this.vehicleShoot(player, 0);
+                } else if (weaponIndex == 1 && ammo > 0) {
                     this.vehicleShoot(player, 0);
                 }
             }
@@ -253,7 +295,10 @@ public class F16Entity extends BaseAircraftEntity {
         }
 
         if (this.getWeaponIndex(0) == 1) {
-            this.seekTarget();
+            this.seekTargets();
+        }
+        if (this.getWeaponIndex(0) == 2) {
+            this.SeekTarget();
         }
 
         this.lowHealthWarning();
@@ -265,7 +310,7 @@ public class F16Entity extends BaseAircraftEntity {
     public List<Vec3> getAfterburnerParticlePositions() {
         List<Vec3> positions = new ArrayList<>();
         // 後方2.2、上1.0、左右-7と7（Z軸を左右方向とした場合）
-        positions.add(new Vec3(-8, 2.0, 0));  // ローカル座標
+        positions.add(new Vec3(-10, 2.3, 0));  // ローカル座標
         return positions;
     }
 }

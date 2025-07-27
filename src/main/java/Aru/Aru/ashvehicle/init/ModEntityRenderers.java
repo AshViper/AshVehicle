@@ -45,6 +45,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
         event.registerEntityRenderer(ModEntities.NAPALM_BOMB.get(), NapalmBombRenderer::new);
         event.registerEntityRenderer(ModEntities.TOMAHAWK.get(), TomahawkRenderer::new);
+        event.registerEntityRenderer(ModEntities.V_22.get(), V22Renderer::new);
     }
 }
 

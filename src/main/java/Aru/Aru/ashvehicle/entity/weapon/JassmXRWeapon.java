@@ -1,7 +1,9 @@
 package Aru.Aru.ashvehicle.entity.weapon;
 
+import Aru.Aru.ashvehicle.AshVehicle;
 import com.atsuishio.superbwarfare.Mod;
 import com.atsuishio.superbwarfare.entity.vehicle.weapon.VehicleWeapon;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 
 public class JassmXRWeapon  extends VehicleWeapon {
@@ -10,7 +12,7 @@ public class JassmXRWeapon  extends VehicleWeapon {
     public float explosionRadius = 5.0F;
 
     public JassmXRWeapon() {
-        this.icon = Mod.loc("textures/screens/vehicle_weapon/rocket_70mm.png");
+        this.icon = new ResourceLocation(AshVehicle.MODID, "textures/icon/weapon/aam4-icon.png");
     }
 
     public JassmXRWeapon damage(float damage) {

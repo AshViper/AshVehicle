@@ -1,13 +1,11 @@
 package Aru.Aru.ashvehicle.client.screen;
 
-import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 import Aru.Aru.ashvehicle.init.CoordinateTargetVehicle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import Aru.Aru.ashvehicle.entity.vehicle.SapsanEntity;
 import Aru.Aru.ashvehicle.init.ModNetwork;
 import Aru.Aru.ashvehicle.Packet.SetMissileTargetPacket;
 import net.minecraft.world.phys.Vec3;

@@ -22,5 +22,8 @@
   "entity.ashvehicle.kv-2": "KV-2",
   "entity.ashvehicle.gepard-1a2": "Gepard 1A2",
   "entity.ashvehicle.m3a3-bradley": "M3A3 Bradley",
-  "entity.ashvehicle.su-57": "Su-57"
+  "entity.ashvehicle.su-57": "Su-57",
+
+  "key.ashvehicle.open_coordinate": "Open coordinate input",
+  "key.categories.ashvehicle": "AshVehicle"
 }

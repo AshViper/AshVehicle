@@ -127,7 +127,12 @@ public abstract class BaseAircraftEntity extends ContainerMobileVehicleEntity im
                     .explosionRadius(((Double)VehicleConfig.A_10_CANNON_EXPLOSION_RADIUS.get()).floatValue())
                     .sound((SoundEvent)ModSounds.INTO_CANNON.get())
                     .icon(Mod.loc("textures/screens/vehicle_weapon/cannon_30mm.png")),
-                (new SmallRocketWeapon()).damage((float)(Integer)VehicleConfig.A_10_ROCKET_DAMAGE.get()).explosionDamage((float)(Integer)VehicleConfig.A_10_ROCKET_EXPLOSION_DAMAGE.get()).explosionRadius(((Double)VehicleConfig.A_10_ROCKET_EXPLOSION_RADIUS.get()).floatValue()).sound((SoundEvent)ModSounds.INTO_MISSILE.get()), (new Mk82Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get()), (new Agm65Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get())}};
+                (new SmallRocketWeapon()).damage((float)(Integer)VehicleConfig.A_10_ROCKET_DAMAGE.get())
+                        .explosionDamage((float)(Integer)VehicleConfig.A_10_ROCKET_EXPLOSION_DAMAGE.get())
+                        .explosionRadius(((Double)VehicleConfig.A_10_ROCKET_EXPLOSION_RADIUS.get()).floatValue())
+                        .sound((SoundEvent)ModSounds.INTO_MISSILE.get()),
+                (new Mk82Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get()),
+                (new Agm65Weapon()).sound((SoundEvent)ModSounds.INTO_MISSILE.get())}};
     }
 
     public void addAdditionalSaveData(CompoundTag compound) {
@@ -269,6 +274,30 @@ public abstract class BaseAircraftEntity extends ContainerMobileVehicleEntity im
             this.getPersistentData().putBoolean("HasBoomed", false); // 低速で再ロック可能に
         }
 
+        if (!this.onGround() && this.getDeltaMovement().length() > 1.0) {
+            float flapL = this.getFlap2LRot(); // 左エルロン
+            float flapR = this.getFlap2RRot(); // 右エルロン
+
+            boolean hardTurn = Math.abs(flapL) > 15.0F || Math.abs(flapR) > 15.0F;
+
+            if (hardTurn && this.level() instanceof ServerLevel serverLevel && this.tickCount % 2 == 0) {
+                Matrix4f transform = this.getVehicleTransform(1.0F);
+
+                // 主翼の付け根位置（左右）をモデルに合わせて調整
+                Vector4f wingRootL = this.transformPosition(transform, -3.0F, 2.6F, 0.0F); // 左
+                Vector4f wingRootR = this.transformPosition(transform, 3.0F, 2.6F, 0.0F);  // 右
+
+                // パーティクル生成（CLOUDまたは自作）
+                ParticleTool.sendParticle(serverLevel, ParticleTypes.CLOUD,
+                        wingRootL.x, wingRootL.y, wingRootL.z,
+                        5, 0, 0, 0, 0.01, true);
+
+                ParticleTool.sendParticle(serverLevel, ParticleTypes.CLOUD,
+                        wingRootR.x, wingRootR.y, wingRootR.z,
+                        5, 0, 0, 0, 0.01, true);
+            }
+        }
+
         // 🌊 水中衝突ダメージ
         if (this.isInWater() && this.tickCount % 4 == 0) {
             this.setDeltaMovement(this.getDeltaMovement().multiply(0.6, 0.6, 0.6));
@@ -334,7 +363,7 @@ public abstract class BaseAircraftEntity extends ContainerMobileVehicleEntity im
 
         // 🎯 ミサイルロック処理
         if (this.getWeaponIndex(0) == 3) {
-            this.seekTarget();
+            this.SeekTarget();
         }
 
         // ⚠️ 警告/防衛処理
@@ -532,7 +561,7 @@ public abstract class BaseAircraftEntity extends ContainerMobileVehicleEntity im
             this.level().playSound((Player)null, this, (SoundEvent)ModSounds.MISSILE_RELOAD.get(), this.getSoundSource(), 2.0F, 1.0F);
         }
 
-        if ((this.hasItem((Item)ModItems.MEDIUM_AERIAL_BOMB.get()) || hasCreativeAmmoBox) && this.reloadCoolDownBomb == 0 && (Integer)this.getEntityData().get(LOADED_BOMB) < 3) {
+        if ((this.hasItem((Item)ModItems.MEDIUM_AERIAL_BOMB.get()) || hasCreativeAmmoBox) && this.reloadCoolDownBomb == 0 && (Integer)this.getEntityData().get(LOADED_BOMB) < 4) {
             this.entityData.set(LOADED_BOMB, (Integer)this.getEntityData().get(LOADED_BOMB) + 1);
             this.reloadCoolDownBomb = 300;
             if (!hasCreativeAmmoBox) {
@@ -683,6 +712,45 @@ public abstract class BaseAircraftEntity extends ContainerMobileVehicleEntity im
                     ModNetwork.INSTANCE.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new LockTargetPacket(targetUUID));
                 }
             }
+        }
+    }
+
+    public void SeekTarget() {
+        Entity entity = this.getFirstPassenger();
+        if (entity instanceof Player player) {
+            if (this.getTargetUuid().equals(this.lockingTargetO) && !this.getTargetUuid().equals("none")) {
+                ++this.lockTime;
+            } else {
+                this.resetSeek(player);
+            }
+
+            entity = SeekTool.seekCustomSizeEntity(this, this.level(), (double)384.0F, (double)18.0F, 0.9, true);
+            if (entity != null) {
+                if (this.lockTime == 0) {
+                    this.setTargetUuid(String.valueOf(entity.getUUID()));
+                }
+
+                if (!String.valueOf(entity.getUUID()).equals(this.getTargetUuid())) {
+                    this.resetSeek(player);
+                    this.setTargetUuid(String.valueOf(entity.getUUID()));
+                }
+            } else {
+                this.setTargetUuid("none");
+            }
+
+            if (this.lockTime == 1 && player instanceof ServerPlayer serverPlayer) {
+                SoundTool.playLocalSound(serverPlayer, (SoundEvent)ModSounds.JET_LOCK.get(), 2.0F, 1.0F);
+            }
+
+            if (this.lockTime > 10) {
+                if (player instanceof ServerPlayer) {
+                    ServerPlayer serverPlayer = (ServerPlayer)player;
+                    SoundTool.playLocalSound(serverPlayer, (SoundEvent)ModSounds.JET_LOCKON.get(), 2.0F, 1.0F);
+                }
+
+                this.locked = true;
+            }
+
         }
     }
 
@@ -1107,8 +1175,7 @@ public abstract class BaseAircraftEntity extends ContainerMobileVehicleEntity im
                     Mod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new ShakeClientMessage((double)6.0F, (double)5.0F, (double)12.0F, this.getX(), this.getEyeY(), this.getZ()));
                 }
             }
-
-            this.entityData.set(HEAT, (Integer)this.entityData.get(HEAT) + 2);
+            this.entityData.set(HEAT, (Integer)this.entityData.get(HEAT) + 1);
         } else if (this.getWeaponIndex(0) == 1 && (Integer)this.getEntityData().get(LOADED_ROCKET) > 0) {
             SmallRocketEntity heliRocketEntity = ((SmallRocketWeapon)this.getWeapon(0)).create(player);
             Vector4f worldPosition;

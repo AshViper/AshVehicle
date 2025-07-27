@@ -212,14 +212,14 @@ public class TomahawkEntity extends ThrowableProjectile implements GeoAnimatable
     }
 
     private void apExplode(HitResult result, int index) {
-        CustomExplosion explosion = (new CustomExplosion(this.level(), this, ModDamageTypes.causeProjectileBoomDamage(this.level().registryAccess(), this, this.getOwner()), explosionDamage, result.getLocation().x + (double)index * this.getDeltaMovement().normalize().x, result.getLocation().y + (double)index * this.getDeltaMovement().normalize().y, result.getLocation().z + (double)index * this.getDeltaMovement().normalize().z, 0.5F * 10, (Boolean)ExplosionConfig.EXPLOSION_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP, true)).setDamageMultiplier(1.0F);
+        CustomExplosion explosion = (new CustomExplosion(this.level(), this, ModDamageTypes.causeProjectileBoomDamage(this.level().registryAccess(), this, this.getOwner()), explosionDamage, result.getLocation().x + (double)index * this.getDeltaMovement().normalize().x, result.getLocation().y + (double)index * this.getDeltaMovement().normalize().y, result.getLocation().z + (double)index * this.getDeltaMovement().normalize().z, 20, (Boolean)ExplosionConfig.EXPLOSION_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP, true)).setDamageMultiplier(1.0F);
         explosion.explode();
         ForgeEventFactory.onExplosionStart(this.level(), explosion);
         explosion.finalizeExplosion(false);
     }
 
     private void causeExplode(HitResult result) {
-        CustomExplosion explosion = (new CustomExplosion(this.level(), this, ModDamageTypes.causeProjectileBoomDamage(this.level().registryAccess(), this, this.getOwner()), explosionDamage, this.getX(), this.getEyeY(), this.getZ(), 10, (Boolean)ExplosionConfig.EXPLOSION_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP, true)).setDamageMultiplier(1.0F);
+        CustomExplosion explosion = (new CustomExplosion(this.level(), this, ModDamageTypes.causeProjectileBoomDamage(this.level().registryAccess(), this, this.getOwner()), explosionDamage, this.getX(), this.getEyeY(), this.getZ(), 20, (Boolean)ExplosionConfig.EXPLOSION_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP, true)).setDamageMultiplier(1.0F);
         explosion.explode();
         ForgeEventFactory.onExplosionStart(this.level(), explosion);
         explosion.finalizeExplosion(false);
@@ -231,7 +231,7 @@ public class TomahawkEntity extends ThrowableProjectile implements GeoAnimatable
     // --------------------
     private void explode() {
         this.level().explode(this, this.getX(), this.getY(), this.getZ(),
-                3.0F, true, Level.ExplosionInteraction.BLOCK);
+                10.0F, true, Level.ExplosionInteraction.BLOCK);
         this.stopChank();
     }
 

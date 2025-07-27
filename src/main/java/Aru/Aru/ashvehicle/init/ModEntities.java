@@ -59,6 +59,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<F117Entity>> F_117 = registerSimple("f-117", F117Entity::new, F117Entity::new, AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT);
     public static final RegistryObject<EntityType<ZumwaltEntity>> ZYNWALT = registerSimple("zumwalt", ZumwaltEntity::new, ZumwaltEntity::new, AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT);
     public static final RegistryObject<EntityType<SU57Entity>> SU_57 = registerSimple("su-57", SU57Entity::new, SU57Entity::new, AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT);
+    public static final RegistryObject<EntityType<V22Entity>> V_22 = registerSimple("v-22", V22Entity::new, V22Entity::new, AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT);
 
     public static final RegistryObject<EntityType<Aam4Entity>> AAM_4 = registerSimple("aam-4", Aam4Entity::new, Aam4Entity::new, SMALL_WIDTH, SMALL_HEIGHT);
     public static final RegistryObject<EntityType<GBU57Entity>> GBU_57 = registerSimple("gbu-57", GBU57Entity::new, GBU57Entity::new, SMALL_WIDTH, SMALL_HEIGHT);

@@ -1,20 +1,15 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
-import Aru.Aru.ashvehicle.AshVehicle;
-import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.model.GeoModel;
-import Aru.Aru.ashvehicle.entity.vehicle.B2Entity;
+import Aru.Aru.ashvehicle.entity.vehicle.*;
+import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import org.jetbrains.annotations.Nullable;
 
-public class B2Model extends GeoModel<B2Entity> {
+public class B2Model extends VehicleModel<B2Entity> {
+    public B2Model() {}
 
+    @Nullable
     @Override
-    public ResourceLocation getAnimationResource(B2Entity entity) {
+    public VehicleModel.TransformContext<B2Entity> collectTransform(String boneName) {
         return null;
     }
-
-    @Override
-    public ResourceLocation getModelResource(B2Entity entity) {return new ResourceLocation(AshVehicle.MODID,"geo/b-2.geo.json");}
-
-    @Override
-    public ResourceLocation getTextureResource(B2Entity entity) {return new ResourceLocation(AshVehicle.MODID,"textures/entity/b-2.png");}
 }

@@ -1,12 +1,9 @@
 package Aru.Aru.ashvehicle;
 
-import Aru.Aru.ashvehicle.client.particle.AfterburnerFlameParticleProvider;
 import Aru.Aru.ashvehicle.init.*;
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -27,9 +24,9 @@ public class AshVehicle {
         // TODO directly register into SuperbWarfare's containers
         ModTabs.TABS.register(bus);
         ModSounds.REGISTRY.register(bus);
+        ModItem.ITEMS.register(bus);
         ModParticleTypes.register(bus);
         bus.addListener(this::commonSetup);
-        ModNetwork.register();
         MinecraftForge.EVENT_BUS.register(this);
     }
 

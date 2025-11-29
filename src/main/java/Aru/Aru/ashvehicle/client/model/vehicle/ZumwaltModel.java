@@ -1,20 +1,16 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
-import Aru.Aru.ashvehicle.AshVehicle;
-import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.model.GeoModel;
-import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
+import Aru.Aru.ashvehicle.entity.vehicle.*;
+import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import org.jetbrains.annotations.Nullable;
 
-public class ZumwaltModel extends GeoModel<ZumwaltEntity> {
-
-    @Override
-    public ResourceLocation getAnimationResource(ZumwaltEntity entity) {
-        return null;
+public class ZumwaltModel extends VehicleModel<ZumwaltEntity> {
+    public ZumwaltModel() {
     }
 
+    @Nullable
     @Override
-    public ResourceLocation getModelResource(ZumwaltEntity entity) {return new ResourceLocation(AshVehicle.MODID,"geo/zumwalt.geo.json");}
-
-    @Override
-    public ResourceLocation getTextureResource(ZumwaltEntity entity) {return new ResourceLocation(AshVehicle.MODID,"textures/entity/zumwalt.png");}
+    public VehicleModel.TransformContext<ZumwaltEntity> collectTransform(String boneName) {
+        return null;
+    }
 }

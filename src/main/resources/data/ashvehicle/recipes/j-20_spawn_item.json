@@ -1,0 +1,14 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
+    "3 superbwarfare:cemented_carbide_block",
+    "2 superbwarfare:large_motor",
+    "2 superbwarfare:tungsten_rod",
+    "superbwarfare:medium_armament_module",
+    "superbwarfare:medium_battery_pack"
+  ],
+  "result": {
+    "entity": "ashvehicle:j-20"
+  }
+}

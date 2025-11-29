@@ -5,7 +5,6 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import Aru.Aru.ashvehicle.client.renderer.entity.*;
-import Aru.Aru.ashvehicle.client.renderer.weapon.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEntityRenderers {
@@ -14,9 +13,9 @@ public class ModEntityRenderers {
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 
         // Register entity render for tom7
-        event.registerEntityRenderer(ModEntities.TOM_7.get(), Tom7Renderer::new);
         event.registerEntityRenderer(ModEntities.UH_60.get(), UH60Renderer::new);
         event.registerEntityRenderer(ModEntities.F_16.get(), F16Renderer::new);
+        event.registerEntityRenderer(ModEntities.F_15.get(), F15Renderer::new);
         event.registerEntityRenderer(ModEntities.MIG_15.get(), Mig15Renderer::new);
         event.registerEntityRenderer(ModEntities.F_4.get(), F4Renderer::new);
         event.registerEntityRenderer(ModEntities.MIG_29.get(), Mig29Renderer::new);
@@ -32,20 +31,24 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.F_35.get(),F35Renderer::new);
         event.registerEntityRenderer(ModEntities.B_2.get(),B2Renderer::new);
         event.registerEntityRenderer(ModEntities.F_22.get(),F22Renderer::new);
-        event.registerEntityRenderer(ModEntities.AAM_4.get(), Aam4Renderer::new);
-        event.registerEntityRenderer(ModEntities.GBU_57.get(), GBU57Renderer::new);
-        event.registerEntityRenderer(ModEntities.NUCLEAR_BOMB.get(), NuclearBomRenderer::new);
         event.registerEntityRenderer(ModEntities.MH_60M.get(), MH60MRenderer::new);
         event.registerEntityRenderer(ModEntities.SAPSAN_GRIM2.get(), SapsanRenderer::new);
         event.registerEntityRenderer(ModEntities.F_18.get(), F18Renderer::new);
         event.registerEntityRenderer(ModEntities.F_117.get(), F117Renderer::new);
         event.registerEntityRenderer(ModEntities.ZYNWALT.get(), ZumwaltRenderer::new);
         event.registerEntityRenderer(ModEntities.SU_57.get(), SU57Renderer::new);
-        event.registerEntityRenderer(ModEntities.JASSM_XR.get(), JassmXRRenderer::new);
-        event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
-        event.registerEntityRenderer(ModEntities.NAPALM_BOMB.get(), NapalmBombRenderer::new);
-        event.registerEntityRenderer(ModEntities.TOMAHAWK.get(), TomahawkRenderer::new);
         event.registerEntityRenderer(ModEntities.V_22.get(), V22Renderer::new);
+        event.registerEntityRenderer(ModEntities.F_2.get(), F2Renderer::new);
+        event.registerEntityRenderer(ModEntities.pantsir_S1.get(), pantsirS1Renderer::new);
+        event.registerEntityRenderer(ModEntities.SU_27.get(), SU27Renderer::new);
+        event.registerEntityRenderer(ModEntities.J_20.get(), J20Renderer::new);
+        event.registerEntityRenderer(ModEntities.EuroFighter.get(), EuroFighterRenderer::new);
+        event.registerEntityRenderer(ModEntities.REAPER.get(), ReaperRenderer::new);
+        event.registerEntityRenderer(ModEntities.YF_23.get(), YF23Renderer::new);
+        event.registerEntityRenderer(ModEntities.X_47B.get(), X47BRenderer::new);
+        event.registerEntityRenderer(ModEntities.RUBBER_BOAT.get(), RubberBoatRenderer::new);
+        event.registerEntityRenderer(ModEntities.M_777.get(), m777Renderer::new);
+        event.registerEntityRenderer(ModEntities.RAH_66.get(), Rah66Renderer::new);
     }
 }
 

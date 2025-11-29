@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "minecraft:iron_block"
+    },
+    "c": {
+      "item": "superbwarfare:high_energy_explosives"
+    },
+    "d": {
+      "item": "minecraft:tnt"
+    }
+  },
+  "pattern": [
+    " b ",
+    "ada",
+    "cdc"
+  ],
+  "result": {
+    "item": "ashvehicle:gbu-57-item"
+  },
+  "show_notification": true
+}

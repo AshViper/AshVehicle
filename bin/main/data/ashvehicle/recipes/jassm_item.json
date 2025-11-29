@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "item": "minecraft:iron_ingot"
+    },
+    "c": {
+      "item": "superbwarfare:high_energy_explosives"
+    },
+    "d": {
+      "item": "minecraft:tnt"
+    },
+    "e": {
+      "item": "superbwarfare:missile_engine"
+    }
+  },
+  "pattern": [
+    " b ",
+    "bdb",
+    "cec"
+  ],
+  "result": {
+    "item": "ashvehicle:jassm_item"
+  },
+  "show_notification": true
+}

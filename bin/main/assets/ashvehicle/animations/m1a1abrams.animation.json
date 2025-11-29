@@ -1,0 +1,418 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.pa_m1a1_abramsskin3.new": {
+      "loop": true,
+      "bones": {
+        "gus": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gus2": {
+          "rotation": [
+            27.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.1,
+            -0.6
+          ]
+        },
+        "gus3": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gus4": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gus5": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gus6": {
+          "rotation": [
+            32.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.2,
+            -1.2
+          ]
+        },
+        "gus7": {
+          "rotation": [
+            47.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.5,
+            -0.8
+          ]
+        },
+        "gus8": {
+          "rotation": [
+            50,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            -1
+          ]
+        },
+        "gus9": {
+          "rotation": [
+            22.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.3,
+            -0.8
+          ]
+        },
+        "gus30": {
+          "rotation": [
+            10,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gus31": {
+          "rotation": [
+            50,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.5,
+            0.3
+          ]
+        },
+        "gus32": {
+          "rotation": [
+            42.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.5,
+            0.4
+          ]
+        },
+        "gus33": {
+          "rotation": [
+            42.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.9,
+            0
+          ]
+        },
+        "gus34": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0.2
+          ]
+        },
+        "gus35": {
+          "rotation": [
+            7.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0.3
+          ]
+        },
+        "gus36": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0.1
+          ]
+        },
+        "gus37": {
+          "rotation": [
+            25,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            -0.5,
+            -0.6
+          ]
+        },
+        "gus39": {
+          "rotation": [
+            27.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.4,
+            -0.6
+          ]
+        },
+        "gus40": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            -0.8
+          ]
+        },
+        "gus41": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            -0.9
+          ]
+        },
+        "gus42": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            -0.7
+          ]
+        },
+        "gus43": {
+          "rotation": [
+            17.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            -0.3
+          ]
+        },
+        "gus44": {
+          "rotation": [
+            47.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.9,
+            -1
+          ]
+        },
+        "gus45": {
+          "rotation": [
+            47.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.6,
+            -1.7
+          ]
+        },
+        "gus46": {
+          "rotation": [
+            40,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.5,
+            -1
+          ]
+        },
+        "gus67": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            -0.5
+          ]
+        },
+        "gus68": {
+          "rotation": [
+            32.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.5,
+            0
+          ]
+        },
+        "gus69": {
+          "rotation": [
+            57.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0.5,
+            -0.1
+          ]
+        },
+        "gus70": {
+          "rotation": [
+            55,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0
+          ]
+        },
+        "gus71": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            1
+          ]
+        },
+        "gus72": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            1
+          ]
+        },
+        "gus73": {
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            0,
+            0.7
+          ]
+        },
+        "gus74": {
+          "rotation": [
+            32.5,
+            0,
+            0
+          ],
+          "position": [
+            0,
+            -0.1,
+            -0.3
+          ]
+        },
+        "anchors": {
+          "rotation": [
+            179.99198,
+            180.03202,
+            179.43532
+          ],
+          "position": [
+            0,
+            0,
+            -1
+          ]
+        }
+      }
+    }
+  }
+}

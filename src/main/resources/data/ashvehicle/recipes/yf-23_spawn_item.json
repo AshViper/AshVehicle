@@ -1,0 +1,15 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
+    "4 superbwarfare:cemented_carbide_block",
+    "2 superbwarfare:large_propeller",
+    "superbwarfare:medium_armament_module",
+    "superbwarfare:medium_battery_pack",
+    "2 superbwarfare:large_motor",
+    "2 superbwarfare:tungsten_rod"
+  ],
+  "result": {
+    "entity": "ashvehicle:yf-23"
+  }
+}

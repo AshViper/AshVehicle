@@ -1,20 +1,16 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
-import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.model.GeoModel;
-import Aru.Aru.ashvehicle.AshVehicle;
-import Aru.Aru.ashvehicle.entity.vehicle.Mig15Entity;
+import Aru.Aru.ashvehicle.entity.vehicle.*;
+import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import org.jetbrains.annotations.Nullable;
 
-public class Mig15Model extends GeoModel<Mig15Entity> {
-
-    @Override
-    public ResourceLocation getAnimationResource(Mig15Entity entity) {
-        return null;
+public class Mig15Model extends VehicleModel<Mig15Entity> {
+    public Mig15Model() {
     }
 
+    @Nullable
     @Override
-    public ResourceLocation getModelResource(Mig15Entity entity) {return new ResourceLocation(AshVehicle.MODID,"geo/mig-15.geo.json");}
-
-    @Override
-    public ResourceLocation getTextureResource(Mig15Entity entity) {return new ResourceLocation(AshVehicle.MODID,"textures/entity/mig-15.png");}
+    public VehicleModel.TransformContext<Mig15Entity> collectTransform(String boneName) {
+        return null;
+    }
 }

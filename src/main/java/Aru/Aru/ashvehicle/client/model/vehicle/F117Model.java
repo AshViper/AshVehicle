@@ -1,20 +1,16 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
-import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.model.GeoModel;
-import Aru.Aru.ashvehicle.AshVehicle;
-import Aru.Aru.ashvehicle.entity.vehicle.F117Entity;
+import Aru.Aru.ashvehicle.entity.vehicle.*;
+import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import org.jetbrains.annotations.Nullable;
 
-public class F117Model extends GeoModel<F117Entity> {
-
-    @Override
-    public ResourceLocation getAnimationResource(F117Entity entity) {
-        return null;
+public class F117Model extends VehicleModel<F117Entity> {
+    public F117Model() {
     }
 
+    @Nullable
     @Override
-    public ResourceLocation getModelResource(F117Entity entity) {return new ResourceLocation(AshVehicle.MODID,"geo/f-117.geo.json");}
-
-    @Override
-    public ResourceLocation getTextureResource(F117Entity entity) {return new ResourceLocation(AshVehicle.MODID,"textures/entity/f-117tex.png");}
+    public VehicleModel.TransformContext<F117Entity> collectTransform(String boneName) {
+        return null;
+    }
 }

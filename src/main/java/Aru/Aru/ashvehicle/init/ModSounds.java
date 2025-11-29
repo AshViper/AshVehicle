@@ -20,6 +20,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> M1A1_ABRAMS_ENGINE = register("m1a1_engine");
     public static final RegistryObject<SoundEvent> M1A1_ABRAMS_RELOAD = register("m1a1_reload");
     public static final RegistryObject<SoundEvent> SU57_ENGINE = register("su57_engine");
+    public static final RegistryObject<SoundEvent> J20_ENGINE = register("j-20_engine");
+    public static final RegistryObject<SoundEvent> REAPER_ENGINE = register("reaper-engine");
     
     // Дополнительные звуковые события для совместимости с базовым модом
     public static final RegistryObject<SoundEvent> WHEEL_STEP = register("wheel_step");

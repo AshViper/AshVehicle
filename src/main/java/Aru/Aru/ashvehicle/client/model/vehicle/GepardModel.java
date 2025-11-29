@@ -1,20 +1,16 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
-import Aru.Aru.ashvehicle.AshVehicle;
-import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.model.GeoModel;
-import Aru.Aru.ashvehicle.entity.vehicle.GepardEntity;
+import Aru.Aru.ashvehicle.entity.vehicle.*;
+import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import org.jetbrains.annotations.Nullable;
 
-public class GepardModel extends GeoModel<GepardEntity> {
-
-    @Override
-    public ResourceLocation getAnimationResource(GepardEntity entity) {
-        return null;
+public class GepardModel extends VehicleModel<GepardEntity> {
+    public GepardModel() {
     }
 
+    @Nullable
     @Override
-    public ResourceLocation getModelResource(GepardEntity entity) {return new ResourceLocation(AshVehicle.MODID,"geo/gepard-1a2.geo.json");}
-
-    @Override
-    public ResourceLocation getTextureResource(GepardEntity entity) {return new ResourceLocation(AshVehicle.MODID,"textures/entity/gepard-1a2.png");}
+    public VehicleModel.TransformContext<GepardEntity> collectTransform(String boneName) {
+        return null;
+    }
 }

@@ -49,6 +49,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.RUBBER_BOAT.get(), RubberBoatRenderer::new);
         event.registerEntityRenderer(ModEntities.M_777.get(), m777Renderer::new);
         event.registerEntityRenderer(ModEntities.RAH_66.get(), Rah66Renderer::new);
+        event.registerEntityRenderer(ModEntities.AH_64.get(), AH64Renderer::new);
     }
 }
 

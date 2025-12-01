@@ -1,5 +1,5 @@
 {
-  "ID": "ashvehicle:rah_66",
+  "ID": "ashvehicle:ah-64",
   "MaxHealth": 350,
   "MaxEnergy": 10000000,
   "TurretPos": [0, 1.107375, 4.2125],
@@ -59,11 +59,11 @@
   "Seats": [
     {
       "Transform": "Vehicle",
-      "Position": [0, 1.6, 2.8],
+      "Position": [0, 2, 3.7],
       "Sensitivity": [0, 0, 0],
       "CameraPos": {
         "Transform": "Vehicle",
-        "Position": [0, 3.2, 2.8],
+        "Position": [0, 3.6, 3.7],
         "UseFixedCameraPos": true,
         "UseAircraftCamera": true,
         "AircraftCameraPos": [-3.8, 3.5, -15]
@@ -81,13 +81,13 @@
     },
     {
       "Transform": "Vehicle",
-      "Position": [0, 1.0, 4.3],
+      "Position": [0, 1.4, 5.3],
       "Sensitivity": [0.59, 0.8, 0.9],
       "CameraPos": {
         "Transform": "Vehicle",
         "UseFixedCameraPos": true,
-        "Position": [0, 2.7, 4.3],
-        "ZoomPosition": [0, 1.0625, 5.625],
+        "Position": [0, 2.8, 5.3],
+        "ZoomPosition": [0, 1.0625, 5.3],
         "ZoomDirection": "Barrel"
       },
       "MinPitch": -60,

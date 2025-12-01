@@ -8,8 +8,22 @@ public class B2Model extends VehicleModel<B2Entity> {
     public B2Model() {}
 
     @Nullable
-    @Override
     public VehicleModel.TransformContext<B2Entity> collectTransform(String boneName) {
-        return null;
+        VehicleModel.TransformContext var1000;
+        switch (boneName){
+            case "Left_Gear", "Left_Door":
+                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
+                break;
+            case "Right_Gear", "Right_Door":
+                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
+                break;
+            case "Front_Gear", "Front_Door":
+                var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
+                break;
+            default :
+                var1000 = null;
+                break;
+        }
+        return var1000;
     }
 }

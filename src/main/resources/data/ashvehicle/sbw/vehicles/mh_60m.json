@@ -37,13 +37,13 @@
   "Seats": [
     {
       "Transform": "Vehicle",
-      "Position": [0.45, 0.85, 1],
+      "Position": [0.8, 0.55, 4.2],
       "Sensitivity": [0, 0, 0],
       "CameraPos": {
         "Transform": "Vehicle",
-        "Position": [0.45, 2.45, 1],
+        "Position": [0.8, 2.55, 4.2],
         "UseFixedCameraPos": true,
-        "AircraftCamera": true,
+        "UseAircraftCamera": true,
         "AircraftCameraPos": [-2.1, 2.45, -10]
       },
       "CanRotateHead": false,
@@ -59,19 +59,19 @@
     },
     {
       "Transform": "Vehicle",
-      "Position": [-0.45, 0.85, 1],
+      "Position": [-0.8, 0.55, 4.2],
       "MinPitch": -80,
       "MaxPitch": 80,
       "MinYaw": -80,
       "MaxYaw": 80,
       "DismountInfo": {
         "Transform": "Vehicle",
-        "Position": [-2, 1.2, 1]
+        "Position": [-2, 1.2, 0]
       }
     },
     {
       "Transform": "Vehicle",
-      "Position": [-1.4, 0.4, 0],
+      "Position": [-0.5, 0.4, 2.8],
       "Orientation": 90,
       "MinYaw": -80,
       "MaxYaw": 80,
@@ -82,13 +82,43 @@
     },
     {
       "Transform": "Vehicle",
-      "Position": [1.4, 0.4, 0],
+      "Position": [0.5, 0.4, 2.8],
       "Orientation": -90,
       "MinYaw": -80,
       "MaxYaw": 80,
       "DismountInfo": {
         "Transform": "Vehicle",
         "Position": [2, 1.2, 0]
+      }
+    },
+    {
+      "Transform": "Vehicle",
+      "Position": [-0.8, 0.4, 1.5],
+      "MinYaw": -80,
+      "MaxYaw": 80,
+      "DismountInfo": {
+        "Transform": "Vehicle",
+        "Position": [-2, 1.2, 0]
+      }
+    },
+    {
+      "Transform": "Vehicle",
+      "Position": [0, 0.4, 1.5],
+      "MinYaw": -80,
+      "MaxYaw": 80,
+      "DismountInfo": {
+        "Transform": "Vehicle",
+        "Position": [-2, 1.2, 0]
+      }
+    },
+    {
+      "Transform": "Vehicle",
+      "Position": [0.8, 0.4, 1.5],
+      "MinYaw": -80,
+      "MaxYaw": 80,
+      "DismountInfo": {
+        "Transform": "Vehicle",
+        "Position": [-2, 1.2, 0]
       }
     }
   ],
@@ -97,7 +127,7 @@
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Auto",
       "Projectile": "superbwarfare:small_cannon_shell",
-      "Icon": "superbwarfare:textures/screens/vehicle_weapon/cannon_20mm.png",
+      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/cannon_20mm.png",
       "DefaultZoom": 2,
       "RPM": 500,
       "Velocity": 30,
@@ -128,7 +158,7 @@
     },
     "Rocket": {
       "AmmoType": "superbwarfare:small_rocket",
-      "Icon": "superbwarfare:textures/screens/vehicle_weapon/small_rocket.png",
+      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/small_rocket.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Auto",
@@ -207,7 +237,7 @@
     "@superbwarfare:mortar_shell * 3",
     "@#superbwarfare:at_rocket * 3",
     "@#superbwarfare:aerial_bomb * 2",
-    "All * 0.8",
+    "All * 0.7",
     "All - 2"
   ],
   "DestroyInfo": {
@@ -220,5 +250,5 @@
   "ContainerIcon": "superbwarfare:textures/gui/vehicle/type/aircraft.png",
   "Type": "Helicopter",
   "TerrainCompat": [[1.156, 0, 1.875], [-1.156, 0, 1.875], [1.156, 0, 0.875], [-1.156, 0, 0.875], [1.156, 0, -0.875], [-1.156, 0, -0.875]],
-  "MainWeaponHudType": "@Helicopter"
+  "HudType": "@Helicopter"
 }

@@ -1,22 +1,28 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
-import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import Aru.Aru.ashvehicle.entity.vehicle.AH64Entity;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
-public class GepardModel extends VehicleModel<GepardEntity> {
-    public GepardModel() {
+public class AH64Model extends VehicleModel<AH64Entity> {
+    public AH64Model() {
     }
 
     @Nullable
-    public VehicleModel.TransformContext<GepardEntity> collectTransform(String boneName) {
+    public VehicleModel.TransformContext<AH64Entity> collectTransform(String boneName) {
         TransformContext var1000;
         switch (boneName){
-            case "turret" :
+            case "propeller":
+                var1000 = (bone, vehicle, state) -> bone.setRotY(Mth.lerp(state.getPartialTick(), vehicle.propellerRotO, vehicle.getPropellerRot()));
+                break;
+            case "bone8":
+                var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.propellerRotO, vehicle.getPropellerRot()));
+                break;
+            case "bone", "cameraX":
                 var1000 = (bone, vehicle, state) -> bone.setRotY(this.turretYRot * ((float)Math.PI / 180F));
                 break;
-            case "barrel":
+            case "bone12", "cameraY":
                 float a = this.turretYaw;
                 float r = (Mth.abs(a) - 90.0F) / 90.0F;
                 float r2;

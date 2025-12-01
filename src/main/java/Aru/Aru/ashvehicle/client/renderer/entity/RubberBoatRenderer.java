@@ -9,7 +9,7 @@ public class RubberBoatRenderer extends VehicleRenderer<RubberBoatEntity> {
     public RubberBoatRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new RubberBoatModel());
         this.shadowRadius = 0.5F;
-        float scale = 1.0f;
+        float scale = 2.0f;
         scaleHeight = scale;
         scaleWidth = scale;
     }

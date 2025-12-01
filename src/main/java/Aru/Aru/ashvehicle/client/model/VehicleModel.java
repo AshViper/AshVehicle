@@ -282,7 +282,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
             String name = (String)pair.getA();
             CoreGeoBone bone = this.getAnimationProcessor().getBone(name);
             if (bone != null) {
-                ((com.atsuishio.superbwarfare.client.model.entity.VehicleModel.TransformContext)pair.getB()).transform(bone, vehicle, animationState);
+                ((VehicleModel.TransformContext)pair.getB()).transform(bone, vehicle, animationState);
             }
 
         });

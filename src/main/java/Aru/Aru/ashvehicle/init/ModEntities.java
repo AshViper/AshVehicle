@@ -363,4 +363,12 @@ public class ModEntities {
                             .fireImmune()
                             .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
 
+    // AH-64
+    public static final RegistryObject<EntityType<AH64Entity>> AH_64 =
+            register("ah-64",
+                    EntityType.Builder.of(AH64Entity::new, MobCategory.MISC)
+                            .setTrackingRange(512)
+                            .setUpdateInterval(1)
+                            .fireImmune()
+                            .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
 }

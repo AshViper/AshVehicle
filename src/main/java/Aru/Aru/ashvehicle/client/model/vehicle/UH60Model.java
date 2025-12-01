@@ -2,6 +2,7 @@ package Aru.Aru.ashvehicle.client.model.vehicle;
 
 import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
 public class UH60Model extends VehicleModel<UH60Entity> {
@@ -9,8 +10,19 @@ public class UH60Model extends VehicleModel<UH60Entity> {
     }
 
     @Nullable
-    @Override
     public VehicleModel.TransformContext<UH60Entity> collectTransform(String boneName) {
-        return null;
+        VehicleModel.TransformContext var1000;
+        switch (boneName){
+            case "VINT":
+                var1000 = (bone, vehicle, state) -> bone.setRotY(Mth.lerp(state.getPartialTick(), vehicle.propellerRotO, vehicle.getPropellerRot()));
+                break;
+            case "VINT2":
+                var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.propellerRotO, vehicle.getPropellerRot()));
+                break;
+            default :
+                var1000 = null;
+                break;
+        }
+        return var1000;
     }
 }

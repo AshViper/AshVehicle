@@ -22,6 +22,8 @@ public class SapsanEntity extends GeoVehicleEntity implements CoordinateTargetVe
     
     private static final EntityDataAccessor<Float> POD_ROT = SynchedEntityData.defineId(SapsanEntity.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Boolean> POD_TOGGLED = SynchedEntityData.defineId(SapsanEntity.class, EntityDataSerializers.BOOLEAN);
+    
+    public float podRotO = 0f; // Previous tick rotation for interpolation
 
     public SapsanEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -64,18 +66,23 @@ public class SapsanEntity extends GeoVehicleEntity implements CoordinateTargetVe
     public void baseTick() {
         super.baseTick();
         
-        // Pod rotation animation
+        // Store previous rotation for smooth interpolation
+        podRotO = getPodRot();
+        
+        // Pod rotation animation with smooth easing
         float target = this.getPodToggled() ? 90.0F : 0.0F;
         float current = getPodRot();
-        float speed = 2.5F;
-
-        if (Math.abs(current - target) <= speed) {
-            setPodRot(target);
-        } else if (this.getPodToggled() && current < 90.0F) {
-            setPodRot(current + speed);
-        } else if (!this.getPodToggled() && current > 0.0F) {
-            setPodRot(current - speed);
+        float diff = target - current;
+        
+        // Smooth interpolation (ease-out effect) - slower movement
+        float newRot = current + diff * 0.04f;
+        
+        // Snap to target when very close
+        if (Math.abs(diff) < 0.1f) {
+            newRot = target;
         }
+        
+        setPodRot(newRot);
     }
 
     public void shootMissileTo(Player player, Vec3 targetPos) {

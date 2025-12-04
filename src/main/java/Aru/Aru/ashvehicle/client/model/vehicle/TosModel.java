@@ -1,22 +1,22 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
-import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import Aru.Aru.ashvehicle.entity.vehicle.TosEntity;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
-public class T90Model extends VehicleModel<T90Entity> {
-    public T90Model() {
+public class TosModel extends VehicleModel<TosEntity> {
+    public TosModel() {
     }
 
     @Nullable
-    public VehicleModel.TransformContext<T90Entity> collectTransform(String boneName) {
+    public VehicleModel.TransformContext<TosEntity> collectTransform(String boneName) {
         TransformContext var1000;
         switch (boneName){
-            case "turret" :
+            case "Turret" :
                 var1000 = (bone, vehicle, state) -> bone.setRotY(this.turretYRot * ((float)Math.PI / 180F));
                 break;
-            case "barrel":
+            case "guns":
                 float a = this.turretYaw;
                 float r = (Mth.abs(a) - 90.0F) / 90.0F;
                 float r2;

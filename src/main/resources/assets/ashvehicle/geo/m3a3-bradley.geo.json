@@ -162,7 +162,7 @@
 					]
 				},
 				{
-					"name": "burrel",
+					"name": "barrel",
 					"parent": "turret",
 					"pivot": [-5.23087, 33.81501, -8.71935],
 					"cubes": [

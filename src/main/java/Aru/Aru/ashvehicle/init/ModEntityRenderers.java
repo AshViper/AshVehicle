@@ -1,5 +1,6 @@
 package Aru.Aru.ashvehicle.init;
 
+import Aru.Aru.ashvehicle.client.renderer.projectile.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -11,7 +12,11 @@ public class ModEntityRenderers {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-
+        //weapons
+        event.registerEntityRenderer(ModEntities.AIM9.get(), Aim9Renderer::new);
+        event.registerEntityRenderer(ModEntities.AIM120.get(), Aim120Renderer::new);
+        event.registerEntityRenderer(ModEntities.R60.get(), R60Renderer::new);
+        event.registerEntityRenderer(ModEntities.AGM114.get(), Agm114Renderer::new);
         // Register entity render for tom7
         event.registerEntityRenderer(ModEntities.UH_60.get(), UH60Renderer::new);
         event.registerEntityRenderer(ModEntities.F_16.get(), F16Renderer::new);
@@ -35,11 +40,11 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.SAPSAN_GRIM2.get(), SapsanRenderer::new);
         event.registerEntityRenderer(ModEntities.F_18.get(), F18Renderer::new);
         event.registerEntityRenderer(ModEntities.F_117.get(), F117Renderer::new);
-        event.registerEntityRenderer(ModEntities.ZYNWALT.get(), ZumwaltRenderer::new);
+        event.registerEntityRenderer(ModEntities.ZUMWALT.get(), ZumwaltRenderer::new);
         event.registerEntityRenderer(ModEntities.SU_57.get(), SU57Renderer::new);
         event.registerEntityRenderer(ModEntities.V_22.get(), V22Renderer::new);
         event.registerEntityRenderer(ModEntities.F_2.get(), F2Renderer::new);
-        event.registerEntityRenderer(ModEntities.pantsir_S1.get(), pantsirS1Renderer::new);
+        event.registerEntityRenderer(ModEntities.PANTSIR_S1.get(), pantsirS1Renderer::new);
         event.registerEntityRenderer(ModEntities.SU_27.get(), SU27Renderer::new);
         event.registerEntityRenderer(ModEntities.J_20.get(), J20Renderer::new);
         event.registerEntityRenderer(ModEntities.EuroFighter.get(), EuroFighterRenderer::new);
@@ -50,6 +55,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.M_777.get(), m777Renderer::new);
         event.registerEntityRenderer(ModEntities.RAH_66.get(), Rah66Renderer::new);
         event.registerEntityRenderer(ModEntities.AH_64.get(), AH64Renderer::new);
+        event.registerEntityRenderer(ModEntities.TOS.get(), TosRenderer::new);
     }
 }
 

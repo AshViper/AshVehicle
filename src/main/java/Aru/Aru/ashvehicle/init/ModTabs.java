@@ -25,6 +25,7 @@ public class ModTabs {
                         output.accept(ContainerBlockItem.createInstance(ModEntities.KV_2.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.GEPARD_1A2.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.M3A3_BRADLEY.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.TOS.get()));
                         //output.accept(ContainerBlockItem.createInstance(ModEntities.SAPSAN_GRIM2.get()));
                     })
                     .build()
@@ -35,7 +36,7 @@ public class ModTabs {
                     .title(Component.translatable("item_group.ashvehicle.ash-ship"))
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_SHIP_ICON.get()))
                     .displayItems((param, output) -> {
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.ZYNWALT.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.ZUMWALT.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.RUBBER_BOAT.get()));
                     })
                     .build()

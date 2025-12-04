@@ -1,10 +1,11 @@
 package Aru.Aru.ashvehicle.init;
 
+import Aru.Aru.ashvehicle.client.renderer.entity.*;
+import Aru.Aru.ashvehicle.client.renderer.weapon.BallisticMissileRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import Aru.Aru.ashvehicle.client.renderer.entity.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEntityRenderers {
@@ -50,6 +51,9 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.M_777.get(), m777Renderer::new);
         event.registerEntityRenderer(ModEntities.RAH_66.get(), Rah66Renderer::new);
         event.registerEntityRenderer(ModEntities.AH_64.get(), AH64Renderer::new);
+        
+        // Weapons
+        event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
     }
 }
 

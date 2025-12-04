@@ -1,7 +1,7 @@
 package Aru.Aru.ashvehicle.client.renderer.weapon;
 
 import Aru.Aru.ashvehicle.client.model.weapon.BallisticMissileModel;
-import Aru.Aru.ashvehicle.entity.weapon.BallisticMissileEntity;
+import Aru.Aru.ashvehicle.entity.projectile.BallisticMissileEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;

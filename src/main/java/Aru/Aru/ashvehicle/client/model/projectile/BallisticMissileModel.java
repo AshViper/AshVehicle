@@ -1,7 +1,7 @@
 package Aru.Aru.ashvehicle.client.model.weapon;
 
 import Aru.Aru.ashvehicle.AshVehicle;
-import Aru.Aru.ashvehicle.entity.weapon.BallisticMissileEntity;
+import Aru.Aru.ashvehicle.entity.projectile.BallisticMissileEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 

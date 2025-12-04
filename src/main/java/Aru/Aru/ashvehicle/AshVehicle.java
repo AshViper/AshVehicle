@@ -21,16 +21,20 @@ public class AshVehicle {
         ModEntities.REGISTRY.register(bus);
 
         // Register a separate tab
-        // TODO directly register into SuperbWarfare's containers
         ModTabs.TABS.register(bus);
         ModSounds.REGISTRY.register(bus);
         ModItem.ITEMS.register(bus);
         ModParticleTypes.register(bus);
+        
+        // Key mappings are registered via ClientKeyRegister @Mod.EventBusSubscriber
+        
         bus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("common setup");
+        // Register network packets
+        ModNetwork.register();
     }
 }

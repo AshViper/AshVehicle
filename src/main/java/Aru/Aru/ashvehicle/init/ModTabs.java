@@ -25,8 +25,12 @@ public class ModTabs {
                         output.accept(ContainerBlockItem.createInstance(ModEntities.KV_2.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.GEPARD_1A2.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.M3A3_BRADLEY.get()));
+<<<<<<< HEAD
                         output.accept(ContainerBlockItem.createInstance(ModEntities.TOS.get()));
                         //output.accept(ContainerBlockItem.createInstance(ModEntities.SAPSAN_GRIM2.get()));
+=======
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.SAPSAN_GRIM2.get()));
+>>>>>>> bce396679f20daabc6d662efafe318d92945e6e2
                     })
                     .build()
     );

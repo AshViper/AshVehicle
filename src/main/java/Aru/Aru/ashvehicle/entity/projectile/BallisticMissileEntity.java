@@ -1,4 +1,4 @@
-package Aru.Aru.ashvehicle.entity.weapon;
+package Aru.Aru.ashvehicle.entity.projectile;
 
 import Aru.Aru.ashvehicle.init.ModEntities;
 import com.atsuishio.superbwarfare.config.server.ExplosionConfig;

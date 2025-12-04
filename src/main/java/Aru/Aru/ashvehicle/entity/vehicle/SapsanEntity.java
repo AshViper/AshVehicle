@@ -1,6 +1,6 @@
 package Aru.Aru.ashvehicle.entity.vehicle;
 
-import Aru.Aru.ashvehicle.entity.weapon.BallisticMissileEntity;
+import Aru.Aru.ashvehicle.entity.projectile.BallisticMissileEntity;
 import Aru.Aru.ashvehicle.init.CoordinateTargetVehicle;
 import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
 import com.atsuishio.superbwarfare.tools.ParticleTool;
@@ -9,7 +9,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;

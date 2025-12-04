@@ -1,11 +1,7 @@
 package Aru.Aru.ashvehicle.init;
 
-<<<<<<< HEAD
 import Aru.Aru.ashvehicle.client.renderer.projectile.*;
-=======
 import Aru.Aru.ashvehicle.client.renderer.entity.*;
-import Aru.Aru.ashvehicle.client.renderer.weapon.BallisticMissileRenderer;
->>>>>>> bce396679f20daabc6d662efafe318d92945e6e2
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,6 +17,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.AIM120.get(), Aim120Renderer::new);
         event.registerEntityRenderer(ModEntities.R60.get(), R60Renderer::new);
         event.registerEntityRenderer(ModEntities.AGM114.get(), Agm114Renderer::new);
+        event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
         // Register entity render for tom7
         event.registerEntityRenderer(ModEntities.UH_60.get(), UH60Renderer::new);
         event.registerEntityRenderer(ModEntities.F_16.get(), F16Renderer::new);
@@ -59,13 +56,8 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.M_777.get(), m777Renderer::new);
         event.registerEntityRenderer(ModEntities.RAH_66.get(), Rah66Renderer::new);
         event.registerEntityRenderer(ModEntities.AH_64.get(), AH64Renderer::new);
-<<<<<<< HEAD
         event.registerEntityRenderer(ModEntities.TOS.get(), TosRenderer::new);
-=======
-        
-        // Weapons
-        event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
->>>>>>> bce396679f20daabc6d662efafe318d92945e6e2
+
     }
 }
 

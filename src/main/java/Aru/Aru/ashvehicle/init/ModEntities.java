@@ -3,18 +3,12 @@ package Aru.Aru.ashvehicle.init;
 import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.entity.projectile.*;
 import Aru.Aru.ashvehicle.entity.vehicle.*;
-<<<<<<< HEAD
-=======
-import Aru.Aru.ashvehicle.entity.weapon.BallisticMissileEntity;
->>>>>>> bce396679f20daabc6d662efafe318d92945e6e2
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-@SuppressWarnings("unused")
 
 public class ModEntities {
 
@@ -27,6 +21,7 @@ public class ModEntities {
     private static final float TANK_W = 3.5f, TANK_H = 2.5f;
     private static final float TANK_H_LARGE = 4.0f;
     private static final float IFV_W = 3.0f, IFV_H = 2.0f;
+    private static final float SMALL_W = 1.0f, SMALL_H = 1.0f;
 
     // ===== 共通ビルダー =====
     private static <T extends Entity> EntityType.Builder<T> vehicle(
@@ -44,6 +39,12 @@ public class ModEntities {
             String name, EntityType.EntityFactory<T> factory, float w, float h
     ) {
         return REGISTRY.register(name, () -> vehicle(factory, w, h).build(name));
+    }
+
+    private static <T extends Entity> RegistryObject<EntityType<T>> weapon(
+            String name, EntityType.EntityFactory<T> factory
+    ) {
+        return reg(name, factory, SMALL_W, SMALL_H);
     }
 
     // ==== カテゴリ別ショートカット ====
@@ -78,10 +79,11 @@ public class ModEntities {
     }
 
     // ===== 実際の登録 =====
-    public static final RegistryObject<EntityType<Aim9Entity>> AIM9 = reg("aim9", Aim9Entity::new, 1f, 1f);
-    public static final RegistryObject<EntityType<Aim120Entity>> AIM120 = reg("aim120", Aim120Entity::new, 1f, 1f);
-    public static final RegistryObject<EntityType<R60Entity>> R60 = reg("r60", R60Entity::new, 1f, 1f);
-    public static final RegistryObject<EntityType<Agm114Entity>> AGM114 = reg("agm114", Agm114Entity::new, 1f, 1f);
+    public static final RegistryObject<EntityType<Aim9Entity>> AIM9 = weapon("aim9", Aim9Entity::new);
+    public static final RegistryObject<EntityType<Aim120Entity>> AIM120 = weapon("aim120", Aim120Entity::new);
+    public static final RegistryObject<EntityType<R60Entity>> R60 = weapon("r60", R60Entity::new);
+    public static final RegistryObject<EntityType<Agm114Entity>> AGM114 = weapon("agm114", Agm114Entity::new);
+    public static final RegistryObject<EntityType<BallisticMissileEntity>> BALLISTIC_MISSILE = weapon("ballistic-missile", BallisticMissileEntity::new);
 
     public static final RegistryObject<EntityType<UH60Entity>> UH_60 = reg("uh_60", UH60Entity::new, 4.5f, 3.5f);
 
@@ -140,110 +142,5 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<Rah66Entity>> RAH_66 = aircraft("rah_66", Rah66Entity::new);
 
-<<<<<<< HEAD
     public static final RegistryObject<EntityType<AH64Entity>> AH_64 = aircraft("ah-64", AH64Entity::new);
 }
-=======
-    // F-2
-    public static final RegistryObject<EntityType<F2Entity>> F_2 =
-            register("f_2",
-                    EntityType.Builder.of(F2Entity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
-
-    // Pantsir-S1
-    public static final RegistryObject<EntityType<pantsirS1Entity>> pantsir_S1 =
-            register("pantsir-s1",
-                    EntityType.Builder.of(pantsirS1Entity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(TANK_WIDTH, TANK_HEIGHT));
-
-    // Eurofighter
-    public static final RegistryObject<EntityType<EuroFighterEntity>> EuroFighter =
-            register("eurofighter",
-                    EntityType.Builder.of(EuroFighterEntity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
-
-    // Reaper UAV
-    public static final RegistryObject<EntityType<ReaperEntity>> REAPER =
-            register("reaper",
-                    EntityType.Builder.of(ReaperEntity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
-
-    // YF-23
-    public static final RegistryObject<EntityType<YF23Entity>> YF_23 =
-            register("yf-23",
-                    EntityType.Builder.of(YF23Entity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
-
-    // X-47B
-    public static final RegistryObject<EntityType<X47BEntity>> X_47B =
-            register("x-47b",
-                    EntityType.Builder.of(X47BEntity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
-
-    // Rubber Boat
-    public static final RegistryObject<EntityType<RubberBoatEntity>> RUBBER_BOAT =
-            register("rubber_boat",
-                    EntityType.Builder.of(RubberBoatEntity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(SHIP_WIDTH, SHIP_HEIGHT));
-
-    // M777
-    public static final RegistryObject<EntityType<m777Entity>> M_777 =
-            register("m_777",
-                    EntityType.Builder.of(m777Entity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(SHIP_WIDTH, SHIP_HEIGHT));
-
-    // RAH-66
-    public static final RegistryObject<EntityType<Rah66Entity>> RAH_66 =
-            register("rah_66",
-                    EntityType.Builder.of(Rah66Entity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
-
-    // AH-64
-    public static final RegistryObject<EntityType<AH64Entity>> AH_64 =
-            register("ah-64",
-                    EntityType.Builder.of(AH64Entity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
-
-    // Ballistic Missile
-    private static final float SMALL_WIDTH = 1.0f;
-    private static final float SMALL_HEIGHT = 1.0f;
-    
-    public static final RegistryObject<EntityType<BallisticMissileEntity>> BALLISTIC_MISSILE =
-            register("ballistic-missile",
-                    EntityType.Builder.<BallisticMissileEntity>of(BallisticMissileEntity::new, MobCategory.MISC)
-                            .setTrackingRange(512)
-                            .setUpdateInterval(1)
-                            .fireImmune()
-                            .sized(SMALL_WIDTH, SMALL_HEIGHT));
-}
->>>>>>> bce396679f20daabc6d662efafe318d92945e6e2

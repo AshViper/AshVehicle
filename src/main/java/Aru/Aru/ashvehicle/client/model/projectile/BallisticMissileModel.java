@@ -1,4 +1,4 @@
-package Aru.Aru.ashvehicle.client.model.weapon;
+package Aru.Aru.ashvehicle.client.model.projectile;
 
 import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.entity.projectile.BallisticMissileEntity;

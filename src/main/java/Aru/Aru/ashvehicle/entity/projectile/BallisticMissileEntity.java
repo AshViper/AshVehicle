@@ -29,7 +29,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.network.PlayMessages;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -39,7 +38,6 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     private Vec3 targetPos;
-    private int flightTime;
     private int ticksLived;
     private static final double GRAVITY = 0.08;
     private int explosionDamage = 100;
@@ -56,10 +54,6 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
 
     public BallisticMissileEntity(EntityType<? extends BallisticMissileEntity> type, Level level) {
         super(type, level);
-    }
-
-    public BallisticMissileEntity(PlayMessages.SpawnEntity spawnEntity, Level level) {
-        this(ModEntities.BALLISTIC_MISSILE.get(), level);
     }
 
     public void setTargetPosition(Vec3 targetPos) {

@@ -13,10 +13,10 @@ public class pantsirS1Model extends VehicleModel<pantsirS1Entity> {
     public VehicleModel.TransformContext<pantsirS1Entity> collectTransform(String boneName) {
         TransformContext var1000;
         switch (boneName){
-            case "turret" :
+            case "BASNIA" :
                 var1000 = (bone, vehicle, state) -> bone.setRotY(this.turretYRot * ((float)Math.PI / 180F));
                 break;
-            case "barrel":
+            case "GUN", "MASHINGUN":
                 float a = this.turretYaw;
                 float r = (Mth.abs(a) - 90.0F) / 90.0F;
                 float r2;
@@ -27,7 +27,7 @@ public class pantsirS1Model extends VehicleModel<pantsirS1Entity> {
                 } else {
                     r2 = (180.0F - a) / 90.0F;
                 }
-                var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.clamp(-this.turretXRot - r * this.pitch - r2 * this.roll, vehicle.getTurretMinPitch(), vehicle.getTurretMaxPitch()) * ((float)Math.PI / 180F));
+                var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.clamp(-this.turretXRot - r * this.pitch - r2 * this.roll, vehicle.getTurretMinPitch(), vehicle.getTurretMaxPitch()) * (-(float)Math.PI / 180F));
                 break;
             default :
                 var1000 = null;

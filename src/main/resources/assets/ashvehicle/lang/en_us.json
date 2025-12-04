@@ -41,6 +41,9 @@
   "entity.ashvehicle.eurofighter": "Eurofighter Typhoon",
   "entity.ashvehicle.yf-23": "YF-23 Black Widow II",
   "entity.ashvehicle.x-47b": "X-47B UCAV",
+  "entity.ashvehicle.rubber_boat": "Rubber Boat",
+  "entity.ashvehicle.rah_66": "RAH-66 Comanche",
+  "entity.ashvehicle.ah-64": "AH-64 Apache",
 
   "entity.ashvehicle.aam-4": "AAM-4 Air-to-Air Missile",
   "entity.ashvehicle.gbu-57": "GBU-57 Massive Ordnance Penetrator",
@@ -51,5 +54,6 @@
   "entity.ashvehicle.tomahawk": "Tomahawk Cruise Missile",
 
   "key.ashvehicle.open_coordinate": "Open coordinate input",
+  "key.ashvehicle.toggle_pod": "Toggle missile pod",
   "key.categories.ashvehicle": "AshVehicle"
 }

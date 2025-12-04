@@ -6,19 +6,23 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import org.lwjgl.glfw.GLFW;
 
 public class ClientKeyMappings {
-    // キー割り当てを保持
     public static KeyMapping OPEN_COORDINATE_SCREEN;
+    public static KeyMapping TOGGLE_POD;
 
     public static void register(RegisterKeyMappingsEvent event) {
-        // 第1引数: 名前（langファイルで翻訳可）
-        // 第2引数: デフォルトキー
-        // 第3引数: カテゴリ（設定画面でまとめる）
         OPEN_COORDINATE_SCREEN = new KeyMapping(
-                "key.ashvehicle.open_coordinate",  // 言語キー
-                GLFW.GLFW_KEY_Q,                  // デフォルトはQ
-                "key.categories.ashvehicle"       // カテゴリ名
+                "key.ashvehicle.open_coordinate",
+                GLFW.GLFW_KEY_G,  // Changed to G to avoid conflict
+                "key.categories.ashvehicle"
         );
         event.register(OPEN_COORDINATE_SCREEN);
+        
+        TOGGLE_POD = new KeyMapping(
+                "key.ashvehicle.toggle_pod",
+                GLFW.GLFW_KEY_LEFT_CONTROL,  // Ctrl key for pod toggle
+                "key.categories.ashvehicle"
+        );
+        event.register(TOGGLE_POD);
     }
 }
 

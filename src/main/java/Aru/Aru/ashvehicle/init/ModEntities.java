@@ -2,17 +2,15 @@ package Aru.Aru.ashvehicle.init;
 
 import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.entity.vehicle.*;
-import com.atsuishio.superbwarfare.entity.vehicle.A10Entity;
+import Aru.Aru.ashvehicle.entity.weapon.BallisticMissileEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.function.BiFunction;
+@SuppressWarnings("unused")
 
 public class ModEntities {
 
@@ -371,4 +369,16 @@ public class ModEntities {
                             .setUpdateInterval(1)
                             .fireImmune()
                             .sized(AIRCRAFT_WIDTH, AIRCRAFT_HEIGHT));
+
+    // Ballistic Missile
+    private static final float SMALL_WIDTH = 1.0f;
+    private static final float SMALL_HEIGHT = 1.0f;
+    
+    public static final RegistryObject<EntityType<BallisticMissileEntity>> BALLISTIC_MISSILE =
+            register("ballistic-missile",
+                    EntityType.Builder.<BallisticMissileEntity>of(BallisticMissileEntity::new, MobCategory.MISC)
+                            .setTrackingRange(512)
+                            .setUpdateInterval(1)
+                            .fireImmune()
+                            .sized(SMALL_WIDTH, SMALL_HEIGHT));
 }

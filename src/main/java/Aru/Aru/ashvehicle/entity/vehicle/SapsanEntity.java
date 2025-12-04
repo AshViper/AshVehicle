@@ -64,6 +64,14 @@ public class SapsanEntity extends GeoVehicleEntity implements CoordinateTargetVe
 
     @Override
     public void baseTick() {
+        // Block input when pod is raised - disable movement controls
+        if (getPodRot() > 1.0f) {
+            this.setForwardInputDown(false);
+            this.setBackInputDown(false);
+            this.setLeftInputDown(false);
+            this.setRightInputDown(false);
+        }
+        
         super.baseTick();
         
         // Store previous rotation for smooth interpolation

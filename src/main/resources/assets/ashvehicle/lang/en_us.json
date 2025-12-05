@@ -58,5 +58,8 @@
 
   "key.ashvehicle.open_coordinate": "Open coordinate input",
   "key.ashvehicle.toggle_pod": "Toggle missile pod",
-  "key.categories.ashvehicle": "AshVehicle"
+  "key.categories.ashvehicle": "AshVehicle",
+
+  "weapon.ashvehicle.close_bay": "Close Bay",
+  "weapon.ashvehicle.agm114": "AGM-114 Hellfire"
 }

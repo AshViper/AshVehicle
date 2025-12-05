@@ -73,7 +73,7 @@
       "MaxPitch": 80,
       "MinYaw": -80,
       "MaxYaw": 80,
-      "Weapons": ["Rocket", "DriverMissile", "DriverAAMissile"],
+      "Weapons": ["CloseBay", "Rocket", "DriverMissile", "DriverAAMissile"],
       "DismountInfo": {
         "Transform": "Vehicle",
         "Position": [-2.5, 0.5, 2.5]
@@ -94,7 +94,7 @@
       "MaxPitch": 10,
       "MinYaw": -110,
       "MaxYaw": 110,
-      "Weapons": ["Cannon", "PassengerMissile", "SeekMissile"],
+      "Weapons": ["CloseBay", "Cannon", "PassengerMissile", "SeekMissile"],
       "DismountInfo": {
         "Transform": "Vehicle",
         "Position": [-2.5, 0.5, 3.5625]
@@ -102,6 +102,12 @@
     }
   ],
   "Weapons": {
+    "CloseBay": {
+      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/empty.png",
+      "Name": "weapon.ashvehicle.close_bay",
+      "Crosshair": "@Empty",
+      "AvailableFireModes": []
+    },
     "Cannon": {
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Auto",

@@ -47,7 +47,7 @@ public class Rah66Entity extends GeoVehicleEntity {
         boolean gunnerNeedsBay = gunnerWeapon >= 2; // PassengerMissile and SeekMissile (not Cannon)
         boolean shouldOpen = driverNeedsBay || gunnerNeedsBay;
         
-        float target = shouldOpen ? 90.0F : 0.0F;
+        float target = driverNeedsBay ? 90.0F : 0.0F;
         float current = getWeaponBayRot();
         float diff = target - current;
         

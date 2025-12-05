@@ -61,7 +61,7 @@
       "Position": [0, 0, 0],
       "CanRotateHead": false,
       "MinPitch": -15,
-      "MaxPitch": 60,
+      "MaxPitch": 45,
       "Sensitivity": [0.55, 0.73, 1]
     }
   ],
@@ -124,7 +124,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "superbwarfare:large_anti_ground_missile",
+      "AmmoType": "ashvehicle:aam_4_item",
       "ShootPos": {
         "Transform": "Barrel",
         "Positions": [[0, 1.24375, -0.3234]],
@@ -159,7 +159,7 @@
   },
   "TurretPos": [0, 4.0, -1.8],
   "TurretTurnSpeed": [12.5, 10],
-  "TurretPitchRange": [-15, 32.5],
+  "TurretPitchRange": [-15, 45],
   "BarrelPos": [0, 0.5, 0.9],
   "ThirdPersonCameraPos": [0, 1, 3],
   "HasDecoy": true,

@@ -94,7 +94,7 @@
       "MaxPitch": 10,
       "MinYaw": -110,
       "MaxYaw": 110,
-      "Weapons": ["CloseBay", "Cannon", "PassengerMissile", "SeekMissile"],
+      "Weapons": ["Cannon"],
       "DismountInfo": {
         "Transform": "Vehicle",
         "Position": [-2.5, 0.5, 3.5625]
@@ -105,8 +105,7 @@
     "CloseBay": {
       "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/empty.png",
       "Name": "weapon.ashvehicle.close_bay",
-      "Crosshair": "@Empty",
-      "AvailableFireModes": []
+      "Crosshair": "@Empty"
     },
     "Cannon": {
       "DefaultFireMode": "Auto",

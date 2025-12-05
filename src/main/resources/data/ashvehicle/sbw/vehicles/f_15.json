@@ -146,34 +146,32 @@
       "SoundRadius": 8
     },
     "AAMissile": {
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/ru_9m336.png",
+      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/agm_65.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",
-      "Magazine": 8,
-      "EmptyReloadTime": 260,
-      "AmmoType": "superbwarfare:medium_anti_air_missile",
-      "Projectile": "superbwarfare:ru_9m336_missile",
-      "Name": "weapon.ashvehicles.aam",
-      "Damage": 1080,
-      "ExplosionDamage": 90,
-      "ExplosionRadius": 6,
-      "Velocity": 3,
+      "Magazine": 4,
+      "EmptyReloadTime": 200,
+      "Projectile": "ashvehicle:aim120",
+      "Name": "weapon.ashvehicle.aim120",
+      "Damage": 1100,
+      "ExplosionDamage": 180,
+      "ExplosionRadius": 12,
+      "AddShooterDeltaMovement": true,
+      "Velocity": 2.05,
       "SeekWeaponInfo": {
         "SeekDirection": "Default",
         "SeekRange": 384,
         "SeekAngle": 20,
-        "SeekTime": 20,
-        "MinTargetHeight": 0,
-        "MinTargetSize": 0.1,
+        "SeekTime": 10,
+        "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
+      "AmmoType": "ashvehicle:aam_4_item",
       "ShootPos": {
         "Transform": "Vehicle",
-        "ShootPositionForHud": [0, 1.0625, 5.625],
-        "Positions": [
-          [-2.806, 1.932, 0], [-2.806, 1.67, 0], [-2.993, 1.932, 0], [-2.993, 1.67, 0],
-          [-2.806, 1.932, 0], [-2.806, 1.67, 0], [-2.993, 1.932, 0], [-2.993, 1.67, 0]],
+        "ShootPositionForHud": [0, 1.53, 0],
+        "Positions": [[-6.625, 1.5825, 0], [-5.28125, 1.4888, 0], [5.28125, 1.4888, 0], [6.625, 1.5825, 0]],
         "BoundUpWithAmmoAmount": true
       },
       "SoundInfo": {
@@ -182,11 +180,11 @@
         "VehicleReload3p": "superbwarfare:bomb_reload",
         "VehicleReloadSoundTime": 11,
         "Change": "superbwarfare:into_missile",
-        "Locking": "superbwarfare:javelin_locking",
-        "Locked": "superbwarfare:javelin_locking"
+        "Locking": "superbwarfare:missile_locking",
+        "Locked": "superbwarfare:missile_locked"
       },
-      "CrosshairColor": "0xFFC700",
-      "Crosshair": "@VehicleCommonSeekMissile",
+      "Crosshair": "@AirCraftMissile",
+      "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
     }
   },

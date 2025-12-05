@@ -71,7 +71,7 @@
       "EjectDirection": "Up",
       "EjectForce": 4
     },
-    "Weapons": ["Cannon", "Rocket", "Bomb", "aim9", "aim120"]
+    "Weapons": ["Cannon", "Bomb", "aim9", "aim120"]
   },
   "HudType": "@Aircraft",
   "Weapons": {
@@ -103,41 +103,6 @@
         "Directions": [[0, -0.02, 1]],
         "ShootDirectionForHud": [0, -0.03, 1]
       }
-    },
-    "Rocket": {
-      "AmmoType": "superbwarfare:small_rocket",
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/small_rocket.png",
-      "DefaultZoom": 2,
-      "DefaultFireMode": "Auto",
-      "AvailableFireModes": "Semi",
-      "Magazine": 28,
-      "EmptyReloadTime": 160,
-      "Projectile": "superbwarfare:small_rocket",
-      "Spread": 0.4,
-      "Name": "weapon.superbwarfare.70mm_rocket",
-      "RPM": 450,
-      "Damage": 80,
-      "ExplosionDamage": 40,
-      "ExplosionRadius": 5,
-      "Gravity": 0.02,
-      "Velocity": 16,
-      "ShootPos": {
-        "Transform": "Vehicle",
-        "ShootPositionForHud": [0, 1.579, 0.128],
-        "ShootDirectionForHud": [0, -0.03, 1],
-        "Positions": [[3.932, 1.6054, 0.130], [1.57, 1.552, 0.1272], [-1.57, 1.552, 0.1272], [-3.932, 1.6054, 0.130]],
-        "Directions": [[-0.005, -0.03, 1], [-0.003, -0.03, 1], [0.003, -0.03, 1], [0.005, -0.03, 1]]
-      },
-      "SoundInfo": {
-        "Fire1P": "superbwarfare:small_rocket_fire_1p",
-        "Fire3P": "superbwarfare:small_rocket_fire_3p",
-        "VehicleReload3p": "superbwarfare:missile_reload",
-        "VehicleReloadSoundTime": 7,
-        "Change": "superbwarfare:into_missile"
-      },
-      "Crosshair": "@AirCraftCommon",
-      "CrosshairColor": "0x66FF00",
-      "SoundRadius": 12
     },
     "Bomb": {
       "AmmoType": "superbwarfare:medium_aerial_bomb",
@@ -198,7 +163,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "superbwarfare:large_anti_ground_missile",
+      "AmmoType": "ashvehicle:aam_4_item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],
@@ -240,7 +205,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "superbwarfare:large_anti_ground_missile",
+      "AmmoType": "ashvehicle:aam_4_item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],

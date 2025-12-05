@@ -71,74 +71,10 @@
       "EjectDirection": "Up",
       "EjectForce": 4
     },
-    "Weapons": ["Cannon", "Rocket", "Bomb", "Missile"]
+    "Weapons": ["Bomb"]
   },
   "HudType": "@Aircraft",
   "Weapons": {
-    "Cannon": {
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/cannon_30mm.png",
-      "DefaultFireMode": "Auto",
-      "AvailableFireModes": "Auto",
-      "AmmoType": "superbwarfare:small_shell",
-      "Projectile": "superbwarfare:small_cannon_shell",
-      "DefaultZoom": 2,
-      "RPM": 1200,
-      "Velocity": 35,
-      "Damage": 35,
-      "ExplosionDamage": 10,
-      "ExplosionRadius": 4,
-      "HeatPerShoot": 1.5,
-      "NaturalCooldown": 0.5,
-      "Spread": 0.5,
-      "Name": "weapon.superbwarfare.30mm_gau_8_a",
-      "SoundInfo": {
-        "FireSoundInstances": "superbwarfare:a_10a_fire",
-        "Change": "superbwarfare:into_cannon"
-      },
-      "Crosshair": "@AirCraftCommon",
-      "CrosshairColor": "0x66FF00",
-      "ShootPos": {
-        "Transform": "Vehicle",
-        "Positions": [[0.1334, 1.814, 7.869]],
-        "Directions": [[0, -0.02, 1]],
-        "ShootDirectionForHud": [0, -0.03, 1]
-      }
-    },
-    "Rocket": {
-      "AmmoType": "superbwarfare:small_rocket",
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/small_rocket.png",
-      "DefaultZoom": 2,
-      "DefaultFireMode": "Auto",
-      "AvailableFireModes": "Semi",
-      "Magazine": 28,
-      "EmptyReloadTime": 160,
-      "Projectile": "superbwarfare:small_rocket",
-      "Spread": 0.4,
-      "Name": "weapon.superbwarfare.70mm_rocket",
-      "RPM": 450,
-      "Damage": 80,
-      "ExplosionDamage": 40,
-      "ExplosionRadius": 5,
-      "Gravity": 0.02,
-      "Velocity": 16,
-      "ShootPos": {
-        "Transform": "Vehicle",
-        "ShootPositionForHud": [0, 1.579, 0.128],
-        "ShootDirectionForHud": [0, -0.03, 1],
-        "Positions": [[3.932, 1.6054, 0.130], [1.57, 1.552, 0.1272], [-1.57, 1.552, 0.1272], [-3.932, 1.6054, 0.130]],
-        "Directions": [[-0.005, -0.03, 1], [-0.003, -0.03, 1], [0.003, -0.03, 1], [0.005, -0.03, 1]]
-      },
-      "SoundInfo": {
-        "Fire1P": "superbwarfare:small_rocket_fire_1p",
-        "Fire3P": "superbwarfare:small_rocket_fire_3p",
-        "VehicleReload3p": "superbwarfare:missile_reload",
-        "VehicleReloadSoundTime": 7,
-        "Change": "superbwarfare:into_missile"
-      },
-      "Crosshair": "@AirCraftCommon",
-      "CrosshairColor": "0x66FF00",
-      "SoundRadius": 12
-    },
     "Bomb": {
       "AmmoType": "superbwarfare:medium_aerial_bomb",
       "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/mk_82.png",
@@ -173,70 +109,6 @@
         "Change": "superbwarfare:into_missile"
       },
       "Crosshair": "@AirBomb",
-      "CrosshairColor": "0x66FF00",
-      "SoundRadius": 8
-    },
-    "Missile": {
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/agm_65.png",
-      "DefaultZoom": 2,
-      "DefaultFireMode": "Semi",
-      "AvailableFireModes": "Semi",
-      "Magazine": 4,
-      "EmptyReloadTime": 200,
-      "Projectile": "superbwarfare:agm_65",
-      "Name": "weapon.superbwarfare.agm_65_missile_entity",
-      "Damage": 1100,
-      "ExplosionDamage": 180,
-      "ExplosionRadius": 12,
-      "AddShooterDeltaMovement": true,
-      "Velocity": 1.05,
-      "SeekWeaponInfo": {
-        "SeekDirection": "Default",
-        "SeekRange": 384,
-        "SeekAngle": 20,
-        "SeekTime": 10,
-        "MaxTargetHeight": 32,
-        "MinTargetSize": 0.9,
-        "OnlyLockEntity": true
-      },
-      "AmmoType": [
-        {
-          "Ammo": "superbwarfare:large_anti_ground_missile",
-          "ShouldUnload": false
-        },
-        {
-          "Ammo": "superbwarfare:large_anti_ground_missile",
-          "ShouldUnload": false,
-          "Override": {
-            "Name": "weapon.superbwarfare.agm_65_missile_block",
-            "SeekWeaponInfo": {
-              "SeekDirection": "Default",
-              "SeekRange": 384,
-              "SeekAngle": 20,
-              "SeekTime": 10,
-              "MaxTargetHeight": 32,
-              "MinTargetSize": 0.9,
-              "OnlyLockBlock": true
-            }
-          }
-        }
-      ],
-      "ShootPos": {
-        "Transform": "Vehicle",
-        "ShootPositionForHud": [0, 1.53, 0],
-        "Positions": [[-6.625, 1.5825, 0], [-5.28125, 1.4888, 0], [5.28125, 1.4888, 0], [6.625, 1.5825, 0]],
-        "BoundUpWithAmmoAmount": true
-      },
-      "SoundInfo": {
-        "Fire1P": "superbwarfare:bomb_release",
-        "Fire3P": "superbwarfare:bomb_release",
-        "VehicleReload3p": "superbwarfare:bomb_reload",
-        "VehicleReloadSoundTime": 11,
-        "Change": "superbwarfare:into_missile",
-        "Locking": "superbwarfare:missile_locking",
-        "Locked": "superbwarfare:missile_locked"
-      },
-      "Crosshair": "@AirCraftMissile",
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
     }

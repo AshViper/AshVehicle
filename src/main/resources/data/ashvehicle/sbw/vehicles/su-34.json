@@ -198,7 +198,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "superbwarfare:large_anti_ground_missile",
+      "AmmoType": "ashvehicle:aam_4_item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],

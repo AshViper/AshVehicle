@@ -157,7 +157,7 @@
     "Decrement": 0.02,
     "SteeringSpeed": 0.07
   },
-  "TurretPos": [0, 2.4003, 0.9],
+  "TurretPos": [0, 4.0, -1.8],
   "TurretTurnSpeed": [12.5, 10],
   "TurretPitchRange": [-15, 32.5],
   "BarrelPos": [0, 0.5, 0.9],

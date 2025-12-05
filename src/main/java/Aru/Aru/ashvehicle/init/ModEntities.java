@@ -67,6 +67,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<R60Entity>> R60 = weapon("r60", R60Entity::new);
     public static final RegistryObject<EntityType<Agm114Entity>> AGM114 = weapon("agm114", Agm114Entity::new);
     public static final RegistryObject<EntityType<BallisticMissileEntity>> BALLISTIC_MISSILE = weapon("ballistic-missile", BallisticMissileEntity::new);
+    public static final RegistryObject<EntityType<ToiletBombEntity>> TOILETBOMB = weapon("toiletbomb", ToiletBombEntity::new);
     public static final RegistryObject<EntityType<UH60Entity>> UH_60 = reg("uh_60", UH60Entity::new, 4.5f, 3.5f);
     public static final RegistryObject<EntityType<MH60MEntity>> MH_60M = aircraft("mh_60m", MH60MEntity::new);
     public static final RegistryObject<EntityType<F16Entity>> F_16 = aircraft("f_16", F16Entity::new);

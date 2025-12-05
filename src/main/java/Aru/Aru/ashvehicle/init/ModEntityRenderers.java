@@ -18,6 +18,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.R60.get(), R60Renderer::new);
         event.registerEntityRenderer(ModEntities.AGM114.get(), Agm114Renderer::new);
         event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
+        event.registerEntityRenderer(ModEntities.TOILETBOMB.get(), ToiletBombRenderer::new);
         // Register entity render for tom7
         event.registerEntityRenderer(ModEntities.UH_60.get(), UH60Renderer::new);
         event.registerEntityRenderer(ModEntities.F_16.get(), F16Renderer::new);

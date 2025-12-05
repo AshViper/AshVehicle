@@ -6,6 +6,8 @@ import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
 public class pantsirS1Model extends VehicleModel<pantsirS1Entity> {
+    private float radarAngle = 0;
+
     public pantsirS1Model() {
     }
 
@@ -28,6 +30,12 @@ public class pantsirS1Model extends VehicleModel<pantsirS1Entity> {
                     r2 = (180.0F - a) / 90.0F;
                 }
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.clamp(-this.turretXRot - r * this.pitch - r2 * this.roll, vehicle.getTurretMinPitch(), vehicle.getTurretMaxPitch()) * (-(float)Math.PI / 180F));
+                break;
+            case "REB":
+                if(radarAngle > 360f){
+                    radarAngle = 0;
+                }
+                var1000 = (bone, vehicle, state) -> bone.setRotY(radarAngle += 0.05f);
                 break;
             default :
                 var1000 = null;

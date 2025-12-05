@@ -67,22 +67,31 @@
       "DefaultZoom": 2,
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Semi",
-      "Magazine": 28,
+      "Magazine": 24,
       "EmptyReloadTime": 160,
       "Projectile": "superbwarfare:small_rocket",
       "Spread": 0.4,
       "Name": "weapon.superbwarfare.70mm_rocket",
-      "RPM": 450,
+      "RPM": 400,
       "Damage": 80,
       "ExplosionDamage": 40,
-      "ExplosionRadius": 5,
-      "Gravity": 0.02,
+      "ExplosionRadius": 20,
+      "Gravity": 0.05,
       "Velocity": 16,
       "ShootPos": {
         "Transform": "Barrel",
         "ShootPositionForHud": [0, 1.579, 0.128],
         "ShootDirectionForHud": [0, -0.03, 1],
-        "Positions": [[0, 0, 5], [0, 0, 5], [0, 0, 5], [0, 0, 5]],
+        "Positions": [
+          [-1.75,  0.5, 5], [-1.25,  0.5, 5], [-0.75,  0.5, 5], [-0.25,  0.5, 5],
+          [ 0.25,  0.5, 5], [ 0.75,  0.5, 5], [ 1.25,  0.5, 5], [ 1.75,  0.5, 5],
+
+          [-1.75,  0.0, 5], [-1.25,  0.0, 5], [-0.75,  0.0, 5], [-0.25,  0.0, 5],
+          [ 0.25,  0.0, 5], [ 0.75,  0.0, 5], [ 1.25,  0.0, 5], [ 1.75,  0.0, 5],
+
+          [-1.75, -0.5, 5], [-1.25, -0.5, 5], [-0.75, -0.5, 5], [-0.25, -0.5, 5],
+          [ 0.25, -0.5, 5], [ 0.75, -0.5, 5], [ 1.25, -0.5, 5], [ 1.75, -0.5, 5]
+        ],
         "Directions": ["Barrel"]
       },
       "SoundInfo": {
@@ -113,7 +122,7 @@
     "SteeringSpeed": 0.1,
     "EngineSoundVolume" : 0.6
   },
-  "TurretPos": [0, 2.1059375, -0.43125],
+  "TurretPos": [0, 2.1059375, 0.1],
   "BarrelPos": [0, 0.56345, 0.6477125],
   "TurretTurnSpeed": [7, 6],
   "TurretPitchRange": [-10, 30],

@@ -72,7 +72,7 @@
       "Projectile": "superbwarfare:small_rocket",
       "Spread": 0.4,
       "Name": "weapon.superbwarfare.70mm_rocket",
-      "RPM": 400,
+      "RPM": 200,
       "Damage": 80,
       "ExplosionDamage": 40,
       "ExplosionRadius": 20,

@@ -279,5 +279,5 @@
     "EngineSoundVolume" : 0.8
   },
   "TerrainCompat": [[-0.243, 0, 4.63], [-2.58, 0, -0.74], [2.58, 0, -0.74]],
-  "EngineSound": "superbwarfare:a_10a_engine"
+  "EngineSound": "ashvehicle:su57_engine"
 }

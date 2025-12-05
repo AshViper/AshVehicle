@@ -13,7 +13,7 @@ public class M3A3BradleyModel extends VehicleModel<M3A3BradleyEntity> {
     public VehicleModel.TransformContext<M3A3BradleyEntity> collectTransform(String boneName) {
         TransformContext var1000;
         switch (boneName){
-            case "turret" :
+            case "hexadecagon" :
                 var1000 = (bone, vehicle, state) -> bone.setRotY(this.turretYRot * ((float)Math.PI / 180F));
                 break;
             case "barrel":

@@ -20,4 +20,34 @@ public class TosRenderer extends VehicleRenderer<TosEntity> {
         scaleHeight = scale;
         scaleWidth = scale;
     }
+
+    @Override
+    public void renderRecursively(PoseStack poseStack, TosEntity animatable, GeoBone bone, RenderType renderType,
+                                  MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
+                                  float partialTick, int packedLight, int packedOverlay,
+                                  float red, float green, float blue, float alpha) {
+        String name = bone.getName();
+
+        // Wheel rotation speed (slower for realistic tank movement)
+        float wheelSpeed = 0.5F;
+        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot());
+        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot());
+
+        // Left wheels (wheel1-wheel8)
+        for (int i = 0; i <= 7; i++) {
+            if (name.equals("WHELL" + i)) {
+                bone.setRotX(leftWheelRot);
+            }
+        }
+
+        // Right wheels (wheel9-wheel16)
+        for (int i = 8; i <= 15; i++) {
+            if (name.equals("WHELL" + i)) {
+                bone.setRotX(rightWheelRot);
+            }
+        }
+
+        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
+                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+    }
 }

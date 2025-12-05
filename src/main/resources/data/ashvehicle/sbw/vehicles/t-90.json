@@ -175,14 +175,14 @@
         }
       ],
       "SoundInfo": {
-        "Fire1P": "superbwarfare:yx_100_fire_1p",
-        "Fire3P": "superbwarfare:yx_100_fire_3p",
-        "Fire3PFar": "superbwarfare:yx_100_far",
-        "Fire3PVeryFar": "superbwarfare:yx_100_veryfar",
-        "VehicleReload": "superbwarfare:yx_100_reload",
+        "Fire1P": "ashvehicle:m1a1_fire",
+        "Fire3P": "ashvehicle:m1a1_fire",
+        "Fire3PFar": "ashvehicle:m1a1_fire",
+        "Fire3PVeryFar": "ashvehicle:m1a1_fire",
+        "VehicleReload": "ashvehicle:m1a1_reload",
         "Change": "superbwarfare:into_cannon",
         "CancellableSounds": [
-          "superbwarfare:yx_100_reload"
+          "ashvehicle:m1a1_reload"
         ]
       },
       "SoundRadius": 32,
@@ -413,7 +413,7 @@
       [1, 0.3, false]
     ]
   },
-  "EngineSound": "superbwarfare:yx_100_engine",
+  "EngineSound": "ashvehicle:m1a1_engine",
   "HudType": "@Land",
   "InertiaRotateRate": 1.2,
   "TerrainCompat": [

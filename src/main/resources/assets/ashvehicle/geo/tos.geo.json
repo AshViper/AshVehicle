@@ -1988,7 +1988,7 @@
 					"pivot": [0, -1.1, 0]
 				},
 				{
-					"name": "WHELL",
+					"name": "WHELL0",
 					"parent": "BAZAGUS",
 					"pivot": [27.52904, 12.8051, 47.06373],
 					"rotation": [90, 0, 0],

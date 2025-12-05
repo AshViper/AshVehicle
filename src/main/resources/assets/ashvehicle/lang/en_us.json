@@ -44,6 +44,8 @@
   "entity.ashvehicle.rubber_boat": "Rubber Boat",
   "entity.ashvehicle.rah_66": "RAH-66 Comanche",
   "entity.ashvehicle.ah-64": "AH-64 Apache",
+  "entity.ashvehicle.tos": "TOS-1 Sunlight",
+  "entity.ashvehicle.pa_pantsir": "Pantsir-S1",
 
   "entity.ashvehicle.aam-4": "AAM-4 Air-to-Air Missile",
   "entity.ashvehicle.gbu-57": "GBU-57 Massive Ordnance Penetrator",
@@ -52,6 +54,7 @@
   "entity.ashvehicle.ballistic-missile": "Ballistic Missile",
   "entity.ashvehicle.napalm-bomb": "Napalm Bomb",
   "entity.ashvehicle.tomahawk": "Tomahawk Cruise Missile",
+  "entity.ashvehicle.toiletbomb": "Toilet Bomb",
 
   "key.ashvehicle.open_coordinate": "Open coordinate input",
   "key.ashvehicle.toggle_pod": "Toggle missile pod",

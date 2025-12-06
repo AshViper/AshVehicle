@@ -61,5 +61,9 @@
   "key.categories.ashvehicle": "AshVehicle",
 
   "weapon.ashvehicle.close_bay": "Close Bay",
-  "weapon.ashvehicle.agm114": "AGM-114 Hellfire"
+  "weapon.ashvehicle.agm114": "AGM-114 Hellfire",
+  "weapon.ashvehicle.aim9": "AIM-9",
+  "weapon.ashvehicle.aim120": "AIM-120",
+  "weapon.ashvehicle.r60": "R-60",
+  "weapon.ashvehicle.toiletbomb": "Toilet Bomb"
 }

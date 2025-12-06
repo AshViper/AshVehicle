@@ -164,7 +164,7 @@
       "SoundRadius": 8
     },
   "aim9": {
-    "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/agm_65.png",
+    "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/aim9.png",
     "DefaultZoom": 2,
     "DefaultFireMode": "Semi",
     "AvailableFireModes": "Semi",
@@ -206,7 +206,7 @@
   "SoundRadius": 8
   },
   "aim120": {
-    "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/agm_65.png",
+    "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/aim120.png",
     "DefaultZoom": 2,
     "DefaultFireMode": "Semi",
     "AvailableFireModes": "Semi",

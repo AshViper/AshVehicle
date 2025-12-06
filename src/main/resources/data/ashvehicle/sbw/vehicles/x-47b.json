@@ -52,6 +52,7 @@
   ],
   "Seats": {
     "IsEnclosed": true,
+    "HidePassenger": true,
     "Transform": "Vehicle",
     "Position": [0, 2.125, 3.7],
     "CanRotateHead": false,

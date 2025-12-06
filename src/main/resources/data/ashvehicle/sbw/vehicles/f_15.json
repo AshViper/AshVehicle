@@ -71,7 +71,7 @@
       "EjectDirection": "Up",
       "EjectForce": 4
     },
-    "Weapons": ["Cannon", "Bomb", "AAMissile"]
+    "Weapons": ["Cannon", "Bomb", "aim9", "aim120"]
   },
   "HudType": "@Aircraft",
   "Weapons": {
@@ -110,7 +110,7 @@
       "DefaultZoom": 2,
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Semi",
-      "Magazine": 12,
+      "Magazine": 3,
       "EmptyReloadTime": 200,
       "Projectile": "superbwarfare:mk_82",
       "Gravity": 0.06,
@@ -124,11 +124,7 @@
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.171875, 0.0625],
         "ShootDirectionForHud": "Bomb",
-        "Positions": [
-          [-0.55625, 1.171875, 0.0625], [0, 1.171875, 0.0625], [0.55625, 1.171875, 0.0625],
-          [-0.55625, 1.171875, 0.0625], [0, 1.171875, 0.0625], [0.55625, 1.171875, 0.0625],
-          [-0.55625, 1.171875, 0.0625], [0, 1.171875, 0.0625], [0.55625, 1.171875, 0.0625],
-          [-0.55625, 1.171875, 0.0625], [0, 1.171875, 0.0625], [0.55625, 1.171875, 0.0625]],
+        "Positions": [[-0.55625, 1.171875, 0.0625], [0, 1.171875, 0.0625], [0.55625, 1.171875, 0.0625]],
         "BoundUpWithAmmoAmount": true,
         "Directions": ["DeltaMovement"],
         "ViewPosition": [0, 1.171875, 0.0625],
@@ -145,8 +141,50 @@
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
     },
-    "AAMissile": {
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/agm_65.png",
+    "aim9": {
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/aim9.png",
+      "DefaultZoom": 2,
+      "DefaultFireMode": "Semi",
+      "AvailableFireModes": "Semi",
+      "Magazine": 4,
+      "EmptyReloadTime": 200,
+      "Projectile": "ashvehicle:aim9",
+      "Name": "weapon.ashvehicle.aim9",
+      "Damage": 1100,
+      "ExplosionDamage": 180,
+      "ExplosionRadius": 12,
+      "AddShooterDeltaMovement": true,
+      "Velocity": 2.05,
+      "SeekWeaponInfo": {
+        "SeekDirection": "Default",
+        "SeekRange": 384,
+        "SeekAngle": 20,
+        "SeekTime": 10,
+        "MinTargetSize": 0.9,
+        "OnlyLockEntity": true
+      },
+      "AmmoType": "ashvehicle:aam_4_item",
+      "ShootPos": {
+        "Transform": "Vehicle",
+        "ShootPositionForHud": [0, 1.53, 0],
+        "Positions": [[-6.625, 1.5825, 0], [-5.28125, 1.4888, 0], [5.28125, 1.4888, 0], [6.625, 1.5825, 0]],
+        "BoundUpWithAmmoAmount": true
+      },
+      "SoundInfo": {
+        "Fire1P": "superbwarfare:bomb_release",
+        "Fire3P": "superbwarfare:bomb_release",
+        "VehicleReload3p": "superbwarfare:bomb_reload",
+        "VehicleReloadSoundTime": 11,
+        "Change": "superbwarfare:into_missile",
+        "Locking": "superbwarfare:missile_locking",
+        "Locked": "superbwarfare:missile_locked"
+      },
+      "Crosshair": "@AirCraftMissile",
+      "CrosshairColor": "0x66FF00",
+      "SoundRadius": 8
+    },
+    "aim120": {
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/aim120.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",

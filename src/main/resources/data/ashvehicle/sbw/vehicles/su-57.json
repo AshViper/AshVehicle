@@ -177,7 +177,7 @@
       "SoundRadius": 8
     },
     "r60": {
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/agm_65.png",
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/r60.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",

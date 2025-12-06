@@ -290,7 +290,7 @@
     },
     "DriverAAMissile": {
       "AmmoType": "superbwarfare:medium_anti_air_missile",
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/ru_9m336.png",
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/agm114.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",

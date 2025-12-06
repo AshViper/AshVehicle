@@ -52,13 +52,13 @@
     {
       "HidePassenger": true,
       "CameraPos": {
-        "Transform": "Barrel",
-        "ZoomPosition": [0.1, 0.0517, 0],
+        "Transform": "Turret",
+        "ZoomPosition": [0, -0.05, 0],
         "Direction": "Barrel"
       },
       "Weapons": ["Cannon", "MachineGun"],
       "Transform": "Turret",
-      "Position": [0.36, -0.65, 0.56],
+      "Position": [0, -0.85, 0.0],
       "CanRotateHead": false,
       "MinPitch": -15,
       "MaxPitch": 32.5,
@@ -187,7 +187,7 @@
     "Decrement": 0.02,
     "SteeringSpeed": 0.07
   },
-  "TurretPos": [0, 2.4003, 0],
+  "TurretPos": [-0, 2.4003, 0],
   "TurretTurnSpeed": [12.5, 10],
   "TurretPitchRange": [-15, 32.5],
   "BarrelPos": [0.0234375, 0.33795, 0.825],

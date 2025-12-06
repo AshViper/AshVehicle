@@ -51,7 +51,7 @@
       },
       "Transform": "Turret",
       "Position": [
-        0.6669625, 0.07, 0.4776875
+        0, 1.30625, -0.625
       ],
       "Weapons": ["Rocket"],
       "CanRotateHead": false,
@@ -122,8 +122,8 @@
     "SteeringSpeed": 0.1,
     "EngineSoundVolume" : 0.6
   },
-  "TurretPos": [0, 2.1059375, 0.1],
-  "BarrelPos": [0, 0.56345, 0.6477125],
+  "TurretPos": [0, 1.30625, -0.625],
+  "BarrelPos": [0, 1.68125, 2.5625],
   "TurretTurnSpeed": [7, 6],
   "TurretPitchRange": [-10, 30],
   "PassengerWeaponStationPos": [-0.75805625, 1.1446375, -0.57275625],

@@ -2,6 +2,7 @@ package Aru.Aru.ashvehicle.client.model.vehicle;
 
 import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,5 +35,20 @@ public class GepardModel extends VehicleModel<GepardEntity> {
                 break;
         }
         return var1000;
+    }
+
+    @Override
+    public ResourceLocation getModelResource(GepardEntity object) {
+        return new ResourceLocation("ashvehicle", "geo/gepard-1a2.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(GepardEntity object) {
+        return new ResourceLocation("ashvehicle", "textures/entity/gepard-1a2.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(GepardEntity animatable) {
+        return new ResourceLocation("ashvehicle", "animations/gepard-1a2.animation.json");
     }
 }

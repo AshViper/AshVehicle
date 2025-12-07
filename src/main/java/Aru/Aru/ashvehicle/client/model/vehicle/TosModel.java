@@ -1,6 +1,7 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import net.minecraft.resources.ResourceLocation;
 import Aru.Aru.ashvehicle.entity.vehicle.TosEntity;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
@@ -34,5 +35,20 @@ public class TosModel extends VehicleModel<TosEntity> {
                 break;
         }
         return var1000;
+    }
+
+    @Override
+    public ResourceLocation getModelResource(TosEntity object) {
+        return new ResourceLocation("ashvehicle", "geo/tos.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(TosEntity object) {
+        return new ResourceLocation("ashvehicle", "textures/entity/tos.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(TosEntity animatable) {
+        return new ResourceLocation("ashvehicle", "animations/tos.animation.json");
     }
 }

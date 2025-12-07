@@ -1,0 +1,11 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "sea",
+  "inputs": [
+    "4 superbwarfare:rubber_sheet",
+    "superbwarfare:small_motor"
+  ],
+  "result": {
+    "entity": "ashvehicle:rubber_boat"
+  }
+}

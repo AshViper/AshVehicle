@@ -1,0 +1,13 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "sea",
+  "inputs": [
+    "10 superbwarfare:steel_block",
+    "4 superbwarfare:large_motor",
+    "2 superbwarfare:medium_battery_pack",
+    "2 superbwarfare:advanced_circuit"
+  ],
+  "result": {
+    "entity": "ashvehicle:zumwalt"
+  }
+}

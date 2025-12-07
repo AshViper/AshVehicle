@@ -2,6 +2,7 @@ package Aru.Aru.ashvehicle.client.model.vehicle;
 
 import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,5 +49,20 @@ public class ReaperModel extends VehicleModel<ReaperEntity> {
                 break;
         }
         return var1000;
+    }
+
+    @Override
+    public ResourceLocation getModelResource(ReaperEntity object) {
+        return new ResourceLocation("ashvehicle", "geo/reaper.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(ReaperEntity object) {
+        return new ResourceLocation("ashvehicle", "textures/entity/reaper.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(ReaperEntity animatable) {
+        return new ResourceLocation("ashvehicle", "animations/reaper.animation.json");
     }
 }

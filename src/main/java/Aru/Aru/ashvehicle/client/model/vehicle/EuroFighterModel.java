@@ -2,6 +2,7 @@ package Aru.Aru.ashvehicle.client.model.vehicle;
 
 import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,5 +49,20 @@ public class EuroFighterModel extends VehicleModel<EuroFighterEntity> {
                 break;
         }
         return var1000;
+    }
+
+    @Override
+    public ResourceLocation getModelResource(EuroFighterEntity object) {
+        return new ResourceLocation("ashvehicle", "geo/eurofighter.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(EuroFighterEntity object) {
+        return new ResourceLocation("ashvehicle", "textures/entity/eurofighter.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(EuroFighterEntity animatable) {
+        return new ResourceLocation("ashvehicle", "animations/eurofighter.animation.json");
     }
 }

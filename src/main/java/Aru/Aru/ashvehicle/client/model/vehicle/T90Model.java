@@ -2,6 +2,7 @@ package Aru.Aru.ashvehicle.client.model.vehicle;
 
 import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,5 +35,20 @@ public class T90Model extends VehicleModel<T90Entity> {
                 break;
         }
         return var1000;
+    }
+
+    @Override
+    public ResourceLocation getModelResource(T90Entity object) {
+        return new ResourceLocation("ashvehicle", "geo/t_90.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(T90Entity object) {
+        return new ResourceLocation("ashvehicle", "textures/entity/t_90.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(T90Entity animatable) {
+        return new ResourceLocation("ashvehicle", "animations/t_90.animation.json");
     }
 }

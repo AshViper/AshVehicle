@@ -1,6 +1,7 @@
 package Aru.Aru.ashvehicle.client.model.vehicle;
 
 import Aru.Aru.ashvehicle.client.model.VehicleModel;
+import net.minecraft.resources.ResourceLocation;
 import Aru.Aru.ashvehicle.entity.vehicle.AH64Entity;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
@@ -40,5 +41,19 @@ public class AH64Model extends VehicleModel<AH64Entity> {
                 break;
         }
         return var1000;
+    }
+    @Override
+    public ResourceLocation getModelResource(AH64Entity object) {
+        return new ResourceLocation("ashvehicle", "geo/ah-64.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(AH64Entity object) {
+        return new ResourceLocation("ashvehicle", "textures/entity/ah-64.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(AH64Entity animatable) {
+        return new ResourceLocation("ashvehicle", "animations/ah-64.animation.json");
     }
 }

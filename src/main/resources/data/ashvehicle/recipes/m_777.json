@@ -1,0 +1,12 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "sea",
+  "inputs": [
+    "5 superbwarfare:steel_block",
+    "2 superbwarfare:large_motor",
+    "superbwarfare:advanced_circuit"
+  ],
+  "result": {
+    "entity": "ashvehicle:m_777"
+  }
+}

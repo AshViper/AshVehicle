@@ -73,7 +73,7 @@
       "MaxPitch": 80,
       "MinYaw": -80,
       "MaxYaw": 80,
-      "Weapons": ["CloseBay", "Rocket", "DriverMissile", "DriverAAMissile"],
+      "Weapons": ["CloseBay", "Rocket", "DriverAAMissile"],
       "DismountInfo": {
         "Transform": "Vehicle",
         "Position": [-2.5, 0.5, 2.5]
@@ -94,7 +94,7 @@
       "MaxPitch": 10,
       "MinYaw": -110,
       "MaxYaw": 110,
-      "Weapons": ["Cannon"],
+      "Weapons": ["Cannon", "aim9"],
       "DismountInfo": {
         "Transform": "Vehicle",
         "Position": [-2.5, 0.5, 3.5625]
@@ -113,12 +113,12 @@
       "Projectile": "superbwarfare:small_cannon_shell",
       "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/cannon_30mm.png",
       "DefaultZoom": 3,
-      "RPM": 300,
+      "RPM": 1200,
       "Velocity": 30,
       "Damage": 55,
       "ExplosionDamage": 15,
       "ExplosionRadius": 4,
-      "HeatPerShoot": 7,
+      "HeatPerShoot": 2,
       "NaturalCooldown": 1,
       "RecoilTime": 31,
       "RecoilForce": 0.62,
@@ -307,7 +307,6 @@
         "SeekRange": 384,
         "SeekAngle": 20,
         "SeekTime": 20,
-        "MinTargetHeight": 32,
         "MinTargetSize": 0.1,
         "OnlyLockEntity": true
       },
@@ -328,6 +327,49 @@
       },
       "CrosshairColor": "0xFFC700",
       "Crosshair": "@VehicleCommonSeekMissile",
+      "SoundRadius": 8
+    },
+    "aim9": {
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/aim9.png",
+      "DefaultZoom": 2,
+      "DefaultFireMode": "Semi",
+      "AvailableFireModes": "Semi",
+      "Magazine": 4,
+      "EmptyReloadTime": 200,
+      "Projectile": "ashvehicle:aim9",
+      "Name": "weapon.ashvehicle.aim9",
+      "Damage": 600,
+      "ExplosionDamage": 60,
+      "ExplosionRadius": 6,
+      "Velocity": 3,
+      "RecoilTime": 18,
+      "RecoilForce": 0.05,
+      "SeekWeaponInfo": {
+        "SeekDirection": "Passenger",
+        "SeekRange": 384,
+        "SeekAngle": 20,
+        "SeekTime": 10,
+        "MinTargetSize": 0.9,
+        "OnlyLockEntity": true
+      },
+      "AmmoType": "ashvehicle:aam_4_item",
+      "ShootPos": {
+        "Transform": "Vehicle",
+        "Positions": [[0, 1.24375, -0.3234]],
+        "Directions": ["Vehicle"],
+        "ViewDirection": "Barrel"
+      },
+      "SoundInfo": {
+        "Fire1P": "superbwarfare:bomb_release",
+        "Fire3P": "superbwarfare:bomb_release",
+        "VehicleReload3p": "superbwarfare:bomb_reload",
+        "VehicleReloadSoundTime": 11,
+        "Change": "superbwarfare:into_missile",
+        "Locking": "superbwarfare:missile_locking",
+        "Locked": "superbwarfare:missile_locked"
+      },
+      "Crosshair": "@AirCraftMissile",
+      "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
     }
   },

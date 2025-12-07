@@ -21,8 +21,8 @@ public class ModTabs {
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_TANK_ICON.get()))
                     .displayItems((param, output) -> {
                         output.accept(ContainerBlockItem.createInstance(ModEntities.T_90.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.M1A1_ABRAMS.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.KV_2.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.M1A1_ABRAMS.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.KV_2.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.GEPARD_1A2.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.M3A3_BRADLEY.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.TOS.get()));

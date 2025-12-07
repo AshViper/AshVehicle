@@ -27,7 +27,7 @@ public class M1A1AbramsModel extends VehicleModel<M1A1AbramsEntity> {
                 } else {
                     r2 = (180.0F - a) / 90.0F;
                 }
-                var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.clamp(-this.turretXRot - r * this.pitch - r2 * this.roll, vehicle.getTurretMinPitch(), vehicle.getTurretMaxPitch()) * ((float)Math.PI / 180F));
+                var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.clamp(this.turretXRot - r * this.pitch - r2 * this.roll, vehicle.getTurretMinPitch(), vehicle.getTurretMaxPitch()) * ((float)Math.PI / 180F));
                 break;
             default :
                 var1000 = null;

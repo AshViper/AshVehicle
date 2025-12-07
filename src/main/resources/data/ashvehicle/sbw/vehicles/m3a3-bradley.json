@@ -53,7 +53,7 @@
       "HidePassenger": true,
       "CameraPos": {
         "Transform": "Barrel",
-        "ZoomPosition": [0, 1.3, 0],
+        "ZoomPosition": [0, 0.25, 2.0],
         "Direction": "Barrel"
       },
       "Weapons": ["Cannon", "MachineGun"],
@@ -175,17 +175,19 @@
       "SoundRadius": 12
     }
   },
-  "EngineType": "Wheel",
+  "EngineType": "Track",
   "EngineInfo": {
     "Buoyancy": 0.052,
     "EnergyCostRate": 64,
     "WheelRotSpeed": 1.25,
-    "WheelDifferential": 0.3,
+    "WheelDifferential": 0.75,
+    "TrackRotSpeed": 1.3,
+    "TrackDifferential": 0.6,
     "MaxForwardSpeedRate": 1,
     "MaxBackwardSpeedRate": 0.5,
     "Increment": 0.03,
     "Decrement": 0.02,
-    "SteeringSpeed": 0.07
+    "SteeringSpeed": 0.1
   },
   "TurretPos": [0, 2.4003, 0],
   "TurretTurnSpeed": [12.5, 10],

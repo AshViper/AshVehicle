@@ -10807,6 +10807,7 @@
 					"name": "hexadecagon",
 					"parent": "cannon",
 					"pivot": [-3.66277, 44.23524, 16.01265],
+					"rotation": [0, -2.5, 0],
 					"cubes": [
 						{
 							"origin": [4.24777, 44.09189, 8.36724],

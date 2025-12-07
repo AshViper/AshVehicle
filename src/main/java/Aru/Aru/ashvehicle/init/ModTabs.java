@@ -50,21 +50,21 @@ public class ModTabs {
                     .displayItems((param, output) -> {
                         output.accept(ContainerBlockItem.createInstance(ModEntities.UH_60.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.MH_60M.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.MIG_29.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.F_4.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.MIG_29.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.F_4.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_16.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_15.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.SU_33.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.SU_25.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.F_39E.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.SU_34.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.SU_33.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.SU_25.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.F_39E.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.SU_34.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_35.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.B_2.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_22.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_18.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_117.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.SU_57.get()));
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.V_22.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.V_22.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_2.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.SU_27.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.J_20.get()));

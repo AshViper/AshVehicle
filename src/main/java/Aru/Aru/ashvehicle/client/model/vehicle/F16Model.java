@@ -16,8 +16,14 @@ public class F16Model extends VehicleModel<F16Entity> {
             case "LeftTyre", "RightTyre":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
                 break;
+            case "LeftTyre2":
+                var1000 = (bone, vehicle, state) -> bone.setRotY(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
+                break;
+            case "RightTyre2":
+                var1000 = (bone, vehicle, state) -> bone.setRotY(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
+                break;
             case "Tyre":
-                var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
+                var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 140F));
                 break;
             case "LeftTyreHatch" :
                 var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F) - 1.57f);

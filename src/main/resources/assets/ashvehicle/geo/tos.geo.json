@@ -5011,8 +5011,7 @@
 				{
 					"name": "Turret",
 					"parent": "MSTA2",
-					"pivot": [0, 20.9, -10],
-					"rotation": [0, -32.5, 0]
+					"pivot": [0, 20.9, -10]
 				},
 				{
 					"name": "hexadecagon25",
@@ -5132,7 +5131,7 @@
 				{
 					"name": "guns",
 					"parent": "Turret",
-					"pivot": [4, 28.9, 41]
+					"pivot": [0, 28.9, 41]
 				},
 				{
 					"name": "gun",

@@ -50,29 +50,56 @@
       "Position": [2.703125, 1.921875, 0.03125]
     }
   ],
-  "Seats": {
-    "IsEnclosed": true,
-    "Transform": "Vehicle",
-    "Position": [0, 2.125, 3.7],
-    "CanRotateHead": false,
-    "Sensitivity": [0, 0, 0],
-    "CameraPos": {
+  "Seats": [
+    {
+      "IsEnclosed": true,
       "Transform": "Vehicle",
-      "Position": [0, 3.725, 3.7],
-      "UseFixedCameraPos": true,
-      "UseAircraftCamera": true,
-      "AircraftCameraPos": [0, 4, -14]
+      "Position": [0, 2.4, 3.6],
+      "CanRotateHead": false,
+      "Sensitivity": [0, 0, 0],
+      "CameraPos": {
+        "Transform": "Vehicle",
+        "Position": [0, 3.8, 3.6],
+        "UseFixedCameraPos": true,
+        "UseAircraftCamera": true,
+        "AircraftCameraPos": [0, 4, -14]
+      },
+      "DismountInfo": {
+        "Transform": "Vehicle",
+        "Position": [1.6, 0.5, 3.8],
+        "CanEject": true,
+        "EjectPosition": [0, 4.2, 3.7],
+        "EjectDirection": "Up",
+        "EjectForce": 4
+      },
+      "Weapons": ["Cannon", "aim9", "aim120"]
     },
-    "DismountInfo": {
+    {
       "Transform": "Vehicle",
-      "Position": [1.6, 0.5, 3.8],
-      "CanEject": true,
-      "EjectPosition": [0, 4.2, 3.7],
-      "EjectDirection": "Up",
-      "EjectForce": 4
-    },
-    "Weapons": ["Cannon", "Bomb", "aim9", "aim120"]
-  },
+      "Position": [0, 2.3, 1.5],
+      "Sensitivity": [0.59, 0.8, 0.9],
+      "CameraPos": {
+        "Transform": "Vehicle",
+        "UseFixedCameraPos": true,
+        "Position": [0, 4.0, 1.5],
+        "ZoomPosition": [0, 1.0625, 5.625],
+        "ZoomDirection": "Vehicle"
+      },
+      "DismountInfo": {
+        "Transform": "Vehicle",
+        "Position": [1.6, 0.5, 3.8],
+        "CanEject": true,
+        "EjectPosition": [0, 4.2, 3.7],
+        "EjectDirection": "Up",
+        "EjectForce": 4
+      },
+      "MinPitch": -60,
+      "MaxPitch": 10,
+      "MinYaw": -110,
+      "MaxYaw": 110,
+      "Weapons": ["Bomb"]
+    }
+  ],
   "HudType": "@Aircraft",
   "Weapons": {
     "Cannon": {

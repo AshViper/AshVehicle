@@ -108,8 +108,6 @@ public class SapsanEntity extends GeoVehicleEntity implements CoordinateTargetVe
 
         BallisticMissileEntity missile = new BallisticMissileEntity(player, this.level());
         missile.setPos(worldPosition.x, worldPosition.y, worldPosition.z);
-        missile.setXRot(90);
-        missile.setYRot(180);
         missile.setTargetPosition(targetPos);
 
         this.level().addFreshEntity(missile);

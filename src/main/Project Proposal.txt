@@ -1,0 +1,13 @@
+# Project Proposal / 企画書
+
+## English
+- Implementation of Thermal Scope (Ideally equipped on all modern weapons)
+- Implementation of VTOL (V-22, F35B, Harrier)
+- Implementation of UAV
+- Creation of recipes for newly added items (Files already created)
+
+## Japanese / 日本語
+- サーマルスコープの実装(理想は現代兵器すべてに搭載)
+- VTOLの実装(V-22,F35B,ハリアー)
+- UAVの実装
+- 新規追加分のレシピ作成（ファイルは作成済み）

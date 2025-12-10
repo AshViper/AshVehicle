@@ -1,14 +1,18 @@
 {
-  "type": "superbwarfare:vehicle_assembling",
-  "category": "aircraft",
-  "inputs": [
-    "5 superbwarfare:steel_block",
-    "2 superbwarfare:large_propeller",
-    "2 superbwarfare:large_motor",
-    "superbwarfare:medium_battery_pack",
-    "superbwarfare:advanced_circuit"
-  ],
-  "result": {
-    "entity": "ashvehicle:rah_66"
-  }
+    "type":  "superbwarfare:vehicle_assembling",
+    "category":  "aircraft",
+    "inputs":  [
+                   "2 superbwarfare:large_motor",
+                   "superbwarfare:medium_battery_pack",
+                   "2 superbwarfare:large_propeller",
+                   "35 superbwarfare:steel_block",
+                   "8 superbwarfare:tungsten_rod",
+                   "9 superbwarfare:light_armament_module",
+                   "superbwarfare:medium_armament_module",
+                   "superbwarfare:heavy_armament_module",
+                   "5 superbwarfare:cemented_carbide_block"
+               ],
+    "result":  {
+                   "entity":  "ashvehicle:rah_66"
+               }
 }

@@ -1,17 +1,16 @@
 {
-  "type": "superbwarfare:vehicle_assembling",
-  "category": "aircraft",
-  "inputs": [
-    "2 superbwarfare:large_propeller",
-    "10 superbwarfare:steel_block",
-    "1 superbwarfare:large_battery_pack",
-    "3 superbwarfare:large_motor",
-    "3 superbwarfare:wheel",
-    "1 superbwarfare:ancient_cpu",
-    "2 superbwarfare:heavy_armament_module",
-    "1 minecraft:nether_star"
-  ],
-  "result": {
-    "entity": "ashvehicle:eurofighter"
-  }
+    "type":  "superbwarfare:vehicle_assembling",
+    "category":  "aircraft",
+    "inputs":  [
+                   "2 superbwarfare:large_motor",
+                   "superbwarfare:medium_battery_pack",
+                   "2 superbwarfare:large_propeller",
+                   "35 superbwarfare:steel_block",
+                   "8 superbwarfare:tungsten_rod",
+                   "4 superbwarfare:light_armament_module",
+                   "superbwarfare:medium_armament_module"
+               ],
+    "result":  {
+                   "entity":  "ashvehicle:eurofighter"
+               }
 }

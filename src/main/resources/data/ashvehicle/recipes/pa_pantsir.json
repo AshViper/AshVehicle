@@ -1,13 +1,14 @@
 {
-  "type": "superbwarfare:vehicle_assembling",
-  "category": "land",
-  "inputs": [
-    "5 superbwarfare:steel_block",
-    "2 superbwarfare:large_motor",
-    "superbwarfare:medium_battery_pack",
-    "superbwarfare:advanced_circuit"
-  ],
-  "result": {
-    "entity": "ashvehicle:pa_pantsir"
-  }
+    "type":  "superbwarfare:vehicle_assembling",
+    "category":  "land",
+    "inputs":  [
+                   "2 superbwarfare:large_motor",
+                   "superbwarfare:medium_battery_pack",
+                   "27 superbwarfare:steel_block",
+                   "16 superbwarfare:track",
+                   "2 superbwarfare:light_armament_module"
+               ],
+    "result":  {
+                   "entity":  "ashvehicle:pa_pantsir"
+               }
 }

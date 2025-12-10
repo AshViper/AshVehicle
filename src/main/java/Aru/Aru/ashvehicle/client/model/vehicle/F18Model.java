@@ -15,10 +15,16 @@ public class F18Model extends VehicleModel<F18Entity> {
         VehicleModel.TransformContext var1000;
         switch (boneName){
             case "gearL":
-                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
+                var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
                 break;
             case "gearR":
-                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
+                var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
+                break;
+            case "gearL2":
+                var1000 = (bone, vehicle, state) -> bone.setRotY(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
+                break;
+            case "gearR2":
+                var1000 = (bone, vehicle, state) -> bone.setRotY(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
                 break;
             case "LGDRearLeft", "LGDFrontRight":
                 var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F) + 1.5f);
@@ -27,7 +33,10 @@ public class F18Model extends VehicleModel<F18Entity> {
                 var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F) - 1.5f);
                 break;
             case "gearF":
-                var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
+                var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 140F));
+                break;
+            case "gearF2":
+                var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 340F));
                 break;
             case "flapL":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2LRotO, vehicle.getFlap2LRot()) * ((float)Math.PI / 180F));
@@ -35,10 +44,10 @@ public class F18Model extends VehicleModel<F18Entity> {
             case "flapR":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2RRotO, vehicle.getFlap2RRot()) * ((float)Math.PI / 180F));
                 break;
-            case "flapLB":
+            case "flapRB":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2RRotO, vehicle.getFlap2RRot()) * ((float)Math.PI / 180F));
                 break;
-            case "flapRB":
+            case "flapLB":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2LRotO, vehicle.getFlap2LRot()) * ((float)Math.PI / 180F));
                 break;
             case "flapRV":

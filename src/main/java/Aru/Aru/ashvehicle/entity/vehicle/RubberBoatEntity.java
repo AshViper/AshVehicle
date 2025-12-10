@@ -8,4 +8,6 @@ public class RubberBoatEntity extends GeoVehicleEntity {
     public RubberBoatEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
+
+
 }

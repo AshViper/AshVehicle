@@ -1,14 +1,16 @@
 {
-  "type": "superbwarfare:vehicle_assembling",
-  "category": "aircraft",
-  "inputs": [
-    "2 superbwarfare:large_propeller",
-    "2 superbwarfare:large_motor",
-    "superbwarfare:steel_block",
-    "superbwarfare:light_armament_module",
-    "superbwarfare:medium_battery_pack"
-  ],
-  "result": {
-    "entity": "ashvehicle:reaper"
-  }
+    "type":  "superbwarfare:vehicle_assembling",
+    "category":  "aircraft",
+    "inputs":  [
+                   "2 superbwarfare:large_motor",
+                   "superbwarfare:medium_battery_pack",
+                   "2 superbwarfare:large_propeller",
+                   "35 superbwarfare:steel_block",
+                   "8 superbwarfare:tungsten_rod",
+                   "4 superbwarfare:light_armament_module",
+                   "superbwarfare:medium_armament_module"
+               ],
+    "result":  {
+                   "entity":  "ashvehicle:reaper"
+               }
 }

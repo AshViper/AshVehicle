@@ -72,7 +72,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<MH60MEntity>> MH_60M = aircraft("mh_60m", MH60MEntity::new);
     public static final RegistryObject<EntityType<F16Entity>> F_16 = aircraft("f_16", F16Entity::new);
     public static final RegistryObject<EntityType<F15Entity>> F_15 = aircraft("f_15", F15Entity::new);
-    public static final RegistryObject<EntityType<F4Entity>> F_4 = aircraft("f_4", F4Entity::new);
+    public static final RegistryObject<EntityType<F4Entity>> F_4 = aircraft("f-4", F4Entity::new);
     public static final RegistryObject<EntityType<Mig15Entity>> MIG_15 = aircraft("mig_15", Mig15Entity::new);
     public static final RegistryObject<EntityType<Mig29Entity>> MIG_29 = aircraft("mig_29", Mig29Entity::new);
     public static final RegistryObject<EntityType<T90Entity>> T_90 = tank("t_90", T90Entity::new);

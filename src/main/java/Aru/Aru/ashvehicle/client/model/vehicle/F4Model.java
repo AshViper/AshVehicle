@@ -14,34 +14,31 @@ public class F4Model extends VehicleModel<F4Entity> {
     public VehicleModel.TransformContext<F4Entity> collectTransform(String boneName) {
         VehicleModel.TransformContext var1000;
         switch (boneName){
-            case "gearL":
+            case "Lgear":
                 var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
                 break;
-            case "gearR":
+            case "Rgear":
                 var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
                 break;
-            case "LGDRearLeft", "LGDFrontRight":
-                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F) + 1.5f);
-                break;
-            case "LGDRearRight", "gearFL":
+            case "bone5":
                 var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F) - 1.5f);
                 break;
-            case "gearF":
+            case "gear":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
                 break;
-            case "flapL":
+            case "LFlap":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2LRotO, vehicle.getFlap2LRot()) * ((float)Math.PI / 180F));
                 break;
-            case "flapR":
+            case "RFlap":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2RRotO, vehicle.getFlap2RRot()) * ((float)Math.PI / 180F));
                 break;
-            case "flapLB":
+            case "RPlane":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2RRotO, vehicle.getFlap2RRot()) * ((float)Math.PI / 180F));
                 break;
-            case "flapRB":
+            case "LPlane":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2LRotO, vehicle.getFlap2LRot()) * ((float)Math.PI / 180F));
                 break;
-            case "flapRV":
+            case "VPlane":
                 var1000 = (bone, vehicle, state) -> bone.setRotY(Mth.clamp(Mth.lerp(state.getPartialTick(), vehicle.flap3RotO, vehicle.getFlap3Rot()), -20.0F, 20.0F) * ((float)Math.PI / 180F));
                 break;
             default :
@@ -53,16 +50,16 @@ public class F4Model extends VehicleModel<F4Entity> {
 
     @Override
     public ResourceLocation getModelResource(F4Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/f_4.geo.json");
+        return new ResourceLocation("ashvehicle", "geo/f-4.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(F4Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/f_4.png");
+        return new ResourceLocation("ashvehicle", "textures/entity/f-4.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(F4Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/f_4.animation.json");
+        return new ResourceLocation("ashvehicle", "animations/f-4.animation.json");
     }
 }

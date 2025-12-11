@@ -9,7 +9,7 @@ public class F4Renderer extends VehicleRenderer<F4Entity> {
     public F4Renderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new F4Model());
         this.shadowRadius = 0.5F;
-        float scale = 3.5f;
+        float scale = 1.0f;
         scaleHeight = scale;
         scaleWidth = scale;
     }

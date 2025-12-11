@@ -17,6 +17,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.AIM120.get(), Aim120Renderer::new);
         event.registerEntityRenderer(ModEntities.R60.get(), R60Renderer::new);
         event.registerEntityRenderer(ModEntities.AGM114.get(), Agm114Renderer::new);
+        event.registerEntityRenderer(ModEntities.AGM158.get(), Agm158Renderer::new);
         event.registerEntityRenderer(ModEntities.BALLISTIC_MISSILE.get(), BallisticMissileRenderer::new);
         event.registerEntityRenderer(ModEntities.TOILETBOMB.get(), ToiletBombRenderer::new);
         // Register entity render for tom7

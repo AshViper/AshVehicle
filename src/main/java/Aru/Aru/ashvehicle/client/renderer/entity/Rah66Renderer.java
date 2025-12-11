@@ -31,6 +31,10 @@ public class Rah66Renderer extends VehicleRenderer<Rah66Entity> {
         float bayRot = Mth.lerp(partialTick, animatable.weaponBayRotO, animatable.getWeaponBayRot());
         float bayRotRad = bayRot * ((float) Math.PI / 180F);
 
+        float gearRot = Mth.lerp(partialTick, animatable.gearRot(1f), animatable.getGearRot());
+        float gearRotRad = gearRot * ((float) Math.PI / 140F);
+        float gearRotRad2 = (gearRot - 85f) * ((float)Math.PI / 180f);
+
         // Left weapon bay - rotates outward (negative Z rotation)
         if (name.equals("LeftWeaponsbay")) {
             bone.setRotZ(-bayRotRad);
@@ -39,6 +43,23 @@ public class Rah66Renderer extends VehicleRenderer<Rah66Entity> {
         // Right weapon bay - rotates outward (positive Z rotation)
         if (name.equals("RightWeaponsbay")) {
             bone.setRotZ(bayRotRad);
+        }
+        if (name.equals("LeftTyre")) {
+            bone.setRotZ(gearRotRad);
+        }
+        if (name.equals("RightTyreHatch") || name.equals("BackRightTyreHatch")) {
+            bone.setRotZ(-gearRotRad2);
+        }
+
+        if (name.equals("RightTyre")) {
+            bone.setRotZ(-gearRotRad);
+        }
+        if (name.equals("LeftTyreHatch") || name.equals("BackLeftTyreHatch")) {
+            bone.setRotZ(gearRotRad2);
+        }
+
+        if (name.equals("BackTyre")) {
+            bone.setRotX(gearRotRad);
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,

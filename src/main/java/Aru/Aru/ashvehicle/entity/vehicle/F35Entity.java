@@ -3,6 +3,7 @@ package Aru.Aru.ashvehicle.entity.vehicle;
 import com.atsuishio.superbwarfare.data.DataLoader;
 import com.atsuishio.superbwarfare.data.vehicle.DefaultVehicleData;
 import com.atsuishio.superbwarfare.data.vehicle.subdata.EngineInfo;
+import com.atsuishio.superbwarfare.data.vehicle.subdata.EngineType;
 import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.base.VehicleEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.utils.VehicleVecUtils;
@@ -32,6 +33,11 @@ public class F35Entity extends GeoVehicleEntity {
     public void baseTick() {
         super.baseTick();
         aircraftEngine(this, aircraft);
+        if (this.level().isClientSide) {
+            if (this.engineRunning()) {
+                playSwimSound.accept(this);
+            }
+        }
     }
 
     // Vキー用（Packet から呼ばれる）
@@ -49,7 +55,7 @@ public class F35Entity extends GeoVehicleEntity {
         float speedRate = engineInfo.speedRate;
         float gearRotateAngle = engineInfo.gearRotateAngle;
         int energyCost = (int)(engineInfo.energyCostRate * (double)Mth.abs((Float)vehicle.getEntityData().get(VehicleEntity.POWER)));
-        float f = (float)Mth.clamp(org.joml.Math.max((double)(vehicle.onGround() ? 0.819F : 0.82F) - 0.005 * vehicle.getDeltaMovement().length(), (double)0.5F) + (double)(0.001F * Mth.abs(90.0F - (float)VehicleVecUtils.calculateAngle(vehicle.getDeltaMovement(), vehicle.getViewVector(1.0F))) / 90.0F), 0.01, 0.99);
+        float f = (float)Mth.clamp(Math.max((double)(vehicle.onGround() ? 0.819F : 0.82F) - 0.005 * vehicle.getDeltaMovement().length(), (double)0.5F) + (double)(0.001F * Mth.abs(90.0F - (float)VehicleVecUtils.calculateAngle(vehicle.getDeltaMovement(), vehicle.getViewVector(1.0F))) / 90.0F), 0.01, 0.99);
         boolean forward = vehicle.getDeltaMovement().dot(vehicle.getViewVector(1.0F)) > (double)0.0F;
         vehicle.setDeltaMovement(vehicle.getDeltaMovement().add(vehicle.getViewVector(1.0F).scale((forward ? 0.227 : 0.1) * vehicle.getDeltaMovement().dot(vehicle.getViewVector(1.0F)))));
         vehicle.setDeltaMovement(vehicle.getDeltaMovement().multiply((double)f, (double)f, (double)f));
@@ -85,7 +91,7 @@ public class F35Entity extends GeoVehicleEntity {
                         }
 
                         if (vehicle.backInputDown()) {
-                            vehicle.getEntityData().set(VehicleEntity.POWER, org.joml.Math.max((Float)vehicle.getEntityData().get(VehicleEntity.POWER) - 0.006F * powerReduce, vehicle.onGround() ? -0.2F : 0.4F));
+                            vehicle.getEntityData().set(VehicleEntity.POWER, Math.max((Float)vehicle.getEntityData().get(VehicleEntity.POWER) - 0.006F * powerReduce, vehicle.onGround() ? -0.2F : 0.4F));
                         }
                     }
 
@@ -110,7 +116,7 @@ public class F35Entity extends GeoVehicleEntity {
                             vehicle.setDeltaMovement(vehicle.getDeltaMovement().multiply(0.994, (double)1.0F, 0.994));
                         }
 
-                        vehicle.getEntityData().set(VehicleEntity.PLANE_BREAK, org.joml.Math.min((Float)vehicle.getEntityData().get(VehicleEntity.PLANE_BREAK) + 10.0F, 60.0F));
+                        vehicle.getEntityData().set(VehicleEntity.PLANE_BREAK, Math.min((Float)vehicle.getEntityData().get(VehicleEntity.PLANE_BREAK) + 10.0F, 60.0F));
                     }
                 }
             } else {
@@ -127,8 +133,8 @@ public class F35Entity extends GeoVehicleEntity {
             }
 
             float rotSpeed = 1.5F + 1.2F * Mth.abs(VectorTool.calculateY(vehicle.getRoll()));
-            float addY = Mth.clamp(org.joml.Math.max((vehicle.onGround() ? 0.6F : 0.2F) * (float)vehicle.getDeltaMovement().length(), 0.0F) * vehicle.getMouseMoveSpeedX(), -rotSpeed, rotSpeed);
-            float addX = Mth.clamp(org.joml.Math.min((float) org.joml.Math.max(vehicle.getDeltaMovement().dot(vehicle.getViewVector(1.0F)) - 0.24, 0.15), 0.4F) * vehicle.getMouseMoveSpeedY(), -3.5F, 3.5F);
+            float addY = Mth.clamp(Math.max((vehicle.onGround() ? 0.6F : 0.2F) * (float)vehicle.getDeltaMovement().length(), 0.0F) * vehicle.getMouseMoveSpeedX(), -rotSpeed, rotSpeed);
+            float addX = Mth.clamp(Math.min((float)Math.max(vehicle.getDeltaMovement().dot(vehicle.getViewVector(1.0F)) - 0.24, 0.15), 0.4F) * vehicle.getMouseMoveSpeedY(), -3.5F, 3.5F);
             float addZ = (Float)vehicle.getEntityData().get(VehicleEntity.DELTA_ROT) - (vehicle.onGround() ? 0.0F : 0.004F) * vehicle.getMouseMoveSpeedX() * (float)vehicle.getDeltaMovement().dot(vehicle.getViewVector(1.0F));
             vehicle.setYRot(vehicle.getYRot() + yawSpeed * addY);
             if (!vehicle.onGround()) {
@@ -140,9 +146,9 @@ public class F35Entity extends GeoVehicleEntity {
                 float xSpeed = 1.0F + 20.0F * Mth.abs(vehicle.getXRot() / 180.0F);
                 float speed = Mth.clamp(Mth.abs(vehicle.getRoll()) / (90.0F / xSpeed), 0.0F, 1.0F);
                 if (vehicle.getRoll() > 0.0F) {
-                    vehicle.setZRot(vehicle.getRoll() - org.joml.Math.min(speed, vehicle.getRoll()));
+                    vehicle.setZRot(vehicle.getRoll() - Math.min(speed, vehicle.getRoll()));
                 } else if (vehicle.getRoll() < 0.0F) {
-                    vehicle.setZRot(vehicle.getRoll() + org.joml.Math.min(speed, -vehicle.getRoll()));
+                    vehicle.setZRot(vehicle.getRoll() + Math.min(speed, -vehicle.getRoll()));
                 }
             }
 
@@ -162,9 +168,9 @@ public class F35Entity extends GeoVehicleEntity {
                 }
 
                 if ((Boolean)vehicle.getEntityData().get(VehicleEntity.GEAR_UP)) {
-                    vehicle.getEntityData().set(VehicleEntity.GEAR_ROT, org.joml.Math.min((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) + 0.05F, 1.0F));
+                    vehicle.getEntityData().set(VehicleEntity.GEAR_ROT, Math.min((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) + 0.05F, 1.0F));
                 } else {
-                    vehicle.getEntityData().set(VehicleEntity.GEAR_ROT, org.joml.Math.max((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) - 0.05F, 0.0F));
+                    vehicle.getEntityData().set(VehicleEntity.GEAR_ROT, Math.max((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) - 0.05F, 0.0F));
                 }
 
                 vehicle.setGearRot((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) * gearRotateAngle);
@@ -180,7 +186,7 @@ public class F35Entity extends GeoVehicleEntity {
             float flapY = (1.0F - Mth.abs(vehicle.getRoll()) / 90.0F) * Mth.clamp(vehicle.getMouseMoveSpeedX(), -22.5F, 22.5F) + VectorTool.calculateY(vehicle.getRoll()) * Mth.clamp(vehicle.getMouseMoveSpeedY(), -22.5F, 22.5F);
             vehicle.setFlap3Rot(flapY * 5.0F);
         } else if (!vehicle.onGround()) {
-            vehicle.getEntityData().set(VehicleEntity.POWER, org.joml.Math.max((Float)vehicle.getEntityData().get(VehicleEntity.POWER) - 3.0E-4F, 0.02F));
+            vehicle.getEntityData().set(VehicleEntity.POWER, Math.max((Float)vehicle.getEntityData().get(VehicleEntity.POWER) - 3.0E-4F, 0.02F));
             vehicle.destroyRot += 0.1F;
             float diffX = 90.0F - vehicle.getXRot();
             vehicle.setXRot(vehicle.getXRot() + diffX * 0.001F * vehicle.destroyRot);
@@ -206,17 +212,7 @@ public class F35Entity extends GeoVehicleEntity {
         double flapAngle = (double)((vehicle.getFlap1LRot() + vehicle.getFlap1RRot() + vehicle.getFlap1L2Rot() + vehicle.getFlap1R2Rot()) / 4.0F);
         vehicle.setDeltaMovement(vehicle.getDeltaMovement().add(vehicle.getUpVec(1.0F).scale(vehicle.getDeltaMovement().dot(vehicle.getViewVector(1.0F)) * 0.022 * (double)lift * ((double)1.0F + Math.sin((vehicle.onGround() ? (double)25.0F : flapAngle + (double)25.0F) * (double)((float)java.lang.Math.PI / 180F))))));
         if (vtolMode){
-            vehicle.setDeltaMovement(vehicle.getDeltaMovement().add(vehicle.getViewVector(1.0F)
-                                    .lerp(vehicle.getUpVec(1.0F), 1.0F) // 完全に上向き
-                                    .normalize()
-                                    .scale(
-                                            0.5 * speedRate
-                                                    * (Float)vehicle.getEntityData().get(VehicleEntity.POWER)
-                                                    * (vehicle.sprintInputDown() ? 2.2 : 1.0)
-                                    )
-                    )
-            );
-
+            vehicle.setDeltaMovement(vehicle.getDeltaMovement().add(vehicle.getViewVector(1.0F).lerp(vehicle.getUpVec(1.0F), 1.0F).normalize().scale(0.25 * speedRate * (Float)vehicle.getEntityData().get(VehicleEntity.POWER) * (vehicle.sprintInputDown() ? 2.2 : 1.0))));
         }else{
             vehicle.setDeltaMovement(vehicle.getDeltaMovement().add(vehicle.getViewVector(1.0F).scale(0.03 * (double)speedRate * (double)(Float)vehicle.getEntityData().get(VehicleEntity.POWER) * (vehicle.sprintInputDown() ? 2.2 : (double)1.0F))));
         }
@@ -228,17 +224,5 @@ public class F35Entity extends GeoVehicleEntity {
             vehicle.engineStart = false;
             vehicle.engineStartOver = false;
         }
-    }
-
-    public static float lerpAngle(float current, float target, float factor) {
-        float diff;
-        for(diff = target - current; diff < -180.0F; diff += 360.0F) {
-        }
-
-        while(diff > 180.0F) {
-            diff -= 360.0F;
-        }
-
-        return current + diff * factor;
     }
 }

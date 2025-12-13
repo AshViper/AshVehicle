@@ -59,7 +59,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.RAH_66.get(), Rah66Renderer::new);
         event.registerEntityRenderer(ModEntities.AH_64.get(), AH64Renderer::new);
         event.registerEntityRenderer(ModEntities.TOS.get(), TosRenderer::new);
-
+        event.registerEntityRenderer(ModEntities.ZELENSKY.get(), ZelenskyRenderer::new);
     }
 }
 

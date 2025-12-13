@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -109,6 +110,7 @@ public class SapsanEntity extends GeoVehicleEntity implements CoordinateTargetVe
         BallisticMissileEntity missile = new BallisticMissileEntity(player, this.level());
         missile.setPos(worldPosition.x, worldPosition.y, worldPosition.z);
         missile.setTargetPosition(targetPos);
+        missile.xRotO = 90;
 
         this.level().addFreshEntity(missile);
 

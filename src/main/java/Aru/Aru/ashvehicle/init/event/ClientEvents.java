@@ -1,9 +1,14 @@
-package Aru.Aru.ashvehicle.init;
+package Aru.Aru.ashvehicle.init.event;
 
 import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.Packet.TogglePodPacket;
+import Aru.Aru.ashvehicle.client.renderer.ThermalShaderManager;
 import Aru.Aru.ashvehicle.client.screen.CoordinateInputScreen;
+import Aru.Aru.ashvehicle.entity.vehicle.F18Entity;
+import Aru.Aru.ashvehicle.entity.vehicle.F35Entity;
 import Aru.Aru.ashvehicle.entity.vehicle.SapsanEntity;
+import Aru.Aru.ashvehicle.init.CoordinateTargetVehicle;
+import Aru.Aru.ashvehicle.init.ModNetwork;
 import Aru.Aru.ashvehicle.init.client.ClientKeyMappings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
@@ -35,8 +40,36 @@ public class ClientEvents {
         // Toggle pod (Ctrl key)
         if (ClientKeyMappings.TOGGLE_POD != null && ClientKeyMappings.TOGGLE_POD.consumeClick()) {
             if (vehicle instanceof SapsanEntity sapsan) {
-                ModNetwork.INSTANCE.send(PacketDistributor.SERVER.noArg(), 
+                ModNetwork.INSTANCE.send(PacketDistributor.SERVER.noArg(),
                         new TogglePodPacket(sapsan.getId()));
+            }
+        }
+
+        // thermal vition (Ctrl key)
+        if (ClientKeyMappings.THERMAL_VISION != null
+                && ClientKeyMappings.THERMAL_VISION.consumeClick()) {
+
+            if (vehicle instanceof F18Entity) {
+                if (ThermalShaderManager.isEnabled()) {
+                    ThermalShaderManager.disable();
+                } else {
+                    ThermalShaderManager.enable();
+                }
+            }
+        }
+
+        if (ThermalShaderManager.isEnabled()) {
+            if (!(vehicle instanceof F18Entity)) {
+                ThermalShaderManager.disable();
+            }
+        }
+
+        // Toggle VTOL mode (V key)
+        if (ClientKeyMappings.VTOL_TOGGLE != null
+                && ClientKeyMappings.VTOL_TOGGLE.consumeClick()) {
+
+            if (vehicle instanceof F35Entity f35) {
+                f35.toggleVtolMode();
             }
         }
     }

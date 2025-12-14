@@ -163,7 +163,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "ashvehicle:aam_4_iteme",
+      "AmmoType": "ashvehicle:aim9item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],
@@ -205,7 +205,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "ashvehicle:aam_4_item",
+      "AmmoType": "ashvehicle:aim120item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],

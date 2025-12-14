@@ -142,7 +142,7 @@
       "SoundRadius": 8
     },
     "agm158": {
-      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/aim9.png",
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/agm158icon.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",
@@ -166,11 +166,11 @@
       },
       "AmmoType": [
         {
-          "Ammo": "superbwarfare:large_anti_ground_missile",
+          "Ammo": "ashvehicle:agm158item",
           "ShouldUnload": false
         },
         {
-          "Ammo": "superbwarfare:large_anti_ground_missile",
+          "Ammo": "ashvehicle:agm158item",
           "ShouldUnload": false,
           "Override": {
             "Name": "weapon.superbwarfare.agm158-block",
@@ -227,7 +227,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "ashvehicle:aam_4_item",
+      "AmmoType": "ashvehicle:aim120item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],

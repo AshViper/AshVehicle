@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ashvehicle:item/jassm_item"
+    "layer0": "ashvehicle:item/r60item"
   }
 }

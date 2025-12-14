@@ -26,7 +26,7 @@ public class ModEntities {
     // ===== 共通ビルダー =====
     private static <T extends Entity> EntityType.Builder<T> vehicle(EntityType.EntityFactory<T> factory, float w, float h) {
         return EntityType.Builder.of(factory, MobCategory.MISC)
-                .setTrackingRange(512)
+                .setTrackingRange(1028)
                 .setUpdateInterval(1)
                 .fireImmune()
                 .sized(w, h);
@@ -62,6 +62,7 @@ public class ModEntities {
     }
 
     // ===== 実際の登録 =====
+    //Weapons
     public static final RegistryObject<EntityType<Aim9Entity>> AIM9 = weapon("aim9", Aim9Entity::new);
     public static final RegistryObject<EntityType<Aim120Entity>> AIM120 = weapon("aim120", Aim120Entity::new);
     public static final RegistryObject<EntityType<R60Entity>> R60 = weapon("r60", R60Entity::new);
@@ -69,6 +70,10 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Agm158Entity>> AGM158 = weapon("agm158", Agm158Entity::new);
     public static final RegistryObject<EntityType<BallisticMissileEntity>> BALLISTIC_MISSILE = weapon("ballistic-missile", BallisticMissileEntity::new);
     public static final RegistryObject<EntityType<ToiletBombEntity>> TOILETBOMB = weapon("toiletbomb", ToiletBombEntity::new);
+    public static final RegistryObject<EntityType<Cbu87Entity>> CBU87 = weapon("cbu87", Cbu87Entity::new);
+    public static final RegistryObject<EntityType<Gbu57Entity>> GBU57 = weapon("gbu57", Gbu57Entity::new);
+
+    //Vehicles
     public static final RegistryObject<EntityType<UH60Entity>> UH_60 = reg("uh_60", UH60Entity::new, 4.5f, 3.5f);
     public static final RegistryObject<EntityType<MH60MEntity>> MH_60M = aircraft("mh_60m", MH60MEntity::new);
     public static final RegistryObject<EntityType<F16Entity>> F_16 = aircraft("f_16", F16Entity::new);

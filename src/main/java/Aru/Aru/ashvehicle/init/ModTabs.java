@@ -82,11 +82,11 @@ public class ModTabs {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group.ashvehicle.ash-item"))
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_ITEM_ICON.get()))
-                    .displayItems((param, output) -> {
-                        output.accept(ModItem.AAM4.get());
-                        output.accept(ModItem.JASSM.get());
-                        output.accept(ModItem.GBU57.get());
-                        //output.accept(ContainerBlockItem.createInstance(ModEntities.M_777.get()));
+                    .displayItems((params, output) -> {
+                        ModItem.ITEMS.getEntries().stream()
+                                // registry名に "ashvehicle" を含むものを除外
+                                .filter(e -> !e.getId().getPath().contains("ashvehicle"))
+                                .forEach(e -> output.accept(e.get()));
                     })
                     .build()
     );

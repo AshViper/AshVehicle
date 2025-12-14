@@ -133,16 +133,16 @@
     },
     "Bomb": {
       "AmmoType": "superbwarfare:medium_aerial_bomb",
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/mk_82.png",
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/cbu87icon.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Semi",
       "Magazine": 3,
       "EmptyReloadTime": 200,
-      "Projectile": "superbwarfare:mk_82",
+      "Projectile": "ashvehicle:cbu87",
       "Gravity": 0.06,
       "Spread": 0.5,
-      "Name": "weapon.superbwarfare.mk_82_bomb",
+      "Name": "weapon.ashvehicle:cbu87_bomb",
       "ExplosionDamage": 650,
       "ExplosionRadius": 22,
       "AddShooterDeltaMovement": true,
@@ -190,7 +190,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "ashvehicle:aam_4_item",
+      "AmmoType": "ashvehicle:aim9item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],
@@ -232,7 +232,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "ashvehicle:aam_4_item",
+      "AmmoType": "ashvehicle:aim120item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],

@@ -79,6 +79,7 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
         double y = this.getY();
         double z = this.getZ();
         Vec3 pos = this.position();
+        BlockPos center = BlockPos.containing(x, y, z);
 
         // Damage explosion
         new CustomExplosion.Builder(this)
@@ -89,13 +90,29 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
                 .damageMultiplier(2.0F)
                 .explode();
 
-        // Block destruction
+        // Multiple block explosions for massive destruction
         if (ExplosionConfig.EXPLOSION_DESTROY.get()) {
-            serverLevel.explode(this.getOwner(), x, y, z, Math.min(this.explosionRadius * 0.3f, 60f), Level.ExplosionInteraction.BLOCK);
+            // Main central explosion
+            serverLevel.explode(this.getOwner(), x, y, z, 80f, Level.ExplosionInteraction.BLOCK);
+            // Secondary explosions around
+            serverLevel.explode(this.getOwner(), x + 30, y, z, 40f, Level.ExplosionInteraction.BLOCK);
+            serverLevel.explode(this.getOwner(), x - 30, y, z, 40f, Level.ExplosionInteraction.BLOCK);
+            serverLevel.explode(this.getOwner(), x, y, z + 30, 40f, Level.ExplosionInteraction.BLOCK);
+            serverLevel.explode(this.getOwner(), x, y, z - 30, 40f, Level.ExplosionInteraction.BLOCK);
         }
 
-        // Create crater
-        createCrater(serverLevel, BlockPos.containing(x, y, z), 25);
+        // Create massive crater
+        createCrater(serverLevel, center, 60);
+
+        // Shockwave block destruction - expanding rings
+        if (ExplosionConfig.EXPLOSION_DESTROY.get()) {
+            for (int wave = 0; wave < 8; wave++) {
+                int w = wave;
+                Mod.queueServerWork(wave * 3, () -> {
+                    destroyBlocksInRing(serverLevel, center, 60 + w * 20, 80 + w * 20);
+                });
+            }
+        }
 
         // Epic nuclear explosion particles
         spawnNuclearExplosionParticles(serverLevel, x, y, z);
@@ -103,18 +120,53 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
 
     private void createCrater(ServerLevel level, BlockPos center, int radius) {
         for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -radius / 2; dy <= radius / 3; dy++) {
+            for (int dy = -radius / 2; dy <= radius / 4; dy++) {
                 for (int dz = -radius; dz <= radius; dz++) {
-                    double distance = Math.sqrt(dx * dx + dy * dy * 4 + dz * dz);
+                    double distance = Math.sqrt(dx * dx + dy * dy * 3 + dz * dz);
                     if (distance <= radius) {
                         BlockPos pos = center.offset(dx, dy, dz);
                         if (!level.getBlockState(pos).isAir() && level.getBlockState(pos).getDestroySpeed(level, pos) >= 0) {
-                            // Inner crater - empty
-                            if (distance < radius * 0.7) {
+                            // Inner crater - completely empty
+                            if (distance < radius * 0.6) {
                                 level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
                             }
-                            // Outer ring - fire and scorched earth
-                            else if (dy >= 0 && level.random.nextFloat() < 0.3f) {
+                            // Middle ring - mostly destroyed with some fire
+                            else if (distance < radius * 0.8) {
+                                if (level.random.nextFloat() < 0.7f) {
+                                    level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+                                } else if (dy >= 0) {
+                                    level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
+                                }
+                            }
+                            // Outer ring - fire and partial destruction
+                            else if (dy >= 0) {
+                                if (level.random.nextFloat() < 0.5f) {
+                                    level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
+                                } else if (level.random.nextFloat() < 0.3f) {
+                                    level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void destroyBlocksInRing(ServerLevel level, BlockPos center, int innerRadius, int outerRadius) {
+        // Destroy blocks in a ring pattern (shockwave effect)
+        for (int dx = -outerRadius; dx <= outerRadius; dx++) {
+            for (int dy = -5; dy <= 10; dy++) {
+                for (int dz = -outerRadius; dz <= outerRadius; dz++) {
+                    double distance = Math.sqrt(dx * dx + dz * dz);
+                    if (distance >= innerRadius && distance <= outerRadius) {
+                        BlockPos pos = center.offset(dx, dy, dz);
+                        if (!level.getBlockState(pos).isAir() && level.getBlockState(pos).getDestroySpeed(level, pos) >= 0) {
+                            // Random destruction based on distance
+                            float chance = 0.6f - (float)(distance - innerRadius) / (outerRadius - innerRadius) * 0.4f;
+                            if (level.random.nextFloat() < chance) {
+                                level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+                            } else if (dy >= 0 && level.random.nextFloat() < 0.2f) {
                                 level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
                             }
                         }
@@ -140,19 +192,54 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
         // FIRE STARS - massive fireball
         ParticleTool.sendParticle(level, ModParticleTypes.FIRE_STAR.get(), x, y + 5, z, 3000, 0, 0, 0, 5, true);
 
-        // SHOCKWAVE - slower, more realistic expanding ring (multiple waves over time)
-        for (int wave = 0; wave < 20; wave++) {
+        // SHOCKWAVE - epic visible expanding ring
+        // Initial bright white ring burst
+        for (int i = 0; i < 600; i++) {
+            Vec3 v = new Vec3(1, 0, 0).yRot((float) (i * 0.01047f)); // Full circle
+            ParticleTool.sendParticle(level, new CustomCloudOption(1, 1, 1, 80, 8, 0, false, false),
+                    x, y + 2, z, 0, v.x, v.y, v.z, 400, true);
+        }
+        
+        // Multiple expanding shockwave rings over time
+        for (int wave = 0; wave < 40; wave++) {
             int w = wave;
-            Mod.queueServerWork(wave * 2, () -> { // Every 2 ticks = slower expansion
-                for (int i = 0; i < 300; i++) {
-                    Vec3 v = new Vec3(1, 0, 0).yRot((float) (i * Math.random()));
-                    // White/gray dust shockwave
-                    ParticleTool.sendParticle(level, new CustomCloudOption(0.9f, 0.9f, 0.85f, 60, 4, 0, false, false), 
-                            x, y + 0.5, z, 0, v.x, v.y, v.z, 150 + w * 30, true);
+            Mod.queueServerWork(wave, () -> {
+                // Main shockwave ring - dense white/gray wall of dust
+                for (int i = 0; i < 500; i++) {
+                    float angle = (float) (i * 0.01257f); // 2*PI/500
+                    Vec3 v = new Vec3(1, 0, 0).yRot(angle);
+                    // Bright leading edge
+                    ParticleTool.sendParticle(level, new CustomCloudOption(1, 1, 0.95f, 100, 10, 0, false, false),
+                            x, y + 1.5, z, 0, v.x, v.y, v.z, 200 + w * 20, true);
+                    // Dust cloud behind
+                    ParticleTool.sendParticle(level, new CustomCloudOption(0.8f, 0.75f, 0.7f, 120, 8, 0, false, false),
+                            x, y + 1, z, 0, v.x, v.y, v.z, 180 + w * 18, true);
                 }
-                // Ground dust kicked up by shockwave
-                ParticleTool.sendParticle(level, new CustomCloudOption(0.6f, 0.55f, 0.5f, 100, 3, 0, false, false),
-                        x, y + 1, z, 50, 5 + w * 3, 0.3, 5 + w * 3, 0.01, true);
+                
+                // Vertical dust wall rising from shockwave
+                ParticleTool.sendParticle(level, new CustomCloudOption(0.7f, 0.65f, 0.6f, 150, 12, 0, false, false),
+                        x, y + 3, z, 200, 8 + w * 4, 4, 8 + w * 4, 0.02, true);
+                
+                // Ground debris kicked up
+                ParticleTool.sendParticle(level, new CustomCloudOption(0.5f, 0.45f, 0.4f, 180, 6, 0, false, false),
+                        x, y + 0.5, z, 100, 10 + w * 5, 0.5, 10 + w * 5, 0.015, true);
+                
+                // Dirt/debris particles
+                ParticleTool.sendParticle(level, ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y + 2, z, 80, 6 + w * 3, 2, 6 + w * 3, 0.03, true);
+            });
+        }
+        
+        // Secondary slower dust wave
+        for (int wave = 0; wave < 30; wave++) {
+            int w = wave;
+            Mod.queueServerWork(20 + wave * 2, () -> {
+                // Brown/tan dust following behind main wave
+                for (int i = 0; i < 300; i++) {
+                    float angle = (float) (i * 0.02094f);
+                    Vec3 v = new Vec3(1, 0, 0).yRot(angle);
+                    ParticleTool.sendParticle(level, new CustomCloudOption(0.6f, 0.5f, 0.4f, 200, 7, 0, false, false),
+                            x, y + 0.8, z, 0, v.x, v.y, v.z, 120 + w * 15, true);
+                }
             });
         }
 

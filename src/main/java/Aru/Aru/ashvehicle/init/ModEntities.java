@@ -72,6 +72,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<ToiletBombEntity>> TOILETBOMB = weapon("toiletbomb", ToiletBombEntity::new);
     public static final RegistryObject<EntityType<Cbu87Entity>> CBU87 = weapon("cbu87", Cbu87Entity::new);
     public static final RegistryObject<EntityType<Gbu57Entity>> GBU57 = weapon("gbu57", Gbu57Entity::new);
+    public static final RegistryObject<EntityType<NukeBombEntity>> NUKE_BOMB = weapon("nuke_bomb", NukeBombEntity::new);
 
     //Vehicles
     public static final RegistryObject<EntityType<UH60Entity>> UH_60 = reg("uh_60", UH60Entity::new, 4.5f, 3.5f);

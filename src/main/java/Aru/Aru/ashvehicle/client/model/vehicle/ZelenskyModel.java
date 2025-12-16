@@ -29,6 +29,12 @@ public class ZelenskyModel extends VehicleModel<ZelenskyEntity> {
             case "BRFlap":
                 var1000 = (bone, vehicle, state) -> bone.setRotX(Mth.lerp(state.getPartialTick(), vehicle.flap2LRotO, vehicle.getFlap2LRot()) * ((float)Math.PI / 180F));
                 break;
+            case "bomb":
+                var1000 = (bone, vehicle, state) -> {
+                    var gunData = vehicle.getGunData("MegaBomb");
+                    bone.setHidden(gunData == null || gunData.ammo.get() < 1);
+                };
+                break;
             default :
                 var1000 = null;
                 break;

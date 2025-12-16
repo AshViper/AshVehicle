@@ -17,11 +17,15 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -90,61 +94,156 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
                 .damageMultiplier(2.0F)
                 .explode();
 
-        // Multiple block explosions for massive destruction
+        // Block destruction - spread over time to prevent lag
         if (ExplosionConfig.EXPLOSION_DESTROY.get()) {
-            // Main central explosion
-            serverLevel.explode(this.getOwner(), x, y, z, 80f, Level.ExplosionInteraction.BLOCK);
-            // Secondary explosions around
-            serverLevel.explode(this.getOwner(), x + 30, y, z, 40f, Level.ExplosionInteraction.BLOCK);
-            serverLevel.explode(this.getOwner(), x - 30, y, z, 40f, Level.ExplosionInteraction.BLOCK);
-            serverLevel.explode(this.getOwner(), x, y, z + 30, 40f, Level.ExplosionInteraction.BLOCK);
-            serverLevel.explode(this.getOwner(), x, y, z - 30, 40f, Level.ExplosionInteraction.BLOCK);
+            // Main central explosion (smaller, instant)
+            serverLevel.explode(this.getOwner(), x, y, z, 30f, Level.ExplosionInteraction.BLOCK);
+            
+            // Secondary explosions delayed
+            Mod.queueServerWork(2, () -> serverLevel.explode(this.getOwner(), x + 25, y, z, 20f, Level.ExplosionInteraction.BLOCK));
+            Mod.queueServerWork(3, () -> serverLevel.explode(this.getOwner(), x - 25, y, z, 20f, Level.ExplosionInteraction.BLOCK));
+            Mod.queueServerWork(4, () -> serverLevel.explode(this.getOwner(), x, y, z + 25, 20f, Level.ExplosionInteraction.BLOCK));
+            Mod.queueServerWork(5, () -> serverLevel.explode(this.getOwner(), x, y, z - 25, 20f, Level.ExplosionInteraction.BLOCK));
         }
 
-        // Create massive crater
-        createCrater(serverLevel, center, 60);
+        // Create crater - spread over multiple ticks
+        createCrater(serverLevel, center, 50);
 
-        // Shockwave block destruction - expanding rings
+        // Shockwave block destruction - fewer waves, more spread out
         if (ExplosionConfig.EXPLOSION_DESTROY.get()) {
-            for (int wave = 0; wave < 8; wave++) {
+            for (int wave = 0; wave < 5; wave++) {
                 int w = wave;
-                Mod.queueServerWork(wave * 3, () -> {
-                    destroyBlocksInRing(serverLevel, center, 60 + w * 20, 80 + w * 20);
+                Mod.queueServerWork(40 + wave * 10, () -> { // Start after crater, more delay between waves
+                    destroyBlocksInRing(serverLevel, center, 50 + w * 25, 70 + w * 25);
                 });
             }
         }
 
         // Epic nuclear explosion particles
         spawnNuclearExplosionParticles(serverLevel, x, y, z);
+
+        // Apply radiation to nearby entities (long lasting effects)
+        applyRadiation(serverLevel, x, y, z, 150); // 150 block radius for radiation
+    }
+
+    private void applyRadiation(ServerLevel level, double x, double y, double z, int radius) {
+        // Initial radiation burst
+        applyRadiationEffects(level, x, y, z, radius, 1200, 3); // 60 sec, level 3
+
+        // Lingering radiation over time (30 seconds of pulses)
+        for (int i = 0; i < 30; i++) {
+            int tick = i;
+            Mod.queueServerWork(i * 20, () -> { // Every second
+                // Radiation zone shrinks over time, intensity decreases
+                int currentRadius = radius - tick * 3;
+                int intensity = Math.max(0, 2 - tick / 10);
+                if (currentRadius > 30) {
+                    applyRadiationEffects(level, x, y, z, currentRadius, 400, intensity);
+                    
+                    // Green radiation particles
+                    if (tick % 2 == 0) {
+                        ParticleTool.sendParticle(level, ParticleTypes.HAPPY_VILLAGER, x, y + 2, z, 
+                                50, currentRadius * 0.7, 3, currentRadius * 0.7, 0.01, true);
+                        // Spore particles for fallout effect
+                        ParticleTool.sendParticle(level, ParticleTypes.SPORE_BLOSSOM_AIR, x, y + 30, z,
+                                30, currentRadius * 0.5, 20, currentRadius * 0.5, 0.005, true);
+                    }
+                }
+            });
+        }
+    }
+
+    private void applyRadiationEffects(ServerLevel level, double x, double y, double z, int radius, int duration, int amplifier) {
+        AABB area = new AABB(x - radius, y - radius / 2, z - radius, x + radius, y + radius, z + radius);
+        for (Entity entity : level.getEntities(null, area)) {
+            if (entity instanceof LivingEntity living && !(entity == this.getOwner())) {
+                double distance = entity.distanceToSqr(x, y, z);
+                double maxDistSq = radius * radius;
+                
+                if (distance < maxDistSq) {
+                    // Closer = stronger effects
+                    float intensity = 1.0f - (float)(distance / maxDistSq);
+                    int effectDuration = (int)(duration * intensity);
+                    int effectAmplifier = (int)(amplifier * intensity);
+                    
+                    // Wither - radiation damage
+                    living.addEffect(new MobEffectInstance(MobEffects.WITHER, effectDuration, effectAmplifier, false, true));
+                    // Poison - sickness
+                    living.addEffect(new MobEffectInstance(MobEffects.POISON, effectDuration, effectAmplifier, false, true));
+                    // Hunger - radiation sickness
+                    living.addEffect(new MobEffectInstance(MobEffects.HUNGER, effectDuration * 2, effectAmplifier + 1, false, true));
+                    // Weakness - radiation weakness
+                    living.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, effectDuration, effectAmplifier, false, true));
+                    // Slowness - fatigue
+                    living.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, effectDuration / 2, effectAmplifier, false, true));
+                    // Nausea - disorientation (short)
+                    if (intensity > 0.5f) {
+                        living.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, true));
+                    }
+                    // Blindness for very close entities
+                    if (intensity > 0.8f) {
+                        living.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 100, 0, false, true));
+                    }
+                }
+            }
+        }
     }
 
     private void createCrater(ServerLevel level, BlockPos center, int radius) {
-        for (int dx = -radius; dx <= radius; dx++) {
-            for (int dy = -radius / 2; dy <= radius / 4; dy++) {
-                for (int dz = -radius; dz <= radius; dz++) {
-                    double distance = Math.sqrt(dx * dx + dy * dy * 3 + dz * dz);
-                    if (distance <= radius) {
-                        BlockPos pos = center.offset(dx, dy, dz);
-                        if (!level.getBlockState(pos).isAir() && level.getBlockState(pos).getDestroySpeed(level, pos) >= 0) {
-                            // Inner crater - completely empty
-                            if (distance < radius * 0.6) {
-                                level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+        // Split crater into Y layers for optimization - process layer by layer
+        int minY = -radius;
+        int maxY = radius / 2; // Less destruction upward (realistic - explosion goes more down/sideways)
+        
+        for (int layer = 0; layer <= maxY - minY; layer++) {
+            int dy = minY + layer;
+            int finalDy = dy;
+            int delay = layer / 3; // 3 layers per tick
+            
+            Mod.queueServerWork(delay, () -> {
+                createCraterLayer(level, center, radius, finalDy);
+            });
+        }
+    }
+
+    private void createCraterLayer(ServerLevel level, BlockPos center, int radius, int dy) {
+        int blocksProcessed = 0;
+        int maxBlocksPerLayer = 3000;
+        
+        // Calculate max horizontal radius at this Y level (sphere formula)
+        double yRatio = Math.abs(dy) / (double) radius;
+        int horizontalRadius = (int) (radius * Math.sqrt(1 - yRatio * yRatio));
+        if (horizontalRadius <= 0) return;
+        
+        for (int dx = -horizontalRadius; dx <= horizontalRadius && blocksProcessed < maxBlocksPerLayer; dx++) {
+            for (int dz = -horizontalRadius; dz <= horizontalRadius && blocksProcessed < maxBlocksPerLayer; dz++) {
+                // True spherical distance
+                double distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                
+                if (distance <= radius) {
+                    BlockPos pos = center.offset(dx, dy, dz);
+                    if (!level.getBlockState(pos).isAir() && level.getBlockState(pos).getDestroySpeed(level, pos) >= 0) {
+                        blocksProcessed++;
+                        double distRatio = distance / radius;
+                        
+                        // Inner sphere - completely empty
+                        if (distRatio < 0.5) {
+                            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
+                        }
+                        // Middle sphere - mostly destroyed
+                        else if (distRatio < 0.75) {
+                            if (level.random.nextFloat() < 0.8f) {
+                                level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
+                            } else if (dy >= 0) {
+                                level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 2);
                             }
-                            // Middle ring - mostly destroyed with some fire
-                            else if (distance < radius * 0.8) {
-                                if (level.random.nextFloat() < 0.7f) {
-                                    level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-                                } else if (dy >= 0) {
-                                    level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
-                                }
-                            }
-                            // Outer ring - fire and partial destruction
-                            else if (dy >= 0) {
-                                if (level.random.nextFloat() < 0.5f) {
-                                    level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
-                                } else if (level.random.nextFloat() < 0.3f) {
-                                    level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-                                }
+                        }
+                        // Outer sphere - partial destruction with fire
+                        else {
+                            float destroyChance = 0.5f - (float)(distRatio - 0.75) * 2f;
+                            if (level.random.nextFloat() < destroyChance) {
+                                level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
+                            } else if (dy >= 0 && level.random.nextFloat() < 0.4f) {
+                                level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 2);
                             }
                         }
                     }
@@ -154,21 +253,40 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
     }
 
     private void destroyBlocksInRing(ServerLevel level, BlockPos center, int innerRadius, int outerRadius) {
-        // Destroy blocks in a ring pattern (shockwave effect)
-        for (int dx = -outerRadius; dx <= outerRadius; dx++) {
-            for (int dy = -5; dy <= 10; dy++) {
-                for (int dz = -outerRadius; dz <= outerRadius; dz++) {
-                    double distance = Math.sqrt(dx * dx + dz * dz);
-                    if (distance >= innerRadius && distance <= outerRadius) {
-                        BlockPos pos = center.offset(dx, dy, dz);
-                        if (!level.getBlockState(pos).isAir() && level.getBlockState(pos).getDestroySpeed(level, pos) >= 0) {
-                            // Random destruction based on distance
-                            float chance = 0.6f - (float)(distance - innerRadius) / (outerRadius - innerRadius) * 0.4f;
-                            if (level.random.nextFloat() < chance) {
-                                level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-                            } else if (dy >= 0 && level.random.nextFloat() < 0.2f) {
-                                level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
-                            }
+        // Split ring destruction into Y layers
+        int minY = -innerRadius / 3;
+        int maxY = innerRadius / 2;
+        
+        for (int layer = 0; layer <= maxY - minY; layer++) {
+            int dy = minY + layer;
+            int finalDy = dy;
+            Mod.queueServerWork(layer / 2, () -> {
+                destroyRingLayer(level, center, innerRadius, outerRadius, finalDy);
+            });
+        }
+    }
+
+    private void destroyRingLayer(ServerLevel level, BlockPos center, int innerRadius, int outerRadius, int dy) {
+        int blocksProcessed = 0;
+        int maxBlocks = 2000;
+        
+        // Spherical shell at this Y level
+        for (int dx = -outerRadius; dx <= outerRadius && blocksProcessed < maxBlocks; dx++) {
+            for (int dz = -outerRadius; dz <= outerRadius && blocksProcessed < maxBlocks; dz++) {
+                double distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                
+                // Only process blocks in the shell between inner and outer radius
+                if (distance >= innerRadius && distance <= outerRadius) {
+                    BlockPos pos = center.offset(dx, dy, dz);
+                    if (!level.getBlockState(pos).isAir() && level.getBlockState(pos).getDestroySpeed(level, pos) >= 0) {
+                        blocksProcessed++;
+                        float distRatio = (float)(distance - innerRadius) / (outerRadius - innerRadius);
+                        float chance = 0.6f - distRatio * 0.4f;
+                        
+                        if (level.random.nextFloat() < chance) {
+                            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
+                        } else if (dy >= 0 && level.random.nextFloat() < 0.2f) {
+                            level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 2);
                         }
                     }
                 }

@@ -16,7 +16,7 @@ public class ModEntities {
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, AshVehicle.MODID);
 
     // ===== サイズ定数 =====
-    private static final float AIRCRAFT_W = 7.0f, AIRCRAFT_H = 3.0f;
+    private static final float AIRCRAFT_W = 2.0f, AIRCRAFT_H = 2.0f;
     private static final float SHIP_W = 3.0f, SHIP_H = 3.0f;
     private static final float TANK_W = 3.5f, TANK_H = 2.5f;
     private static final float TANK_H_LARGE = 4.0f;

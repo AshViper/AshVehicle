@@ -1,6 +1,6 @@
 {
   "type": "superbwarfare:vehicle_assembling",
-  "category": "sea",
+  "category": "water",
   "inputs": [
     "10 superbwarfare:steel_block",
     "4 superbwarfare:large_motor",

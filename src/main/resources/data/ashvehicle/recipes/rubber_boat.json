@@ -1,6 +1,6 @@
 {
   "type": "superbwarfare:vehicle_assembling",
-  "category": "sea",
+  "category": "water",
   "inputs": [
     "4 superbwarfare:rubber_sheet",
     "superbwarfare:small_motor"

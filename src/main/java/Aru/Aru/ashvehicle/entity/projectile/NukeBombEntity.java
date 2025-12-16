@@ -253,35 +253,45 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
     }
 
     private void destroyBlocksInRing(ServerLevel level, BlockPos center, int innerRadius, int outerRadius) {
-        // Split ring destruction into Y layers
-        int minY = -innerRadius / 3;
-        int maxY = innerRadius / 2;
+        // Split into 4 quadrants + Y layers for even distribution
+        int minY = -innerRadius / 4;
+        int maxY = innerRadius / 3;
         
-        for (int layer = 0; layer <= maxY - minY; layer++) {
-            int dy = minY + layer;
-            int finalDy = dy;
-            Mod.queueServerWork(layer / 2, () -> {
-                destroyRingLayer(level, center, innerRadius, outerRadius, finalDy);
-            });
+        int taskId = 0;
+        for (int quadrant = 0; quadrant < 4; quadrant++) {
+            for (int layer = minY; layer <= maxY; layer++) {
+                int q = quadrant;
+                int dy = layer;
+                Mod.queueServerWork(taskId++, () -> {
+                    destroyRingQuadrant(level, center, innerRadius, outerRadius, dy, q);
+                });
+            }
         }
     }
 
-    private void destroyRingLayer(ServerLevel level, BlockPos center, int innerRadius, int outerRadius, int dy) {
+    private void destroyRingQuadrant(ServerLevel level, BlockPos center, int innerRadius, int outerRadius, int dy, int quadrant) {
         int blocksProcessed = 0;
-        int maxBlocks = 2000;
+        int maxBlocks = 1500;
         
-        // Spherical shell at this Y level
-        for (int dx = -outerRadius; dx <= outerRadius && blocksProcessed < maxBlocks; dx++) {
-            for (int dz = -outerRadius; dz <= outerRadius && blocksProcessed < maxBlocks; dz++) {
+        // Determine quadrant bounds
+        int dxStart, dxEnd, dzStart, dzEnd;
+        switch (quadrant) {
+            case 0 -> { dxStart = 0; dxEnd = outerRadius; dzStart = 0; dzEnd = outerRadius; }      // +X +Z
+            case 1 -> { dxStart = -outerRadius; dxEnd = 0; dzStart = 0; dzEnd = outerRadius; }     // -X +Z
+            case 2 -> { dxStart = -outerRadius; dxEnd = 0; dzStart = -outerRadius; dzEnd = 0; }    // -X -Z
+            default -> { dxStart = 0; dxEnd = outerRadius; dzStart = -outerRadius; dzEnd = 0; }    // +X -Z
+        }
+        
+        for (int dx = dxStart; dx <= dxEnd && blocksProcessed < maxBlocks; dx++) {
+            for (int dz = dzStart; dz <= dzEnd && blocksProcessed < maxBlocks; dz++) {
                 double distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
                 
-                // Only process blocks in the shell between inner and outer radius
                 if (distance >= innerRadius && distance <= outerRadius) {
                     BlockPos pos = center.offset(dx, dy, dz);
                     if (!level.getBlockState(pos).isAir() && level.getBlockState(pos).getDestroySpeed(level, pos) >= 0) {
                         blocksProcessed++;
                         float distRatio = (float)(distance - innerRadius) / (outerRadius - innerRadius);
-                        float chance = 0.6f - distRatio * 0.4f;
+                        float chance = 0.55f - distRatio * 0.35f;
                         
                         if (level.random.nextFloat() < chance) {
                             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);

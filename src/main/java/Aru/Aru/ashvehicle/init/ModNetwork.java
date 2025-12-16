@@ -1,6 +1,7 @@
 package Aru.Aru.ashvehicle.init;
 
 import Aru.Aru.ashvehicle.AshVehicle;
+import Aru.Aru.ashvehicle.Packet.NukeSkyPacket;
 import Aru.Aru.ashvehicle.Packet.SetMissileTargetPacket;
 import Aru.Aru.ashvehicle.Packet.TogglePodPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -33,6 +34,14 @@ public class ModNetwork {
                 TogglePodPacket::encode,
                 TogglePodPacket::decode,
                 TogglePodPacket::handle
+        );
+        
+        INSTANCE.registerMessage(
+                packetId++,
+                NukeSkyPacket.class,
+                NukeSkyPacket::encode,
+                NukeSkyPacket::decode,
+                NukeSkyPacket::handle
         );
     }
 }

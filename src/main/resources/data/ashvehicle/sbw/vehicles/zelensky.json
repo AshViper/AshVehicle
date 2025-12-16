@@ -4,8 +4,8 @@
   "MaxEnergy": 10000000,
   "OBB": [
     {
-      "Size": [0.2, 1.09375, 0.2],
-      "Position": [0, 0, 0]
+      "Size": [2.6, 1.4, 2.0],
+      "Position": [0, 0.8, 0]
     }
   ],
   "Seats": {
@@ -29,7 +29,7 @@
       "EjectDirection": "Up",
       "EjectForce": 4
     },
-    "Weapons": ["aim9", "Missile"]
+    "Weapons": ["aim9", "Missile", "MegaBomb"]
   },
   "HudType": "@Aircraft",
   "Weapons": {
@@ -138,6 +138,43 @@
       "Crosshair": "@AirCraftMissile",
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
+    },
+    "MegaBomb": {
+      "AmmoType": "superbwarfare:medium_aerial_bomb",
+      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/mk_82.png",
+      "DefaultZoom": 2,
+      "DefaultFireMode": "Semi",
+      "AvailableFireModes": "Semi",
+      "Magazine": 1,
+      "EmptyReloadTime": 400,
+      "Projectile": "superbwarfare:mk_82",
+      "Gravity": 0.04,
+      "Spread": 0,
+      "Name": "weapon.ashvehicle.mega_bomb",
+      "ExplosionDamage": 15000,
+      "ExplosionRadius": 500,
+      "AddShooterDeltaMovement": true,
+      "Velocity": 0.5,
+      "ShootPos": {
+        "Transform": "Vehicle",
+        "ShootPositionForHud": [0, 1.0, 0],
+        "ShootDirectionForHud": "Bomb",
+        "Positions": [[0, 1.0, 0]],
+        "BoundUpWithAmmoAmount": true,
+        "Directions": ["DeltaMovement"],
+        "ViewPosition": [0, 1.0, 0],
+        "ViewDirection": "Bomb"
+      },
+      "SoundInfo": {
+        "Fire1P": "superbwarfare:bomb_release",
+        "Fire3P": "superbwarfare:bomb_release",
+        "VehicleReload3p": "superbwarfare:bomb_reload",
+        "VehicleReloadSoundTime": 15,
+        "Change": "superbwarfare:into_missile"
+      },
+      "Crosshair": "@AirBomb",
+      "CrosshairColor": "0xFF0000",
+      "SoundRadius": 16
     }
   },
   "UpStep": 1.1,
@@ -188,13 +225,13 @@
   "EngineType": "Aircraft",
   "EngineInfo": {
     "EnergyCostRate": 512,
-    "Increment": 1,
-    "Decrement": 1,
-    "PitchSpeed": 1,
-    "YawSpeed": 1,
-    "RollSpeed": 1,
-    "LiftSpeed": 1,
-    "SpeedRate": 1,
+    "Increment": 2,
+    "Decrement": 2,
+    "PitchSpeed": 2,
+    "YawSpeed": 2,
+    "RollSpeed": 2,
+    "LiftSpeed": 2,
+    "SpeedRate": 2,
     "GearRotateAngle": 85,
     "EngineStartSound": "superbwarfare:a_10a_engine_start",
     "EngineSoundVolume" : 0.8

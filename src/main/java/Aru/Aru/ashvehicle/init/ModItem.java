@@ -33,4 +33,6 @@ public class ModItem {
             () -> new Item(new Item.Properties().stacksTo(4)));
     public static final RegistryObject<Item> R60 = ITEMS.register("r60item",
             () -> new Item(new Item.Properties().stacksTo(4)));
+    public static final RegistryObject<Item> NUCLEARBOMB = ITEMS.register("nuclearbombitem",
+            () -> new Item(new Item.Properties().stacksTo(4)));
 }

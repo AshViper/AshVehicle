@@ -3,23 +3,39 @@ package Aru.Aru.ashvehicle.entity.vehicle;
 import com.atsuishio.superbwarfare.data.DataLoader;
 import com.atsuishio.superbwarfare.data.vehicle.DefaultVehicleData;
 import com.atsuishio.superbwarfare.data.vehicle.subdata.EngineInfo;
-import com.atsuishio.superbwarfare.data.vehicle.subdata.EngineType;
 import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.base.VehicleEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.utils.VehicleVecUtils;
 import com.atsuishio.superbwarfare.init.ModDamageTypes;
 import com.atsuishio.superbwarfare.tools.VectorTool;
 import com.google.gson.JsonObject;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Math;
 
 public class F35Entity extends GeoVehicleEntity {
 
-    public static boolean vtolMode = true;
+    public static boolean vtolMode = false;
+    private static final EntityDataAccessor<Float> VTOL_ROT = SynchedEntityData.defineId(F35Entity.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Float> WEAPON_BAY_ROT = SynchedEntityData.defineId(F35Entity.class, EntityDataSerializers.FLOAT);
+    public float vtolRotO = 0f;
+    public float weaponBayRotO = 0f;
+
+    @OnlyIn(Dist.CLIENT)
+    private F35EngineSound engineSound;
 
     DefaultVehicleData computed = this.computed();
     JsonObject engineInfo = computed.engineInfo;
@@ -30,19 +46,130 @@ public class F35Entity extends GeoVehicleEntity {
     }
 
     @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(VTOL_ROT, 0.0F);
+        this.entityData.define(WEAPON_BAY_ROT, 0.0F);
+    }
+
+    public void setPodRot(float value) {
+        this.entityData.set(VTOL_ROT, value);
+    }
+
+    public float getPodRot() {
+        return this.entityData.get(VTOL_ROT);
+    }
+
+    public void setWeaponBayRot(float value) {
+        this.entityData.set(WEAPON_BAY_ROT, value);
+    }
+
+    public float getWeaponBayRot() {
+        return this.entityData.get(WEAPON_BAY_ROT);
+    }
+
+    @Override
     public void baseTick() {
         super.baseTick();
         aircraftEngine(this, aircraft);
+
+        // クライアント側でエンジン音を管理
         if (this.level().isClientSide) {
-            if (this.engineRunning()) {
-                playSwimSound.accept(this);
+            handleEngineSound();
+        }
+
+        vtolRotO = getPodRot();
+        float target = this.vtolMode ? 85.0F : 0.0F;
+        float current = getPodRot();
+        float diff = target - current;
+        float newRot = current + diff * 0.05f;
+        setPodRot(newRot);
+
+        int driverWeapon = this.getWeaponIndex(0);
+        boolean driverNeedsBay = driverWeapon >= 1;
+        weaponBayRotO = getWeaponBayRot();
+        float target1 = driverNeedsBay ? 90.0F : 0.0F;
+        float current1 = getWeaponBayRot();
+        float diff1 = target1 - current1;
+        float newRot1 = current1 + diff1 * 0.1f;
+        setWeaponBayRot(newRot1);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void handleEngineSound() {
+        boolean shouldPlay = this.engineRunning() && !this.isRemoved();
+
+        if (shouldPlay) {
+            if (this.engineSound == null || !Minecraft.getInstance().getSoundManager().isActive(this.engineSound)) {
+                this.engineSound = new F35EngineSound(this);
+                Minecraft.getInstance().getSoundManager().play(this.engineSound);
             }
+        } else {
+            if (this.engineSound != null) {
+                this.engineSound = null;
+            }
+        }
+    }
+
+    @Override
+    public void remove(RemovalReason reason) {
+        super.remove(reason);
+        if (this.level().isClientSide && this.engineSound != null) {
+            this.engineSound = null;
         }
     }
 
     // Vキー用（Packet から呼ばれる）
     public void toggleVtolMode() {
         vtolMode = !vtolMode;
+    }
+
+    // エンジン音クラス
+    @OnlyIn(Dist.CLIENT)
+    public static class F35EngineSound extends AbstractTickableSoundInstance {
+        private final F35Entity vehicle;
+
+        public F35EngineSound(F35Entity vehicle) {
+            super(vehicle.getEngineSound(), SoundSource.NEUTRAL, SoundInstance.createUnseededRandom());
+            this.vehicle = vehicle;
+            this.looping = true;
+            this.delay = 0;
+            this.volume = 0.0F;
+            this.pitch = 1.0F;  // 固定ピッチ
+            this.x = vehicle.getX();
+            this.y = vehicle.getY();
+            this.z = vehicle.getZ();
+        }
+
+        @Override
+        public void tick() {
+            if (this.vehicle.isRemoved() || !this.vehicle.engineRunning()) {
+                this.stop();
+                return;
+            }
+
+            // 位置を更新
+            this.x = this.vehicle.getX();
+            this.y = this.vehicle.getY();
+            this.z = this.vehicle.getZ();
+
+            // 音量を計算（POWERに基づく）
+            float power = Math.abs(this.vehicle.getPower());
+            float targetVolume = Mth.clamp(power * 2.0F, 0.0F, 3.0F);
+
+            // スムーズに音量を変化
+            this.volume = Mth.lerp(0.1F, this.volume, targetVolume);
+
+            // アフターバーナー（スプリント）時は音量を少し上げる
+            if (this.vehicle.sprintInputDown()) {
+                this.volume = Math.min(this.volume * 1.2F, 4.0F);
+            }
+        }
+
+        @Override
+        public boolean canStartSilent() {
+            return true;
+        }
     }
 
     public static void aircraftEngine(VehicleEntity vehicle, EngineInfo.Aircraft engineInfo) {

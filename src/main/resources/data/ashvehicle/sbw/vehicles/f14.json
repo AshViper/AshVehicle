@@ -1,5 +1,5 @@
 {
-  "ID": "ashvehicle:f-35",
+  "ID": "ashvehicle:f14",
   "MaxHealth": 350,
   "MaxEnergy": 10000000,
   "OBB": [
@@ -53,12 +53,12 @@
   "Seats": {
     "IsEnclosed": true,
     "Transform": "Vehicle",
-    "Position": [0, 1.8, 5.5],
+    "Position": [0, 1.75, 4.2],
     "CanRotateHead": false,
     "Sensitivity": [0, 0, 0],
     "CameraPos": {
       "Transform": "Vehicle",
-      "Position": [0, 3.4, 5.5],
+      "Position": [0, 3.35, 4.2],
       "UseFixedCameraPos": true,
       "UseAircraftCamera": true,
       "AircraftCameraPos": [0, 4, -14]
@@ -71,7 +71,7 @@
       "EjectDirection": "Up",
       "EjectForce": 4
     },
-    "Weapons": ["Cannon", "Bomb", "agm158", "aim120"]
+    "Weapons": ["Cannon", "Bomb", "aim9", "Missile"]
   },
   "HudType": "@Aircraft",
   "Weapons": {
@@ -141,15 +141,15 @@
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
     },
-    "agm158": {
-      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/agm158icon.png",
+    "aim9": {
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/aim9.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",
       "Magazine": 4,
       "EmptyReloadTime": 200,
-      "Projectile": "ashvehicle:agm158",
-      "Name": "weapon.ashvehicle.agm158",
+      "Projectile": "ashvehicle:aim9",
+      "Name": "weapon.ashvehicle.aim9",
       "Damage": 1100,
       "ExplosionDamage": 180,
       "ExplosionRadius": 12,
@@ -157,35 +157,13 @@
       "Velocity": 2.05,
       "SeekWeaponInfo": {
         "SeekDirection": "Default",
-        "SeekRange": 684,
+        "SeekRange": 384,
         "SeekAngle": 20,
         "SeekTime": 10,
-        "MaxTargetHeight": 32,
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": [
-        {
-          "Ammo": "ashvehicle:agm158item",
-          "ShouldUnload": false
-        },
-        {
-          "Ammo": "ashvehicle:agm158item",
-          "ShouldUnload": false,
-          "Override": {
-            "Name": "weapon.superbwarfare.agm158-block",
-            "SeekWeaponInfo": {
-              "SeekDirection": "Default",
-              "SeekRange": 684,
-              "SeekAngle": 20,
-              "SeekTime": 10,
-              "MaxTargetHeight": 32,
-              "MinTargetSize": 0.9,
-              "OnlyLockBlock": true
-            }
-          }
-        }
-      ],
+      "AmmoType": "ashvehicle:aim9item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],
@@ -205,29 +183,51 @@
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
     },
-    "aim120": {
-      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/aim120.png",
+    "Missile": {
+      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/agm_65.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",
       "Magazine": 4,
       "EmptyReloadTime": 200,
-      "Projectile": "ashvehicle:aim120",
-      "Name": "weapon.ashvehicle.aim120",
+      "Projectile": "superbwarfare:agm_65",
+      "Name": "weapon.superbwarfare.agm_65_missile_entity",
       "Damage": 1100,
       "ExplosionDamage": 180,
       "ExplosionRadius": 12,
       "AddShooterDeltaMovement": true,
-      "Velocity": 2.05,
+      "Velocity": 1.05,
       "SeekWeaponInfo": {
         "SeekDirection": "Default",
         "SeekRange": 384,
         "SeekAngle": 20,
         "SeekTime": 10,
+        "MaxTargetHeight": 32,
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "ashvehicle:aim120item",
+      "AmmoType": [
+        {
+          "Ammo": "superbwarfare:large_anti_ground_missile",
+          "ShouldUnload": false
+        },
+        {
+          "Ammo": "superbwarfare:large_anti_ground_missile",
+          "ShouldUnload": false,
+          "Override": {
+            "Name": "weapon.superbwarfare.agm_65_missile_block",
+            "SeekWeaponInfo": {
+              "SeekDirection": "Default",
+              "SeekRange": 384,
+              "SeekAngle": 20,
+              "SeekTime": 10,
+              "MaxTargetHeight": 32,
+              "MinTargetSize": 0.9,
+              "OnlyLockBlock": true
+            }
+          }
+        }
+      ],
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],
@@ -293,7 +293,7 @@
   "VehicleIcon": "superbwarfare:textures/vehicle_icon/a_10a_icon.png",
   "ContainerIcon": "superbwarfare:textures/gui/vehicle/type/aircraft.png",
   "Type": "Airplane",
-  "EngineType": "Empty",
+  "EngineType": "Aircraft",
   "EngineInfo": {
     "EnergyCostRate": 512,
     "Increment": 1,

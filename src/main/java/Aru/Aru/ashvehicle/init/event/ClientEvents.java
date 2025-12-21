@@ -4,9 +4,7 @@ import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.Packet.TogglePodPacket;
 import Aru.Aru.ashvehicle.client.renderer.ThermalShaderManager;
 import Aru.Aru.ashvehicle.client.screen.CoordinateInputScreen;
-import Aru.Aru.ashvehicle.entity.vehicle.F18Entity;
-import Aru.Aru.ashvehicle.entity.vehicle.F35Entity;
-import Aru.Aru.ashvehicle.entity.vehicle.SapsanEntity;
+import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.init.CoordinateTargetVehicle;
 import Aru.Aru.ashvehicle.init.ModNetwork;
 import Aru.Aru.ashvehicle.init.client.ClientKeyMappings;
@@ -70,6 +68,12 @@ public class ClientEvents {
 
             if (vehicle instanceof F35Entity f35) {
                 f35.toggleVtolMode();
+            }
+            if (vehicle instanceof V22Entity v22) {
+                v22.toggleVtolMode();
+            }
+            if (vehicle instanceof F14Entity f14) {
+                f14.toggleVtolMode();
             }
         }
     }

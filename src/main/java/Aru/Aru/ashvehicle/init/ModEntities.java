@@ -92,7 +92,8 @@ public class ModEntities {
     public static final RegistryObject<EntityType<SU25Entity>> SU_25 = aircraft("su-25", SU25Entity::new);
     public static final RegistryObject<EntityType<M3A3BradleyEntity>> M3A3_BRADLEY = ifv("m3a3-bradley", M3A3BradleyEntity::new);
     public static final RegistryObject<EntityType<F39EEntity>> F_39E = aircraft("f-39e", F39EEntity::new);
-    public static final RegistryObject<EntityType<F35Entity>> F_35 = aircraft("f-35", F35Entity::new);
+    public static final RegistryObject<EntityType<F35Entity>> F_35B = aircraft("f-35b", F35Entity::new);
+    public static final RegistryObject<EntityType<F35AEntity>> F_35A = aircraft("f-35a", F35AEntity::new);
     public static final RegistryObject<EntityType<B2Entity>> B_2 = aircraft("b-2", B2Entity::new);
     public static final RegistryObject<EntityType<F22Entity>> F_22 = aircraft("f-22", F22Entity::new);
     public static final RegistryObject<EntityType<SapsanEntity>> SAPSAN_GRIM2 = tank("sapsan-grim2", SapsanEntity::new);
@@ -114,4 +115,5 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Rah66Entity>> RAH_66 = aircraft("rah_66", Rah66Entity::new);
     public static final RegistryObject<EntityType<AH64Entity>> AH_64 = aircraft("ah-64", AH64Entity::new);
     public static final RegistryObject<EntityType<ZelenskyEntity>> ZELENSKY = aircraft("zelensky", ZelenskyEntity::new);
+    public static final RegistryObject<EntityType<F14Entity>> F_14 = aircraft("f14", F14Entity::new);
 }

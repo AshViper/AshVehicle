@@ -1,0 +1,15 @@
+{
+    "type":  "superbwarfare:vehicle_assembling",
+    "category":  "misc",
+    "inputs":
+    [
+      "8 superbwarfare:steel_ingot",
+      "superbwarfare:seeker",
+      "2 superbwarfare:motor",
+      "6 superbwarfare:grain",
+      "superbwarfare:missile_engine",
+      "3 minecraft:comparator",
+      "5 minecraft:tnt"
+    ],
+    "result":{"item":"ashvehicle:agm158item"}
+}

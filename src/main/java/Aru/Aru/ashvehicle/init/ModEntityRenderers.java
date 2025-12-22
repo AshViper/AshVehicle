@@ -15,6 +15,7 @@ public class ModEntityRenderers {
         //weapons
         event.registerEntityRenderer(ModEntities.AIM9.get(), Aim9Renderer::new);
         event.registerEntityRenderer(ModEntities.AIM120.get(), Aim120Renderer::new);
+        event.registerEntityRenderer(ModEntities.AIM54.get(), Aim54Renderer::new);
         event.registerEntityRenderer(ModEntities.R60.get(), R60Renderer::new);
         event.registerEntityRenderer(ModEntities.AGM114.get(), Agm114Renderer::new);
         event.registerEntityRenderer(ModEntities.AGM158.get(), Agm158Renderer::new);

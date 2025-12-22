@@ -1,0 +1,14 @@
+{
+    "type":  "superbwarfare:vehicle_assembling",
+    "category":  "misc",
+    "inputs":
+    [
+      "10 superbwarfare:steel_ingot",
+      "2 superbwarfare:cemented_carbide_block",
+      "10 superbwarfare:grain",
+      "superbwarfare:fusee",
+      "superbwarfare:ap_head",
+      "15 minecraft:tnt"
+    ],
+    "result":{"item":"ashvehicle:gbu57item"}
+}

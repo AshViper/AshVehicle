@@ -7,7 +7,8 @@
                    "50 superbwarfare:steel_block",
                    "8 superbwarfare:track",
                    "4 superbwarfare:light_armament_module",
-                   "superbwarfare:medium_armament_module"
+                   "superbwarfare:medium_armament_module",
+      "ashvehicle:jetengineitem"
                ],
     "result":  {
                    "entity":  "ashvehicle:m1a1abrams"

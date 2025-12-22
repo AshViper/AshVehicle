@@ -1,15 +1,17 @@
 {
     "type":  "superbwarfare:vehicle_assembling",
     "category":  "aircraft",
-    "inputs":  [
-                   "2 superbwarfare:large_motor",
-                   "superbwarfare:medium_battery_pack",
-                   "2 superbwarfare:large_propeller",
-                   "35 superbwarfare:steel_block",
-                   "8 superbwarfare:tungsten_rod",
-                   "superbwarfare:light_armament_module",
-                   "5 superbwarfare:cemented_carbide_block"
-               ],
+    "inputs":
+    [
+      "2 superbwarfare:large_motor",
+      "superbwarfare:medium_battery_pack",
+      "2 superbwarfare:large_propeller",
+      "35 superbwarfare:steel_block",
+      "8 superbwarfare:tungsten_rod",
+      "superbwarfare:light_armament_module",
+      "5 superbwarfare:cemented_carbide_block",
+      "4 ashvehicle:jetengineitem"
+    ],
     "result":  {
                    "entity":  "ashvehicle:b-2"
                }

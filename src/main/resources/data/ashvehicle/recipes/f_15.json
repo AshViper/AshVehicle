@@ -8,7 +8,8 @@
                    "35 superbwarfare:steel_block",
                    "8 superbwarfare:tungsten_rod",
                    "4 superbwarfare:light_armament_module",
-                   "superbwarfare:medium_armament_module"
+                   "superbwarfare:medium_armament_module",
+      "2 ashvehicle:jetengineitem"
                ],
     "result":  {
                    "entity":  "ashvehicle:f_15"

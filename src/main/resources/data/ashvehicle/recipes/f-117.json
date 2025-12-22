@@ -8,7 +8,8 @@
                    "35 superbwarfare:steel_block",
                    "8 superbwarfare:tungsten_rod",
                    "superbwarfare:light_armament_module",
-                   "5 superbwarfare:cemented_carbide_block"
+                   "5 superbwarfare:cemented_carbide_block",
+      "2 ashvehicle:jetengineitem"
                ],
     "result":  {
                    "entity":  "ashvehicle:f-117"

@@ -9,7 +9,8 @@
                    "8 superbwarfare:tungsten_rod",
                    "4 superbwarfare:light_armament_module",
                    "superbwarfare:medium_armament_module",
-                   "5 superbwarfare:cemented_carbide_block"
+                   "5 superbwarfare:cemented_carbide_block",
+      "ashvehicle:jetengineitem"
                ],
     "result":  {
                    "entity":  "ashvehicle:x-47b"

@@ -10,7 +10,8 @@
                    "9 superbwarfare:light_armament_module",
                    "superbwarfare:medium_armament_module",
                    "superbwarfare:heavy_armament_module",
-                   "5 superbwarfare:cemented_carbide_block"
+                   "5 superbwarfare:cemented_carbide_block",
+      "2 ashvehicle:jetengineitem"
                ],
     "result":  {
                    "entity":  "ashvehicle:rah_66"

@@ -72,7 +72,7 @@
         "EjectDirection": "Up",
         "EjectForce": 4
       },
-      "Weapons": "Bomb"
+      "Weapons": ["GBU57", "MegaBomb"]
     },
     {
       "Transform": "Vehicle",
@@ -97,13 +97,14 @@
   ],
   "HudType": "@Aircraft",
   "Weapons": {
-    "Bomb": {
+    "GBU57": {
       "AmmoType": "ashvehicle:gbu57item",
       "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/gbu57icon.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Semi",
       "RPM": 80,
+      "Magazine": 2,
       "EmptyReloadTime": 200,
       "Projectile": "ashvehicle:gbu57",
       "Gravity": 0.1,
@@ -115,12 +116,12 @@
       "Velocity": 0.95,
       "ShootPos": {
         "Transform": "Vehicle",
-        "ShootPositionForHud": [0, 1.171875, 0.0625],
+        "ShootPositionForHud": [0, 1.0, 0],
         "ShootDirectionForHud": "Bomb",
-        "Positions": [[-0.55625, 1.171875, 0.0625], [0, 1.171875, 0.0625], [0.55625, 1.171875, 0.0625]],
+        "Positions": [[-1, 1.0, 0],[1, 1.0, 0]],
         "BoundUpWithAmmoAmount": true,
         "Directions": ["DeltaMovement"],
-        "ViewPosition": [0, 1.171875, 0.0625],
+        "ViewPosition": [0, 1.0, 0],
         "ViewDirection": "Bomb"
       },
       "SoundInfo": {
@@ -133,6 +134,43 @@
       "Crosshair": "@AirBomb",
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
+    },
+    "MegaBomb": {
+      "AmmoType": "ashvehicle:nuclearbombitem",
+      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/mk_82.png",
+      "DefaultZoom": 2,
+      "DefaultFireMode": "Semi",
+      "AvailableFireModes": "Semi",
+      "Magazine": 1,
+      "EmptyReloadTime": 400,
+      "Projectile": "ashvehicle:nuke_bomb",
+      "Gravity": 0.06,
+      "Spread": 0,
+      "Name": "weapon.ashvehicle.mega_bomb",
+      "ExplosionDamage": 15000,
+      "ExplosionRadius": 500,
+      "AddShooterDeltaMovement": true,
+      "Velocity": 0.95,
+      "ShootPos": {
+        "Transform": "Vehicle",
+        "ShootPositionForHud": [0, 1.0, 0],
+        "ShootDirectionForHud": "Bomb",
+        "Positions": [[0, 1.0, 0]],
+        "BoundUpWithAmmoAmount": true,
+        "Directions": ["DeltaMovement"],
+        "ViewPosition": [0, 1.0, 0],
+        "ViewDirection": "Bomb"
+      },
+      "SoundInfo": {
+        "Fire1P": "superbwarfare:bomb_release",
+        "Fire3P": "superbwarfare:bomb_release",
+        "VehicleReload3p": "superbwarfare:bomb_reload",
+        "VehicleReloadSoundTime": 15,
+        "Change": "superbwarfare:into_missile"
+      },
+      "Crosshair": "@AirBomb",
+      "CrosshairColor": "0xFF0000",
+      "SoundRadius": 16
     }
   },
   "UpStep": 1.1,

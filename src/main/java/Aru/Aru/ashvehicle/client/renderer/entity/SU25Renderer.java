@@ -9,7 +9,7 @@ public class SU25Renderer extends VehicleRenderer<SU25Entity> {
     public SU25Renderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new SU25Model());
         this.shadowRadius = 0.5F;
-        float scale = 2.0f;
+        float scale = 0.9f;
         scaleHeight = scale;
         scaleWidth = scale;
     }

@@ -53,12 +53,12 @@
   "Seats": {
     "IsEnclosed": true,
     "Transform": "Vehicle",
-    "Position": [0, 1.625, 3.9],
+    "Position": [0, 2.125, 4.1],
     "CanRotateHead": false,
     "Sensitivity": [0, 0, 0],
     "CameraPos": {
       "Transform": "Vehicle",
-      "Position": [0, 3.225, 3.9],
+      "Position": [0, 3.725, 4.1],
       "UseFixedCameraPos": true,
       "UseAircraftCamera": true,
       "AircraftCameraPos": [0, 4, -14]
@@ -71,7 +71,7 @@
       "EjectDirection": "Up",
       "EjectForce": 4
     },
-    "Weapons": ["Cannon", "Rocket", "Bomb", "Missile"]
+    "Weapons": ["Cannon", "Rocket", "Missile"]
   },
   "HudType": "@Aircraft",
   "Weapons": {
@@ -110,7 +110,7 @@
       "DefaultZoom": 2,
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Semi",
-      "Magazine": 28,
+      "Magazine": 160,
       "EmptyReloadTime": 160,
       "Projectile": "superbwarfare:small_rocket",
       "Spread": 0.4,
@@ -139,88 +139,29 @@
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 12
     },
-    "Bomb": {
-      "AmmoType": "superbwarfare:medium_aerial_bomb",
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/mk_82.png",
-      "DefaultZoom": 2,
-      "DefaultFireMode": "Auto",
-      "AvailableFireModes": "Semi",
-      "Magazine": 3,
-      "EmptyReloadTime": 200,
-      "Projectile": "superbwarfare:mk_82",
-      "Gravity": 0.06,
-      "Spread": 0.5,
-      "Name": "weapon.superbwarfare.mk_82_bomb",
-      "ExplosionDamage": 650,
-      "ExplosionRadius": 22,
-      "AddShooterDeltaMovement": true,
-      "Velocity": 0.95,
-      "ShootPos": {
-        "Transform": "Vehicle",
-        "ShootPositionForHud": [0, 1.171875, 0.0625],
-        "ShootDirectionForHud": "Bomb",
-        "Positions": [[-0.55625, 1.171875, 0.0625], [0, 1.171875, 0.0625], [0.55625, 1.171875, 0.0625]],
-        "BoundUpWithAmmoAmount": true,
-        "Directions": ["DeltaMovement"],
-        "ViewPosition": [0, 1.171875, 0.0625],
-        "ViewDirection": "Bomb"
-      },
-      "SoundInfo": {
-        "Fire1P": "superbwarfare:bomb_release",
-        "Fire3P": "superbwarfare:bomb_release",
-        "VehicleReload3p": "superbwarfare:bomb_reload",
-        "VehicleReloadSoundTime": 11,
-        "Change": "superbwarfare:into_missile"
-      },
-      "Crosshair": "@AirBomb",
-      "CrosshairColor": "0x66FF00",
-      "SoundRadius": 8
-    },
     "Missile": {
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/agm_65.png",
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/r60.png",
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",
       "Magazine": 4,
       "EmptyReloadTime": 200,
-      "Projectile": "superbwarfare:agm_65",
-      "Name": "weapon.superbwarfare.agm_65_missile_entity",
+      "Projectile": "ashvehicle:r60",
+      "Name": "weapon.ashvehicle.r60",
       "Damage": 1100,
       "ExplosionDamage": 180,
       "ExplosionRadius": 12,
       "AddShooterDeltaMovement": true,
-      "Velocity": 1.05,
+      "Velocity": 2.05,
       "SeekWeaponInfo": {
         "SeekDirection": "Default",
         "SeekRange": 384,
         "SeekAngle": 20,
         "SeekTime": 10,
-        "MaxTargetHeight": 32,
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": [
-        {
-          "Ammo": "superbwarfare:large_anti_ground_missile",
-          "ShouldUnload": false
-        },
-        {
-          "Ammo": "superbwarfare:large_anti_ground_missile",
-          "ShouldUnload": false,
-          "Override": {
-            "Name": "weapon.superbwarfare.agm_65_missile_block",
-            "SeekWeaponInfo": {
-              "SeekDirection": "Default",
-              "SeekRange": 384,
-              "SeekAngle": 20,
-              "SeekTime": 10,
-              "MaxTargetHeight": 32,
-              "MinTargetSize": 0.9,
-              "OnlyLockBlock": true
-            }
-          }
-        }
-      ],
+      "AmmoType": "ashvehicle:r60item",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],

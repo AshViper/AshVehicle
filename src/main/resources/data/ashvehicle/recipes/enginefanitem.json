@@ -1,0 +1,10 @@
+{
+    "type":  "superbwarfare:vehicle_assembling",
+    "category":  "misc",
+    "inputs":
+    [
+      "1 superbwarfare:steel_ingot",
+      "4 superbwarfare:large_propeller"
+    ],
+    "result":{"item":"ashvehicle:enginefanitem"}
+}

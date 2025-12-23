@@ -1,17 +1,15 @@
 {
     "type":  "superbwarfare:vehicle_assembling",
     "category":  "aircraft",
-    "inputs":  [
-                   "2 superbwarfare:large_motor",
-                   "superbwarfare:medium_battery_pack",
-                   "2 superbwarfare:large_propeller",
-                   "35 superbwarfare:steel_block",
-                   "8 superbwarfare:tungsten_rod",
-                   "4 superbwarfare:light_armament_module",
-                   "superbwarfare:medium_armament_module",
-                   "5 superbwarfare:cemented_carbide_block",
-      "2 ashvehicle:jetengineitem"
-               ],
+  "inputs":[
+    "4 superbwarfare:large_motor",
+    "3 superbwarfare:medium_battery_pack",
+    "10 superbwarfare:cemented_carbide_block",
+    "4 superbwarfare:light_armament_module",
+    "3 superbwarfare:wheel",
+    "3 minecraft:glass",
+    "2 ashvehicle:jetengineitem"
+  ],
     "result":  {
                    "entity":  "ashvehicle:yf-23"
                }

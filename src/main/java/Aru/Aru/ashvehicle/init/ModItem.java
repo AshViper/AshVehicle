@@ -37,4 +37,7 @@ public class ModItem {
             () -> new Item(new Item.Properties().stacksTo(4)));
     public static final RegistryObject<Item> JETENGINE = ITEMS.register("jetengineitem",
             () -> new Item(new Item.Properties().stacksTo(2)));
+    public static final RegistryObject<Item> ENGINEFAN = ITEMS.register("enginefanitem",
+            () -> new Item(new Item.Properties().stacksTo(8)));
+
 }

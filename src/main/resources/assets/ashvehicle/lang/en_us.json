@@ -83,5 +83,7 @@
   "item.ashvehicle.aim120item": "AIM-120 AMRAAM",
   "item.ashvehicle.aim54item": "AIM-54 Phoenix",
   "item.ashvehicle.r60item": "R-60 Air-to-Air Missile",
-  "item.ashvehicle.nuclearbombitem": "Nuclear Bomb"
+  "item.ashvehicle.nuclearbombitem": "Nuclear Bomb",
+  "item.ashvehicle.jetengineitem": "Jet Engine",
+  "item.ashvehicle.enginefanitem": "Engine Fan"
 }

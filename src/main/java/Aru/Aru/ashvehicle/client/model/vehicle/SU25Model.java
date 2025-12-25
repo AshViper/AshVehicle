@@ -15,9 +15,15 @@ public class SU25Model extends VehicleModel<SU25Entity> {
         VehicleModel.TransformContext var1000;
         switch (boneName){
             case "LGear":
-                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
+                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 130F));
                 break;
             case "Rgear":
+                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 130F));
+                break;
+            case "RGearHatch","FLGearHatch":
+                var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * ((float)Math.PI / 180F));
+                break;
+            case "LGearHatch":
                 var1000 = (bone, vehicle, state) -> bone.setRotZ(vehicle.gearRot(state.getPartialTick()) * (-(float)Math.PI / 180F));
                 break;
             case "LGDRearLeft", "gearFL":

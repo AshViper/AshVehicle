@@ -10,9 +10,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.TicketType;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -42,7 +46,11 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
     private static final double GRAVITY = 0.08;
     private int explosionDamage = 100;
     private static final TicketType<Entity> MISSILE_TICKET = TicketType.create("ballistic_missile", (entity1, entity2) -> 0);
+    private static final EntityDataAccessor<Float> MISSILE_HEALTH =
+            SynchedEntityData.defineId(BallisticMissileEntity.class, EntityDataSerializers.FLOAT);
     private ChunkPos currentTicketChunk = null;
+    private float maxHealth = 50.0f;
+    private float health = 50.0f;
 
     private static final double MAX_SPEED = 4.5;
     private static final double MAX_ACCELERATION = 0.2;
@@ -63,10 +71,45 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
     }
 
     @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if (this.level().isClientSide) return false;
+
+        // 爆発の連鎖や無敵フレームを無視
+        if (this.isInvulnerableTo(source)) return false;
+
+        this.health -= amount;
+
+        // ヒットエフェクト（任意）
+        ((ServerLevel)this.level()).sendParticles(
+                ParticleTypes.CRIT,
+                this.getX(), this.getY(), this.getZ(),
+                5, 0.2, 0.2, 0.2, 0.01
+        );
+
+        if (this.health <= 0) {
+            this.onMissileDestroyed(source);
+        }
+
+        return true;
+    }
+
+    private void onMissileDestroyed(DamageSource source) {
+        if (!this.level().isClientSide) {
+            this.stopChunk();
+            this.explode();   // 既存の爆発
+            this.discard();
+        }
+    }
+
+    public float getHealth() {
+        return this.entityData.get(MISSILE_HEALTH);
+    }
+
+    @Override
     public void tick() {
         super.tick();
         this.ticksLived++;
-
+        this.entityData.set(MISSILE_HEALTH, this.health);
         if (!this.level().isClientSide && this.level() instanceof ServerLevel serverLevel) {
             ChunkPos newChunk = new ChunkPos(this.blockPosition());
             if (currentTicketChunk == null || !newChunk.equals(currentTicketChunk)) {
@@ -161,13 +204,13 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
     }
 
     private void apExplode(HitResult result, int index) {
-        CustomExplosion explosion = new CustomExplosion(this.level(), this, 
-                ModDamageTypes.causeCustomExplosionDamage(this.level().registryAccess(), this, this.getOwner()), 
-                explosionDamage, 
-                result.getLocation().x + (double)index * this.getDeltaMovement().normalize().x, 
-                result.getLocation().y + (double)index * this.getDeltaMovement().normalize().y, 
-                result.getLocation().z + (double)index * this.getDeltaMovement().normalize().z, 
-                20, 
+        CustomExplosion explosion = new CustomExplosion(this.level(), this,
+                ModDamageTypes.causeCustomExplosionDamage(this.level().registryAccess(), this, this.getOwner()),
+                explosionDamage,
+                result.getLocation().x + (double)index * this.getDeltaMovement().normalize().x,
+                result.getLocation().y + (double)index * this.getDeltaMovement().normalize().y,
+                result.getLocation().z + (double)index * this.getDeltaMovement().normalize().z,
+                20,
                 (Boolean)ExplosionConfig.EXPLOSION_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP);
         explosion.setDamageMultiplier(1.0F);
         explosion.explode();
@@ -176,11 +219,11 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
     }
 
     private void causeExplode(HitResult result) {
-        CustomExplosion explosion = new CustomExplosion(this.level(), this, 
-                ModDamageTypes.causeCustomExplosionDamage(this.level().registryAccess(), this, this.getOwner()), 
-                explosionDamage, 
-                this.getX(), this.getEyeY(), this.getZ(), 
-                20, 
+        CustomExplosion explosion = new CustomExplosion(this.level(), this,
+                ModDamageTypes.causeCustomExplosionDamage(this.level().registryAccess(), this, this.getOwner()),
+                explosionDamage,
+                this.getX(), this.getEyeY(), this.getZ(),
+                20,
                 (Boolean)ExplosionConfig.EXPLOSION_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP);
         explosion.setDamageMultiplier(1.0F);
         explosion.explode();
@@ -221,6 +264,7 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
 
     @Override
     protected void defineSynchedData() {
+        this.entityData.define(MISSILE_HEALTH, maxHealth);
     }
 
     private void stopChunk() {

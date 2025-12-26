@@ -39,22 +39,27 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class BallisticMissileEntity extends ThrowableProjectile implements GeoAnimatable {
+
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
+    private static final double GRAVITY = 0.08;
+    private static final double HIT_RADIUS = 1.5;
 
     private Vec3 targetPos;
     private int ticksLived;
-    private static final double GRAVITY = 0.08;
+
     private int explosionDamage = 100;
-    private static final TicketType<Entity> MISSILE_TICKET = TicketType.create("ballistic_missile", (entity1, entity2) -> 0);
+
+    private static final TicketType<Entity> MISSILE_TICKET =
+            TicketType.create("ballistic_missile", (a, b) -> 0);
+
+    private ChunkPos currentTicketChunk = null;
+
     private static final EntityDataAccessor<Float> MISSILE_HEALTH =
             SynchedEntityData.defineId(BallisticMissileEntity.class, EntityDataSerializers.FLOAT);
-    private ChunkPos currentTicketChunk = null;
+
     private float maxHealth = 50.0f;
     private float health = 50.0f;
-
-    private static final double MAX_SPEED = 4.5;
-    private static final double MAX_ACCELERATION = 0.2;
-    private static final double HIT_RADIUS = 1.5;
 
     public BallisticMissileEntity(LivingEntity shooter, Level level) {
         super(ModEntities.BALLISTIC_MISSILE.get(), shooter, level);
@@ -64,52 +69,63 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
         super(type, level);
     }
 
+    // ================= 弾道ミサイル初速計算 =================
+
     public void setTargetPosition(Vec3 targetPos) {
         this.targetPos = targetPos;
         this.ticksLived = 0;
-        this.setDeltaMovement(new Vec3(0, 5.0, 0));
+
+        Vec3 start = this.position();
+        Vec3 diff = targetPos.subtract(start);
+
+        double dx = diff.x;
+        double dz = diff.z;
+        double dy = diff.y;
+
+        double horizontalDist = Math.sqrt(dx * dx + dz * dz);
+
+        // 弾速（小さいほど高く山なりになる）
+        double flightTime = horizontalDist / 3.5;
+
+        double vx = dx / flightTime;
+        double vz = dz / flightTime;
+        double vy = (dy + 0.5 * GRAVITY * flightTime * flightTime) / flightTime;
+
+        this.setDeltaMovement(vx, vy, vz);
     }
+
+    // ================= ダメージ処理 =================
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
         if (this.level().isClientSide) return false;
-
-        // 爆発の連鎖や無敵フレームを無視
         if (this.isInvulnerableTo(source)) return false;
 
         this.health -= amount;
 
-        // ヒットエフェクト（任意）
-        ((ServerLevel)this.level()).sendParticles(
+        ((ServerLevel) this.level()).sendParticles(
                 ParticleTypes.CRIT,
                 this.getX(), this.getY(), this.getZ(),
                 5, 0.2, 0.2, 0.2, 0.01
         );
 
         if (this.health <= 0) {
-            this.onMissileDestroyed(source);
+            this.stopChunk();
+            this.explode();
+            this.discard();
         }
-
         return true;
     }
 
-    private void onMissileDestroyed(DamageSource source) {
-        if (!this.level().isClientSide) {
-            this.stopChunk();
-            this.explode();   // 既存の爆発
-            this.discard();
-        }
-    }
-
-    public float getHealth() {
-        return this.entityData.get(MISSILE_HEALTH);
-    }
+    // ================= 毎Tick処理（弾道物理） =================
 
     @Override
     public void tick() {
         super.tick();
         this.ticksLived++;
         this.entityData.set(MISSILE_HEALTH, this.health);
+
+        // チャンクロード維持
         if (!this.level().isClientSide && this.level() instanceof ServerLevel serverLevel) {
             ChunkPos newChunk = new ChunkPos(this.blockPosition());
             if (currentTicketChunk == null || !newChunk.equals(currentTicketChunk)) {
@@ -121,116 +137,34 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
             }
         }
 
+        // 重力適用
+        Vec3 vel = this.getDeltaMovement();
+        this.setDeltaMovement(vel.x, vel.y - GRAVITY, vel.z);
+        this.move(MoverType.SELF, this.getDeltaMovement());
+
+        // 着弾判定
         if (this.targetPos != null) {
-            Vec3 currentPos = this.position();
-            Vec3 currentVelocity = this.getDeltaMovement();
-
-            Vec3 toTarget = targetPos.subtract(currentPos);
-            double distance = toTarget.length();
-
-            if (distance <= HIT_RADIUS || this.isInWater() || this.onGround()) {
+            if (this.position().distanceTo(this.targetPos) <= HIT_RADIUS || this.onGround() || this.isInWater()) {
                 this.stopChunk();
                 this.explode();
                 this.discard();
                 return;
             }
+        }
 
-            Vec3 desiredDirection = toTarget.normalize();
-            Vec3 desiredVelocity = desiredDirection.scale(MAX_SPEED);
-
-            Vec3 steering = desiredVelocity.subtract(currentVelocity);
-            if (steering.length() > MAX_ACCELERATION) {
-                steering = steering.normalize().scale(0.07);
-            }
-
-            Vec3 gravityAccel = new Vec3(0, -GRAVITY, 0);
-            Vec3 newVelocity = currentVelocity.add(steering).add(gravityAccel);
-            newVelocity = newVelocity.scale(1.03);
-
-            this.setDeltaMovement(newVelocity);
-            this.move(MoverType.SELF, newVelocity);
-
-            if (this.ticksLived == 1 && !this.level().isClientSide()) {
-                ServerLevel serverLevel = (ServerLevel) this.level();
-                ParticleTool.sendParticle(serverLevel, ParticleTypes.CLOUD, this.getX(), this.getY(), this.getZ(), 15, 0.8, 0.8, 0.8, 0.01, true);
-                this.level().playSound(null, this.blockPosition(), ModSounds.MISSILE_START.get(), SoundSource.PLAYERS, 4.0F, 1.0F);
-            }
+        // 発射エフェクト
+        if (this.ticksLived == 1 && !this.level().isClientSide()) {
+            ServerLevel serverLevel = (ServerLevel) this.level();
+            ParticleTool.sendParticle(serverLevel, ParticleTypes.CLOUD,
+                    this.getX(), this.getY(), this.getZ(),
+                    15, 0.8, 0.8, 0.8, 0.01, true);
+            this.level().playSound(null, this.blockPosition(),
+                    ModSounds.MISSILE_START.get(),
+                    SoundSource.PLAYERS, 4.0F, 1.0F);
         }
     }
 
-    public void onHitBlock(BlockHitResult blockHitResult) {
-        if (this.level() instanceof ServerLevel) {
-            double x = blockHitResult.getLocation().x;
-            double y = blockHitResult.getLocation().y;
-            double z = blockHitResult.getLocation().z;
-            if ((Boolean) ExplosionConfig.EXPLOSION_DESTROY.get()) {
-                float hardness = this.level().getBlockState(BlockPos.containing(x, y, z)).getBlock().defaultDestroyTime();
-                if (hardness <= 50.0F && hardness != -1.0F) {
-                    BlockPos blockPos = BlockPos.containing(x, y, z);
-                    Block.dropResources(this.level().getBlockState(blockPos), this.level(), BlockPos.containing(x, y, z), (BlockEntity)null);
-                    this.level().destroyBlock(blockPos, true);
-                }
-            }
-
-            for(int i = 0; i < 5; ++i) {
-                this.apExplode(blockHitResult, i);
-            }
-
-            this.causeExplode(blockHitResult);
-            this.stopChunk();
-        }
-    }
-
-    protected void onHitEntity(EntityHitResult result) {
-        Entity entity = result.getEntity();
-        if (this.level() instanceof ServerLevel && this.tickCount > 8) {
-            if (entity == this.getOwner() || this.getOwner() != null && entity == this.getOwner().getVehicle()) {
-                return;
-            }
-
-            entity.hurt(ModDamageTypes.causeCustomExplosionDamage(this.level().registryAccess(), this, this.getOwner()), 20);
-            if (entity instanceof LivingEntity) {
-                entity.invulnerableTime = 0;
-            }
-
-            for(int i = 0; i < 5; ++i) {
-                this.apExplode(result, i);
-            }
-
-            this.causeExplode(result);
-            this.stopChunk();
-            this.discard();
-        }
-    }
-
-    private void apExplode(HitResult result, int index) {
-        CustomExplosion explosion = new CustomExplosion(this.level(), this,
-                ModDamageTypes.causeCustomExplosionDamage(this.level().registryAccess(), this, this.getOwner()),
-                explosionDamage,
-                result.getLocation().x + (double)index * this.getDeltaMovement().normalize().x,
-                result.getLocation().y + (double)index * this.getDeltaMovement().normalize().y,
-                result.getLocation().z + (double)index * this.getDeltaMovement().normalize().z,
-                20,
-                (Boolean)ExplosionConfig.EXPLOSION_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP);
-        explosion.setDamageMultiplier(1.0F);
-        explosion.explode();
-        ForgeEventFactory.onExplosionStart(this.level(), explosion);
-        explosion.finalizeExplosion(false);
-    }
-
-    private void causeExplode(HitResult result) {
-        CustomExplosion explosion = new CustomExplosion(this.level(), this,
-                ModDamageTypes.causeCustomExplosionDamage(this.level().registryAccess(), this, this.getOwner()),
-                explosionDamage,
-                this.getX(), this.getEyeY(), this.getZ(),
-                20,
-                (Boolean)ExplosionConfig.EXPLOSION_DESTROY.get() ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP);
-        explosion.setDamageMultiplier(1.0F);
-        explosion.explode();
-        ForgeEventFactory.onExplosionStart(this.level(), explosion);
-        explosion.finalizeExplosion(false);
-        ParticleTool.spawnHugeExplosionParticles(this.level(), result.getLocation());
-    }
+    // ================= 爆発 =================
 
     private void explode() {
         this.level().explode(this, this.getX(), this.getY(), this.getZ(),
@@ -238,9 +172,11 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
         this.stopChunk();
     }
 
+    // ================= その他 =================
+
     @Override
-    public boolean isNoGravity() {
-        return false;
+    protected void defineSynchedData() {
+        this.entityData.define(MISSILE_HEALTH, maxHealth);
     }
 
     @Override
@@ -262,10 +198,6 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
         return this.tickCount;
     }
 
-    @Override
-    protected void defineSynchedData() {
-        this.entityData.define(MISSILE_HEALTH, maxHealth);
-    }
 
     private void stopChunk() {
         if (!this.level().isClientSide && this.level() instanceof ServerLevel serverLevel) {
@@ -274,22 +206,5 @@ public class BallisticMissileEntity extends ThrowableProjectile implements GeoAn
                 currentTicketChunk = null;
             }
         }
-    }
-
-    @Override
-    public boolean shouldBeSaved() {
-        return true;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof BallisticMissileEntity other)) return false;
-        return this.getId() == other.getId();
-    }
-
-    @Override
-    public int hashCode() {
-        return Integer.hashCode(this.getId());
     }
 }

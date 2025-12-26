@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "Aru.Aru.ashvehicle.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "ashvehicle.refmap.json",
+  "mixins": [
+    "MonitorMixin"
+  ],
+  "client": [
+    "CameraMixin",
+    "GameRendererMixin",
+    "LevelRendererMixin",
+    "LocalPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

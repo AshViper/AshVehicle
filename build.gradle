@@ -44,6 +44,9 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
 
             property 'forge.logging.console.level', 'debug'
+            
+            // Mixin
+            arg "-mixin.config=ashvehicle.mixins.json"
 
             mods {
                 "${mod_id}" {
@@ -72,6 +75,11 @@ minecraft {
     }
 }
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+mixin {
+    add sourceSets.main, "ashvehicle.refmap.json"
+    config "ashvehicle.mixins.json"
+}
 
 repositories {
     maven {
@@ -125,7 +133,8 @@ tasks.named('jar', Jar).configure {
                     "Implementation-Title"    : project.name,
                     "Implementation-Version"  : project.jar.archiveVersion,
                     "Implementation-Vendor"   : mod_authors,
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                    "MixinConfigs"            : "ashvehicle.mixins.json"])
     }
     finalizedBy 'reobfJar'
 }

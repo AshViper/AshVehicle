@@ -1,6 +1,11 @@
 package Aru.Aru.ashvehicle.init;
 
 import Aru.Aru.ashvehicle.AshVehicle;
+import Aru.Aru.ashvehicle.Packet.DroneExitPacket;
+import Aru.Aru.ashvehicle.Packet.DroneFirePacket;
+import Aru.Aru.ashvehicle.Packet.DroneGearPacket;
+import Aru.Aru.ashvehicle.Packet.DroneInputPacket;
+import Aru.Aru.ashvehicle.Packet.DroneMouseMovePacket;
 import Aru.Aru.ashvehicle.Packet.NukeSkyPacket;
 import Aru.Aru.ashvehicle.Packet.SetMissileTargetPacket;
 import Aru.Aru.ashvehicle.Packet.TogglePodPacket;
@@ -20,28 +25,13 @@ public class ModNetwork {
     private static int packetId = 0;
 
     public static void register() {
-        INSTANCE.registerMessage(
-                packetId++,
-                SetMissileTargetPacket.class,
-                SetMissileTargetPacket::encode,
-                SetMissileTargetPacket::decode,
-                SetMissileTargetPacket::handle
-        );
-        
-        INSTANCE.registerMessage(
-                packetId++,
-                TogglePodPacket.class,
-                TogglePodPacket::encode,
-                TogglePodPacket::decode,
-                TogglePodPacket::handle
-        );
-        
-        INSTANCE.registerMessage(
-                packetId++,
-                NukeSkyPacket.class,
-                NukeSkyPacket::encode,
-                NukeSkyPacket::decode,
-                NukeSkyPacket::handle
-        );
+        INSTANCE.registerMessage(packetId++, SetMissileTargetPacket.class, SetMissileTargetPacket::encode, SetMissileTargetPacket::decode, SetMissileTargetPacket::handle);
+        INSTANCE.registerMessage(packetId++, TogglePodPacket.class, TogglePodPacket::encode, TogglePodPacket::decode, TogglePodPacket::handle);
+        INSTANCE.registerMessage(packetId++, NukeSkyPacket.class, NukeSkyPacket::encode, NukeSkyPacket::decode, NukeSkyPacket::handle);
+        INSTANCE.registerMessage(packetId++, DroneMouseMovePacket.class, DroneMouseMovePacket::encode, DroneMouseMovePacket::decode, DroneMouseMovePacket::handle);
+        INSTANCE.registerMessage(packetId++, DroneInputPacket.class, DroneInputPacket::encode, DroneInputPacket::decode, DroneInputPacket::handle);
+        INSTANCE.registerMessage(packetId++, DroneFirePacket.class, DroneFirePacket::encode, DroneFirePacket::decode, DroneFirePacket::handle);
+        INSTANCE.registerMessage(packetId++, DroneGearPacket.class, DroneGearPacket::encode, DroneGearPacket::new, DroneGearPacket::handle);
+        INSTANCE.registerMessage(packetId++, DroneExitPacket.class, DroneExitPacket::encode, DroneExitPacket::new, DroneExitPacket::handle);
     }
 }

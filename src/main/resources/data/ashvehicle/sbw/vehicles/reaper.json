@@ -182,7 +182,7 @@
       "DefaultZoom": 2,
       "DefaultFireMode": "Semi",
       "AvailableFireModes": "Semi",
-      "Magazine": 4,
+      "Magazine": 8,
       "EmptyReloadTime": 200,
       "Projectile": "superbwarfare:agm_65",
       "Name": "weapon.superbwarfare.agm_65_missile_entity",
@@ -225,7 +225,7 @@
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.53, 0],
-        "Positions": [[-6.625, 1.5825, 0], [-5.28125, 1.4888, 0], [5.28125, 1.4888, 0], [6.625, 1.5825, 0]],
+        "Positions": [[-6.625, 1.5825, 0], [-5.28125, 1.4888, 0], [-3.9, 1.4888, 0], [-2.5, 1.4888, 0], [2.5, 1.4888, 0], [3.9, 1.4888, 0], [5.28125, 1.4888, 0], [6.625, 1.5825, 0]],
         "BoundUpWithAmmoAmount": true
       },
       "SoundInfo": {

@@ -62,6 +62,13 @@
   "key.ashvehicle.toggle_pod": "Toggle missile pod",
   "key.ashvehicle.thermalvision": "Toggle Thermal Vision",
   "key.ashvehicle.vtol_toggle": "Toggle VTOL Mode",
+  "key.ashvehicle.targeting_camera": "Targeting Camera",
+  "key.ashvehicle.thermal_toggle": "Thermal Vision",
+  "key.ashvehicle.lock_target": "Lock Target",
+  "key.ashvehicle.toggle_gear": "Toggle Landing Gear",
+  "key.ashvehicle.exit_drone": "Exit Drone",
+  "key.ashvehicle.zoom_in": "Zoom In",
+  "key.ashvehicle.zoom_out": "Zoom Out",
   "key.categories.ashvehicle": "AshVehicle",
 
   "weapon.ashvehicle.close_bay": "Close Bay",

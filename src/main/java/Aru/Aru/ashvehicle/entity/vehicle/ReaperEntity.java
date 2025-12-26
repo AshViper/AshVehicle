@@ -1,10 +1,15 @@
 package Aru.Aru.ashvehicle.entity.vehicle;
 
-import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
+import Aru.Aru.ashvehicle.entity.vehicle.base.RemoteDroneEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 
-public class ReaperEntity extends GeoVehicleEntity {
+/**
+ * MQ-9 Reaper - беспилотный разведывательно-ударный аппарат.
+ * Управляется дистанционно через монитор.
+ */
+public class ReaperEntity extends RemoteDroneEntity {
+    
     public ReaperEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }

@@ -368,6 +368,12 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
     }
 
     @Override
+    public boolean canRiderInteract() {
+        // Prevent player from dismounting with shift key
+        return false;
+    }
+
+    @Override
     public void positionRider(@NotNull Entity passenger, @NotNull MoveFunction callback) {
         if (this.hasPassenger(passenger)) {
             // Position inside drone (player hidden)

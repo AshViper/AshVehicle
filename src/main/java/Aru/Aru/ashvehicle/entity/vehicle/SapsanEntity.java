@@ -2,6 +2,7 @@ package Aru.Aru.ashvehicle.entity.vehicle;
 
 import Aru.Aru.ashvehicle.entity.projectile.BallisticMissileEntity;
 import Aru.Aru.ashvehicle.init.CoordinateTargetVehicle;
+import Aru.Aru.ashvehicle.init.ModEntities;
 import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
 import com.atsuishio.superbwarfare.tools.ParticleTool;
 import net.minecraft.core.particles.ParticleTypes;
@@ -101,16 +102,17 @@ public class SapsanEntity extends GeoVehicleEntity implements CoordinateTargetVe
         Matrix4d transform = this.getVehicleTransform(1.0f);
 
         float x = shotToggled ? -1F : 1F;
-        float y = 1.0F;
+        float y = 4.0F;
         float z = -10F;
         this.shotToggled = !this.shotToggled;
 
         Vector4d worldPosition = transformPos(transform, x, y, z);
 
-        BallisticMissileEntity missile = new BallisticMissileEntity(player, this.level());
-        missile.setPos(worldPosition.x, worldPosition.y, worldPosition.z);
+        BallisticMissileEntity missile =
+                new BallisticMissileEntity(ModEntities.BALLISTIC_MISSILE.get(), this.level());
+
+        missile.setPos(this.getX(), this.getY() + 3.0, this.getZ());
         missile.setTargetPosition(targetPos);
-        missile.xRotO = 90;
 
         this.level().addFreshEntity(missile);
 

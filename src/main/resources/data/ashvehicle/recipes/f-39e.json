@@ -2,10 +2,10 @@
     "type":  "superbwarfare:vehicle_assembling",
     "category":  "aircraft",
   "inputs":[
-    "5 superbwarfare:large_motor",
+    "2 superbwarfare:large_motor",
     "3 superbwarfare:medium_battery_pack",
     "10 superbwarfare:steel_block",
-    "4 superbwarfare:light_armament_module",
+    "2 superbwarfare:light_armament_module",
     "3 superbwarfare:wheel",
     "3 minecraft:glass",
     "ashvehicle:jetengineitem"

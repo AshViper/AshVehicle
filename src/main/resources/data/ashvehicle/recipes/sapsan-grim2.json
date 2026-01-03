@@ -2,10 +2,11 @@
     "type":  "superbwarfare:vehicle_assembling",
     "category":  "land",
     "inputs":  [
-                   "2 superbwarfare:large_motor",
-                   "superbwarfare:medium_battery_pack",
-                   "35 superbwarfare:steel_block"
-               ],
+      "2 superbwarfare:large_motor",
+      "superbwarfare:medium_battery_pack",
+      "superbwarfare:light_armament_module",
+      "5 superbwarfare:steel_block"
+    ],
     "result":  {
                    "entity":  "ashvehicle:sapsan-grim2"
                }

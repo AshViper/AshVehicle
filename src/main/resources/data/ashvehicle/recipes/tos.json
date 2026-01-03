@@ -4,7 +4,7 @@
     "inputs":  [
                    "2 superbwarfare:large_motor",
                    "superbwarfare:medium_battery_pack",
-                   "50 superbwarfare:steel_block",
+                   "5 superbwarfare:steel_block",
                    "8 superbwarfare:track",
                    "superbwarfare:light_armament_module"
                ],

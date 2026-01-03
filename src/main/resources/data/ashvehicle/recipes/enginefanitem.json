@@ -4,7 +4,7 @@
     "inputs":
     [
       "1 superbwarfare:steel_ingot",
-      "4 superbwarfare:large_propeller"
+      "2 superbwarfare:large_propeller"
     ],
     "result":{"item":"ashvehicle:enginefanitem"}
 }

@@ -2,8 +2,9 @@
   "type": "superbwarfare:vehicle_assembling",
   "category": "water",
   "inputs": [
-    "4 superbwarfare:rubber_sheet",
-    "superbwarfare:small_motor"
+    "superbwarfare:large_motor",
+    "superbwarfare:medium_battery_pack",
+    "2 superbwarfare:steel_block"
   ],
   "result": {
     "entity": "ashvehicle:rubber_boat"

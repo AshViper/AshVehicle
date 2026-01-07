@@ -523,7 +523,6 @@ public class CoordinateInputScreen extends Screen {
         ModNetwork.INSTANCE.send(PacketDistributor.SERVER.noArg(),
                 new SetMissileTargetPacket(vehicle.getId(),
                         manualTarget.x, manualTarget.y, manualTarget.z));
-        manualTarget = null;
         targetEntity = null;
     }
 

@@ -3,13 +3,13 @@
     "category":  "misc",
     "inputs":
     [
-      "12 superbwarfare:steel_ingot",
+      "4 superbwarfare:steel_ingot",
       "superbwarfare:seeker",
-      "4 superbwarfare:motor",
-      "6 superbwarfare:grain",
+      "2 superbwarfare:motor",
+      "2 superbwarfare:grain",
       "superbwarfare:missile_engine",
       "2 minecraft:comparator",
-      "10 minecraft:tnt"
+      "2 minecraft:tnt"
     ],
     "result":{"item":"ashvehicle:aim120item"}
 }

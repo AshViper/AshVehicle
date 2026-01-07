@@ -3,10 +3,10 @@
     "category":  "misc",
     "inputs":
     [
-      "6 superbwarfare:steel_ingot",
+      "3 superbwarfare:steel_ingot",
       "superbwarfare:seeker",
-      "4 superbwarfare:motor",
-      "4 superbwarfare:grain",
+      "2 superbwarfare:motor",
+      "2 superbwarfare:grain",
       "superbwarfare:missile_engine",
       "minecraft:comparator",
       "4 minecraft:tnt"

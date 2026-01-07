@@ -3,8 +3,8 @@
     "category":  "aircraft",
   "inputs":[
     "2 superbwarfare:large_motor",
-    "3 superbwarfare:medium_battery_pack",
-    "10 superbwarfare:cemented_carbide_block",
+    "2 superbwarfare:medium_battery_pack",
+    "5 superbwarfare:cemented_carbide_block",
     "2 superbwarfare:light_armament_module",
     "3 superbwarfare:wheel",
     "6 minecraft:glass",

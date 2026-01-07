@@ -44,6 +44,8 @@ public class BallisticMissileEntity extends Entity implements GeoAnimatable {
     private Vec3 targetPos;
     private double cruiseY;
 
+    private boolean hasExploded = false;
+
     private enum FlightPhase { ASCEND, CRUISE, DIVE }
     private FlightPhase phase = FlightPhase.ASCEND;
 
@@ -54,7 +56,7 @@ public class BallisticMissileEntity extends Entity implements GeoAnimatable {
 
     public void setTargetPosition(Vec3 targetPos) {
         this.targetPos = targetPos;
-        this.cruiseY = this.getY() + 50.0;
+        this.cruiseY = this.getY() + 100.0;
         this.phase = FlightPhase.ASCEND;
         this.setDeltaMovement(0, 1.5, 0);
     }
@@ -101,37 +103,56 @@ public class BallisticMissileEntity extends Entity implements GeoAnimatable {
             this.yRotO = yaw;
             this.xRotO = pitch;
         }
+
         switch (phase) {
             case ASCEND -> {
-                setDeltaMovement(0, 4.5, 0);
+                setDeltaMovement(0, 5.5, 0);
                 if (pos.y >= cruiseY) phase = FlightPhase.CRUISE;
             }
 
             case CRUISE -> {
                 Vec3 target = new Vec3(targetPos.x, cruiseY, targetPos.z);
                 Vec3 dir = target.subtract(pos);
-                double dist = Math.sqrt(dir.x * dir.x + dir.z * dir.z);
 
-                if (dist < 1.0) phase = FlightPhase.DIVE;
-                else setDeltaMovement(dir.x / dist * 2.5, 0, dir.z / dist * 2.5);
+                double horizontalDist = Math.sqrt(dir.x * dir.x + dir.z * dir.z);
+
+                if (horizontalDist <= 4.5) {   // 1tickで進める距離を基準にする
+                    phase = FlightPhase.DIVE;
+                    setDeltaMovement(0, -5.0, 0);
+                } else {
+                    setDeltaMovement(
+                            dir.x / horizontalDist * 4.5,
+                            0,
+                            dir.z / horizontalDist * 4.5
+                    );
+                }
             }
 
             case DIVE -> {
-                setDeltaMovement(0, -4.0, 0);
+                setDeltaMovement(0, -5.0, 0);
                 if (pos.y <= targetPos.y || this.onGround()) {
                     explode();
-                    discard();
                 }
             }
         }
     }
 
     private void explode() {
-        this.level().explode(this, getX(), getY(), getZ(), 10f, true, Level.ExplosionInteraction.BLOCK);
-        if (!this.level().isClientSide && currentTicketChunk != null) {
-            ((ServerLevel)this.level()).getChunkSource().removeRegionTicket(MISSILE_TICKET, currentTicketChunk, 10, this);
+        if (hasExploded) return;
+        hasExploded = true;
+
+        Level level = this.level();
+        if (!level.isClientSide) {
+            level.explode(null, getX(), getY(), getZ(), 10f, Level.ExplosionInteraction.BLOCK);
+        }
+
+        if (!level.isClientSide && currentTicketChunk != null) {
+            ((ServerLevel) level).getChunkSource()
+                    .removeRegionTicket(MISSILE_TICKET, currentTicketChunk, 10, this);
             currentTicketChunk = null;
         }
+
+        this.discard();
     }
 
     @Override
@@ -151,7 +172,6 @@ public class BallisticMissileEntity extends Entity implements GeoAnimatable {
         this.health -= amount;
         if (this.health <= 0) {
             explode();
-            discard();
         }
         return true;
     }

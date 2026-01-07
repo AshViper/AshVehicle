@@ -3,8 +3,8 @@
     "category":  "aircraft",
   "inputs":[
     "2 superbwarfare:large_motor",
-    "3 superbwarfare:medium_battery_pack",
-    "10 superbwarfare:steel_block",
+    "1 superbwarfare:medium_battery_pack",
+    "3 superbwarfare:steel_block",
     "2 superbwarfare:light_armament_module",
     "3 superbwarfare:wheel",
     "ashvehicle:jetengineitem"

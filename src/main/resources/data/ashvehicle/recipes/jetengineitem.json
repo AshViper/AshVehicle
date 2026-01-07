@@ -3,7 +3,7 @@
     "category":  "misc",
     "inputs":
     [
-      "10 superbwarfare:steel_ingot",
+      "5 superbwarfare:steel_ingot",
       "superbwarfare:large_motor",
       "1 superbwarfare:tungsten_rod",
       "4 ashvehicle:enginefanitem"

@@ -1,9 +1,9 @@
 package Aru.Aru.ashvehicle.entity.vehicle;
 
+import Aru.Aru.ashvehicle.entity.vehicle.base.BaseAircraftEntity;
 import com.atsuishio.superbwarfare.data.DataLoader;
 import com.atsuishio.superbwarfare.data.vehicle.DefaultVehicleData;
 import com.atsuishio.superbwarfare.data.vehicle.subdata.EngineInfo;
-import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.base.VehicleEntity;
 import com.atsuishio.superbwarfare.entity.vehicle.utils.VehicleVecUtils;
 import com.atsuishio.superbwarfare.init.ModDamageTypes;
@@ -22,11 +22,15 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Math;
 
-public class F35Entity extends GeoVehicleEntity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class F35Entity extends BaseAircraftEntity {
 
     public static boolean vtolMode = false;
     private static final EntityDataAccessor<Float> VTOL_ROT = SynchedEntityData.defineId(F35Entity.class, EntityDataSerializers.FLOAT);
@@ -73,9 +77,13 @@ public class F35Entity extends GeoVehicleEntity {
         super.baseTick();
         aircraftEngine(this, aircraft);
 
-        // クライアント側でエンジン音を管理
         if (this.level().isClientSide) {
             handleEngineSound();
+        }
+
+        float power = Math.abs(this.getPower());
+        if (power > 0.06F && this.level().isClientSide) {
+            this.spawnAfterburnerEffect();
         }
 
         vtolRotO = getPodRot();
@@ -93,6 +101,27 @@ public class F35Entity extends GeoVehicleEntity {
         float diff1 = target1 - current1;
         float newRot1 = current1 + diff1 * 0.1f;
         setWeaponBayRot(newRot1);
+    }
+
+    @Override
+    public boolean isVtolActive() {
+        return vtolMode;
+    }
+
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        List<Vec3> positions = new ArrayList<>();
+        positions.add(new Vec3(-10, 2.0, 0));
+        return positions;
+    }
+
+    @Override
+    public List<Vec3> getVtolAfterburnerPositions() {
+        List<Vec3> positions = new ArrayList<>();
+        float vtolProgress = getPodRot() / 85.0F;
+        double yOffset = 2.0 - (vtolProgress * 1.5);
+        positions.add(new Vec3(-10, yOffset, 0));
+        return positions;
     }
 
     @OnlyIn(Dist.CLIENT)

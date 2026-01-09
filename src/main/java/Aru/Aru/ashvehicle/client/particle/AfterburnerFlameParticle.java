@@ -7,18 +7,29 @@ import org.jetbrains.annotations.NotNull;
 
 public class AfterburnerFlameParticle extends TextureSheetParticle {
     private final SpriteSet spriteSet;
+    private final float initialScale;
 
     public AfterburnerFlameParticle(ClientLevel level, double x, double y, double z,
                                     double dx, double dy, double dz, SpriteSet sprite) {
         super(level, x, y, z, dx, dy, dz);
         this.spriteSet = sprite;
-        this.lifetime = 20 + this.random.nextInt(10); // 寿命
-        this.gravity = 0.0F;
-        this.xd = dx;
-        this.yd = dy;
-        this.zd = dz;
-        this.alpha = 0.9F;
-        this.quadSize = 1.5F;
+        this.lifetime = 15 + this.random.nextInt(8); // Более короткая жизнь для динамичности
+        this.gravity = -0.02F; // Легкий подъем вверх
+        
+        // Добавляем случайное отклонение для более реалистичного эффекта
+        this.xd = dx + (this.random.nextDouble() - 0.5) * 0.05;
+        this.yd = dy + (this.random.nextDouble() - 0.5) * 0.05;
+        this.zd = dz + (this.random.nextDouble() - 0.5) * 0.05;
+        
+        this.alpha = 0.95F;
+        this.initialScale = 1.8F + this.random.nextFloat() * 0.4F; // Случайный начальный размер
+        this.quadSize = this.initialScale;
+        
+        // Цвет пламени: от ярко-оранжевого к желтому
+        this.rCol = 1.0F;
+        this.gCol = 0.7F + this.random.nextFloat() * 0.2F;
+        this.bCol = 0.3F + this.random.nextFloat() * 0.2F;
+        
         this.setSpriteFromAge(spriteSet);
     }
 
@@ -28,9 +39,28 @@ public class AfterburnerFlameParticle extends TextureSheetParticle {
 
         float ageRatio = (float) this.age / (float) this.lifetime;
 
-        // サイズと透明度を徐々に減らす
-        this.quadSize = this.quadSize * (1.0F - ageRatio * 0.7F); // サイズ 30%まで縮小
-        this.alpha = 0.9F * (1.0F - ageRatio); // 徐々に透明へ
+        // Плавное увеличение размера в начале, затем уменьшение
+        if (ageRatio < 0.3F) {
+            this.quadSize = this.initialScale * (1.0F + ageRatio * 0.5F);
+        } else {
+            this.quadSize = this.initialScale * (1.15F - (ageRatio - 0.3F) * 1.2F);
+        }
+
+        // Плавное затухание с более быстрым исчезновением в конце
+        if (ageRatio < 0.7F) {
+            this.alpha = 0.95F * (1.0F - ageRatio * 0.5F);
+        } else {
+            this.alpha = 0.95F * (1.0F - ageRatio) * 0.5F;
+        }
+
+        // Изменение цвета: от оранжевого к красному
+        this.gCol = (0.7F + this.random.nextFloat() * 0.2F) * (1.0F - ageRatio * 0.5F);
+        this.bCol = (0.3F + this.random.nextFloat() * 0.2F) * (1.0F - ageRatio * 0.7F);
+
+        // Замедление движения
+        this.xd *= 0.95;
+        this.yd *= 0.95;
+        this.zd *= 0.95;
 
         this.setSpriteFromAge(spriteSet);
     }
@@ -40,9 +70,13 @@ public class AfterburnerFlameParticle extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    /** ✨ 光らせるために最大明るさを返す */
+    /** ✨ Максимальная яркость для эффекта свечения */
     @Override
     public int getLightColor(float partialTick) {
-        return 0xF000F0; // 最大光源値
+        // Динамическая яркость в зависимости от возраста частицы
+        float ageRatio = ((float) this.age + partialTick) / (float) this.lifetime;
+        int brightness = (int) (15.0F * (1.0F - ageRatio * 0.5F));
+        brightness = Math.max(brightness, 0);
+        return brightness << 20 | brightness << 4;
     }
 }

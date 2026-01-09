@@ -1,11 +1,22 @@
 package Aru.Aru.ashvehicle.entity.vehicle;
 
-import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
+import Aru.Aru.ashvehicle.entity.vehicle.base.BaseAircraftEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 
-public class SU57Entity extends GeoVehicleEntity {
+public class SU57Entity extends BaseAircraftEntity {
     public SU57Entity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+    }
+
+    @Override
+    public void baseTick() {
+        super.baseTick();
+        
+        // 🔥 Afterburner particles (client side)
+        float power = Math.abs(this.getPower());
+        if (power > 0.06F && this.level().isClientSide) {
+            this.spawnAfterburnerParticles(getAfterburnerParticlePositions());
+        }
     }
 }

@@ -201,7 +201,7 @@
     "DriverMissile": {
       "DefaultZoom": 2,
       "Magazine": 4,
-      "Crosshair": "@AirCraftMissile",
+      "Crosshair": "@VehicleCommonSeekMissile",
       "Template": "@Missile",
       "ShootPos": {
         "Transform": "Vehicle",
@@ -352,7 +352,7 @@
         "MinTargetSize": 0.9,
         "OnlyLockEntity": true
       },
-      "AmmoType": "ashvehicle:aam_4_item",
+      "AmmoType": "ashvehicle:aim9item",
       "ShootPos": {
         "Transform": "Vehicle",
         "Positions": [[0, 1.24375, -0.3234]],
@@ -368,7 +368,7 @@
         "Locking": "superbwarfare:missile_locking",
         "Locked": "superbwarfare:missile_locked"
       },
-      "Crosshair": "@AirCraftMissile",
+      "Crosshair": "@VehicleCommonSeekMissile",
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
     }

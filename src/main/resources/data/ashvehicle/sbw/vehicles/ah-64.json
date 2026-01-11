@@ -196,7 +196,7 @@
     "DriverMissile": {
       "DefaultZoom": 2,
       "Magazine": 4,
-      "Crosshair": "@AirCraftMissile",
+      "Crosshair": "@VehicleCommonSeekMissile",
       "Template": "@Missile",
       "ShootPos": {
         "Transform": "Vehicle",

@@ -214,7 +214,7 @@
         "Locking": "superbwarfare:missile_locking",
         "Locked": "superbwarfare:missile_locked"
       },
-      "Crosshair": "@AirCraftMissile",
+      "Crosshair": "@VehicleCommonSeekMissile",
       "CrosshairColor": "0x66FF00",
       "SoundRadius": 8
     }

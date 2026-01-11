@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.Mod;
 public class ParticleRegistry {
     @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
-        System.out.println("[ParticleRegistry] Registering AfterburnerFlame");
         event.registerSpriteSet(ModParticleTypes.AFTERBURNER_FLAME.get(), AfterburnerFlameParticleProvider::new);
     }
 }

@@ -20,10 +20,10 @@ import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
+// import net.neoforged.neoforge.network.NetworkHooks;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class BallisticMissileEntity extends Entity implements GeoAnimatable {
@@ -156,8 +156,9 @@ public class BallisticMissileEntity extends Entity implements GeoAnimatable {
     }
 
     @Override
-    protected void defineSynchedData() {
-        this.entityData.define(MISSILE_HEALTH, maxHealth);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        // super.defineSynchedData(builder);
+        builder.define(MISSILE_HEALTH, maxHealth);
     }
 
     @Override
@@ -176,10 +177,10 @@ public class BallisticMissileEntity extends Entity implements GeoAnimatable {
         return true;
     }
 
-    @Override
+    /*@Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
-    }
+    }*/
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {}

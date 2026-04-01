@@ -56,16 +56,16 @@ public class F2Model extends VehicleModel<F2Entity> {
 
     @Override
     public ResourceLocation getModelResource(F2Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/f_2.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/f_2.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(F2Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/f_2.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/f_2.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(F2Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/f_2.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/f_2.animation.json");
     }
 }

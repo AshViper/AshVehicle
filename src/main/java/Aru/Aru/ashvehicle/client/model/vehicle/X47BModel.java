@@ -53,16 +53,16 @@ public class X47BModel extends VehicleModel<X47BEntity> {
 
     @Override
     public ResourceLocation getModelResource(X47BEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/x-47b.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/x-47b.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(X47BEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/x-47b.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/x-47b.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(X47BEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/x-47b.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/x-47b.animation.json");
     }
 }

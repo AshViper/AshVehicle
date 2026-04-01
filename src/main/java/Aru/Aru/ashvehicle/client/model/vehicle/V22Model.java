@@ -59,16 +59,16 @@ public class V22Model extends VehicleModel<V22Entity> {
 
     @Override
     public ResourceLocation getModelResource(V22Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/v-22.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/v-22.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(V22Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/v-22.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/v-22.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(V22Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/v-22.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/v-22.animation.json");
     }
 }

@@ -17,16 +17,16 @@ public class RubberBoatModel extends VehicleModel<RubberBoatEntity> {
 
     @Override
     public ResourceLocation getModelResource(RubberBoatEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/rubber_boat.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/rubber_boat.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(RubberBoatEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/rubber_boat.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/rubber_boat.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(RubberBoatEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/rubber_boat.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/rubber_boat.animation.json");
     }
 }

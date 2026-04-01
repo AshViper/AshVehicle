@@ -39,16 +39,16 @@ public class M1A1AbramsModel extends VehicleModel<M1A1AbramsEntity> {
 
     @Override
     public ResourceLocation getModelResource(M1A1AbramsEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/m1a1abrams.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/m1a1abrams.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(M1A1AbramsEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/m1a1abrams.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/m1a1abrams.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(M1A1AbramsEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/m1a1abrams.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/m1a1abrams.animation.json");
     }
 }

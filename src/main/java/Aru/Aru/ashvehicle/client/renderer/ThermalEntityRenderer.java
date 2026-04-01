@@ -8,7 +8,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,8 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 /**
  * Renders entities as white silhouettes for thermal vision.
@@ -25,7 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ThermalEntityRenderer {
 
-    private static final ResourceLocation WHITE_TEXTURE = new ResourceLocation("textures/misc/white.png");
+    private static final ResourceLocation WHITE_TEXTURE = ResourceLocation.parse("textures/misc/white.png");
     private static final RenderType THERMAL_WHITE = RenderType.entityTranslucent(WHITE_TEXTURE);
     private static final int THERMAL_ALPHA = 200;
 
@@ -127,54 +126,40 @@ public class ThermalEntityRenderer {
     
     private static class WhiteVertexConsumer implements VertexConsumer {
         private final VertexConsumer wrapped;
-        
+
         public WhiteVertexConsumer(VertexConsumer wrapped) {
             this.wrapped = wrapped;
         }
-        
+
         @Override
-        public VertexConsumer vertex(double x, double y, double z) {
-            return wrapped.vertex(x, y, z);
+        public VertexConsumer addVertex(float x, float y, float z) {
+            return wrapped.addVertex(x, y, z);
         }
-        
+
         @Override
-        public VertexConsumer color(int r, int g, int b, int a) {
-            return wrapped.color(255, 255, 255, THERMAL_ALPHA);
+        public VertexConsumer setColor(int r, int g, int b, int a) {
+            return wrapped.setColor(255, 255, 255, THERMAL_ALPHA);
         }
-        
+
         @Override
-        public VertexConsumer uv(float u, float v) {
-            return wrapped.uv(u, v);
+        public VertexConsumer setUv(float u, float v) {
+            return wrapped.setUv(u, v);
         }
-        
+
         @Override
-        public VertexConsumer overlayCoords(int u, int v) {
-            return wrapped.overlayCoords(OverlayTexture.NO_OVERLAY);
+        public VertexConsumer setUv1(int u, int v) {
+            return wrapped.setUv1(u, v);
         }
-        
+
         @Override
-        public VertexConsumer uv2(int u, int v) {
-            return wrapped.uv2(15728880);
+        public VertexConsumer setUv2(int u, int v) {
+            // Force full bright light map
+            return wrapped.setUv2(240, 240);
         }
-        
+
         @Override
-        public VertexConsumer normal(float x, float y, float z) {
-            return wrapped.normal(x, y, z);
-        }
-        
-        @Override
-        public void endVertex() {
-            wrapped.endVertex();
-        }
-        
-        @Override
-        public void defaultColor(int r, int g, int b, int a) {
-            wrapped.defaultColor(255, 255, 255, THERMAL_ALPHA);
-        }
-        
-        @Override
-        public void unsetDefaultColor() {
-            wrapped.unsetDefaultColor();
+        public VertexConsumer setNormal(float x, float y, float z) {
+            return wrapped.setNormal(x, y, z);
         }
     }
 }

@@ -15,10 +15,10 @@ public class BallisticMissileModel extends GeoModel<BallisticMissileEntity> {
     }
 
     public ResourceLocation getModelResource(BallisticMissileEntity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "geo/aim9.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/aim9.geo.json");
     }
 
     public ResourceLocation getTextureResource(BallisticMissileEntity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "textures/entity/aim9.png");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/aim9.png");
     }
 }

@@ -53,16 +53,16 @@ public class ReaperModel extends VehicleModel<ReaperEntity> {
 
     @Override
     public ResourceLocation getModelResource(ReaperEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/reaper.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/reaper.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(ReaperEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/reaper.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/reaper.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(ReaperEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/reaper.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/reaper.animation.json");
     }
 }

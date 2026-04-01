@@ -21,9 +21,9 @@ public class F14Entity extends BaseAircraftEntity {
     public float vtolRotO = 0f;
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(VTOL_ROT, 0.0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VTOL_ROT, 0.0F);
     }
 
     public void setPodRot(float value) {

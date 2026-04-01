@@ -3,9 +3,9 @@ package Aru.Aru.ashvehicle.Packet;
 import Aru.Aru.ashvehicle.init.event.ClientRenderEvents;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.api.distmarker.Dist;
+// import net.neoforged.fml.DistExecutor;
+// import net.neoforged.neoforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -40,17 +40,17 @@ public class NukeSkyPacket {
         );
     }
 
-    public static void handle(NukeSkyPacket msg, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            // Run on client
-            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                ClientRenderEvents.activateNukeSky(
-                        new Vec3(msg.x, msg.y, msg.z),
-                        msg.radius,
-                        msg.durationTicks
-                );
-            });
-        });
-        ctx.get().setPacketHandled(true);
+    public static void handle(NukeSkyPacket msg, Supplier<?> ctx) {
+//        ctx.get().enqueueWork(() -> {
+//            // Run on client
+//            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+//                ClientRenderEvents.activateNukeSky(
+//                        new Vec3(msg.x, msg.y, msg.z),
+//                        msg.radius,
+//                        msg.durationTicks
+//                );
+//            });
+//        });
+//        ctx.get().setPacketHandled(true);
     }
 }

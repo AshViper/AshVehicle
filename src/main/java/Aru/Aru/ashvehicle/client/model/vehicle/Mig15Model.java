@@ -53,16 +53,16 @@ public class Mig15Model extends VehicleModel<Mig15Entity> {
 
     @Override
     public ResourceLocation getModelResource(Mig15Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/mig_15.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/mig_15.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(Mig15Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/mig_15.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/mig_15.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(Mig15Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/mig_15.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/mig_15.animation.json");
     }
 }

@@ -14,10 +14,10 @@ public class NukeBombModel extends GeoModel<NukeBombEntity> {
     }
 
     public ResourceLocation getModelResource(NukeBombEntity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "geo/nuclearbomb.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/nuclearbomb.geo.json");
     }
 
     public ResourceLocation getTextureResource(NukeBombEntity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "textures/entity/nuclearbomb.png");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/nuclearbomb.png");
     }
 }

@@ -14,10 +14,10 @@ public class ToiletBombModel extends GeoModel<ToiletBombEntity> {
     }
 
     public ResourceLocation getModelResource(ToiletBombEntity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "geo/toiletbomb.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/toiletbomb.geo.json");
     }
 
     public ResourceLocation getTextureResource(ToiletBombEntity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "textures/entity/toiletbomb.png");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/toiletbomb.png");
     }
 }

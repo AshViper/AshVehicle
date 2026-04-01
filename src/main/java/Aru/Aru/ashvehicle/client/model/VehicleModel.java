@@ -16,9 +16,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import org.jetbrains.annotations.Nullable;
 import oshi.util.tuples.Pair;
-import software.bernie.geckolib.core.animatable.GeoAnimatable;
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
-import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 
 import java.util.ArrayList;
@@ -66,7 +66,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
                     return this.modelCache;
                 } else {
                     this.LOGGER.log(vehicle, (logger) -> logger.error("failed to load model for {}!", vehicle));
-                    ResourceLocation loc = new ResourceLocation(AshVehicle.MODID,"geo/" + EntityType.getKey(vehicle.getType()).getPath() + ".geo.json");
+                    ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/" + EntityType.getKey(vehicle.getType()).getPath() + ".geo.json");
                     this.modelCache = loc;
                     return loc;
                 }
@@ -88,7 +88,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
                     return this.textureCache;
                 } else {
                     this.LOGGER.log(vehicle, (logger) -> logger.error("failed to load texture for {}!", vehicle));
-                    ResourceLocation loc = new ResourceLocation(AshVehicle.MODID,"textures/entity/" + EntityType.getKey(vehicle.getType()).getPath() + ".png");
+                    ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/" + EntityType.getKey(vehicle.getType()).getPath() + ".png");
                     this.textureCache = loc;
                     return loc;
                 }
@@ -162,7 +162,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
                 case "turret":
                     return (bone, vehicle, state) -> {
                         bone.setRotY(this.turretYRot * ((float)Math.PI / 180F));
-                        CoreGeoBone turretLaser = this.getAnimationProcessor().getBone("turretLaser");
+                        GeoBone turretLaser = this.getAnimationProcessor().getBone("turretLaser");
                         if (turretLaser != null) {
                             turretLaser.setRotY(bone.getRotY());
                         }
@@ -182,7 +182,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
                         }
 
                         bone.setRotX(Mth.clamp(-this.turretXRot - r * this.pitch - r2 * this.roll, vehicle.getTurretMinPitch(), vehicle.getTurretMaxPitch()) * ((float)Math.PI / 180F));
-                        CoreGeoBone barrelLaser = this.getAnimationProcessor().getBone("barrelLaser");
+                        GeoBone barrelLaser = this.getAnimationProcessor().getBone("barrelLaser");
                         if (barrelLaser != null) {
                             barrelLaser.setRotX(bone.getRotX());
                         }
@@ -280,7 +280,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
         this.hideForPassengerWeaponStationControllerWhileZooming = ClientEventHandler.zoomVehicle && vehicle.getNthEntity(vehicle.getPassengerWeaponStationControllerIndex()) == Minecraft.getInstance().player;
         this.TRANSFORMS.forEach((pair) -> {
             String name = (String)pair.getA();
-            CoreGeoBone bone = this.getAnimationProcessor().getBone(name);
+            GeoBone bone = this.getAnimationProcessor().getBone(name);
             if (bone != null) {
                 ((VehicleModel.TransformContext)pair.getB()).transform(bone, vehicle, animationState);
             }
@@ -318,6 +318,6 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
 
     @FunctionalInterface
     public interface TransformContext<T extends VehicleEntity & GeoAnimatable> {
-        void transform(CoreGeoBone var1, T var2, AnimationState<T> var3);
+        void transform(GeoBone var1, T var2, AnimationState<T> var3);
     }
 }

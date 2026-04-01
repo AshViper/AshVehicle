@@ -10,28 +10,36 @@ import Aru.Aru.ashvehicle.Packet.NukeSkyPacket;
 import Aru.Aru.ashvehicle.Packet.SetMissileTargetPacket;
 import Aru.Aru.ashvehicle.Packet.TogglePodPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+// import net.neoforged.neoforge.network.NetworkRegistry;
+// import net.neoforged.neoforge.network.simple.SimpleChannel;
 
 public class ModNetwork {
     private static final String PROTOCOL_VERSION = "1.0";
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(AshVehicle.MODID, "main"),
-            () -> PROTOCOL_VERSION,
-            PROTOCOL_VERSION::equals,
-            PROTOCOL_VERSION::equals
-    );
+//    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
+//            new ResourceLocation(AshVehicle.MODID, "main"),
+//            () -> PROTOCOL_VERSION,
+//            PROTOCOL_VERSION::equals,
+//            PROTOCOL_VERSION::equals
+//    );
+    public static final LegacyChannelBridge INSTANCE = new LegacyChannelBridge();
 
     private static int packetId = 0;
 
     public static void register() {
-        INSTANCE.registerMessage(packetId++, SetMissileTargetPacket.class, SetMissileTargetPacket::encode, SetMissileTargetPacket::decode, SetMissileTargetPacket::handle);
-        INSTANCE.registerMessage(packetId++, TogglePodPacket.class, TogglePodPacket::encode, TogglePodPacket::decode, TogglePodPacket::handle);
-        INSTANCE.registerMessage(packetId++, NukeSkyPacket.class, NukeSkyPacket::encode, NukeSkyPacket::decode, NukeSkyPacket::handle);
-        INSTANCE.registerMessage(packetId++, DroneMouseMovePacket.class, DroneMouseMovePacket::encode, DroneMouseMovePacket::decode, DroneMouseMovePacket::handle);
-        INSTANCE.registerMessage(packetId++, DroneInputPacket.class, DroneInputPacket::encode, DroneInputPacket::decode, DroneInputPacket::handle);
-        INSTANCE.registerMessage(packetId++, DroneFirePacket.class, DroneFirePacket::encode, DroneFirePacket::decode, DroneFirePacket::handle);
-        INSTANCE.registerMessage(packetId++, DroneGearPacket.class, DroneGearPacket::encode, DroneGearPacket::new, DroneGearPacket::handle);
-        INSTANCE.registerMessage(packetId++, DroneExitPacket.class, DroneExitPacket::encode, DroneExitPacket::new, DroneExitPacket::handle);
+//        INSTANCE.registerMessage(packetId++, SetMissileTargetPacket.class, SetMissileTargetPacket::encode, SetMissileTargetPacket::decode, SetMissileTargetPacket::handle);
+//        INSTANCE.registerMessage(packetId++, TogglePodPacket.class, TogglePodPacket::encode, TogglePodPacket::decode, TogglePodPacket::handle);
+//        INSTANCE.registerMessage(packetId++, NukeSkyPacket.class, NukeSkyPacket::encode, NukeSkyPacket::decode, NukeSkyPacket::handle);
+//        INSTANCE.registerMessage(packetId++, DroneMouseMovePacket.class, DroneMouseMovePacket::encode, DroneMouseMovePacket::decode, DroneMouseMovePacket::handle);
+//        INSTANCE.registerMessage(packetId++, DroneInputPacket.class, DroneInputPacket::encode, DroneInputPacket::decode, DroneInputPacket::handle);
+//        INSTANCE.registerMessage(packetId++, DroneFirePacket.class, DroneFirePacket::encode, DroneFirePacket::decode, DroneFirePacket::handle);
+//        INSTANCE.registerMessage(packetId++, DroneGearPacket.class, DroneGearPacket::encode, DroneGearPacket::new, DroneGearPacket::handle);
+//        INSTANCE.registerMessage(packetId++, DroneExitPacket.class, DroneExitPacket::encode, DroneExitPacket::new, DroneExitPacket::handle);
+    }
+
+    // Temporary bridge while packet classes are migrated to CustomPacketPayload.
+    public static class LegacyChannelBridge {
+        public void sendToServer(Object message) {
+            // no-op quarantine for removed SimpleChannel API
+        }
     }
 }

@@ -17,7 +17,7 @@ import com.atsuishio.superbwarfare.tools.SoundTool;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -33,8 +33,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
@@ -131,10 +131,15 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
         spawnNuclearExplosionParticles(serverLevel, x, y, z);
 
         // Send red sky effect to all nearby clients (radius 500, duration 1200 ticks = 60 seconds)
-        ModNetwork.INSTANCE.send(
-                PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(x, y, z, 500, serverLevel.dimension())),
-                new NukeSkyPacket(x, y, z, 500f, 1200)
-        );
+        // PacketDistributor.sendToPlayersNear(
+        //     serverLevel,
+        //     null,
+        //     x,
+        //     y,
+        //     z,
+        //     500,
+        //     new NukeSkyPacket(x, y, z, 500f, 1200)
+        // );
 
         // Apply radiation to nearby entities (long lasting effects)
         applyRadiation(serverLevel, x, y, z, 150); // 150 block radius for radiation

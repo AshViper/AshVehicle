@@ -10,18 +10,18 @@ import Aru.Aru.ashvehicle.init.ModNetwork;
 import Aru.Aru.ashvehicle.init.client.ClientKeyMappings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.fml.common.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
 public class ClientEvents {
 
     @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) return;
+    public static void onClientTick(ClientTickEvent.Pre event) {
 
         Minecraft mc = Minecraft.getInstance();
         if (mc.screen != null || mc.player == null) return;
@@ -38,8 +38,8 @@ public class ClientEvents {
         // Toggle pod (Ctrl key)
         if (ClientKeyMappings.TOGGLE_POD != null && ClientKeyMappings.TOGGLE_POD.consumeClick()) {
             if (vehicle instanceof SapsanEntity sapsan) {
-                ModNetwork.INSTANCE.send(PacketDistributor.SERVER.noArg(),
-                        new TogglePodPacket(sapsan.getId()));
+                // PacketDistributor.sendToServer(new TogglePodPacket(sapsan.getId()));
+                ModNetwork.INSTANCE.sendToServer(new TogglePodPacket(sapsan.getId()));
             }
         }
 

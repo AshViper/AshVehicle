@@ -43,16 +43,16 @@ public class ZelenskyModel extends VehicleModel<ZelenskyEntity> {
     }
     @Override
     public ResourceLocation getModelResource(ZelenskyEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/zelensky.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/zelensky.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(ZelenskyEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/zelensky.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/zelensky.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(ZelenskyEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/ah-64.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/ah-64.animation.json");
     }
 }

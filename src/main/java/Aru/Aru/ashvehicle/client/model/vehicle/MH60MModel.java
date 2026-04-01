@@ -29,16 +29,16 @@ public class MH60MModel extends VehicleModel<MH60MEntity> {
 
     @Override
     public ResourceLocation getModelResource(MH60MEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/mh_60m.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/mh_60m.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(MH60MEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/mh_60m.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/mh_60m.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(MH60MEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/mh_60m.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/mh_60m.animation.json");
     }
 }

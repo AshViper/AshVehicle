@@ -14,10 +14,10 @@ public class Aim9Model extends GeoModel<Aim9Entity> {
     }
 
     public ResourceLocation getModelResource(Aim9Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "geo/aim9.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/aim9.geo.json");
     }
 
     public ResourceLocation getTextureResource(Aim9Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "textures/entity/aim9.png");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/aim9.png");
     }
 }

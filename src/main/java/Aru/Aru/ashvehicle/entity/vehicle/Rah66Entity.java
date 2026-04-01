@@ -21,9 +21,9 @@ public class Rah66Entity extends GeoVehicleEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(WEAPON_BAY_ROT, 0.0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(WEAPON_BAY_ROT, 0.0F);
     }
 
     public void setWeaponBayRot(float value) {

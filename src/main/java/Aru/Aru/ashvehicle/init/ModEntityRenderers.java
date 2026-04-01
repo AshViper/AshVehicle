@@ -2,12 +2,13 @@ package Aru.Aru.ashvehicle.init;
 
 import Aru.Aru.ashvehicle.client.renderer.projectile.*;
 import Aru.Aru.ashvehicle.client.renderer.entity.*;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber( value = Dist.CLIENT)
 public class ModEntityRenderers {
 
     @SubscribeEvent

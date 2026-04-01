@@ -53,16 +53,16 @@ public class EuroFighterModel extends VehicleModel<EuroFighterEntity> {
 
     @Override
     public ResourceLocation getModelResource(EuroFighterEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/eurofighter.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/eurofighter.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(EuroFighterEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/eurofighter.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/eurofighter.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(EuroFighterEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/eurofighter.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/eurofighter.animation.json");
     }
 }

@@ -53,16 +53,16 @@ public class SU33Model extends VehicleModel<SU33Entity> {
 
     @Override
     public ResourceLocation getModelResource(SU33Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/su-33.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/su-33.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(SU33Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/su-33.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/su-33.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(SU33Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/su-33.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/su-33.animation.json");
     }
 }

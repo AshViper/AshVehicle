@@ -15,24 +15,28 @@ import com.atsuishio.superbwarfare.item.Monitor;
 import com.atsuishio.superbwarfare.tools.TraceTool;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
+import net.neoforged.fml.common.EventBusSubscriber;
 
 /**
  * Client-side drone control handler for AshVehicle
  */
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
 public class DroneControlHandler {
 
     // Previous key states
@@ -72,16 +76,19 @@ public class DroneControlHandler {
         
         ItemStack stack = player.getMainHandItem();
         if (!stack.is(ModItems.MONITOR.get())) return null;
-        if (!stack.getOrCreateTag().getBoolean("Using")) return null;
-        if (!stack.getOrCreateTag().getBoolean("Linked")) return null;
+        // if (!stack.getOrCreateTag().getBoolean("Using")) return null;
+        // if (!stack.getOrCreateTag().getBoolean("Linked")) return null;
+        CompoundTag monitorTag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+        if (!monitorTag.getBoolean("Using")) return null;
+        if (!monitorTag.getBoolean("Linked")) return null;
         
-        String droneUUID = stack.getOrCreateTag().getString(Monitor.LINKED_DRONE);
+        // String droneUUID = stack.getOrCreateTag().getString(Monitor.LINKED_DRONE);
+        String droneUUID = monitorTag.getString(Monitor.LINKED_DRONE);
         return DroneFindUtil.findRemoteDrone(player.level(), droneUUID);
     }
 
     @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) return;
+    public static void onClientTick(ClientTickEvent.Pre event) {
         
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;

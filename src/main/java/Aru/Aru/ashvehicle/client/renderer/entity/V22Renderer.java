@@ -21,7 +21,7 @@ public class V22Renderer extends VehicleRenderer<V22Entity> {
         scaleWidth = scale;
     }
 
-    @Override
+    // @Override
     public void renderRecursively(PoseStack poseStack, V22Entity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                   float partialTick, int packedLight, int packedOverlay,
@@ -34,7 +34,8 @@ public class V22Renderer extends VehicleRenderer<V22Entity> {
             float podRot = Mth.lerp(partialTick, animatable.vtolRotO, animatable.getPodRot());
             bone.setRotX(podRot * ((float) Math.PI / 180F));
         }
+        int color = net.minecraft.util.FastColor.ARGB32.color((int) (alpha * 255), (int) (red * 255), (int) (green * 255), (int) (blue * 255));
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+            partialTick, packedLight, packedOverlay, color);
     }
 }

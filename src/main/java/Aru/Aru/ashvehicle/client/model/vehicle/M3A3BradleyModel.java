@@ -39,16 +39,16 @@ public class M3A3BradleyModel extends VehicleModel<M3A3BradleyEntity> {
 
     @Override
     public ResourceLocation getModelResource(M3A3BradleyEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/m3a3-bradley.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/m3a3-bradley.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(M3A3BradleyEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/m3a3-bradley.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/m3a3-bradley.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(M3A3BradleyEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/m3a3-bradley.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/m3a3-bradley.animation.json");
     }
 }

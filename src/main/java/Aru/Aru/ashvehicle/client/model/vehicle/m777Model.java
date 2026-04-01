@@ -17,16 +17,16 @@ public class m777Model extends VehicleModel<m777Entity> {
 
     @Override
     public ResourceLocation getModelResource(m777Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/m_777.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/m_777.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(m777Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/m_777.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/m_777.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(m777Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/m_777.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/m_777.animation.json");
     }
 }

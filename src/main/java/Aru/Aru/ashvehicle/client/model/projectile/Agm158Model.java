@@ -14,10 +14,10 @@ public class Agm158Model extends GeoModel<Agm158Entity> {
     }
 
     public ResourceLocation getModelResource(Agm158Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "geo/agm158.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/agm158.geo.json");
     }
 
     public ResourceLocation getTextureResource(Agm158Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "textures/entity/agm158.png");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/agm158.png");
     }
 }

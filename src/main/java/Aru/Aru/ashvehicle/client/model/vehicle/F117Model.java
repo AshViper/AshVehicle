@@ -50,16 +50,16 @@ public class F117Model extends VehicleModel<F117Entity> {
 
     @Override
     public ResourceLocation getModelResource(F117Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/f-117.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/f-117.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(F117Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/f-117.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/f-117.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(F117Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/f-117.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/f-117.animation.json");
     }
 }

@@ -10,9 +10,12 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.BlockGetter;
 import org.joml.Matrix4d;
 import org.joml.Vector4d;
@@ -45,10 +48,14 @@ public abstract class CameraMixin {
 
         ItemStack stack = player.getMainHandItem();
         if (!stack.is(ModItems.MONITOR.get())) return;
-        if (!stack.getOrCreateTag().getBoolean("Using")) return;
-        if (!stack.getOrCreateTag().getBoolean("Linked")) return;
+        // if (!stack.getOrCreateTag().getBoolean("Using")) return;
+        // if (!stack.getOrCreateTag().getBoolean("Linked")) return;
+        CompoundTag monitorTag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+        if (!monitorTag.getBoolean("Using")) return;
+        if (!monitorTag.getBoolean("Linked")) return;
 
-        String droneUUID = stack.getOrCreateTag().getString(Monitor.LINKED_DRONE);
+        // String droneUUID = stack.getOrCreateTag().getString(Monitor.LINKED_DRONE);
+        String droneUUID = monitorTag.getString(Monitor.LINKED_DRONE);
         RemoteDroneEntity drone = DroneFindUtil.findRemoteDrone(player.level(), droneUUID);
         
         if (drone == null) return;

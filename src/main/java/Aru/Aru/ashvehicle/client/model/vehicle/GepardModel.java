@@ -39,16 +39,16 @@ public class GepardModel extends VehicleModel<GepardEntity> {
 
     @Override
     public ResourceLocation getModelResource(GepardEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/gepard-1a2.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/gepard-1a2.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(GepardEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/gepard-1a2.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/gepard-1a2.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(GepardEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/gepard-1a2.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/gepard-1a2.animation.json");
     }
 }

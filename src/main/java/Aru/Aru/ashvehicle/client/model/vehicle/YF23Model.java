@@ -53,16 +53,16 @@ public class YF23Model extends VehicleModel<YF23Entity> {
 
     @Override
     public ResourceLocation getModelResource(YF23Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/yf-23.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/yf-23.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(YF23Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/yf-23.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/yf-23.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(YF23Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/yf-23.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/yf-23.animation.json");
     }
 }

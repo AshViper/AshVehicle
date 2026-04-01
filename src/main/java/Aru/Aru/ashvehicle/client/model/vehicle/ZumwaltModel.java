@@ -17,16 +17,16 @@ public class ZumwaltModel extends VehicleModel<ZumwaltEntity> {
 
     @Override
     public ResourceLocation getModelResource(ZumwaltEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/zumwalt.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/zumwalt.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(ZumwaltEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/zumwalt.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/zumwalt.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(ZumwaltEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/zumwalt.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/zumwalt.animation.json");
     }
 }

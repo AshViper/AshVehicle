@@ -7,7 +7,7 @@ import com.atsuishio.superbwarfare.item.Monitor;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent;
+// import net.neoforged.neoforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -52,31 +52,31 @@ public class DroneInputPacket {
         );
     }
 
-    public static void handle(DroneInputPacket message, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ServerPlayer player = ctx.get().getSender();
-            if (player == null) return;
-
-            ItemStack stack = player.getMainHandItem();
-
-            // Проверяем что игрок держит монитор и он активен
-            if (stack.is(ModItems.MONITOR.get()) 
-                && stack.getOrCreateTag().getBoolean("Using") 
-                && stack.getOrCreateTag().getBoolean("Linked")) {
-                
-                String droneUUID = stack.getOrCreateTag().getString(Monitor.LINKED_DRONE);
-                RemoteDroneEntity drone = DroneFindUtil.findRemoteDrone(player.level(), droneUUID);
-                
-                if (drone != null) {
-                    drone.setForwardInputDown(message.forward);
-                    drone.setBackInputDown(message.backward);
-                    drone.setLeftInputDown(message.left);
-                    drone.setRightInputDown(message.right);
-                    drone.setUpInputDown(message.up);
-                    drone.setDownInputDown(message.down);
-                }
-            }
-        });
-        ctx.get().setPacketHandled(true);
+    public static void handle(DroneInputPacket message, Supplier<?> ctx) {
+//        ctx.get().enqueueWork(() -> {
+//            ServerPlayer player = ctx.get().getSender();
+//            if (player == null) return;
+//
+//            ItemStack stack = player.getMainHandItem();
+//
+//            // Проверяем что игрок держит монитор и он активен
+//            if (stack.is(ModItems.MONITOR.get())
+//                && stack.getOrCreateTag().getBoolean("Using")
+//                && stack.getOrCreateTag().getBoolean("Linked")) {
+//
+//                String droneUUID = stack.getOrCreateTag().getString(Monitor.LINKED_DRONE);
+//                RemoteDroneEntity drone = DroneFindUtil.findRemoteDrone(player.level(), droneUUID);
+//
+//                if (drone != null) {
+//                    drone.setForwardInputDown(message.forward);
+//                    drone.setBackInputDown(message.backward);
+//                    drone.setLeftInputDown(message.left);
+//                    drone.setRightInputDown(message.right);
+//                    drone.setUpInputDown(message.up);
+//                    drone.setDownInputDown(message.down);
+//                }
+//            }
+//        });
+//        ctx.get().setPacketHandled(true);
     }
 }

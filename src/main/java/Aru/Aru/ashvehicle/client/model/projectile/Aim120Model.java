@@ -14,10 +14,10 @@ public class Aim120Model extends GeoModel<Aim120Entity> {
     }
 
     public ResourceLocation getModelResource(Aim120Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "geo/aim120.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/aim120.geo.json");
     }
 
     public ResourceLocation getTextureResource(Aim120Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "textures/entity/aim120.png");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/aim120.png");
     }
 }

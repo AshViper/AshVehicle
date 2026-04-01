@@ -56,16 +56,16 @@ public class F16Model extends VehicleModel<F16Entity> {
 
     @Override
     public ResourceLocation getModelResource(F16Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/f_16.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/f_16.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(F16Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/f_16.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/f_16.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(F16Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/f_16.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/f_16.animation.json");
     }
 }

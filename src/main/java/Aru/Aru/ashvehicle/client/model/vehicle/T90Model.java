@@ -39,16 +39,16 @@ public class T90Model extends VehicleModel<T90Entity> {
 
     @Override
     public ResourceLocation getModelResource(T90Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/t_90.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/t_90.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(T90Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/t_90.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/t_90.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(T90Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/t_90.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/t_90.animation.json");
     }
 }

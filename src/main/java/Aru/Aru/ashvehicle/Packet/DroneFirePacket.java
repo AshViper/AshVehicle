@@ -8,7 +8,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkEvent;
+// import net.neoforged.neoforge.network.NetworkEvent;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
@@ -35,7 +35,8 @@ public class DroneFirePacket {
     }
 
     public static void encode(DroneFirePacket message, FriendlyByteBuf buf) {
-        buf.writeOptional(Optional.ofNullable(message.targetEntityUUID), FriendlyByteBuf::writeUUID);
+        // buf.writeOptional(Optional.ofNullable(message.targetEntityUUID), FriendlyByteBuf::writeUUID);
+        buf.writeOptional(Optional.ofNullable(message.targetEntityUUID), (b, id) -> b.writeUUID(id));
         
         boolean hasTargetPos = message.targetPos != null;
         buf.writeBoolean(hasTargetPos);
@@ -45,7 +46,8 @@ public class DroneFirePacket {
     }
 
     public static DroneFirePacket decode(FriendlyByteBuf buf) {
-        UUID uuid = buf.readOptional(FriendlyByteBuf::readUUID).orElse(null);
+        // UUID uuid = buf.readOptional(FriendlyByteBuf::readUUID).orElse(null);
+        UUID uuid = buf.readOptional(b -> b.readUUID()).orElse(null);
         boolean hasTargetPos = buf.readBoolean();
         if (hasTargetPos) {
             return new DroneFirePacket(uuid, buf.readVector3f());
@@ -53,28 +55,28 @@ public class DroneFirePacket {
         return new DroneFirePacket(uuid);
     }
 
-    public static void handle(DroneFirePacket message, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ServerPlayer player = ctx.get().getSender();
-            if (player == null) return;
-
-            ItemStack stack = player.getMainHandItem();
-
-            // Проверяем что игрок держит монитор и он активен
-            if (stack.is(ModItems.MONITOR.get()) 
-                && stack.getOrCreateTag().getBoolean("Using") 
-                && stack.getOrCreateTag().getBoolean("Linked")) {
-                
-                String droneUUID = stack.getOrCreateTag().getString(Monitor.LINKED_DRONE);
-                RemoteDroneEntity drone = DroneFindUtil.findRemoteDrone(player.level(), droneUUID);
-                
-                if (drone != null) {
-                    // Вызываем стрельбу вехикла
-                    Vec3 targetVec = message.targetPos != null ? new Vec3(message.targetPos) : null;
-                    drone.vehicleShoot(player, message.targetEntityUUID, targetVec);
-                }
-            }
-        });
-        ctx.get().setPacketHandled(true);
+    public static void handle(DroneFirePacket message, Supplier<?> ctx) {
+//        ctx.get().enqueueWork(() -> {
+//            ServerPlayer player = ctx.get().getSender();
+//            if (player == null) return;
+//
+//            ItemStack stack = player.getMainHandItem();
+//
+//            // Проверяем что игрок держит монитор и он активен
+//            if (stack.is(ModItems.MONITOR.get())
+//                && stack.getOrCreateTag().getBoolean("Using")
+//                && stack.getOrCreateTag().getBoolean("Linked")) {
+//
+//                String droneUUID = stack.getOrCreateTag().getString(Monitor.LINKED_DRONE);
+//                RemoteDroneEntity drone = DroneFindUtil.findRemoteDrone(player.level(), droneUUID);
+//
+//                if (drone != null) {
+//                    // Вызываем стрельбу вехикла
+//                    Vec3 targetVec = message.targetPos != null ? new Vec3(message.targetPos) : null;
+//                    drone.vehicleShoot(player, message.targetEntityUUID, targetVec);
+//                }
+//            }
+//        });
+//        ctx.get().setPacketHandled(true);
     }
 }

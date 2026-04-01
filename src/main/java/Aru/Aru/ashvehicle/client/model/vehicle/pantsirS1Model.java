@@ -47,16 +47,16 @@ public class pantsirS1Model extends VehicleModel<pantsirS1Entity> {
 
     @Override
     public ResourceLocation getModelResource(pantsirS1Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/pa_pantsir.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/pa_pantsir.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(pantsirS1Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/pa_pantsir.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/pa_pantsir.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(pantsirS1Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/pa_pantsir.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/pa_pantsir.animation.json");
     }
 }

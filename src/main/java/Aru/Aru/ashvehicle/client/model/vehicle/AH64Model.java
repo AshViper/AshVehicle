@@ -44,16 +44,16 @@ public class AH64Model extends VehicleModel<AH64Entity> {
     }
     @Override
     public ResourceLocation getModelResource(AH64Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/ah-64.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/ah-64.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(AH64Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/ah-64.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/ah-64.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(AH64Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/ah-64.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/ah-64.animation.json");
     }
 }

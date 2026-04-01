@@ -7,15 +7,15 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import Aru.Aru.ashvehicle.AshVehicle;
 
 @SuppressWarnings("unused")
 public class ModTabs {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AshVehicle.MODID);
 
-    public static final RegistryObject<CreativeModeTab> BLOCKTANK_TAB = TABS.register("ash-tank",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCKTANK_TAB = TABS.register("ash-tank",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group.ashvehicle.ash-tank"))
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_TANK_ICON.get()))
@@ -32,7 +32,7 @@ public class ModTabs {
                     .build()
     );
 
-    public static final RegistryObject<CreativeModeTab> BLOCKSHIP_TAB = TABS.register("ash-ship",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCKSHIP_TAB = TABS.register("ash-ship",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group.ashvehicle.ash-ship"))
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_SHIP_ICON.get()))
@@ -43,7 +43,7 @@ public class ModTabs {
                     .build()
     );
 
-    public static final RegistryObject<CreativeModeTab> BLOCKAIR_TAB = TABS.register("ash-air",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCKAIR_TAB = TABS.register("ash-air",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group.ashvehicle.ash-air"))
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_AIR_ICON.get()))
@@ -80,7 +80,7 @@ public class ModTabs {
                     })
                     .build()
     );
-    public static final RegistryObject<CreativeModeTab> ITEMS_TAB = TABS.register("ash-item",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ITEMS_TAB = TABS.register("ash-item",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group.ashvehicle.ash-item"))
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_ITEM_ICON.get()))

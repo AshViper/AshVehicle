@@ -14,10 +14,10 @@ public class Cbu87Model extends GeoModel<Cbu87Entity> {
     }
 
     public ResourceLocation getModelResource(Cbu87Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "geo/cbu87.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/cbu87.geo.json");
     }
 
     public ResourceLocation getTextureResource(Cbu87Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "textures/entity/cbu87.png");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/cbu87.png");
     }
 }

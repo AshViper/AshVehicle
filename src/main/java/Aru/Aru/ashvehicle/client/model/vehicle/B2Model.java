@@ -30,16 +30,16 @@ public class B2Model extends VehicleModel<B2Entity> {
 
     @Override
     public ResourceLocation getModelResource(B2Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/b-2.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/b-2.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(B2Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/b-2.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/b-2.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(B2Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/b-2.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/b-2.animation.json");
     }
 }

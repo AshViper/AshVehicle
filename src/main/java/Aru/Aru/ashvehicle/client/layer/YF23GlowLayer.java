@@ -11,7 +11,7 @@ import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 public class YF23GlowLayer extends GeoRenderLayer<YF23Entity> {
-    private static final ResourceLocation GLOW_TEXTURE = new ResourceLocation("ashvehicle", "textures/entity/yf-23_glow.png");
+    private static final ResourceLocation GLOW_TEXTURE = ResourceLocation.parse("ashvehicle:textures/entity/yf-23_glow.png");
 
     public YF23GlowLayer(GeoRenderer<YF23Entity> renderer) {super(renderer);}
 
@@ -26,6 +26,12 @@ public class YF23GlowLayer extends GeoRenderLayer<YF23Entity> {
         // 🔸 VertexConsumer を取得
         VertexConsumer glowBuffer = bufferSource.getBuffer(glowRenderType);
 
+        float red = 1.0f;
+        float green = 1.0f;
+        float blue = 1.0f;
+        float alpha = 1.0f;
+        int color = net.minecraft.util.FastColor.ARGB32.color((int)(alpha * 255), (int)(red * 255), (int)(green * 255), (int)(blue * 255));
+
         // 🔸 モデル描画（GeckoLib の正しい呼び出し方法）
         this.getRenderer().reRender(
                 bakedModel,
@@ -37,7 +43,7 @@ public class YF23GlowLayer extends GeoRenderLayer<YF23Entity> {
                 partialTick,
                 0xF000F0,         // packedLight
                 packedOverlay,
-                1.0f, 1.0f, 1.0f, 1.0f // RGBA
+                color
         );
     }
 }

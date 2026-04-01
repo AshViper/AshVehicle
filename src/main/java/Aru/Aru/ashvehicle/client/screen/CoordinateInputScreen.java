@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.Collections;
 import java.util.List;
@@ -109,9 +109,11 @@ public class CoordinateInputScreen extends Screen {
         terrainReady = true;
     }
 
+    // @Override
+    // public boolean mouseScrolled(double mx, double my, double delta) {
     @Override
-    public boolean mouseScrolled(double mx, double my, double delta) {
-        radarRange -= delta * RANGE_STEP;
+    public boolean mouseScrolled(double mx, double my, double scrollX, double scrollY) {
+        radarRange -= scrollY * RANGE_STEP;
         radarRange = Math.max(MIN_RANGE, Math.min(MAX_RANGE, radarRange));
 
         if (Math.abs(radarRange - lastTerrainRange) > 50) {
@@ -155,7 +157,7 @@ public class CoordinateInputScreen extends Screen {
         if (scanAngle >= 360) scanAngle -= 360;
 
         // Background
-        renderBackground(gui);
+        super.renderBackground(gui, mx, my, partial);
         gui.fill(0, 0, width, height, COL_BG);
 
         drawTitle(gui);
@@ -520,9 +522,7 @@ public class CoordinateInputScreen extends Screen {
     private void fire() {
         if (manualTarget == null) return;
 
-        ModNetwork.INSTANCE.send(PacketDistributor.SERVER.noArg(),
-                new SetMissileTargetPacket(vehicle.getId(),
-                        manualTarget.x, manualTarget.y, manualTarget.z));
+        // PacketDistributor.sendToServer(new SetMissileTargetPacket(vehicle.getId(), manualTarget.x, manualTarget.y, manualTarget.z));
         targetEntity = null;
     }
 

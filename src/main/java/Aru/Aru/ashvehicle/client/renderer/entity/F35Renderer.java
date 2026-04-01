@@ -21,7 +21,7 @@ public class F35Renderer extends VehicleRenderer<F35Entity> {
         scaleWidth = scale;
     }
 
-    @Override
+    // @Override
     public void renderRecursively(PoseStack poseStack, F35Entity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                   float partialTick, int packedLight, int packedOverlay,
@@ -51,7 +51,8 @@ public class F35Renderer extends VehicleRenderer<F35Entity> {
             bone.setRotZ(bayRotRad);
         }
 
+        int color = net.minecraft.util.FastColor.ARGB32.color((int) (alpha * 255), (int) (red * 255), (int) (green * 255), (int) (blue * 255));
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+            partialTick, packedLight, packedOverlay, color);
     }
 }

@@ -39,16 +39,16 @@ public class KV2Model extends VehicleModel<KV2Entity> {
 
     @Override
     public ResourceLocation getModelResource(KV2Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/kv-2.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/kv-2.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(KV2Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/kv-2.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/kv-2.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(KV2Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/kv-2.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/kv-2.animation.json");
     }
 }

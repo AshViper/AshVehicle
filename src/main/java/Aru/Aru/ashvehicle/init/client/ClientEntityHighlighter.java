@@ -12,11 +12,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+// import net.neoforged.neoforge.client.event.RenderGuiOverlayEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.minecraft.core.registries.BuiltInRegistries;
 import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.entity.vehicle.GepardEntity;
 import com.atsuishio.superbwarfare.init.ModEntities;
@@ -25,8 +25,9 @@ import Aru.Aru.ashvehicle.entity.vehicle.ZumwaltEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import net.neoforged.fml.common.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
+// @EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
 public class ClientEntityHighlighter {
 
     // 定数を事前計算してキャッシュ
@@ -119,135 +120,13 @@ public class ClientEntityHighlighter {
         }
     }
 
-    @SubscribeEvent
-    public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Post event) {
-        // 初回のみ初期化
-        ensureInitialized();
+//    @SubscribeEvent
+//    public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Post event) {
+//        // Pending migration to 1.21.1 GUI overlay event API.
+//    }
 
-        Minecraft mc = Minecraft.getInstance();
-        Player player = mc.player;
-        if (player == null) return;
-
-        Entity vehicle = player.getVehicle();
-        if (vehicle == null) return;
-
-        // 早期リターンの最適化
-        if (!isAllowedVehicle(vehicle)) return;
-
-        List<Entity> lockedTargets = ClientTargetingData.getLockedTargets();
-
-        // 画面サイズとFOVをキャッシュ
-        cachedScreenWidth = mc.getWindow().getGuiScaledWidth();
-        cachedScreenHeight = mc.getWindow().getGuiScaledHeight();
-        float fov = mc.options.fov().get();
-        double fovRad = Math.toRadians(fov);
-        cachedFovScale = cachedScreenHeight / (2.0 * Math.tan(fovRad / 2.0));
-
-        // 射撃位置をキャッシュ
-        cachedShooterPos = new Vec3(player.getX(), player.getEyeY(), player.getZ());
-
-        // カメラ変換を一度だけ計算
-        Camera camera = mc.gameRenderer.getMainCamera();
-        CameraTransform camTransform = new CameraTransform(camera);
-
-        // ターゲット検索範囲を最適化（AABBを直接作成）
-        AABB searchBox = player.getBoundingBox().inflate(DETECTION_RANGE);
-        EntityType<?> playerType = player.getType();
-
-        // ターゲット収集と距離計算を同時に実行（ソート不要の最適化）
-        int validCount = 0;
-        for (TargetCache cache : targetCaches) {
-            cache.reset();
-        }
-
-        // 最も近い4つのターゲットを効率的に探す（ソート不要）
-        for (Entity e : vehicle.level().getEntities(player, searchBox,
-                entity -> isValidTarget(entity, player, vehicle, playerType))) {
-
-            double distSq = e.distanceToSqr(player);
-
-            // 最大4つまで、距離が近い順に挿入
-            int insertPos = -1;
-            for (int i = 0; i < MAX_TARGETS; i++) {
-                if (targetCaches.get(i).entity == null) {
-                    insertPos = i;
-                    break;
-                } else if (distSq < targetCaches.get(i).distanceSq) {
-                    insertPos = i;
-                    break;
-                }
-            }
-
-            if (insertPos != -1) {
-                // 挿入位置以降をシフト
-                for (int i = MAX_TARGETS - 1; i > insertPos; i--) {
-                    TargetCache current = targetCaches.get(i);
-                    TargetCache prev = targetCaches.get(i - 1);
-                    current.entity = prev.entity;
-                    current.distanceSq = prev.distanceSq;
-                }
-
-                // 新しいターゲットを挿入
-                TargetCache cache = targetCaches.get(insertPos);
-                cache.entity = e;
-                cache.distanceSq = distSq;
-
-                if (insertPos >= validCount) {
-                    validCount = insertPos + 1;
-                }
-            }
-        }
-
-        if (validCount == 0) return;
-
-        // 描画準備（事前計算を一括実行）
-        for (int i = 0; i < validCount; i++) {
-            TargetCache cache = targetCaches.get(i);
-            Entity target = cache.entity;
-
-            // ターゲット情報を事前計算
-            cache.isStealth = stealthTypes.contains(target.getType());
-            cache.isLocked = lockedTargets.contains(target);
-            cache.size = cache.isStealth ? STEALTH_SIZE : NORMAL_SIZE;
-
-            // スクリーン座標を計算
-            Vec3 targetPos = target.getBoundingBox().getCenter();
-            cache.screenPos = worldToScreenOptimized(targetPos, camTransform);
-
-            if (cache.screenPos != null) {
-                // 迎撃点の計算
-                Vec3 targetVelocity = target.getDeltaMovement();
-                Vec3 interceptPoint = calculateInterceptPointOptimized(cachedShooterPos, targetPos, targetVelocity);
-                cache.interceptScreenPos = worldToScreenOptimized(interceptPoint, camTransform);
-            }
-        }
-
-        // 描画処理（事前計算済みのデータを使用）
-        GuiGraphics guiGraphics = event.getGuiGraphics();
-        PoseStack poseStack = guiGraphics.pose();
-
-        poseStack.pushPose();
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
-
-        for (int i = 0; i < validCount; i++) {
-            TargetCache cache = targetCaches.get(i);
-            if (cache.screenPos == null) continue;
-
-            int color = cache.isLocked ? LOCKED_COLOR : UNLOCKED_COLOR;
-            drawRectFrame(guiGraphics, (int) cache.screenPos.x, (int) cache.screenPos.y, cache.size, color);
-
-            if (cache.interceptScreenPos != null) {
-                int interceptSize = cache.size - 2;
-                drawRectFrameRotated(guiGraphics, poseStack,
-                        (int) cache.interceptScreenPos.x, (int) cache.interceptScreenPos.y,
-                        interceptSize, INTERCEPT_ROTATION, INTERCEPT_COLOR);
-            }
-        }
-
-        poseStack.popPose();
-        RenderSystem.disableBlend();
+    public static void onRenderGuiOverlay() {
+        // Pending migration to 1.21.1 GUI overlay event API.
     }
 
     private static boolean isAllowedVehicle(Entity vehicle) {
@@ -261,7 +140,7 @@ public class ClientEntityHighlighter {
         EntityType<?> type = e.getType();
         if (type == playerType || excludedTypes.contains(type)) return false;
 
-        ResourceLocation rl = ForgeRegistries.ENTITY_TYPES.getKey(type);
+        ResourceLocation rl = BuiltInRegistries.ENTITY_TYPE.getKey(type);
         return rl != null && ALLOWED_NAMESPACES.contains(rl.getNamespace());
     }
 

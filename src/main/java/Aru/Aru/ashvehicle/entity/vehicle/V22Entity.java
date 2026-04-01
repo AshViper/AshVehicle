@@ -21,8 +21,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Math;
 
 public class V22Entity extends GeoVehicleEntity {
@@ -44,10 +44,10 @@ public class V22Entity extends GeoVehicleEntity {
     EngineInfo.Aircraft aircraft = DataLoader.GSON.fromJson(engineInfo, EngineInfo.Aircraft.class);
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(VTOL_ROT, 0.0F);
-        this.entityData.define(WEAPON_BAY_ROT, 0.0F);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VTOL_ROT, 0.0F);
+        builder.define(WEAPON_BAY_ROT, 0.0F);
     }
 
     public void setPodRot(float value) {

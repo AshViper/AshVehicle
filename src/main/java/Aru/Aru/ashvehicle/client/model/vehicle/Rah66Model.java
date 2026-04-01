@@ -45,16 +45,16 @@ public class Rah66Model extends VehicleModel<Rah66Entity> {
 
     @Override
     public ResourceLocation getModelResource(Rah66Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/rah_66.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/rah_66.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(Rah66Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/rah_66.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/rah_66.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(Rah66Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/rah_66.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/rah_66.animation.json");
     }
 }

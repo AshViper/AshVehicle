@@ -29,16 +29,16 @@ public class UH60Model extends VehicleModel<UH60Entity> {
 
     @Override
     public ResourceLocation getModelResource(UH60Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/uh_60.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/uh_60.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(UH60Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/uh_60.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/uh_60.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(UH60Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/uh_60.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/uh_60.animation.json");
     }
 }

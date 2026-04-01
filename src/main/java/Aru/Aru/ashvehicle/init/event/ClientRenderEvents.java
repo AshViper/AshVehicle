@@ -4,20 +4,17 @@ import Aru.Aru.ashvehicle.AshVehicle;
 import Aru.Aru.ashvehicle.client.renderer.ThermalShaderManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
-import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.client.event.ViewportEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.event.ViewportEvent;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(
-        modid = AshVehicle.MODID,
-        value = Dist.CLIENT,
-        bus = Mod.EventBusSubscriber.Bus.FORGE
-)
+// Notice how we use EventBusSubscriber directly now, with no "Mod." prefix!
+@EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
 public final class ClientRenderEvents {
 
     // Nuclear explosion red sky effect

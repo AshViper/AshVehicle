@@ -11,8 +11,8 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.PostChain;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
@@ -29,7 +29,7 @@ import java.io.IOException;
 public class ThermalEffectRenderer {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(ThermalEffectRenderer.class);
-    private static final ResourceLocation THERMAL_SHADER = new ResourceLocation(AshVehicle.MODID, "shaders/post/thermal.json");
+    private static final ResourceLocation THERMAL_SHADER = ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "shaders/post/thermal.json");
     
     @Nullable
     private static RenderTarget entityMaskTarget = null;
@@ -125,7 +125,7 @@ public class ThermalEffectRenderer {
             RenderSystem.disableBlend();
             RenderSystem.disableDepthTest();
             RenderSystem.resetTextureMatrix();
-            grayscaleShader.process(mc.getFrameTime());
+            grayscaleShader.process(mc.getTimer().getGameTimeDeltaTicks());
             mainTarget.bindWrite(false);
         }
         
@@ -166,19 +166,21 @@ public class ThermalEffectRenderer {
         RenderSystem.setProjectionMatrix(matrix, VertexSorting.ORTHOGRAPHIC_Z);
         
         Matrix4f modelView = new Matrix4f().translation(0, 0, -2000);
-        RenderSystem.getModelViewStack().pushPose();
-        RenderSystem.getModelViewStack().last().pose().set(modelView);
+        // RenderSystem.getModelViewStack().pushPose();
+        // RenderSystem.getModelViewStack().last().pose().set(modelView);
+        RenderSystem.getModelViewStack().pushMatrix();
+        RenderSystem.getModelViewStack().identity().translate(0, 0, -2000);
         RenderSystem.applyModelViewMatrix();
         
-        BufferBuilder buffer = Tesselator.getInstance().getBuilder();
-        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        buffer.vertex(0, height, 0).uv(0, 0).endVertex();
-        buffer.vertex(width, height, 0).uv(1, 0).endVertex();
-        buffer.vertex(width, 0, 0).uv(1, 1).endVertex();
-        buffer.vertex(0, 0, 0).uv(0, 1).endVertex();
-        BufferUploader.drawWithShader(buffer.end());
+        BufferBuilder buffer = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        buffer.addVertex(0, height, 0).setUv(0, 0);
+        buffer.addVertex(width, height, 0).setUv(1, 0);
+        buffer.addVertex(width, 0, 0).setUv(1, 1);
+        buffer.addVertex(0, 0, 0).setUv(0, 1);
+        BufferUploader.drawWithShader(buffer.buildOrThrow());
         
-        RenderSystem.getModelViewStack().popPose();
+        // RenderSystem.getModelViewStack().popPose();
+        RenderSystem.getModelViewStack().popMatrix();
         RenderSystem.applyModelViewMatrix();
         
         RenderSystem.depthMask(true);

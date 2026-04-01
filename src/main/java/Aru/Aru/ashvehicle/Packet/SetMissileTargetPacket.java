@@ -6,7 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkEvent;
+// import net.neoforged.neoforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -32,17 +32,17 @@ public class SetMissileTargetPacket {
         return new SetMissileTargetPacket(buf.readInt(), buf.readDouble(), buf.readDouble(), buf.readDouble());
     }
 
-    public static void handle(SetMissileTargetPacket msg, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ServerPlayer player = ctx.get().getSender();
-            if (player == null) return;
-
-            Level level = player.level();
-            Entity entity = level.getEntity(msg.entityId);
-            if (entity instanceof SapsanEntity sapsan) {
-                sapsan.shootMissileTo(player, new Vec3(msg.x, msg.y, msg.z));
-            }
-        });
-        ctx.get().setPacketHandled(true);
+    public static void handle(SetMissileTargetPacket msg, Supplier<?> ctx) {
+//        ctx.get().enqueueWork(() -> {
+//            ServerPlayer player = ctx.get().getSender();
+//            if (player == null) return;
+//
+//            Level level = player.level();
+//            Entity entity = level.getEntity(msg.entityId);
+//            if (entity instanceof SapsanEntity sapsan) {
+//                sapsan.shootMissileTo(player, new Vec3(msg.x, msg.y, msg.z));
+//            }
+//        });
+//        ctx.get().setPacketHandled(true);
     }
 }

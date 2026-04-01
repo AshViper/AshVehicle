@@ -37,10 +37,10 @@ public class SapsanEntity extends GeoVehicleEntity implements CoordinateTargetVe
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(POD_ROT, 0.0F);
-        this.entityData.define(POD_TOGGLED, false);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(POD_ROT, 0.0F);
+        builder.define(POD_TOGGLED, false);
     }
 
     public void setPodRot(float value) {

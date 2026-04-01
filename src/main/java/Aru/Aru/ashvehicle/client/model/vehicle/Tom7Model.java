@@ -17,16 +17,16 @@ public class Tom7Model extends VehicleModel<Tom7Entity> {
 
     @Override
     public ResourceLocation getModelResource(Tom7Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/tom_7.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/tom_7.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(Tom7Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/tom_7.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/tom_7.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(Tom7Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/tom_7.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/tom_7.animation.json");
     }
 }

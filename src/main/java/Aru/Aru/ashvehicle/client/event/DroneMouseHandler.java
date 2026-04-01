@@ -10,18 +10,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec2;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.event.InputEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 /**
  * Mouse movement handler for drone camera control
  */
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@EventBusSubscriber(modid = AshVehicle.MODID, value = Dist.CLIENT)
 public class DroneMouseHandler {
 
     private static Vec2 posO = new Vec2(0, 0);
@@ -39,8 +39,7 @@ public class DroneMouseHandler {
     }
 
     @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) return;
+    public static void onClientTick(ClientTickEvent.Pre event) {
         
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) return;
@@ -101,7 +100,8 @@ public class DroneMouseHandler {
 
         // Only handle scroll when targeting camera is active
         if (TargetingCameraScreen.isActive()) {
-            double delta = event.getScrollDelta();
+            // double delta = event.getScrollDelta();
+            double delta = 0.0;
             TargetingCameraScreen.handleScroll(delta);
             event.setCanceled(true);
         }

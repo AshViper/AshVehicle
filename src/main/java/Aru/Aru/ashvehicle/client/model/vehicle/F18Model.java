@@ -62,16 +62,16 @@ public class F18Model extends VehicleModel<F18Entity> {
 
     @Override
     public ResourceLocation getModelResource(F18Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/f-18.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/f-18.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(F18Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/f-18.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/f-18.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(F18Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/f-18.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/f-18.animation.json");
     }
 }

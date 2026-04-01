@@ -6,6 +6,7 @@ import com.atsuishio.superbwarfare.item.Monitor;
 import com.atsuishio.superbwarfare.tools.EntityFindUtil;
 import com.atsuishio.superbwarfare.tools.VectorTool;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -21,6 +22,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -49,14 +51,14 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(LINKED, false);
-        this.entityData.define(CONTROLLER, "");
-        this.entityData.define(GEAR_DOWN, true);
-        this.entityData.define(OPERATOR_X, 0f);
-        this.entityData.define(OPERATOR_Y, 0f);
-        this.entityData.define(OPERATOR_Z, 0f);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(LINKED, false);
+        builder.define(CONTROLLER, "");
+        builder.define(GEAR_DOWN, true);
+        builder.define(OPERATOR_X, 0f);
+        builder.define(OPERATOR_Y, 0f);
+        builder.define(OPERATOR_Z, 0f);
     }
 
     @Override
@@ -85,10 +87,14 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
             Player controller = getController();
             if (controller != null) {
                 ItemStack stack = controller.getMainHandItem();
+                CompoundTag monitorTag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
                 boolean isUsing = stack.is(ModItems.MONITOR.get()) 
-                    && stack.getOrCreateTag().getBoolean("Using")
-                    && stack.getOrCreateTag().getBoolean("Linked")
-                    && stack.getOrCreateTag().getString(Monitor.LINKED_DRONE).equals(this.getStringUUID());
+                    // && stack.getOrCreateTag().getBoolean("Using")
+                    // && stack.getOrCreateTag().getBoolean("Linked")
+                    // && stack.getOrCreateTag().getString(Monitor.LINKED_DRONE).equals(this.getStringUUID());
+                    && monitorTag.getBoolean("Using")
+                    && monitorTag.getBoolean("Linked")
+                    && monitorTag.getString(Monitor.LINKED_DRONE).equals(this.getStringUUID());
                 
                 // Mount player in drone when using monitor
                 if (isUsing && !this.hasPassenger(controller)) {
@@ -123,7 +129,10 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
         // Reset monitor Using state
         ItemStack stack = controller.getMainHandItem();
         if (stack.is(ModItems.MONITOR.get())) {
-            stack.getOrCreateTag().putBoolean("Using", false);
+            // stack.getOrCreateTag().putBoolean("Using", false);
+            CompoundTag monitorTag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+            monitorTag.putBoolean("Using", false);
+            stack.set(DataComponents.CUSTOM_DATA, CustomData.of(monitorTag));
         }
     }
 
@@ -182,7 +191,9 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
             return InteractionResult.sidedSuccess(this.level().isClientSide());
         }
         
-        if (stack.getOrCreateTag().getBoolean("Linked")) {
+        // if (stack.getOrCreateTag().getBoolean("Linked")) {
+        CompoundTag monitorTag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+        if (monitorTag.getBoolean("Linked")) {
             player.displayClientMessage(Component.translatable("tips.superbwarfare.monitor.already_linked")
                 .withStyle(ChatFormatting.RED), true);
             return InteractionResult.sidedSuccess(this.level().isClientSide());
@@ -190,7 +201,10 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
 
         this.entityData.set(LINKED, true);
         this.entityData.set(CONTROLLER, player.getStringUUID());
-        Monitor.link(stack, this.getStringUUID());
+        // Monitor.link(stack, this.getStringUUID());
+        monitorTag.putBoolean("Linked", true);
+        monitorTag.putString(Monitor.LINKED_DRONE, this.getStringUUID());
+        stack.set(DataComponents.CUSTOM_DATA, CustomData.of(monitorTag));
         
         player.displayClientMessage(Component.translatable("tips.superbwarfare.monitor.linked")
             .withStyle(ChatFormatting.GREEN), true);
@@ -226,7 +240,12 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
         
         this.entityData.set(CONTROLLER, "");
         this.entityData.set(LINKED, false);
-        Monitor.disLink(stack, player);
+        // Monitor.disLink(stack, player);
+        CompoundTag monitorTag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+        monitorTag.putBoolean("Linked", false);
+        monitorTag.putBoolean("Using", false);
+        monitorTag.putString(Monitor.LINKED_DRONE, "");
+        stack.set(DataComponents.CUSTOM_DATA, CustomData.of(monitorTag));
         
         player.displayClientMessage(Component.translatable("tips.superbwarfare.monitor.unlinked")
             .withStyle(ChatFormatting.GREEN), true);
@@ -269,9 +288,12 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
         boolean isControlling = false;
         if (controller != null) {
             ItemStack stack = controller.getMainHandItem();
+            CompoundTag monitorTag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
             isControlling = stack.is(ModItems.MONITOR.get()) 
-                && stack.getOrCreateTag().getBoolean("Using")
-                && stack.getOrCreateTag().getBoolean("Linked");
+                // && stack.getOrCreateTag().getBoolean("Using")
+                // && stack.getOrCreateTag().getBoolean("Linked");
+                && monitorTag.getBoolean("Using")
+                && monitorTag.getBoolean("Linked");
         }
 
         if (this.getHealth() > 0.1f * this.getMaxHealth()) {
@@ -413,8 +435,13 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
             // Сбрасываем монитор
             ItemStack stack = controller.getMainHandItem();
             if (stack.is(ModItems.MONITOR.get())) {
-                stack.getOrCreateTag().putBoolean("Using", false);
-                Monitor.disLink(stack, controller);
+                // stack.getOrCreateTag().putBoolean("Using", false);
+                // Monitor.disLink(stack, controller);
+                CompoundTag monitorTag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+                monitorTag.putBoolean("Using", false);
+                monitorTag.putBoolean("Linked", false);
+                monitorTag.putString(Monitor.LINKED_DRONE, "");
+                stack.set(DataComponents.CUSTOM_DATA, CustomData.of(monitorTag));
             }
         }
         super.destroy();

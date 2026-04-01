@@ -29,11 +29,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Agm158Entity extends MissileProjectile implements GeoEntity {
@@ -69,7 +69,7 @@ public class Agm158Entity extends MissileProjectile implements GeoEntity {
                     if (!living.level().isClientSide() && living instanceof ServerPlayer) {
                         ServerPlayer player1 = (ServerPlayer)living;
                         living.level().playSound((Player)null, living.blockPosition(), (SoundEvent)ModSounds.INDICATION.get(), SoundSource.VOICE, 1.0F, 1.0F);
-                        NetworkRegistry.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> player1), new ClientIndicatorMessage(0, 5));
+                        PacketDistributor.sendToPlayer(player1, new ClientIndicatorMessage(0, 5));
                     }
                 }
 
@@ -241,9 +241,9 @@ public class Agm158Entity extends MissileProjectile implements GeoEntity {
         this.destroyBlock();
     }
 
-    public float getGravity() {
+    /*public float getGravity() {
         return this.tickCount < 8 ? 0.15F : super.getGravity();
-    }
+    }*/
 
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {}
 

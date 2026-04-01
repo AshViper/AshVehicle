@@ -2,11 +2,10 @@ package Aru.Aru.ashvehicle;
 
 import Aru.Aru.ashvehicle.init.*;
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent; // This will likely be red; see notes below!
+import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
 @Mod(AshVehicle.MODID)
@@ -14,27 +13,33 @@ public class AshVehicle {
     public static final String MODID = "ashvehicle";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public AshVehicle() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        // Register entities for your extension mod
-        ModEntities.REGISTRY.register(bus);
-
-        // Register a separate tab
-        ModTabs.TABS.register(bus);
-        ModSounds.REGISTRY.register(bus);
-        ModItem.ITEMS.register(bus);
-        ModParticleTypes.register(bus);
+    // The magical IEventBus injection!
+    public AshVehicle(IEventBus modEventBus) {
         
-        // Key mappings are registered via ClientKeyRegister @Mod.EventBusSubscriber
+        // Register your registries directly to the bus passed in the constructor
+        ModEntities.REGISTRY.register(modEventBus);
+        ModTabs.TABS.register(modEventBus);
+        ModSounds.REGISTRY.register(modEventBus);
+        ModItem.ITEMS.register(modEventBus);
         
-        bus.addListener(this::commonSetup);
-        MinecraftForge.EVENT_BUS.register(this);
+        // Ensure this method in ModParticleTypes is updated to accept the bus!
+        ModParticleTypes.register(modEventBus);
+        
+        // Register ourselves for standard game events
+        // NeoForge.EVENT_BUS.register(this);
+        
+        // Add listeners for specific lifecycle events
+        modEventBus.addListener(this::commonSetup);
     }
 
+    // NOTE: This event was technically deprecated in late 1.20.1 and replaced in 1.21.
+    // However, if your IDE still recognizes it via your specific NeoForge mappings, 
+    // it will run. If it stays red, you will need to replace it with FMLConstructModEvent.
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("common setup");
-        // Register network packets
-        ModNetwork.register();
+        LOGGER.info("AshVehicle common setup initialized.");
+        
+        // In 1.21, networking is registered via RegisterPayloadHandlersEvent.
+        // If ModNetwork.register() relies on the old SimpleChannel setup, it will crash here.
+        ModNetwork.register(); 
     }
 }

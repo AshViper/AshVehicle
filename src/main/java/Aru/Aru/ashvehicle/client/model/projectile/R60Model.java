@@ -14,10 +14,10 @@ public class R60Model extends GeoModel<R60Entity> {
     }
 
     public ResourceLocation getModelResource(R60Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "geo/r60.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "geo/r60.geo.json");
     }
 
     public ResourceLocation getTextureResource(R60Entity entity) {
-        return new ResourceLocation(AshVehicle.MODID, "textures/entity/r60.png");
+        return ResourceLocation.fromNamespaceAndPath(AshVehicle.MODID, "textures/entity/r60.png");
     }
 }

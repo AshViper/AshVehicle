@@ -39,16 +39,16 @@ public class TosModel extends VehicleModel<TosEntity> {
 
     @Override
     public ResourceLocation getModelResource(TosEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/tos.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/tos.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(TosEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/tos.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/tos.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(TosEntity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/tos.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/tos.animation.json");
     }
 }

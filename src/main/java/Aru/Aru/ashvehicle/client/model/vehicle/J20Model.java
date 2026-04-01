@@ -53,16 +53,16 @@ public class J20Model extends VehicleModel<J20Entity> {
 
     @Override
     public ResourceLocation getModelResource(J20Entity object) {
-        return new ResourceLocation("ashvehicle", "geo/j-20.geo.json");
+        return ResourceLocation.parse("ashvehicle:geo/j-20.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(J20Entity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/j-20.png");
+        return ResourceLocation.parse("ashvehicle:textures/entity/j-20.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(J20Entity animatable) {
-        return new ResourceLocation("ashvehicle", "animations/j-20.animation.json");
+        return ResourceLocation.parse("ashvehicle:animations/j-20.animation.json");
     }
 }

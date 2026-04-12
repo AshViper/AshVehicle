@@ -16,7 +16,7 @@ public class F35Renderer extends VehicleRenderer<F35Entity> {
     public F35Renderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new F35Model());
         this.shadowRadius = 0.5F;
-        float scale = 1.1f;
+        float scale = 1.3f;
         scaleHeight = scale;
         scaleWidth = scale;
     }

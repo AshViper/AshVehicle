@@ -9,7 +9,7 @@ public class F18Renderer extends VehicleRenderer<F18Entity> {
     public F18Renderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new F18Model());
         this.shadowRadius = 0.5F;
-        float scale = 1.2f;
+        float scale = 1.0f;
         scaleHeight = scale;
         scaleWidth = scale;
     }

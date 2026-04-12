@@ -9,7 +9,7 @@ public class SU34Renderer extends VehicleRenderer<SU34Entity> {
     public SU34Renderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new SU34Model());
         this.shadowRadius = 0.5F;
-        float scale = 1.5f;
+        float scale = 1.0f;
         scaleHeight = scale;
         scaleWidth = scale;
     }

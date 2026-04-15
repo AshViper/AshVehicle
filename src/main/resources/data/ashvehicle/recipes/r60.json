@@ -3,13 +3,10 @@
     "category":  "misc",
     "inputs":
     [
-      "3 superbwarfare:steel_ingot",
+      "2 superbwarfare:steel_ingot",
       "superbwarfare:seeker",
-      "2 superbwarfare:motor",
-      "2 superbwarfare:grain",
-      "superbwarfare:missile_engine",
-      "minecraft:comparator",
-      "4 minecraft:tnt"
+      "1 superbwarfare:grain",
+      "superbwarfare:missile_engine"
     ],
     "result":{"item":"ashvehicle:r60item"}
 }

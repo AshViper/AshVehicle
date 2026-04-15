@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "ashvehicle.refmap.json",
   "mixins": [
+    "MixinOBBInfo",
+    "VehicleEntityMixin"
   ],
   "client": [
     "LevelRendererMixin"

@@ -5,8 +5,7 @@
     [
       "2 superbwarfare:steel_ingot",
       "2 superbwarfare:grain",
-      "superbwarfare:fusee",
-      "4 minecraft:tnt"
+      "superbwarfare:fusee"
     ],
     "result":{"item":"ashvehicle:cbu87item"}
 }

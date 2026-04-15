@@ -3,12 +3,11 @@
     "category":  "misc",
     "inputs":
     [
-      "256 superbwarfare:steel_ingot",
-      "8 superbwarfare:cemented_carbide_block",
-      "10 superbwarfare:grain",
+      "32 superbwarfare:steel_ingot",
+      "4 superbwarfare:cemented_carbide_block",
+      "5 superbwarfare:grain",
       "superbwarfare:fusee",
-      "32 minecraft:tnt",
-      "16 minecraft:netherite_block",
+      "8 minecraft:tnt",
       "minecraft:nether_star"
     ],
     "result":{"item":"ashvehicle:nuclearbombitem"}

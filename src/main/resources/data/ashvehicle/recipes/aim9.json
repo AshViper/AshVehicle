@@ -5,11 +5,8 @@
     [
       "2 superbwarfare:steel_ingot",
       "superbwarfare:seeker",
-      "1 superbwarfare:motor",
       "1 superbwarfare:grain",
-      "superbwarfare:missile_engine",
-      "minecraft:comparator",
-      "1 minecraft:tnt"
+      "superbwarfare:missile_engine"
     ],
     "result":{"item":"ashvehicle:aim9item"}
 }

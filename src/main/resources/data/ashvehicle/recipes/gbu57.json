@@ -3,12 +3,11 @@
     "category":  "misc",
     "inputs":
     [
-      "10 superbwarfare:steel_ingot",
-      "2 superbwarfare:cemented_carbide_block",
-      "10 superbwarfare:grain",
+      "2 superbwarfare:steel_ingot",
+      "1 superbwarfare:cemented_carbide_block",
       "superbwarfare:fusee",
       "superbwarfare:ap_head",
-      "15 minecraft:tnt"
+      "5 minecraft:tnt"
     ],
     "result":{"item":"ashvehicle:gbu57item"}
 }

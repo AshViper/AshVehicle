@@ -3,10 +3,10 @@
     "category":  "misc",
     "inputs":
     [
-      "5 superbwarfare:steel_ingot",
+      "2 superbwarfare:steel_ingot",
       "superbwarfare:large_motor",
       "1 superbwarfare:tungsten_rod",
-      "4 ashvehicle:enginefanitem"
+      "2 ashvehicle:enginefanitem"
     ],
     "result":{"item":"ashvehicle:jetengineitem"}
 }

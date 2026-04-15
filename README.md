@@ -67,7 +67,7 @@ The compiled `.jar` will be in `build/libs/`
 
 [@peterferenc](https://github.com/peterferenc)
 
-neoforge-1.21.1 [@githuub](https://github.com/peterferenc/AshVehicle/tree/neoforge-1.21.1-port)
+neoforge-1.21.1 [@github](https://github.com/peterferenc/AshVehicle/tree/neoforge-1.21.1-port)
 
 ## 📄 License
 

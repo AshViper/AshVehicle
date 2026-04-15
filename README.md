@@ -63,6 +63,10 @@ The compiled `.jar` will be in `build/libs/`
 
 **3D Modelers** — maaaraion, Roif Workshop, ₲ⱤɄ₦₲Ɇ, xingyu⭐🐟, Chryzoz, Myo
 
+## NeoForge port
+
+[@peterferenc](https://github.com/peterferenc)
+
 ## 📄 License
 
 GPL-3.0 — see [LICENSE](LICENSE)

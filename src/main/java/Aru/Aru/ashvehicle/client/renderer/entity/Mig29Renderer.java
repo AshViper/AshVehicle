@@ -9,7 +9,7 @@ public class Mig29Renderer extends VehicleRenderer<Mig29Entity> {
     public Mig29Renderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new Mig29Model());
         this.shadowRadius = 0.5F;
-        float scale = 1.3f;
+        float scale = 1.0f;
         scaleHeight = scale;
         scaleWidth = scale;
     }

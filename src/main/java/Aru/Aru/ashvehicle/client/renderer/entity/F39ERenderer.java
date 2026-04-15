@@ -9,7 +9,7 @@ public class F39ERenderer extends VehicleRenderer<F39EEntity> {
     public F39ERenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new F39EModel());
         this.shadowRadius = 0.5F;
-        float scale = 2.0f;
+        float scale = 1.0f;
         scaleHeight = scale;
         scaleWidth = scale;
     }

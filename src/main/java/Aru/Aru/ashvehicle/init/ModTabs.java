@@ -37,7 +37,7 @@ public class ModTabs {
                     .title(Component.translatable("item_group.ashvehicle.ash-ship"))
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_SHIP_ICON.get()))
                     .displayItems((param, output) -> {
-                        output.accept(ContainerBlockItem.createInstance(ModEntities.ZUMWALT.get()));
+                        //output.accept(ContainerBlockItem.createInstance(ModEntities.ZUMWALT.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.RUBBER_BOAT.get()));
                     })
                     .build()
@@ -50,15 +50,15 @@ public class ModTabs {
                     .displayItems((param, output) -> {
                         output.accept(ContainerBlockItem.createInstance(ModEntities.UH_60.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.MH_60M.get()));
-                        //output.accept(ContainerBlockItem.createInstance(ModEntities.MIG_29.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.MIG_29.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_4.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_14.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_16.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_15.get()));
-                        //output.accept(ContainerBlockItem.createInstance(ModEntities.SU_33.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.SU_33.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.SU_25.get()));
-                        //output.accept(ContainerBlockItem.createInstance(ModEntities.F_39E.get()));
-                        //output.accept(ContainerBlockItem.createInstance(ModEntities.SU_34.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.F_39E.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.SU_34.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_35B.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.F_35A.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.B_2.get()));

@@ -54,12 +54,12 @@
     {
       "IsEnclosed": true,
       "Transform": "Vehicle",
-      "Position": [0, 1.5, 3.40],
+      "Position": [0, 2.5, 5.00],
       "CanRotateHead": false,
       "Sensitivity": [0, 0, 0],
       "CameraPos": {
         "Transform": "Vehicle",
-        "Position": [0, 3.4, 3.40],
+        "Position": [0, 4.4, 5.00],
         "UseFixedCameraPos": true,
         "UseAircraftCamera": true,
         "AircraftCameraPos": [0, 4, -14]

@@ -1,16 +1,17 @@
 {
-    "type":  "superbwarfare:vehicle_assembling",
-    "category":  "aircraft",
-  "inputs":[
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
     "2 superbwarfare:large_motor",
-    "1 superbwarfare:medium_battery_pack",
+    "2 superbwarfare:medium_battery_pack",
     "4 superbwarfare:cemented_carbide_block",
-    "2 superbwarfare:light_armament_module",
+    "2 superbwarfare:steel_block",
+    "1 superbwarfare:light_armament_module",
+    "1 superbwarfare:medium_armament_module",
     "3 superbwarfare:wheel",
-    "3 minecraft:glass",
-    "2 ashvehicle:jetengineitem"
+    "3 minecraft:glass"
   ],
-    "result":  {
-                   "entity":  "ashvehicle:f-22"
-               }
+  "result": {
+    "entity": "ashvehicle:f-22"
+  }
 }

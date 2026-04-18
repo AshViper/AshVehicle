@@ -35,7 +35,7 @@ AshVehicle is an addon mod for **[Superb Warfare](https://github.com/Mercurows/S
 
 ## 📦 Requirements
 
-- Minecraft **1.20.1**
+- Minecraft **1.21.1**
 - Minecraft Forge **47.2.0+**
 - [Superb Warfare](https://github.com/Mercurows/SuperbWarfare)
 - [GeckoLib](https://geckolib.com/) 4.4.6+
@@ -65,9 +65,9 @@ The compiled `.jar` will be in `build/libs/`
 
 ## NeoForge port
 
-peterferenc [@peterferenc](https://github.com/peterferenc)
+Xsynth [@Xsynth](https://github.com/Xsynthf)
 
-neoforge-1.21.1 [@github](https://github.com/peterferenc/AshVehicle/tree/neoforge-1.21.1-port)
+neoforge-1.21.1 [@github](https://github.com/AshViper/AshVehicle-neoforge)
 
 ## 📄 License
 

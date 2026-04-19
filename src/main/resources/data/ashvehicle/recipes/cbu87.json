@@ -1,11 +1,26 @@
 {
-    "type":  "superbwarfare:vehicle_assembling",
-    "category":  "misc",
-    "inputs":
-    [
-      "2 superbwarfare:steel_ingot",
-      "2 superbwarfare:grain",
-      "superbwarfare:fusee"
-    ],
-    "result":{"item":"ashvehicle:cbu87item"}
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "BCB",
+    " D "
+  ],
+  "key": {
+    "A": {
+      "item": "superbwarfare:fusee"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:tnt"
+    },
+    "D": {
+      "item": "superbwarfare:grain"
+    }
+  },
+  "result": {
+    "item": "ashvehicle:cbu87item",
+    "count": 2
+  }
 }

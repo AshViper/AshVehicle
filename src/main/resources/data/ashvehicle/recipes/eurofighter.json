@@ -8,7 +8,7 @@
     "2 superbwarfare:light_armament_module",
     "3 superbwarfare:wheel",
     "3 minecraft:glass",
-    "2 ashvehicle:jetengineitem"
+    "2 ashvehicle:enginefanitem"
   ],
     "result":  {
                    "entity":  "ashvehicle:eurofighter"

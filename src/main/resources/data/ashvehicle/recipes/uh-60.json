@@ -7,7 +7,7 @@
     "3 superbwarfare:steel_block",
     "3 superbwarfare:wheel",
     "6 minecraft:glass",
-    "2 ashvehicle:jetengineitem"
+    "2 ashvehicle:enginefanitem"
   ],
     "result":  {
                    "entity":  "ashvehicle:uh_60"

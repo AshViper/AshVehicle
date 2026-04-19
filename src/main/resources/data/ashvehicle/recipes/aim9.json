@@ -1,12 +1,26 @@
 {
-    "type":  "superbwarfare:vehicle_assembling",
-    "category":  "misc",
-    "inputs":
-    [
-      "2 superbwarfare:steel_ingot",
-      "superbwarfare:seeker",
-      "1 superbwarfare:grain",
-      "superbwarfare:missile_engine"
-    ],
-    "result":{"item":"ashvehicle:aim9item"}
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "BCB",
+    " D "
+  ],
+  "key": {
+    "A": {
+      "item": "superbwarfare:seeker"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "superbwarfare:grain"
+    },
+    "D": {
+      "item": "superbwarfare:missile_engine"
+    }
+  },
+  "result": {
+    "item": "ashvehicle:aim9item",
+    "count": 2
+  }
 }

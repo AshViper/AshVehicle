@@ -8,8 +8,7 @@
     "2 superbwarfare:light_armament_module",
     "3 superbwarfare:wheel",
     "3 minecraft:glass",
-    "ashvehicle:jetengineitem",
-    "ashvehicle:enginefanitem"
+    "2 ashvehicle:enginefanitem"
   ],
     "result":  {
                    "entity":  "ashvehicle:f-35b"

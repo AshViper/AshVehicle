@@ -37,7 +37,7 @@ public class ModTabs {
                     .title(Component.translatable("item_group.ashvehicle.ash-ship"))
                     .icon(() -> new ItemStack(ModItem.ASHVEHICLE_SHIP_ICON.get()))
                     .displayItems((param, output) -> {
-                        //output.accept(ContainerBlockItem.createInstance(ModEntities.ZUMWALT.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.ZUMWALT.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.RUBBER_BOAT.get()));
                     })
                     .build()
@@ -76,7 +76,10 @@ public class ModTabs {
                         //output.accept(ContainerBlockItem.createInstance(ModEntities.X_47B.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.RAH_66.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.AH_64.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.KA_52.get()));
                         output.accept(ContainerBlockItem.createInstance(ModEntities.ZELENSKY.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.AC_130U.get()));
+                        output.accept(ContainerBlockItem.createInstance(ModEntities.B_52.get()));
                     })
                     .build()
     );

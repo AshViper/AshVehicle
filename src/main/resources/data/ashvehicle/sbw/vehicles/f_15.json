@@ -700,7 +700,7 @@
       "Projectile": "ashvehicle:cbu87",
       "Gravity": 0.06,
       "Spread": 0.5,
-      "Name": "weapon.ashvehicle:cbu87_bomb",
+      "Name": "weapon.ashvehicle.cbu87_bomb",
       "ExplosionDamage": 650,
       "ExplosionRadius": 22,
       "AddShooterDeltaMovement": true,

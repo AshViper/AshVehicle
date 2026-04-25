@@ -117,4 +117,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<AH64Entity>> AH_64 = aircraft("ah-64", AH64Entity::new);
     public static final RegistryObject<EntityType<ZelenskyEntity>> ZELENSKY = aircraft("zelensky", ZelenskyEntity::new);
     public static final RegistryObject<EntityType<F14Entity>> F_14 = aircraft("f14", F14Entity::new);
+    public static final RegistryObject<EntityType<KA52Entity>> KA_52 = aircraft("ka52", KA52Entity::new);
+    public static final RegistryObject<EntityType<Ac130uEntity>> AC_130U = aircraft("ac130u", Ac130uEntity::new);
+    public static final RegistryObject<EntityType<B52Entity>> B_52 = aircraft("b52", B52Entity::new);
 }

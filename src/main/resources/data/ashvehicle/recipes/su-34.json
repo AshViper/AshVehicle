@@ -1,7 +1,7 @@
 {
-    "type":  "superbwarfare:vehicle_assembling",
-    "category":  "aircraft",
-  "inputs":[
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
     "2 superbwarfare:large_motor",
     "1 superbwarfare:medium_battery_pack",
     "3 superbwarfare:steel_block",
@@ -10,7 +10,7 @@
     "6 minecraft:glass",
     "2 ashvehicle:enginefanitem"
   ],
-    "result":  {
-                   "entity":  "ashvehicle:su-34"
-               }
+  "result": {
+    "entity": "ashvehicle:su-34"
+  }
 }

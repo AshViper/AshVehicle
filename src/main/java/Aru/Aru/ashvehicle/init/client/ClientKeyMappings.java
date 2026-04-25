@@ -10,6 +10,7 @@ public class ClientKeyMappings {
     public static KeyMapping TOGGLE_POD;
     public static KeyMapping THERMAL_VISION;
     public static KeyMapping VTOL_TOGGLE;
+    public static KeyMapping AC130_ORBIT_TOGGLE;
 
     public static void register(RegisterKeyMappingsEvent event) {
         OPEN_COORDINATE_SCREEN = new KeyMapping(
@@ -35,10 +36,17 @@ public class ClientKeyMappings {
 
         VTOL_TOGGLE = new KeyMapping(
                 "key.ashvehicle.vtol_toggle",
-                GLFW.GLFW_KEY_V,  // Ctrl key for pod toggle
+                GLFW.GLFW_KEY_H,  // Ctrl key for pod toggle
                 "key.categories.ashvehicle"
         );
         event.register(VTOL_TOGGLE);
+
+        AC130_ORBIT_TOGGLE = new KeyMapping(
+                "key.ashvehicle.ac130_orbit",
+                GLFW.GLFW_KEY_J,
+                "key.categories.ashvehicle"
+        );
+        event.register(AC130_ORBIT_TOGGLE);
     }
 }
 

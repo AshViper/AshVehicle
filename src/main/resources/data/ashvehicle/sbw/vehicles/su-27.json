@@ -749,6 +749,7 @@
     "EnergyCostRate": 512,
     "Increment": 1,
     "Decrement": 1,
+    "HasGear": true,
     "PitchSpeed": 1,
     "YawSpeed": 1,
     "RollSpeed": 1,

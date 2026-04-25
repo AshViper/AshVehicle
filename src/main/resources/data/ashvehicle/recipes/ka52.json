@@ -1,0 +1,15 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
+    "4 superbwarfare:steel_block",
+    "2 superbwarfare:light_armament_module",
+    "1 superbwarfare:medium_battery_pack",
+    "1 superbwarfare:large_motor",
+    "3 superbwarfare:wheel",
+    "2 superbwarfare:large_propeller"
+  ],
+  "result": {
+    "entity": "ashvehicle:ka52"
+  }
+}

@@ -1,6 +1,7 @@
 package Aru.Aru.ashvehicle.init.event;
 
 import Aru.Aru.ashvehicle.AshVehicle;
+import Aru.Aru.ashvehicle.Packet.ToggleAc130OrbitPacket;
 import Aru.Aru.ashvehicle.Packet.TogglePodPacket;
 import Aru.Aru.ashvehicle.client.renderer.ThermalShaderManager;
 import Aru.Aru.ashvehicle.client.screen.CoordinateInputScreen;
@@ -74,6 +75,15 @@ public class ClientEvents {
             }
             if (vehicle instanceof F14Entity f14) {
                 f14.toggleVtolMode();
+            }
+        }
+
+        if (ClientKeyMappings.AC130_ORBIT_TOGGLE != null
+                && ClientKeyMappings.AC130_ORBIT_TOGGLE.consumeClick()) {
+
+            if (vehicle instanceof Ac130uEntity ac130) {
+                ModNetwork.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+                        new ToggleAc130OrbitPacket(ac130.getId()));
             }
         }
     }

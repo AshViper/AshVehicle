@@ -6,10 +6,10 @@
   "refmap": "ashvehicle.refmap.json",
   "mixins": [
     "MixinOBBInfo",
-    "VehicleEntityMixin"
+    "VehicleEntityMixin",
+    "EntityCollisionMixin"
   ],
   "client": [
-    "LevelRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 0

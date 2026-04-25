@@ -1,15 +1,15 @@
 {
-    "type":  "superbwarfare:vehicle_assembling",
-    "category":  "land",
-    "inputs":  [
-                   "2 superbwarfare:large_motor",
-                   "superbwarfare:medium_battery_pack",
-                   "5 superbwarfare:steel_block",
-                   "2 superbwarfare:track",
-                   "4 superbwarfare:light_armament_module",
-                   "superbwarfare:medium_armament_module"
-               ],
-    "result":  {
-                   "entity":  "ashvehicle:kv-2"
-               }
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "land",
+  "inputs": [
+    "2 superbwarfare:large_motor",
+    "1 superbwarfare:medium_battery_pack",
+    "5 superbwarfare:steel_block",
+    "2 superbwarfare:track",
+    "4 superbwarfare:light_armament_module",
+    "1 superbwarfare:medium_armament_module"
+  ],
+  "result": {
+    "entity": "ashvehicle:kv-2"
+  }
 }

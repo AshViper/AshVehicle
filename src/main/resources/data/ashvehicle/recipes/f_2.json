@@ -1,16 +1,16 @@
 {
-    "type":  "superbwarfare:vehicle_assembling",
-    "category":  "aircraft",
-  "inputs":[
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
     "2 superbwarfare:large_motor",
     "1 superbwarfare:medium_battery_pack",
     "3 superbwarfare:steel_block",
     "2 superbwarfare:light_armament_module",
     "3 superbwarfare:wheel",
     "3 minecraft:glass",
-    "ashvehicle:enginefanitem"
+    "1 ashvehicle:enginefanitem"
   ],
-    "result":  {
-                   "entity":  "ashvehicle:f_2"
-               }
+  "result": {
+    "entity": "ashvehicle:f_2"
+  }
 }

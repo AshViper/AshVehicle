@@ -15,6 +15,16 @@ public abstract class BaseAircraftEntity extends GeoVehicleEntity {
 
     public BaseAircraftEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+        // Set a high view scale so the client considers this entity visible from much further away.
+        this.setViewScale(10.0);
+    }
+
+    @Override
+    public boolean shouldRenderAtSqrDistance(double pDistance) {
+        // Allow rendering up to 512 blocks away (512^2 = 262144)
+        // This is essential for massive ships and aircraft.
+        double renderDistance = 512.0;
+        return pDistance < renderDistance * renderDistance;
     }
 
     public void spawnAfterburnerParticles(List<Vec3> localPositions) {

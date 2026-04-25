@@ -1,13 +1,13 @@
 {
-    "type":  "superbwarfare:vehicle_assembling",
-    "category":  "aircraft",
-    "inputs":  [
-      "1 superbwarfare:large_motor",
-      "1 superbwarfare:medium_battery_pack",
-      "1 superbwarfare:steel_block",
-      "2 superbwarfare:light_armament_module"
-               ],
-    "result":  {
-                   "entity":  "ashvehicle:zelensky"
-               }
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
+    "1 superbwarfare:large_motor",
+    "1 superbwarfare:medium_battery_pack",
+    "1 superbwarfare:steel_block",
+    "2 superbwarfare:light_armament_module"
+  ],
+  "result": {
+    "entity": "ashvehicle:zelensky"
+  }
 }

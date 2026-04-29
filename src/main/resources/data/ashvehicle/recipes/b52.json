@@ -1,0 +1,17 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
+    "8 ashvehicle:enginefanitem",
+    "4 superbwarfare:large_battery_pack",
+    "4 superbwarfare:large_motor",
+    "16 superbwarfare:steel_block",
+    "6 minecraft:glass",
+    "8 superbwarfare:light_armament_module",
+    "6 superbwarfare:wheel",
+    "10 superbwarfare:cemented_carbide_block"
+  ],
+  "result": {
+    "entity": "ashvehicle:b52"
+  }
+}

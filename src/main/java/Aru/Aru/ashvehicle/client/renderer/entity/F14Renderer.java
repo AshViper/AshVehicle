@@ -28,11 +28,11 @@ public class F14Renderer extends VehicleRenderer<F14Entity> {
         String name = bone.getName();
         // Animate missile pod rotation with smooth interpolation
         if (name.equals("Rwing"))  {
-            float podRot = Mth.lerp(partialTick, animatable.vtolRotO, animatable.getPodRot());
+            float podRot = Mth.lerp(partialTick, animatable.wingSweepO, animatable.getWingSweep());
             bone.setRotY(podRot * (-(float) Math.PI / 180F));
         }
         if (name.equals("Lwing"))  {
-            float podRot = Mth.lerp(partialTick, animatable.vtolRotO, animatable.getPodRot());
+            float podRot = Mth.lerp(partialTick, animatable.wingSweepO, animatable.getWingSweep());
             bone.setRotY(podRot * ((float) Math.PI / 180F));
         }
 

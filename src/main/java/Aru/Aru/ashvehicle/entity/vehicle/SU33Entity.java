@@ -12,10 +12,10 @@ public class SU33Entity extends BaseAircraftEntity {
     @Override
     public void baseTick() {
         super.baseTick();
-        
+
         // 🔥 Afterburner particles (client side)
         float power = Math.abs(this.getPower());
-        if (power > 0.06F && this.level().isClientSide) {
+        if (this.sprintInputDown() && this.level().isClientSide) {
             this.spawnAfterburnerParticles(getAfterburnerParticlePositions());
         }
     }

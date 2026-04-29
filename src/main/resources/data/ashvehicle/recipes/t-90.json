@@ -7,7 +7,8 @@
     "5 superbwarfare:steel_block",
     "8 superbwarfare:track",
     "4 superbwarfare:light_armament_module",
-    "1 superbwarfare:medium_armament_module"
+    "1 superbwarfare:medium_armament_module",
+    "2 superbwarfare:cemented_carbide_block"
   ],
   "result": {
     "entity": "ashvehicle:t_90"

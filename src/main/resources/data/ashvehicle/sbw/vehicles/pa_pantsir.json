@@ -56,7 +56,10 @@
         "ZoomPosition": [0, 0.5, 0],
         "Direction": "Barrel"
       },
-      "Weapons": ["Cannon", "aim9"],
+      "Weapons": [
+        "Cannon",
+        "aim9"
+      ],
       "Transform": "Barrel",
       "Position": [0, 0, 0],
       "CanRotateHead": false,
@@ -97,8 +100,13 @@
       "AmmoType": "superbwarfare:small_shell",
       "ShootPos": {
         "Transform": "Barrel",
-        "Positions": [[-0.8, 0.0517, 3.2],[0.8, 0.0517, 3.2]],
-        "Directions": ["Barrel"]
+        "Positions": [
+          [-0.8, 0.0517, 3.2],
+          [0.8, 0.0517, 3.2]
+        ],
+        "Directions": [
+          "Barrel"
+        ]
       }
     },
     "aim9": {
@@ -127,13 +135,17 @@
       "AmmoType": "ashvehicle:aim9item",
       "ShootPos": {
         "Transform": "Barrel",
-        "Positions": [[0, 1.24375, -0.3234]],
-        "Directions": ["Barrel"],
+        "Positions": [
+          [0, 1.24375, -0.3234]
+        ],
+        "Directions": [
+          "Barrel"
+        ],
         "ViewDirection": "Barrel"
       },
       "SoundInfo": {
-        "Fire1P": "superbwarfare:bomb_release",
-        "Fire3P": "superbwarfare:bomb_release",
+        "Fire1P": "ashvehicle:missile_shot",
+        "Fire3P": "ashvehicle:missile_shot",
         "VehicleReload3p": "superbwarfare:bomb_reload",
         "VehicleReloadSoundTime": 11,
         "Change": "superbwarfare:into_missile",
@@ -157,7 +169,7 @@
     "Decrement": 0.02,
     "SteeringSpeed": 0.07
   },
-  "TurretPos": [0, 4.0, -1.8],
+  "TurretPos": [0, 4, -1.8],
   "TurretTurnSpeed": [12.5, 10],
   "TurretPitchRange": [-15, 45],
   "BarrelPos": [0, 0.5, 0.9],
@@ -205,13 +217,30 @@
   "CollisionLevel": {
     "Level": 3,
     "PowerLimits": [
-      [0, 0, true],
-      [0, 0, true],
-      [0.15, 0.09, false]
+      [
+        0,
+        0,
+        true
+      ],
+      [
+        0,
+        0,
+        true
+      ],
+      [
+        0.15,
+        0.09,
+        false
+      ]
     ]
   },
   "EngineSound": "superbwarfare:lav_150_engine",
   "HudType": "@Land",
-  "TerrainCompat": [[1.156, 0, 1.594], [-1.156, 0, 1.594], [1.156, 0, -1.594], [-1.156, 0, -1.594]],
+  "TerrainCompat": [
+    [1.156, 0, 1.594],
+    [-1.156, 0, 1.594],
+    [1.156, 0, -1.594],
+    [-1.156, 0, -1.594]
+  ],
   "InertiaRotateRate": 1.25
 }

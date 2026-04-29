@@ -30,9 +30,6 @@ public abstract class EntityCollisionMixin {
     @Unique
     private VehicleEntity ashvehicle$currentPlatform = null;
 
-    /**
-     * Optimized check to ignore self-collisions and passenger-vehicle collisions.
-     */
     @Unique
     private boolean ashvehicle$shouldIgnore(Entity entity, VehicleEntity vehicle) {
         if (entity == vehicle) return true;
@@ -44,55 +41,65 @@ public abstract class EntityCollisionMixin {
     }
 
     /**
-     * Step 1: Follow Platform Movement
+     * Step 1: Follow Platform Movement（改善版）
      */
     @ModifyVariable(method = "collide", at = @At("HEAD"), argsOnly = true)
     private Vec3 ashvehicle$followPlatformMovement(Vec3 movement) {
         Entity entity = (Entity) (Object) this;
-        
-        // CRITICAL FIX: If the player is already riding (isPassenger), Minecraft handles the sync.
-        // Adding platform movement here would cause a double-move desync, closing inventories.
+
         if (this.isPassenger() || !(entity instanceof Player || entity instanceof VehicleEntity)) {
             return movement;
         }
-        
-        // Search for platforms in a large radius
-        List<Entity> nearby = entity.level().getEntities(entity, entity.getBoundingBox().inflate(200.0));
-        
+
+        List<Entity> nearby = entity.level().getEntities(entity, entity.getBoundingBox().inflate(20.0));
+
         ashvehicle$currentPlatform = null;
+
         for (Entity e : nearby) {
             if (!(e instanceof VehicleEntity vehicle)) continue;
             if (ashvehicle$shouldIgnore(entity, vehicle)) continue;
-            
+
             List<OBB> obbs = vehicle.getOBBs();
             if (obbs == null) continue;
+
             for (OBB obb : obbs) {
-                // Check if standing on it
-                if (OBB.isColliding(obb, entity.getBoundingBox().inflate(0.1, 0.2, 0.1).move(0, -0.1, 0))) {
+
+                // 接地判定を少し安定させる
+                if (OBB.isColliding(obb, entity.getBoundingBox().inflate(0.2, 0.6, 0.2).move(0, -0.2, 0))) {
+
                     ashvehicle$currentPlatform = vehicle;
-                    
-                    Vec3 platformMove = vehicle.getDeltaMovement();
+
+                    // ===== 修正①：実移動差分を使用 =====
+                    Vec3 platformMove = vehicle.position().subtract(vehicle.xo, vehicle.yo, vehicle.zo);
+
+                    // ===== 修正②：回転補正（前tick基準） =====
                     float deltaYaw = vehicle.getYRot() - vehicle.yRotO;
                     if (Math.abs(deltaYaw) > 0.001f) {
-                        Vec3 relativePos = entity.position().subtract(vehicle.position());
-                        Vec3 rotatedPos = relativePos.yRot((float)Math.toRadians(-deltaYaw));
-                        Vec3 rotMovement = rotatedPos.subtract(relativePos);
+
+                        Vec3 relativePrev = entity.position().subtract(new Vec3(vehicle.xo, vehicle.yo, vehicle.zo));
+                        Vec3 relativeNow = relativePrev.yRot((float) Math.toRadians(-deltaYaw));
+                        Vec3 rotMovement = relativeNow.subtract(relativePrev);
+
                         platformMove = platformMove.add(rotMovement);
                     }
-                    return movement.add(platformMove);
+
+                    // ===== 既存仕様維持（上方向は除外） =====
+                    double dy = platformMove.y < 0 ? platformMove.y : 0;
+
+                    return movement.add(platformMove.x, dy, platformMove.z);
                 }
             }
         }
+
         return movement;
     }
 
     /**
-     * Step 2: Orient with Platform
+     * Step 2: Orient with Platform（変更なし）
      */
     @Inject(method = "tick", at = @At("HEAD"))
     private void onTickHead(CallbackInfo ci) {
         if (ashvehicle$currentPlatform != null && ashvehicle$currentPlatform.isAlive()) {
-            // Only apply if NOT riding (redundant check but safe)
             if (!this.isPassenger()) {
                 float deltaYaw = ashvehicle$currentPlatform.getYRot() - ashvehicle$currentPlatform.yRotO;
                 if (Math.abs(deltaYaw) > 0.001f) {
@@ -103,19 +110,18 @@ public abstract class EntityCollisionMixin {
     }
 
     /**
-     * Step 3: Vertical Stabilization (Push Up)
+     * Step 3: Vertical Stabilization（変更なし）
      */
     @Inject(method = "collide", at = @At("RETURN"), cancellable = true)
     private void onCollideReturn(Vec3 movement, CallbackInfoReturnable<Vec3> cir) {
         Entity entity = (Entity) (Object) this;
-        
-        // Skip if riding
+
         if (this.isPassenger() || !(entity instanceof Player || entity instanceof VehicleEntity)) {
             return;
         }
 
         Vec3 adjusted = cir.getReturnValue();
-        List<Entity> nearby = entity.level().getEntities(entity, entity.getBoundingBox().inflate(200.0));
+        List<Entity> nearby = entity.level().getEntities(entity, entity.getBoundingBox().inflate(20.0));
 
         double yPush = 0;
         AABB predictedBox = entity.getBoundingBox().move(adjusted);
@@ -131,6 +137,7 @@ public abstract class EntityCollisionMixin {
                 if (OBB.isColliding(obb, predictedBox.move(0, yPush, 0))) {
                     double low = 0;
                     double high = 1.0;
+
                     if (!OBB.isColliding(obb, predictedBox.move(0, high, 0))) {
                         for (int i = 0; i < 12; i++) {
                             double mid = (low + high) / 2.0;
@@ -138,6 +145,7 @@ public abstract class EntityCollisionMixin {
                             else high = mid;
                         }
                         yPush += high + 0.001;
+                        break;
                     }
                 }
             }

@@ -2,14 +2,14 @@
   "type": "superbwarfare:vehicle_assembling",
   "category": "aircraft",
   "inputs": [
-    "8 superbwarfare:steel_block",
+    "16 superbwarfare:steel_block",
     "2 superbwarfare:light_armament_module",
     "1 superbwarfare:medium_armament_module",
     "4 superbwarfare:large_propeller",
-    "4 minecraft:iron_block",
     "2 superbwarfare:medium_battery_pack",
     "4 superbwarfare:large_motor",
-    "3 superbwarfare:wheel"
+    "3 superbwarfare:wheel",
+    "8 superbwarfare:tungsten_block"
   ],
   "result": {
     "entity": "ashvehicle:ac130u"

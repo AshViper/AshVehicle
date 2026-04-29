@@ -4,163 +4,163 @@
   "MaxEnergy": 10000000,
   "OBB": [
     {
-      "Size": [ 20.75, 0.3125, 1.5625 ],
-      "Position": [ 0, 4.828125, -0.078125 ]
+      "Size": [20.75, 0.3125, 1.5625],
+      "Position": [0, 4.828125, -0.078125]
     },
     {
-      "Size": [ 5.953125, 0.3125, 0.859375 ],
-      "Position": [ 0, 4.8125, -2.515625 ]
+      "Size": [5.953125, 0.3125, 0.859375],
+      "Position": [0, 4.8125, -2.515625]
     },
     {
-      "Size": [ 7.484375, 0.3125, 0.859375 ],
-      "Position": [ 13.25, 4.796875, -1.65625 ],
-      "RotationAngles": [ 0, -7, 0 ]
+      "Size": [7.484375, 0.3125, 0.859375],
+      "Position": [13.25, 4.796875, -1.65625],
+      "RotationAngles": [0, -7, 0]
     },
     {
-      "Size": [ 7.484375, 0.3125, 0.859375 ],
-      "Position": [ -13.25, 4.796875, -1.65625 ],
-      "RotationAngles": [ 0, 7, 0 ]
+      "Size": [7.484375, 0.3125, 0.859375],
+      "Position": [-13.25, 4.796875, -1.65625],
+      "RotationAngles": [0, 7, 0]
     },
     {
-      "Size": [ 1.75, 0.375, 8.125 ],
-      "Position": [ 0, 1.125, 2.9375 ]
+      "Size": [1.75, 0.375, 8.125],
+      "Position": [0, 1.125, 2.9375]
     },
     {
-      "Size": [ 1.75, 0.375, 11.5625 ],
-      "Position": [ 0, 4.75, -0.4375 ]
+      "Size": [1.75, 0.375, 11.5625],
+      "Position": [0, 4.75, -0.4375]
     },
     {
-      "Size": [ 0.25, 1.75, 8.125 ],
-      "Position": [ -1.9375, 3, 2.9375 ]
+      "Size": [0.25, 1.75, 8.125],
+      "Position": [-1.9375, 3, 2.9375]
     },
     {
-      "Size": [ 0.25, 1.75, 8.125 ],
-      "Position": [ 1.9375, 3, 2.9375 ]
+      "Size": [0.25, 1.75, 8.125],
+      "Position": [1.9375, 3, 2.9375]
     },
     {
-      "Size": [ 1.75, 1.6875, 0.5 ],
-      "Position": [ 0, 2.9375, 11.5625 ]
+      "Size": [1.75, 1.6875, 0.5],
+      "Position": [0, 2.9375, 11.5625]
     },
     {
-      "Size": [ 0.921875, 0.5625, 1.21875 ],
-      "Position": [ 0, 2.75, 12.21875 ],
-      "RotationAngles": [ 21, 0, 0 ]
+      "Size": [0.921875, 0.5625, 1.21875],
+      "Position": [0, 2.75, 12.21875],
+      "RotationAngles": [21, 0, 0]
     },
     {
-      "Size": [ 0.921875, 0.5625, 1.21875 ],
-      "Position": [ 0, 1.875, 12.25 ],
-      "RotationAngles": [ -23, 0, 0 ]
+      "Size": [0.921875, 0.5625, 1.21875],
+      "Position": [0, 1.875, 12.25],
+      "RotationAngles": [-23, 0, 0]
     },
     {
-      "Size": [ 0.25, 0.625, 3.6875 ],
-      "Position": [ -1.515625, 4.1875, -8.875 ],
-      "RotationAngles": [ 0, -4, 0 ]
+      "Size": [0.25, 0.625, 3.6875],
+      "Position": [-1.515625, 4.1875, -8.875],
+      "RotationAngles": [0, -4, 0]
     },
     {
-      "Size": [ 0.25, 0.625, 2 ],
-      "Position": [ -1.640625, 2.875, -7.1875 ],
-      "RotationAngles": [ 0, -4, 0 ]
+      "Size": [0.25, 0.625, 2],
+      "Position": [-1.640625, 2.875, -7.1875],
+      "RotationAngles": [0, -4, 0]
     },
     {
-      "Size": [ 0.25, 0.625, 5.125 ],
-      "Position": [ -1.453125, 3.1875, -9.9375 ],
-      "RotationAngles": [ 20, -4, 0 ]
+      "Size": [0.25, 0.625, 5.125],
+      "Position": [-1.453125, 3.1875, -9.9375],
+      "RotationAngles": [20, -4, 0]
     },
     {
-      "Size": [ 0.25, 0.625, 5.125 ],
-      "Position": [ 1.453125, 3.1875, -9.9375 ],
-      "RotationAngles": [ 20, 4, 0 ]
+      "Size": [0.25, 0.625, 5.125],
+      "Position": [1.453125, 3.1875, -9.9375],
+      "RotationAngles": [20, 4, 0]
     },
     {
-      "Size": [ 0.25, 0.625, 3.6875 ],
-      "Position": [ 1.515625, 4.1875, -8.875 ],
-      "RotationAngles": [ 0, 4, 0 ]
+      "Size": [0.25, 0.625, 3.6875],
+      "Position": [1.515625, 4.1875, -8.875],
+      "RotationAngles": [0, 4, 0]
     },
     {
-      "Size": [ 0.25, 0.625, 2 ],
-      "Position": [ 1.640625, 2.875, -7.1875 ],
-      "RotationAngles": [ 0, 4, 0 ]
+      "Size": [0.25, 0.625, 2],
+      "Position": [1.640625, 2.875, -7.1875],
+      "RotationAngles": [0, 4, 0]
     },
     {
-      "Size": [ 0.5625, 0.375, 1.6875 ],
-      "Position": [ -0.390625, 4.75, -15.90625 ],
-      "RotationAngles": [ 0, -15, 0 ]
+      "Size": [0.5625, 0.375, 1.6875],
+      "Position": [-0.390625, 4.75, -15.90625],
+      "RotationAngles": [0, -15, 0]
     },
     {
-      "Size": [ 0.5625, 0.375, 1.6875 ],
-      "Position": [ 0.390625, 4.75, -15.90625 ],
-      "RotationAngles": [ 0, 15, 0 ]
+      "Size": [0.5625, 0.375, 1.6875],
+      "Position": [0.390625, 4.75, -15.90625],
+      "RotationAngles": [0, 15, 0]
     },
     {
-      "Size": [ 0.5, 0.6875, 3 ],
-      "Position": [ 2.0625, 1.4375, 0.625 ]
+      "Size": [0.5, 0.6875, 3],
+      "Position": [2.0625, 1.4375, 0.625]
     },
     {
-      "Size": [ 0.5, 0.6875, 3 ],
-      "Position": [ -2.0625, 1.4375, 0.625 ]
+      "Size": [0.5, 0.6875, 3],
+      "Position": [-2.0625, 1.4375, 0.625]
     },
     {
-      "Size": [ 0.609375, 0.859375, 2.4375 ],
-      "Position": [ 5.28125, 4.21875, 1.328125 ]
+      "Size": [0.609375, 0.859375, 2.4375],
+      "Position": [5.28125, 4.21875, 1.328125]
     },
     {
-      "Size": [ 0.609375, 0.859375, 2.4375 ],
-      "Position": [ 10.640625, 4.234375, 1.328125 ]
+      "Size": [0.609375, 0.859375, 2.4375],
+      "Position": [10.640625, 4.234375, 1.328125]
     },
     {
-      "Size": [ 0.609375, 0.859375, 2.4375 ],
-      "Position": [ -10.640625, 4.234375, 1.328125 ]
+      "Size": [0.609375, 0.859375, 2.4375],
+      "Position": [-10.640625, 4.234375, 1.328125]
     },
     {
-      "Size": [ 0.609375, 0.859375, 2.4375 ],
-      "Position": [ -5.28125, 4.21875, 1.328125 ]
+      "Size": [0.609375, 0.859375, 2.4375],
+      "Position": [-5.28125, 4.21875, 1.328125]
     },
     {
-      "Size": [ 8.015625, 0.234375, 0.90625 ],
-      "Position": [ 0, 5.03125, -14.265625 ]
+      "Size": [8.015625, 0.234375, 0.90625],
+      "Position": [0, 5.03125, -14.265625]
     },
     {
-      "Size": [ 4.125, 0.234375, 0.90625 ],
-      "Position": [ 3.84375, 5.03125, -13.265625 ],
-      "RotationAngles": [ 0, 14, 0 ]
+      "Size": [4.125, 0.234375, 0.90625],
+      "Position": [3.84375, 5.03125, -13.265625],
+      "RotationAngles": [0, 14, 0]
     },
     {
-      "Size": [ 4.125, 0.234375, 0.90625 ],
-      "Position": [ -3.84375, 5.03125, -13.265625 ],
-      "RotationAngles": [ 0, -14, 0 ]
+      "Size": [4.125, 0.234375, 0.90625],
+      "Position": [-3.84375, 5.03125, -13.265625],
+      "RotationAngles": [0, -14, 0]
     },
     {
-      "Size": [ 3.78125, 0.234375, 0.828125 ],
-      "Position": [ 4.125, 5.03125, -14.84375 ],
-      "RotationAngles": [ 0, -9, 0 ]
+      "Size": [3.78125, 0.234375, 0.828125],
+      "Position": [4.125, 5.03125, -14.84375],
+      "RotationAngles": [0, -9, 0]
     },
     {
-      "Size": [ 3.78125, 0.234375, 0.828125 ],
-      "Position": [ -4.125, 5.03125, -14.84375 ],
-      "RotationAngles": [ 0, 9, 0 ]
+      "Size": [3.78125, 0.234375, 0.828125],
+      "Position": [-4.125, 5.03125, -14.84375],
+      "RotationAngles": [0, 9, 0]
     },
     {
-      "Size": [ 0.15625, 3.75, 0.9375 ],
-      "Position": [ 0, 8.625, -14.9375 ]
+      "Size": [0.15625, 3.75, 0.9375],
+      "Position": [0, 8.625, -14.9375]
     },
     {
-      "Size": [ 0.15625, 2.0625, 0.9375 ],
-      "Position": [ 0, 6.875, -13.0625 ]
+      "Size": [0.15625, 2.0625, 0.9375],
+      "Position": [0, 6.875, -13.0625]
     },
     {
-      "Size": [ 0.15625, 4.140625, 0.84375 ],
-      "Position": [ 0, 8.328125, -12.6875 ],
-      "RotationAngles": [ -29, 0, 0 ]
+      "Size": [0.15625, 4.140625, 0.84375],
+      "Position": [0, 8.328125, -12.6875],
+      "RotationAngles": [-29, 0, 0]
     },
     {
-      "Size": [ 0.15625, 3.4375, 0.84375 ],
-      "Position": [ 0, 8.5, -15.5625 ],
-      "RotationAngles": [ 9, 0, 0 ]
+      "Size": [0.15625, 3.4375, 0.84375],
+      "Position": [0, 8.5, -15.5625],
+      "RotationAngles": [9, 0, 0]
     },
     {
-      "Size": [ 0.15625, 2.640625, 0.703125 ],
-      "Position": [ 0, 5.15625, -8.390625 ],
-      "RotationAngles": [ -77, 0, 0 ]
+      "Size": [0.15625, 2.640625, 0.703125],
+      "Position": [0, 5.15625, -8.390625],
+      "RotationAngles": [-77, 0, 0]
     }
   ],
   "Seats": [
@@ -175,7 +175,8 @@
         "Position": [0.65, 3.9, 10.7],
         "UseFixedCameraPos": true,
         "UseAircraftCamera": true,
-        "AircraftCameraPos": [0, 7, -24]
+        "AircraftCameraPos": [0, 7, -24],
+        "ZoomDirection": "Default"
       },
       "DismountInfo": {
         "Transform": "Vehicle",
@@ -185,7 +186,11 @@
         "EjectDirection": "Up",
         "EjectForce": 4
       },
-      "Weapons": ["30mm","40mm","105mm"]
+      "Weapons": [
+        "30mm",
+        "40mm",
+        "105mm"
+      ]
     },
     {
       "Transform": "Vehicle",
@@ -214,7 +219,7 @@
       "AvailableFireModes": "Auto",
       "Projectile": "superbwarfare:small_cannon_shell",
       "DefaultZoom": 3,
-      "RPM": 20,
+      "RPM": 10,
       "Velocity": 20,
       "Damage": 105,
       "ExplosionDamage": 15,
@@ -239,12 +244,16 @@
         ]
       },
       "SoundRadius": 24,
-      "AmmoType": "superbwarfare:small_shell",
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/cannon_30mm.png",
+      "AmmoType": "ashvehicle:105mmitem",
+      "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/cannon105mmicon.png",
       "ShootPos": {
         "Transform": "Vehicle",
-        "Positions": [[4.7793, 1.4024, -4.4893]],
-        "Directions": [[1, -0.1, 0]],
+        "Positions": [
+          [4.7793, 1.4024, -4.4893]
+        ],
+        "Directions": [
+          [1, -0.1, 0]
+        ],
         "ShootDirectionForHud": [1, -0.1, 0]
       }
     },
@@ -255,7 +264,7 @@
       "AmmoType": "superbwarfare:small_shell",
       "Projectile": "superbwarfare:small_cannon_shell",
       "DefaultZoom": 2,
-      "RPM": 1000,
+      "RPM": 1800,
       "Velocity": 35,
       "Damage": 35,
       "ExplosionDamage": 10,
@@ -272,8 +281,12 @@
       "CrosshairColor": "0x66FF00",
       "ShootPos": {
         "Transform": "Vehicle",
-        "Positions": [[3.7279, 1.4319, 6.0989]],
-        "Directions": [[1, -0.1, 0]],
+        "Positions": [
+          [3.7279, 1.4319, 6.0989]
+        ],
+        "Directions": [
+          [1, -0.1, 0]
+        ],
         "ShootDirectionForHud": [1, -0.1, 0]
       }
     },
@@ -282,7 +295,7 @@
       "AvailableFireModes": "Auto",
       "Projectile": "superbwarfare:small_cannon_shell",
       "DefaultZoom": 3,
-      "RPM": 100,
+      "RPM": 120,
       "Velocity": 20,
       "Damage": 55,
       "ExplosionDamage": 15,
@@ -304,12 +317,16 @@
         "Change": "superbwarfare:into_missile"
       },
       "SoundRadius": 24,
-      "AmmoType": "superbwarfare:small_shell",
+      "AmmoType": "ashvehicle:40mmitem",
       "Icon": "ashvehicle:textures/overlay/vehicle/weapon/icons/cannon40mmicon.png",
       "ShootPos": {
         "Transform": "Vehicle",
-        "Positions": [[3.4764, 1.2582, -2.8388]],
-        "Directions": [[1, -0.2, 0]],
+        "Positions": [
+          [3.4764, 1.2582, -2.8388]
+        ],
+        "Directions": [
+          [1, -0.2, 0]
+        ],
         "ShootDirectionForHud": [1, -0.2, 0]
       }
     }
@@ -371,8 +388,12 @@
     "SpeedRate": 0.45,
     "GearRotateAngle": 85,
     "EngineStartSound": "superbwarfare:a_10a_engine_start",
-    "EngineSoundVolume" : 0.8
+    "EngineSoundVolume": 0.8
   },
-  "TerrainCompat": [[-0.243, 0, 4.63], [-2.58, 0, -0.74], [2.58, 0, -0.74]],
+  "TerrainCompat": [
+    [-0.243, 0, 4.63],
+    [-2.58, 0, -0.74],
+    [2.58, 0, -0.74]
+  ],
   "EngineSound": "ashvehicle:reaper-engine"
 }

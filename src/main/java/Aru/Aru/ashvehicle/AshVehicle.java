@@ -25,6 +25,7 @@ public class AshVehicle {
         ModSounds.REGISTRY.register(bus);
         ModItem.ITEMS.register(bus);
         ModParticleTypes.register(bus);
+        ModRecipes.SERIALIZERS.register(bus);
         
         // Key mappings are registered via ClientKeyRegister @Mod.EventBusSubscriber
         

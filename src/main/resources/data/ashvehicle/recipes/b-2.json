@@ -3,12 +3,14 @@
   "category": "aircraft",
   "inputs": [
     "2 superbwarfare:large_motor",
-    "2 superbwarfare:medium_battery_pack",
-    "5 superbwarfare:cemented_carbide_block",
-    "2 superbwarfare:light_armament_module",
+    "16 superbwarfare:cemented_carbide_block",
     "3 superbwarfare:wheel",
     "6 minecraft:glass",
-    "4 ashvehicle:enginefanitem"
+    "4 ashvehicle:enginefanitem",
+    "2 superbwarfare:medium_armament_module",
+    "2 superbwarfare:large_battery_pack",
+    "10 superbwarfare:steel_block",
+    "2 superbwarfare:ancient_cpu"
   ],
   "result": {
     "entity": "ashvehicle:b-2"

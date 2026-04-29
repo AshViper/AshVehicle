@@ -1,7 +1,7 @@
 {
   "item_group.ashvehicle.ash-air": "Ash Vehicle Tab (Air)",
-  "item_group.ashvehicle.ash-tank": "Ash Vehicle Tab (Ground)",
-  "item_group.ashvehicle.ash-ship": "Ash Vehicle Tab (Naval)",
+  "item_group.ashvehicle.ash-ground": "Ash Vehicle Tab (Ground)",
+  "item_group.ashvehicle.ash-naval": "Ash Vehicle Tab (Naval)",
   "item_group.ashvehicle.ash-item": "Ash Vehicle Tab (Items)",
 
   "entity.ashvehicle.aim9": "AIM-9 Sidewinder",
@@ -60,6 +60,7 @@
   "entity.ashvehicle.ka52": "Ka-52 Alligator",
   "entity.ashvehicle.ac130u": "AC-130U Spooky II",
   "entity.ashvehicle.b52": "B-52 Stratofortress",
+  "entity.ashvehicle.c130": "C-130 Hercules",
 
   "key.ashvehicle.open_coordinate": "Open Coordinates",
   "key.ashvehicle.toggle_pod": "Toggle Missile Pod",
@@ -82,6 +83,8 @@
   "weapon.ashvehicle.30mm": "30 mm Cannon",
   "weapon.ashvehicle.40mm": "40 mm Cannon",
   "weapon.ashvehicle.105mm": "105 mm Howitzer",
+  "weapon.ashvehicle.m61": "M61 Vulcan",
+  "weapon.ashvehicle.gsh_30": "GSh-30-1",
 
   "item.ashvehicle.agm158item": "AGM-158 JASSM",
   "item.ashvehicle.agm114item": "AGM-114 Hellfire",
@@ -93,5 +96,14 @@
   "item.ashvehicle.r60item": "R-60",
   "item.ashvehicle.nuclearbombitem": "Nuclear Bomb",
   "item.ashvehicle.jetengineitem": "Jet Engine",
-  "item.ashvehicle.enginefanitem": "Engine Fan"
+  "item.ashvehicle.enginefanitem": "Engine Fan",
+  "item.ashvehicle.40mmitem": "40mm Ammo",
+  "item.ashvehicle.105mmitem": "105mm Ammo",
+  "item.ashvehicle.20mmitem": "20mm Ammo",
+  "item.ashvehicle.25mmitem": "25mm Ammo",
+  "item.ashvehicle.jerry_can": "Jerry Can",
+  "message.ashvehicle.refilled": "Refilled %s units of energy.",
+  "message.ashvehicle.already_full": "Fuel tank is already full.",
+  "tooltip.ashvehicle.jerry_can.fuel": "Fuel: %s / %s",
+  "tooltip.ashvehicle.jerry_can.usage": "Shift + Right Click on a vehicle to refill fuel."
 }

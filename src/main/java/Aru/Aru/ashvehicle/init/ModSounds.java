@@ -14,26 +14,19 @@ public class ModSounds {
     // Создаем регистр для звуков
     public static final DeferredRegister<SoundEvent> REGISTRY = 
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, AshVehicle.MODID);
-    
-    // Регистрируем звуки для M1A1 Abrams
-    public static final RegistryObject<SoundEvent> M1A1_ABRAMS_FIRE = register("m1a1_fire");
-    public static final RegistryObject<SoundEvent> M1A1_ABRAMS_ENGINE = register("m1a1_engine");
-    public static final RegistryObject<SoundEvent> M1A1_ABRAMS_RELOAD = register("m1a1_reload");
+
+    public static final RegistryObject<SoundEvent> MISSILE_SHOT = register("missile_shot");
+    public static final RegistryObject<SoundEvent> M61_FIRE = register("m61_fire");
+    public static final RegistryObject<SoundEvent> GSH30_FIRE = register("gsh30_fire");
+
     public static final RegistryObject<SoundEvent> SU57_ENGINE = register("su57_engine");
     public static final RegistryObject<SoundEvent> J20_ENGINE = register("j-20_engine");
     public static final RegistryObject<SoundEvent> REAPER_ENGINE = register("reaper-engine");
-    
-    // Дополнительные звуковые события для совместимости с базовым модом
-    public static final RegistryObject<SoundEvent> WHEEL_STEP = register("wheel_step");
+    public static final RegistryObject<SoundEvent> ENGINE1 = register("engine1_medium");
+    public static final RegistryObject<SoundEvent> ENGINE1_START = register("engine1_start");
+    public static final RegistryObject<SoundEvent> ENGINE2 = register("engine2_medium");
+    public static final RegistryObject<SoundEvent> ENGINE2_START = register("engine2_start");
 
-    public static final RegistryObject<SoundEvent> YX_100_VERY_FAR = register("yx_100_veryfar");
-    public static final RegistryObject<SoundEvent> YX_100_RELOAD = register("yx_100_reload");
-    
-    /**
-     * Вспомогательный метод для регистрации звуков
-     * @param name Название звука (без пространства имен)
-     * @return RegistryObject для звукового события
-     */
     private static RegistryObject<SoundEvent> register(String name) {
         return REGISTRY.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(AshVehicle.MODID, name)));
     }

@@ -9,6 +9,7 @@ import Aru.Aru.ashvehicle.entity.vehicle.*;
 import Aru.Aru.ashvehicle.init.CoordinateTargetVehicle;
 import Aru.Aru.ashvehicle.init.ModNetwork;
 import Aru.Aru.ashvehicle.init.client.ClientKeyMappings;
+import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
@@ -44,11 +45,11 @@ public class ClientEvents {
             }
         }
 
-        // thermal vition (Ctrl key)
+        // thermal vition (F key)
         if (ClientKeyMappings.THERMAL_VISION != null
                 && ClientKeyMappings.THERMAL_VISION.consumeClick()) {
 
-            if (vehicle instanceof F18Entity) {
+            if (vehicle instanceof GeoVehicleEntity) {
                 if (ThermalShaderManager.isEnabled()) {
                     ThermalShaderManager.disable();
                 } else {
@@ -57,8 +58,9 @@ public class ClientEvents {
             }
         }
 
+        // auto disable
         if (ThermalShaderManager.isEnabled()) {
-            if (!(vehicle instanceof F18Entity)) {
+            if (!(vehicle instanceof GeoVehicleEntity)) {
                 ThermalShaderManager.disable();
             }
         }
@@ -73,8 +75,9 @@ public class ClientEvents {
             if (vehicle instanceof V22Entity v22) {
                 v22.toggleVtolMode();
             }
-            if (vehicle instanceof F14Entity f14) {
-                f14.toggleVtolMode();
+
+            if (vehicle instanceof C130Entity c130) {
+                c130.toggleHatchMode();
             }
         }
 

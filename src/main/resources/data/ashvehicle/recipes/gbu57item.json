@@ -9,6 +9,6 @@
     "5 minecraft:tnt"
   ],
   "result": {
-    "entity": "ashvehicle:gbu57"
+    "item": "ashvehicle:gbu57item"
   }
 }

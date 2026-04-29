@@ -50,10 +50,11 @@
         "Direction": "Barrel"
       },
       "Transform": "Turret",
-      "Position": [
-        0.6669625, 0.07, 0.4776875
+      "Position": [0.6669625, 0.07, 0.4776875],
+      "Weapons": [
+        "Cannon",
+        "MachineGun"
       ],
-      "Weapons": ["Cannon", "MachineGun"],
       "CanRotateHead": false,
       "MinPitch": -10,
       "MaxPitch": 30,
@@ -67,12 +68,10 @@
         "ZoomPosition": [0, 0.1, 0],
         "Direction": "WeaponStationBarrel"
       },
-      "Position": [
-        -0.75805625,
-        0.3,
-        -0.57275625
+      "Position": [-0.75805625, 0.3, -0.57275625],
+      "Weapons": [
+        "PassengerMachineGun"
       ],
-      "Weapons": ["PassengerMachineGun"],
       "CanRotateHead": false,
       "MinPitch": -10,
       "MaxPitch": 60,
@@ -80,30 +79,31 @@
     },
     {
       "Transform": "Turret",
-      "Position": [
-        0.86219375,
-        0.07,
-        -0.5696875
+      "Position": [0.86219375, 0.07, -0.5696875],
+      "Weapons": [
+        "SwarmDrone"
       ],
-      "Weapons": ["SwarmDrone"],
       "CanRotateBody": true,
       "MinPitch": -30,
       "MaxPitch": 90,
-      "Sensitivity": [0.6, 1, 1]
+      "Sensitivity": [0.6, 1, 1],
+      "CameraPos": {}
     },
     {
       "BanHand": true,
       "Transform": "Vehicle",
       "Position": [1.125, 0.8, -5],
       "MinYaw": -95,
-      "MaxYaw": 95
+      "MaxYaw": 95,
+      "CameraPos": {}
     },
     {
       "BanHand": true,
       "Transform": "Vehicle",
       "Position": [-1.125, 0.8, -5],
       "MinYaw": -95,
-      "MaxYaw": 95
+      "MaxYaw": 95,
+      "CameraPos": {}
     }
   ],
   "Weapons": {
@@ -121,7 +121,7 @@
       "ExplosionDamage": 80,
       "ExplosionRadius": 4,
       "RecoilTime": 42,
-      "RecoilForce": 1.0,
+      "RecoilForce": 1,
       "ShootShake": [8, 10, 60],
       "Spread": 0.02,
       "ShootAnimationTime": 10,
@@ -188,8 +188,12 @@
       "SoundRadius": 32,
       "ShootPos": {
         "Transform": "Barrel",
-        "Positions": [[0, 0, 5]],
-        "Directions": ["Barrel"]
+        "Positions": [
+          [0, 0, 5]
+        ],
+        "Directions": [
+          "Barrel"
+        ]
       }
     },
     "MachineGun": {
@@ -212,8 +216,12 @@
       "AmmoType": "@HeavyAmmo",
       "ShootPos": {
         "Transform": "Barrel",
-        "Positions": [[-0.12, 0.15, 0]],
-        "Directions": ["Barrel"]
+        "Positions": [
+          [-0.12, 0.15, 0]
+        ],
+        "Directions": [
+          "Barrel"
+        ]
       },
       "Crosshair": "@VehicleCommonGun",
       "Name": "weapon.superbwarfare.50_cal_gun",
@@ -246,8 +254,12 @@
       "AmmoType": "@HeavyAmmo",
       "ShootPos": {
         "Transform": "WeaponStationBarrel",
-        "Positions": [[0, 0.01, 1.8]],
-        "Directions": ["WeaponStationBarrel"]
+        "Positions": [
+          [0, 0.01, 1.8]
+        ],
+        "Directions": [
+          "WeaponStationBarrel"
+        ]
       },
       "Crosshair": "@VehicleCommonGun",
       "Name": "weapon.superbwarfare.50_cal_gun",
@@ -263,7 +275,9 @@
     "SwarmDrone": {
       "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/swarm_drone.png",
       "DefaultFireMode": "Auto",
-      "AvailableFireModes": ["Auto"],
+      "AvailableFireModes": [
+        "Auto"
+      ],
       "Spread": 0.3,
       "Magazine": 14,
       "EmptyReloadTime": 140,
@@ -293,7 +307,9 @@
           [1.6290875, 0.75536875, -2.68491875]
         ],
         "BoundUpWithAmmoAmount": true,
-        "Directions": [[0, 1, 0]],
+        "Directions": [
+          [0, 1, 0]
+        ],
         "ShootPositionForHud": [0.86219375, 1.67, -0.5696875],
         "ViewDirection": "Passenger"
       },
@@ -349,7 +365,7 @@
     "Increment": 0.02,
     "Decrement": 0.01,
     "SteeringSpeed": 0.1,
-    "EngineSoundVolume" : 0.6
+    "EngineSoundVolume": 0.6
   },
   "TurretPos": [0, 2.1059375, -0.43125],
   "BarrelPos": [0, 0.56345, 0.6477125],
@@ -407,22 +423,45 @@
   "CollisionLevel": {
     "Level": 4,
     "PowerLimits": [
-      [0, 0, true],
-      [0, 0, true],
-      [0.1, 0.05, false],
-      [1, 0.3, false]
+      [
+        0,
+        0,
+        true
+      ],
+      [
+        0,
+        0,
+        true
+      ],
+      [
+        0.1,
+        0.05,
+        false
+      ],
+      [
+        1,
+        0.3,
+        false
+      ]
     ]
   },
   "EngineSound": "ashvehicle:m1a1_engine",
   "HudType": "@Land",
   "InertiaRotateRate": 1.2,
   "TerrainCompat": [
-    [2, 0, 3.0625], [-2, 0, 3.0625],
-    [2, 0, 1.0625], [-2, 0, 1.0625],
-    [2, 0, 1.125], [-2, 0, 1.125],
-    [2, 0, 0.1875], [-2, 0, 0.1875],
-    [2, 0, -0.8125], [-2, 0, -0.8125],
-    [2, 0, -1.8125], [-2, 0, -1.8125],
-    [2, 0, -2.8125], [-2, 0, -2.8125]
+    [2, 0, 3.0625],
+    [-2, 0, 3.0625],
+    [2, 0, 1.0625],
+    [-2, 0, 1.0625],
+    [2, 0, 1.125],
+    [-2, 0, 1.125],
+    [2, 0, 0.1875],
+    [-2, 0, 0.1875],
+    [2, 0, -0.8125],
+    [-2, 0, -0.8125],
+    [2, 0, -1.8125],
+    [-2, 0, -1.8125],
+    [2, 0, -2.8125],
+    [-2, 0, -2.8125]
   ]
 }

@@ -19,7 +19,7 @@
     },
     {
       "Size": [0.6, 0.5625, 0.95625],
-      "Position": [0, 3.0, 3.15],
+      "Position": [0, 3, 3.15],
       "RotationAngles": [3, 0, 0]
     },
     {
@@ -135,7 +135,11 @@
       "MaxPitch": 80,
       "MinYaw": -80,
       "MaxYaw": 80,
-      "Weapons": ["CloseBay", "Rocket", "DriverAAMissile"],
+      "Weapons": [
+        "CloseBay",
+        "Rocket",
+        "DriverAAMissile"
+      ],
       "DismountInfo": {
         "Transform": "Vehicle",
         "Position": [-2.5, 0.5, 2.5]
@@ -143,7 +147,7 @@
     },
     {
       "Transform": "Vehicle",
-      "Position": [0, 1.0, 4.3],
+      "Position": [0, 1, 4.3],
       "Sensitivity": [0.59, 0.8, 0.9],
       "CameraPos": {
         "Transform": "Vehicle",
@@ -156,7 +160,10 @@
       "MaxPitch": 10,
       "MinYaw": -110,
       "MaxYaw": 110,
-      "Weapons": ["Cannon", "aim9"],
+      "Weapons": [
+        "Cannon",
+        "aim9"
+      ],
       "DismountInfo": {
         "Transform": "Vehicle",
         "Position": [-2.5, 0.5, 3.5625]
@@ -199,8 +206,12 @@
       "AmmoType": "superbwarfare:small_shell",
       "ShootPos": {
         "Transform": "Barrel",
-        "Positions": [[0, 0.102, 3.013]],
-        "Directions": ["Barrel"]
+        "Positions": [
+          [0, 0.102, 3.013]
+        ],
+        "Directions": [
+          "Barrel"
+        ]
       }
     },
     "Rocket": {
@@ -224,12 +235,18 @@
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 0.62, 0.8],
         "ShootDirectionForHud": [0, 0.018, 1],
-        "Positions": [[-1.787, 1.548, -0.151], [1.787, 1.548, -0.151]],
-        "Directions": [[0.003, 0.025, 1], [-0.003, 0.025, 1]]
+        "Positions": [
+          [-1.787, 1.548, -0.151],
+          [1.787, 1.548, -0.151]
+        ],
+        "Directions": [
+          [0.003, 0.025, 1],
+          [-0.003, 0.025, 1]
+        ]
       },
       "SoundInfo": {
-        "Fire1P": "superbwarfare:small_rocket_fire_1p",
-        "Fire3P": "superbwarfare:small_rocket_fire_3p",
+        "Fire1P": "ashvehicle:missile_shot",
+        "Fire3P": "ashvehicle:missile_shot",
         "VehicleReload3p": "superbwarfare:missile_reload",
         "VehicleReloadSoundTime": 7,
         "Change": "superbwarfare:into_missile"
@@ -268,7 +285,12 @@
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 3.5625, 2.25],
-        "Positions": [[-2.258, 1.932, 0], [-2.258, 1.67, 0], [-2.446, 1.932, 0], [-2.446, 1.67, 0]],
+        "Positions": [
+          [-2.258, 1.932, 0],
+          [-2.258, 1.67, 0],
+          [-2.446, 1.932, 0],
+          [-2.446, 1.67, 0]
+        ],
         "BoundUpWithAmmoAmount": true
       }
     },
@@ -280,7 +302,16 @@
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.0625, 5.625],
-        "Positions": [[2.258, 1.932, 0], [2.258, 1.67, 0], [2.446, 1.932, 0], [2.446, 1.67, 0], [2.806, 1.932, 0], [2.806, 1.67, 0], [2.993, 1.932, 0], [2.993, 1.67, 0]],
+        "Positions": [
+          [2.258, 1.932, 0],
+          [2.258, 1.67, 0],
+          [2.446, 1.932, 0],
+          [2.446, 1.67, 0],
+          [2.806, 1.932, 0],
+          [2.806, 1.67, 0],
+          [2.993, 1.932, 0],
+          [2.993, 1.67, 0]
+        ],
         "BoundUpWithAmmoAmount": true,
         "ViewDirection": "Barrel"
       }
@@ -331,13 +362,16 @@
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.0625, 5.625],
-        "Positions": [[-2.641, 1.1875, 0], [2.641, 1.1875, 0]],
+        "Positions": [
+          [-2.641, 1.1875, 0],
+          [2.641, 1.1875, 0]
+        ],
         "ViewDirection": "Barrel",
         "BoundUpWithAmmoAmount": true
       },
       "SoundInfo": {
-        "Fire1P": "superbwarfare:bomb_release",
-        "Fire3P": "superbwarfare:bomb_release",
+        "Fire1P": "ashvehicle:missile_shot",
+        "Fire3P": "ashvehicle:missile_shot",
         "VehicleReload3p": "superbwarfare:bomb_reload",
         "VehicleReloadSoundTime": 11,
         "Change": "superbwarfare:into_missile",
@@ -348,7 +382,9 @@
       "Crosshair": "@VehicleCommonMissile",
       "CrosshairZooming": "@VehicleCommonSeekMissile",
       "SoundRadius": 8,
-      "AvailableFireModes": ["Semi"]
+      "AvailableFireModes": [
+        "Semi"
+      ]
     },
     "DriverAAMissile": {
       "AmmoType": "superbwarfare:medium_anti_air_missile",
@@ -375,12 +411,17 @@
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 1.0625, 5.625],
-        "Positions": [[-2.806, 1.932, 0], [-2.806, 1.67, 0], [-2.993, 1.932, 0], [-2.993, 1.67, 0]],
+        "Positions": [
+          [-2.806, 1.932, 0],
+          [-2.806, 1.67, 0],
+          [-2.993, 1.932, 0],
+          [-2.993, 1.67, 0]
+        ],
         "BoundUpWithAmmoAmount": true
       },
       "SoundInfo": {
-        "Fire1P": "superbwarfare:bomb_release",
-        "Fire3P": "superbwarfare:bomb_release",
+        "Fire1P": "ashvehicle:missile_shot",
+        "Fire3P": "ashvehicle:missile_shot",
         "VehicleReload3p": "superbwarfare:bomb_reload",
         "VehicleReloadSoundTime": 11,
         "Change": "superbwarfare:into_missile",
@@ -417,13 +458,17 @@
       "AmmoType": "ashvehicle:aim9item",
       "ShootPos": {
         "Transform": "Vehicle",
-        "Positions": [[0, 1.24375, -0.3234]],
-        "Directions": ["Vehicle"],
+        "Positions": [
+          [0, 1.24375, -0.3234]
+        ],
+        "Directions": [
+          "Vehicle"
+        ],
         "ViewDirection": "Barrel"
       },
       "SoundInfo": {
-        "Fire1P": "superbwarfare:bomb_release",
-        "Fire3P": "superbwarfare:bomb_release",
+        "Fire1P": "ashvehicle:missile_shot",
+        "Fire3P": "ashvehicle:missile_shot",
         "VehicleReload3p": "superbwarfare:bomb_reload",
         "VehicleReloadSoundTime": 11,
         "Change": "superbwarfare:into_missile",
@@ -445,7 +490,7 @@
     "RollSpeed": 0.6,
     "LiftSpeed": 0.8,
     "EngineStartSound": "superbwarfare:mi_28_engine_start",
-    "EngineSoundVolume" : 2
+    "EngineSoundVolume": 2
   },
   "EngineSound": "superbwarfare:mi_28_engine",
   "ThirdPersonCameraPos": [2.7, 4, 12],
@@ -495,6 +540,10 @@
   "ContainerIcon": "superbwarfare:textures/gui/vehicle/type/aircraft.png",
   "Type": "Helicopter",
   "HudType": "@Helicopter",
-  "TerrainCompat": [[-1.284, 0, 1.728], [1.284, 0, 1.728], [0, 0.58, -11.1]],
-  "TerrainCompatRotateRate" : 0.18
+  "TerrainCompat": [
+    [-1.284, 0, 1.728],
+    [1.284, 0, 1.728],
+    [0, 0.58, -11.1]
+  ],
+  "TerrainCompatRotateRate": 0.18
 }

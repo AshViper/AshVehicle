@@ -31,25 +31,29 @@
       "Transform": "Vehicle",
       "Position": [-0.8, 0.35, -1.2],
       "MinYaw": -90,
-      "MaxYaw": 90
+      "MaxYaw": 90,
+      "CameraPos": {}
     },
     {
       "Transform": "Vehicle",
       "Position": [0.8, 0.35, -1.2],
       "MinYaw": -90,
-      "MaxYaw": 90
+      "MaxYaw": 90,
+      "CameraPos": {}
     },
     {
       "Transform": "Vehicle",
       "Position": [-0.8, 0.35, -2.2],
       "MinYaw": -90,
-      "MaxYaw": 90
+      "MaxYaw": 90,
+      "CameraPos": {}
     },
     {
       "Transform": "Vehicle",
       "Position": [0.8, 0.35, -2.2],
       "MinYaw": -90,
-      "MaxYaw": 90
+      "MaxYaw": 90,
+      "CameraPos": {}
     }
   ],
   "TurretPos": [0, 2.5616625, -0.565625],
@@ -97,12 +101,12 @@
     "Buoyancy": 0.12,
     "EnergyCostRate": 48,
     "MaxForwardSpeedRate": 1.5,
-    "MaxBackwardSpeedRate": 1.0,
+    "MaxBackwardSpeedRate": 1,
     "Increment": 0.035,
     "Decrement": 0.022,
     "SteeringSpeed": 0.15,
     "BodyPitchRate": 1.1,
-    "BodyPitchRoll": 1.0
+    "BodyPitchRoll": 1
   },
   "ThirdPersonCameraPos": [0, 1.5, 3],
   "VehicleIcon": "superbwarfare:textures/vehicle_icon/speedboat_icon.png",
@@ -111,18 +115,41 @@
   "CollisionLevel": {
     "Level": 3,
     "PowerLimits": [
-      [0, 0, true],
-      [0, 0, true],
-      [1, 0.15, false]
+      [
+        0,
+        0,
+        true
+      ],
+      [
+        0,
+        0,
+        true
+      ],
+      [
+        1,
+        0.15,
+        false
+      ]
     ]
   },
   "EngineSound": "superbwarfare:speedboat_engine",
   "TerrainCompat": [
-    [0.875, 0, 1.1875], [0, 0, 1.1875], [-0.875, 0, 1.1875],
-    [0.875, 0, 0.1875], [0, 0, 0.1875], [-0.875, 0, 0.1875],
-    [0.875, 0, -0.8125], [0, 0, -0.8125], [-0.875, 0, -0.8125],
-    [0.875, 0, -1.8125], [0, 0, -1.8125], [-0.875, 0, -1.8125],
-    [0.875, 0, -2.6875], [0, 0, -2.6875], [-0.875, 0, -2.6875]
+    [0.875, 0, 1.1875],
+    [0, 0, 1.1875],
+    [-0.875, 0, 1.1875],
+    [0.875, 0, 0.1875],
+    [0, 0, 0.1875],
+    [-0.875, 0, 0.1875],
+    [0.875, 0, -0.8125],
+    [0, 0, -0.8125],
+    [-0.875, 0, -0.8125],
+    [0.875, 0, -1.8125],
+    [0, 0, -1.8125],
+    [-0.875, 0, -1.8125],
+    [0.875, 0, -2.6875],
+    [0, 0, -2.6875],
+    [-0.875, 0, -2.6875]
   ],
-  "InertiaRotateRate": 2
+  "InertiaRotateRate": 2,
+  "Weapons": {}
 }

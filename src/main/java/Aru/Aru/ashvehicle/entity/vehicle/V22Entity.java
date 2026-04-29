@@ -26,6 +26,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Math;
 
 public class V22Entity extends GeoVehicleEntity {
+    private V22EngineSound engineSound;
+
     public V22Entity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -35,9 +37,6 @@ public class V22Entity extends GeoVehicleEntity {
     private static final EntityDataAccessor<Float> WEAPON_BAY_ROT = SynchedEntityData.defineId(V22Entity.class, EntityDataSerializers.FLOAT);
     public float vtolRotO = 0f;
     public float weaponBayRotO = 0f;
-
-    @OnlyIn(Dist.CLIENT)
-    private V22Entity.V22EngineSound engineSound;
 
     DefaultVehicleData computed = this.computed();
     JsonObject engineInfo = computed.engineInfo;

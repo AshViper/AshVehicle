@@ -18,8 +18,15 @@ public class F16Entity extends BaseAircraftEntity {
         super.baseTick();
         
         float power = Math.abs(this.getPower());
-        if (power > 0.06F && this.level().isClientSide) {
+        if (this.sprintInputDown() && this.level().isClientSide) {
             this.spawnAfterburnerEffect();
         }
+    }
+
+    @Override
+    public List<Vec3> getAfterburnerParticlePositions() {
+        List<Vec3> positions = new ArrayList<>();
+        positions.add(new Vec3(-9.7119, 2.4143, 0));
+        return positions;
     }
 }

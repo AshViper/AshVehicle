@@ -70,6 +70,7 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.KA_52.get(), KA52Renderer::new);
         event.registerEntityRenderer(ModEntities.AC_130U.get(), Ac130uRenderer::new);
         event.registerEntityRenderer(ModEntities.B_52.get(), B52Renderer::new);
+        event.registerEntityRenderer(ModEntities.C_130.get(), C130Renderer::new);
     }
 }
 

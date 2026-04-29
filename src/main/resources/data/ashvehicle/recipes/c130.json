@@ -1,0 +1,15 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "aircraft",
+  "inputs": [
+    "16 superbwarfare:steel_block",
+    "4 superbwarfare:large_propeller",
+    "2 superbwarfare:medium_battery_pack",
+    "4 superbwarfare:large_motor",
+    "3 superbwarfare:wheel",
+    "8 superbwarfare:tungsten_block"
+  ],
+  "result": {
+    "entity": "ashvehicle:c130"
+  }
+}

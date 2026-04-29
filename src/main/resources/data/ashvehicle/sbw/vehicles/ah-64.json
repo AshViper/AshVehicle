@@ -9,395 +9,119 @@
   "TurretControllerIndex": 1,
   "OBB": [
     {
-      "Size": [
-        1.3125,
-        0.390625,
-        3.25
-      ],
-      "Position": [
-        0,
-        1.6875,
-        3.0625
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 1.3125, 0.3906, 3.25 ],
+      "Position": [ 0, 1.6875, 3.0625 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.6875,
-        1,
-        1.9375
-      ],
-      "Position": [
-        0,
-        2.9375,
-        1.8125
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.6875, 1, 1.9375 ],
+      "Position": [ 0, 2.9375, 1.8125 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.6875,
-        1,
-        1.25
-      ],
-      "Position": [
-        0,
-        2.6875,
-        4.625
-      ],
-      "RotationAngles": [
-        16,
-        0,
-        0
-      ]
+      "Size": [ 0.6875, 1, 1.25 ],
+      "Position": [ 0, 2.6875, 4.625 ],
+      "RotationAngles": [ 16, 0, 0 ]
     },
     {
-      "Size": [
-        0.6875,
-        0.59375,
-        1
-      ],
-      "Position": [
-        0,
-        2.1875,
-        6.8125
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.6875, 0.5938, 1 ],
+      "Position": [ 0, 2.1875, 6.8125 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.609375,
-        0.5625,
-        1.3125
-      ],
-      "Position": [
-        0,
-        2.4375,
-        -1.125
-      ],
-      "RotationAngles": [
-        -28,
-        0,
-        0
-      ]
+      "Size": [ 0.6094, 0.5625, 1.3125 ],
+      "Position": [ 0, 2.4375, -1.125 ],
+      "RotationAngles": [ -28, 0, 0 ]
     },
     {
-      "Size": [
-        0.609375,
-        0.8125,
-        1.3125
-      ],
-      "Position": [
-        0,
-        1.75,
-        -1.125
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.6094, 0.8125, 1.3125 ],
+      "Position": [ 0, 1.75, -1.125 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.328125,
-        0.5625,
-        2.625
-      ],
-      "Position": [
-        0,
-        1.5625,
-        -5.0625
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.3281, 0.5625, 2.625 ],
+      "Position": [ 0, 1.5625, -5.0625 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.328125,
-        1.609375,
-        0.59375
-      ],
-      "Position": [
-        0,
-        2.84375,
-        -7.609375
-      ],
-      "RotationAngles": [
-        -26,
-        0,
-        0
-      ]
+      "Size": [ 0.3281, 1.6094, 0.5938 ],
+      "Position": [ 0, 2.8438, -7.6094 ],
+      "RotationAngles": [ -26, 0, 0 ]
     },
     {
-      "Size": [
-        1.890625,
-        0.125,
-        0.703125
-      ],
-      "Position": [
-        0,
-        1.59375,
-        -8.171875
-      ],
-      "RotationAngles": [
-        -14,
-        0,
-        0
-      ]
+      "Size": [ 1.8906, 0.125, 0.7031 ],
+      "Position": [ 0, 1.5938, -8.1719 ],
+      "RotationAngles": [ -14, 0, 0 ]
     },
     {
-      "Size": [
-        0.875,
-        0.9375,
-        0.875
-      ],
-      "Position": [
-        0,
-        4.9375,
-        2.1875
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.875, 0.9375, 0.875 ],
+      "Position": [ 0, 4.9375, 2.1875 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.296875,
-        0.171875,
-        1.90625
-      ],
-      "Position": [
-        -1.015625,
-        2.140625,
-        1.703125
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.2969, 0.1719, 1.9063 ],
+      "Position": [ -1.0156, 2.1406, 1.7031 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.296875,
-        0.15625,
-        1.25
-      ],
-      "Position": [
-        -1,
-        2.234375,
-        4.875
-      ],
-      "RotationAngles": [
-        2,
-        0,
-        0
-      ]
+      "Size": [ 0.2969, 0.1563, 1.25 ],
+      "Position": [ -1, 2.2344, 4.875 ],
+      "RotationAngles": [ 2, 0, 0 ]
     },
     {
-      "Size": [
-        0.5625,
-        0.59375,
-        1.515625
-      ],
-      "Position": [
-        1.265625,
-        3.0625,
-        0.03125
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.5625, 0.5938, 1.5156 ],
+      "Position": [ 1.2656, 3.0625, 0.0313 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.5625,
-        0.59375,
-        1.515625
-      ],
-      "Position": [
-        -1.265625,
-        3.0625,
-        0.03125
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.5625, 0.5938, 1.5156 ],
+      "Position": [ -1.2656, 3.0625, 0.0313 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.109375,
-        0.265625,
-        1.0625
-      ],
-      "Position": [
-        3.265625,
-        2.109375,
-        1.65625
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.1094, 0.2656, 1.0625 ],
+      "Position": [ 3.2656, 2.1094, 1.6563 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.328125,
-        0.328125,
-        1.25
-      ],
-      "Position": [
-        2.9375,
-        1.34375,
-        2.3125
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.3281, 0.3281, 1.25 ],
+      "Position": [ 2.9375, 1.3438, 2.3125 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.515625,
-        0.46875,
-        1.25
-      ],
-      "Position": [
-        1.984375,
-        1.1875,
-        2.359375
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.5156, 0.4688, 1.25 ],
+      "Position": [ 1.9844, 1.1875, 2.3594 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.515625,
-        0.46875,
-        1.25
-      ],
-      "Position": [
-        -1.984375,
-        1.1875,
-        2.359375
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.5156, 0.4688, 1.25 ],
+      "Position": [ -1.9844, 1.1875, 2.3594 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.328125,
-        0.328125,
-        1.25
-      ],
-      "Position": [
-        -2.9375,
-        1.34375,
-        2.3125
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.3281, 0.3281, 1.25 ],
+      "Position": [ -2.9375, 1.3438, 2.3125 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.953125,
-        0.125,
-        0.65625
-      ],
-      "Position": [
-        -2.21875,
-        2.09375,
-        1.640625
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.9531, 0.125, 0.6563 ],
+      "Position": [ -2.2188, 2.0938, 1.6406 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.109375,
-        0.265625,
-        1.0625
-      ],
-      "Position": [
-        -3.265625,
-        2.109375,
-        1.65625
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.1094, 0.2656, 1.0625 ],
+      "Position": [ -3.2656, 2.1094, 1.6563 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.953125,
-        0.125,
-        0.65625
-      ],
-      "Position": [
-        2.21875,
-        2.09375,
-        1.640625
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.9531, 0.125, 0.6563 ],
+      "Position": [ 2.2188, 2.0938, 1.6406 ],
+      "RotationAngles": [ -5, 0, 0 ]
     },
     {
-      "Size": [
-        0.296875,
-        0.125,
-        1.140625
-      ],
-      "Position": [
-        0.984375,
-        2.078125,
-        1.15625
-      ],
-      "RotationAngles": [
-        -5,
-        0,
-        0
-      ]
+      "Size": [ 0.2969, 0.125, 1.1406 ],
+      "Position": [ 0.9844, 2.0781, 1.1563 ],
+      "RotationAngles": [ -5, 0, 0 ]
     }
   ],
   "Seats": [
@@ -505,10 +229,10 @@
         "Directions": [[0.003, 0.025, 1], [-0.003, 0.025, 1]]
       },
       "SoundInfo": {
-        "Fire1P": "superbwarfare:small_rocket_fire_1p",
-        "Fire3P": "superbwarfare:small_rocket_fire_3p",
-        "VehicleReload3p": "superbwarfare:missile_reload",
-        "VehicleReloadSoundTime": 7,
+        "Fire1P": "ashvehicle:missile_shot",
+        "Fire3P": "ashvehicle:missile_shot",
+        "VehicleReload3p": "superbwarfare:bomb_reload",
+        "VehicleReloadSoundTime": 11,
         "Change": "superbwarfare:into_missile"
       },
       "Crosshair": "@Empty",
@@ -529,8 +253,8 @@
       "Velocity": 3,
       "CrosshairColor": "0xFFC700",
       "SoundInfo": {
-        "Fire1P": "superbwarfare:bomb_release",
-        "Fire3P": "superbwarfare:bomb_release",
+        "Fire1P": "ashvehicle:missile_shot",
+        "Fire3P": "ashvehicle:missile_shot",
         "VehicleReload3p": "superbwarfare:bomb_reload",
         "VehicleReloadSoundTime": 11,
         "Change": "superbwarfare:into_missile"

@@ -28,21 +28,21 @@ public abstract class VehicleEntityMixin {
             for (int i = 0; i < obbs.size(); i++) {
                 OBBInfo obbInfo = obbInfos.get(i);
                 OBB obb = obbs.get(i);
-                
+
                 Vec3 angles = ((OBBInfoAccessor) obbInfo).superbwarfare$getRotationAngles();
                 if (angles != null) {
                     // Start with the vehicle's current OBB rotation (which already includes vehicle orientation)
                     Quaterniond currentRot = new Quaterniond(obb.rotation());
-                    
+
                     // Create the additional rotation from OBBInfo
                     Quaterniond additionalRot = new Quaterniond()
                             .rotateY(Math.toRadians(angles.y))
                             .rotateX(Math.toRadians(angles.x))
                             .rotateZ(Math.toRadians(angles.z));
-                    
+
                     // Multiply them to combine vehicle rotation + custom OBB rotation
                     currentRot.mul(additionalRot);
-                    
+
                     // Update the OBB with the combined rotation
                     obb.setRotation(currentRot);
                 }

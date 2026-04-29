@@ -18,16 +18,17 @@ public class F22Entity extends BaseAircraftEntity {
         super.baseTick();
         
         float power = Math.abs(this.getPower());
-        if (power > 0.06F && this.level().isClientSide) {
+        if (this.sprintInputDown() && this.level().isClientSide) {
             this.spawnAfterburnerEffect();
         }
     }
 
     @Override
-    public List<Vec3> getAfterburnerParticlePositions() {
-        List<Vec3> positions = new ArrayList<>();
-        positions.add(new Vec3(-10, 2.0, -1.2));
-        positions.add(new Vec3(-10, 2.0, 1.2));
-        return positions;
+    public List<AfterburnerSource> getAfterburnerSources() {
+        List<AfterburnerSource> sources = new ArrayList<>();
+        sources.add(new AfterburnerSource(new Vec3(-10, 2.0, -1.2)));
+        sources.add(new AfterburnerSource(new Vec3(-10, 2.0, 1.2)));
+        return sources;
     }
+
 }

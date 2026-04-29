@@ -56,12 +56,12 @@ public class F35AModel extends VehicleModel<F35AEntity> {
 
     @Override
     public ResourceLocation getModelResource(F35AEntity object) {
-        return new ResourceLocation("ashvehicle", "geo/f35a.geo.json");
+        return new ResourceLocation("ashvehicle", "geo/f-35a.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(F35AEntity object) {
-        return new ResourceLocation("ashvehicle", "textures/entity/f35a.png");
+        return new ResourceLocation("ashvehicle", "textures/entity/f-35a.png");
     }
 
     @Override

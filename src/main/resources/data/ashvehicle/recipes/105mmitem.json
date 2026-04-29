@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    " B ",
+    " C "
+  ],
+  "key": {
+    "A": {
+      "item": "superbwarfare:he_head"
+    },
+    "B": {
+      "item": "superbwarfare:grain"
+    },
+    "C": {
+      "item": "superbwarfare:primer"
+    }
+  },
+  "result": {
+    "item": "ashvehicle:105mmitem",
+    "count": 2
+  }
+}

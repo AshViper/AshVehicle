@@ -6,6 +6,6 @@
     "2 superbwarfare:large_propeller"
   ],
   "result": {
-    "entity": "ashvehicle:enginefanitem"
+    "item": "ashvehicle:enginefanitem"
   }
 }

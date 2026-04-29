@@ -1,0 +1,11 @@
+{
+  "type": "superbwarfare:vehicle_assembling",
+  "category": "misc",
+  "inputs": [
+    "10 minecraft:coal",
+    "5 minecraft:iron_ingot"
+  ],
+  "result": {
+    "item": "ashvehicle:jerry_can"
+  }
+}

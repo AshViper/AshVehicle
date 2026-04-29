@@ -10,7 +10,7 @@
       "HidePassenger": false,
       "BanHand": true,
       "Transform": "Vehicle",
-      "Position": [1.0, 0.8, 6.6],
+      "Position": [1, 0.8, 6.6],
       "CameraPos": {
         "UseSimulate3P": true,
         "Simulate3PPos": [8, 1.5]
@@ -51,9 +51,9 @@
     "Decrement": 0.012,
     "SteeringSpeed": 0.1
   },
-  "ThirdPersonCameraPos": [0, 1.0, 2.75],
+  "ThirdPersonCameraPos": [0, 1, 2.75],
   "HasDecoy": true,
-  "RotateOffsetHeight": 2.0,
+  "RotateOffsetHeight": 2,
   "VehicleContainerType": "Medium",
   "DestroyInfo": {
     "ParticleType": "Medium",
@@ -66,7 +66,12 @@
   "EngineSound": "superbwarfare:lav_150_engine",
   "HudType": "@Land",
   "InertiaRotateRate": 1.2,
-  "TerrainCompat": [[2.7, 0, 3.61], [-2.7, 0, 3.61], [2.7, 0, -3.61], [-2.7, 0, -3.61]],
+  "TerrainCompat": [
+    [2.7, 0, 3.61],
+    [-2.7, 0, 3.61],
+    [2.7, 0, -3.61],
+    [-2.7, 0, -3.61]
+  ],
   "DamageModifiers": [
     "minecraft:lava - -11",
     "minecraft:lava * 10",
@@ -87,5 +92,7 @@
     "@superbwarfare:mortar_shell * 1.25",
     "@superbwarfare:gun_grenade * 1.5",
     "All - 7"
-  ]
+  ],
+  "OBB": [],
+  "Weapons": {}
 }

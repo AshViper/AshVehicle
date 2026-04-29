@@ -53,12 +53,15 @@
       "HidePassenger": true,
       "CameraPos": {
         "Transform": "Barrel",
-        "ZoomPosition": [0, 0.25, 2.0],
+        "ZoomPosition": [0, 0.25, 2],
         "Direction": "Barrel"
       },
-      "Weapons": ["Cannon", "MachineGun"],
+      "Weapons": [
+        "Cannon",
+        "MachineGun"
+      ],
       "Transform": "Turret",
-      "Position": [0, -0.85, 0.0],
+      "Position": [0, -0.85, 0],
       "CanRotateHead": false,
       "MinPitch": -15,
       "MaxPitch": 32.5,
@@ -137,8 +140,12 @@
       "AmmoType": "superbwarfare:small_shell",
       "ShootPos": {
         "Transform": "Barrel",
-        "Positions": [[0.02, 0.0517, 3.2]],
-        "Directions": ["Barrel"]
+        "Positions": [
+          [0.02, 0.0517, 3.2]
+        ],
+        "Directions": [
+          "Barrel"
+        ]
       }
     },
     "MachineGun": {
@@ -160,8 +167,12 @@
       "AmmoType": "@RifleAmmo",
       "ShootPos": {
         "Transform": "Barrel",
-        "Positions": [[0.3, 0.0517, 0.5]],
-        "Directions": ["Barrel"]
+        "Positions": [
+          [0.3, 0.0517, 0.5]
+        ],
+        "Directions": [
+          "Barrel"
+        ]
       },
       "Crosshair": "@VehicleCommonGun",
       "Name": "weapon.superbwarfare.7_62mm_coax",
@@ -237,13 +248,30 @@
   "CollisionLevel": {
     "Level": 3,
     "PowerLimits": [
-      [0, 0, true],
-      [0, 0, true],
-      [0.15, 0.09, false]
+      [
+        0,
+        0,
+        true
+      ],
+      [
+        0,
+        0,
+        true
+      ],
+      [
+        0.15,
+        0.09,
+        false
+      ]
     ]
   },
   "EngineSound": "superbwarfare:lav_150_engine",
   "HudType": "@Land",
-  "TerrainCompat": [[1.156, 0, 1.594], [-1.156, 0, 1.594], [1.156, 0, -1.594], [-1.156, 0, -1.594]],
+  "TerrainCompat": [
+    [1.156, 0, 1.594],
+    [-1.156, 0, 1.594],
+    [1.156, 0, -1.594],
+    [-1.156, 0, -1.594]
+  ],
   "InertiaRotateRate": 1.25
 }

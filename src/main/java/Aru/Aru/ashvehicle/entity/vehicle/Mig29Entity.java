@@ -15,7 +15,7 @@ public class Mig29Entity extends BaseAircraftEntity {
         
         // 🔥 Afterburner particles (client side)
         float power = Math.abs(this.getPower());
-        if (power > 0.06F && this.level().isClientSide) {
+        if (this.sprintInputDown() && this.level().isClientSide) {
             this.spawnAfterburnerParticles(getAfterburnerParticlePositions());
         }
     }

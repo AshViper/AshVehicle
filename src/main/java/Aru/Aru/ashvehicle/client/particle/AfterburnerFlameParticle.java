@@ -2,7 +2,6 @@ package Aru.Aru.ashvehicle.client.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.NotNull;
 
 public class AfterburnerFlameParticle extends TextureSheetParticle {
@@ -13,7 +12,7 @@ public class AfterburnerFlameParticle extends TextureSheetParticle {
                                     double dx, double dy, double dz, SpriteSet sprite) {
         super(level, x, y, z, dx, dy, dz);
         this.spriteSet = sprite;
-        this.lifetime = 15 + this.random.nextInt(8); // Более короткая жизнь для динамичности
+        this.lifetime = 8 + this.random.nextInt(8); // Более короткая жизнь для динамичности
         this.gravity = -0.02F; // Легкий подъем вверх
         
         // Добавляем случайное отклонение для более реалистичного эффекта

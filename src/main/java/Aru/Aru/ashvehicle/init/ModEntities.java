@@ -120,4 +120,5 @@ public class ModEntities {
     public static final RegistryObject<EntityType<KA52Entity>> KA_52 = aircraft("ka52", KA52Entity::new);
     public static final RegistryObject<EntityType<Ac130uEntity>> AC_130U = aircraft("ac130u", Ac130uEntity::new);
     public static final RegistryObject<EntityType<B52Entity>> B_52 = aircraft("b52", B52Entity::new);
+    public static final RegistryObject<EntityType<C130Entity>> C_130 = aircraft("c130", C130Entity::new);
 }

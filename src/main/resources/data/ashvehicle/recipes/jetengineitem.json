@@ -8,6 +8,6 @@
     "2 ashvehicle:enginefanitem"
   ],
   "result": {
-    "entity": "ashvehicle:jetengineitem"
+    "item": "ashvehicle:jetengineitem"
   }
 }

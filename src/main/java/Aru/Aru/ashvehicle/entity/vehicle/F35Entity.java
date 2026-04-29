@@ -38,12 +38,10 @@ public class F35Entity extends BaseAircraftEntity {
     public float vtolRotO = 0f;
     public float weaponBayRotO = 0f;
 
-    @OnlyIn(Dist.CLIENT)
-    private F35EngineSound engineSound;
-
     DefaultVehicleData computed = this.computed();
     JsonObject engineInfo = computed.engineInfo;
     EngineInfo.Aircraft aircraft = DataLoader.GSON.fromJson(engineInfo, EngineInfo.Aircraft.class);
+    private F35EngineSound engineSound;
 
     public F35Entity(EntityType<?> type, Level level) {
         super(type, level);
@@ -82,7 +80,7 @@ public class F35Entity extends BaseAircraftEntity {
         }
 
         float power = Math.abs(this.getPower());
-        if (power > 0.06F && this.level().isClientSide) {
+        if (this.sprintInputDown() && this.level().isClientSide) {
             this.spawnAfterburnerEffect();
         }
 
@@ -104,25 +102,28 @@ public class F35Entity extends BaseAircraftEntity {
     }
 
     @Override
-    public boolean isVtolActive() {
-        return vtolMode;
+    public List<AfterburnerSource> getAfterburnerSources() {
+        List<AfterburnerSource> sources = new ArrayList<>();
+        
+        // Main engine nozzle sync (tilts during VTOL)
+        double pivotX = -8.5;
+        double pivotY = 2.0;
+        double nozzleLength = 1.5;
+        
+        float angleRad = (float) Math.toRadians(getPodRot());
+        
+        // Calculate nozzle exit position and direction
+        double rx = -nozzleLength * Math.cos(angleRad);
+        double ry = -nozzleLength * Math.sin(angleRad);
+        
+        sources.add(new AfterburnerSource(
+            new Vec3(pivotX + rx, pivotY + ry, 0),
+            new Vec3(-Math.cos(angleRad), -Math.sin(angleRad), 0)
+        ));
+        
+        return sources;
     }
 
-    @Override
-    public List<Vec3> getAfterburnerParticlePositions() {
-        List<Vec3> positions = new ArrayList<>();
-        positions.add(new Vec3(-10, 2.0, 0));
-        return positions;
-    }
-
-    @Override
-    public List<Vec3> getVtolAfterburnerPositions() {
-        List<Vec3> positions = new ArrayList<>();
-        float vtolProgress = getPodRot() / 85.0F;
-        double yOffset = 2.0 - (vtolProgress * 1.5);
-        positions.add(new Vec3(-10, yOffset, 0));
-        return positions;
-    }
 
     @OnlyIn(Dist.CLIENT)
     private void handleEngineSound() {

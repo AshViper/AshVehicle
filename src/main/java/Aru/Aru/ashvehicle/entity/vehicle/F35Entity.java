@@ -32,7 +32,7 @@ import java.util.List;
 
 public class F35Entity extends BaseAircraftEntity {
 
-    public static boolean vtolMode = false;
+    private static final EntityDataAccessor<Boolean> VTOL_MODE = SynchedEntityData.defineId(F35Entity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Float> VTOL_ROT = SynchedEntityData.defineId(F35Entity.class, EntityDataSerializers.FLOAT);
     private static final EntityDataAccessor<Float> WEAPON_BAY_ROT = SynchedEntityData.defineId(F35Entity.class, EntityDataSerializers.FLOAT);
     public float vtolRotO = 0f;
@@ -50,8 +50,17 @@ public class F35Entity extends BaseAircraftEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
+        this.entityData.define(VTOL_MODE, false);
         this.entityData.define(VTOL_ROT, 0.0F);
         this.entityData.define(WEAPON_BAY_ROT, 0.0F);
+    }
+
+    public void setVtolMode(boolean value) {
+        this.entityData.set(VTOL_MODE, value);
+    }
+
+    public boolean getVtolMode() {
+        return this.entityData.get(VTOL_MODE);
     }
 
     public void setPodRot(float value) {
@@ -85,7 +94,7 @@ public class F35Entity extends BaseAircraftEntity {
         }
 
         vtolRotO = getPodRot();
-        float target = this.vtolMode ? 85.0F : 0.0F;
+        float target = this.getVtolMode() ? 85.0F : 0.0F;
         float current = getPodRot();
         float diff = target - current;
         float newRot = current + diff * 0.05f;
@@ -105,14 +114,12 @@ public class F35Entity extends BaseAircraftEntity {
     public List<AfterburnerSource> getAfterburnerSources() {
         List<AfterburnerSource> sources = new ArrayList<>();
         
-        // Main engine nozzle sync (tilts during VTOL)
         double pivotX = -8.5;
         double pivotY = 2.0;
         double nozzleLength = 1.5;
         
         float angleRad = (float) Math.toRadians(getPodRot());
         
-        // Calculate nozzle exit position and direction
         double rx = -nozzleLength * Math.cos(angleRad);
         double ry = -nozzleLength * Math.sin(angleRad);
         
@@ -123,7 +130,6 @@ public class F35Entity extends BaseAircraftEntity {
         
         return sources;
     }
-
 
     @OnlyIn(Dist.CLIENT)
     private void handleEngineSound() {
@@ -149,12 +155,10 @@ public class F35Entity extends BaseAircraftEntity {
         }
     }
 
-    // Vキー用（Packet から呼ばれる）
     public void toggleVtolMode() {
-        vtolMode = !vtolMode;
+        this.entityData.set(VTOL_MODE, !this.entityData.get(VTOL_MODE));
     }
 
-    // エンジン音クラス
     @OnlyIn(Dist.CLIENT)
     public static class F35EngineSound extends AbstractTickableSoundInstance {
         private final F35Entity vehicle;
@@ -165,7 +169,7 @@ public class F35Entity extends BaseAircraftEntity {
             this.looping = true;
             this.delay = 0;
             this.volume = 0.0F;
-            this.pitch = 1.0F;  // 固定ピッチ
+            this.pitch = 1.0F;
             this.x = vehicle.getX();
             this.y = vehicle.getY();
             this.z = vehicle.getZ();
@@ -178,19 +182,15 @@ public class F35Entity extends BaseAircraftEntity {
                 return;
             }
 
-            // 位置を更新
             this.x = this.vehicle.getX();
             this.y = this.vehicle.getY();
             this.z = this.vehicle.getZ();
 
-            // 音量を計算（POWERに基づく）
             float power = Math.abs(this.vehicle.getPower());
             float targetVolume = Mth.clamp(power * 2.0F, 0.0F, 3.0F);
 
-            // スムーズに音量を変化
             this.volume = Mth.lerp(0.1F, this.volume, targetVolume);
 
-            // アフターバーナー（スプリント）時は音量を少し上げる
             if (this.vehicle.sprintInputDown()) {
                 this.volume = Math.min(this.volume * 1.2F, 4.0F);
             }
@@ -202,7 +202,7 @@ public class F35Entity extends BaseAircraftEntity {
         }
     }
 
-    public static void aircraftEngine(VehicleEntity vehicle, EngineInfo.Aircraft engineInfo) {
+    public static void aircraftEngine(F35Entity vehicle, EngineInfo.Aircraft engineInfo) {
         float powerAdd = engineInfo.increment;
         float powerReduce = engineInfo.decrement;
         float pitchSpeed = engineInfo.pitchSpeed;
@@ -368,9 +368,9 @@ public class F35Entity extends BaseAircraftEntity {
 
         double flapAngle = (double)((vehicle.getFlap1LRot() + vehicle.getFlap1RRot() + vehicle.getFlap1L2Rot() + vehicle.getFlap1R2Rot()) / 4.0F);
         vehicle.setDeltaMovement(vehicle.getDeltaMovement().add(vehicle.getUpVec(1.0F).scale(vehicle.getDeltaMovement().dot(vehicle.getViewVector(1.0F)) * 0.022 * (double)lift * ((double)1.0F + Math.sin((vehicle.onGround() ? (double)25.0F : flapAngle + (double)25.0F) * (double)((float)java.lang.Math.PI / 180F))))));
-        if (vtolMode){
+        if (vehicle.getVtolMode()) {
             vehicle.setDeltaMovement(vehicle.getDeltaMovement().add(vehicle.getViewVector(1.0F).lerp(vehicle.getUpVec(1.0F), 1.0F).normalize().scale(0.25 * speedRate * (Float)vehicle.getEntityData().get(VehicleEntity.POWER) * (vehicle.sprintInputDown() ? 2.2 : 1.0))));
-        }else{
+        } else {
             vehicle.setDeltaMovement(vehicle.getDeltaMovement().add(vehicle.getViewVector(1.0F).scale(0.03 * (double)speedRate * (double)(Float)vehicle.getEntityData().get(VehicleEntity.POWER) * (vehicle.sprintInputDown() ? 2.2 : (double)1.0F))));
         }
         if ((Float)vehicle.getEntityData().get(VehicleEntity.POWER) > 0.2F) {

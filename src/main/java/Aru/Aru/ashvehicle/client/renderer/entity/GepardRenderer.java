@@ -30,7 +30,7 @@ public class GepardRenderer extends VehicleRenderer<GepardEntity> {
     public void renderRecursively(PoseStack poseStack, GepardEntity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                   float partialTick, int packedLight, int packedOverlay,
-                                  float red, float green, float blue, float alpha) {
+                                  int packedColor) {
         String name = bone.getName();
 
         // Wheels
@@ -64,6 +64,6 @@ public class GepardRenderer extends VehicleRenderer<GepardEntity> {
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+                partialTick, packedLight, packedOverlay, packedColor);
     }
 }

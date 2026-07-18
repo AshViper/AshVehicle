@@ -25,7 +25,7 @@ public class F35Renderer extends VehicleRenderer<F35Entity> {
     public void renderRecursively(PoseStack poseStack, F35Entity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                   float partialTick, int packedLight, int packedOverlay,
-                                  float red, float green, float blue, float alpha) {
+                                  int packedColor) {
         String name = bone.getName();
         float bayRot = Mth.lerp(partialTick, animatable.weaponBayRotO, animatable.getWeaponBayRot());
         float bayRotRad = bayRot * ((float) Math.PI / 180F);
@@ -52,6 +52,6 @@ public class F35Renderer extends VehicleRenderer<F35Entity> {
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+                partialTick, packedLight, packedOverlay, packedColor);
     }
 }

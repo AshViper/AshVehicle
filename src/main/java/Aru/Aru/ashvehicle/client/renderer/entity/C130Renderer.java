@@ -26,7 +26,7 @@ public class C130Renderer extends VehicleRenderer<C130Entity> {
     public void renderRecursively(PoseStack poseStack, C130Entity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                   float partialTick, int packedLight, int packedOverlay,
-                                  float red, float green, float blue, float alpha) {
+                                  int packedColor) {
         String name = bone.getName();
         // Animate missile pod rotation with smooth interpolation
         if (name.equals("group2"))  {
@@ -35,6 +35,6 @@ public class C130Renderer extends VehicleRenderer<C130Entity> {
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+                partialTick, packedLight, packedOverlay, packedColor);
     }
 }

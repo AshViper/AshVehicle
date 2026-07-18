@@ -300,35 +300,32 @@
   "HudType": "@Aircraft",
   "Weapons": {
     "Cannon": {
-      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/cannon_30mm.png",
+      "Icon": "superbwarfare:textures/overlay/vehicle/weapon/icons/cannon_30mm_ap.png",
       "DefaultFireMode": "Auto",
       "AvailableFireModes": "Auto",
-      "AmmoType": "superbwarfare:small_shell",
+      "AmmoType": "superbwarfare:small_shell_ap",
       "Projectile": "superbwarfare:small_cannon_shell",
+      "ProjectileLife": 60,
       "DefaultZoom": 2,
       "RPM": 1200,
-      "Velocity": 35,
+      "Velocity": 24,
       "Damage": 35,
       "ExplosionDamage": 10,
       "ExplosionRadius": 4,
       "HeatPerShoot": 1.5,
       "NaturalCooldown": 0.5,
       "Spread": 0.5,
-      "Name": "weapon.ashvehicle.gsh_30",
+      "Name": "weapon.superbwarfare.30mm_gau_8_a",
       "SoundInfo": {
-        "FireSoundInstances": "ashvehicle:gsh30_fire",
+        "FireSoundInstances": "superbwarfare:a_10a_fire",
         "Change": "superbwarfare:into_cannon"
       },
       "Crosshair": "@AirCraftCommon",
       "CrosshairColor": "0x66FF00",
       "ShootPos": {
         "Transform": "Vehicle",
-        "Positions": [
-          [0.1334, 1.814, 7.869]
-        ],
-        "Directions": [
-          [0, -0.02, 1]
-        ],
+        "Positions": [[0.1, 1.36, 5.9]],
+        "Directions": [[0, -0.02, 1]],
         "ShootDirectionForHud": [0, -0.03, 1]
       }
     },

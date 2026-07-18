@@ -29,8 +29,8 @@ public class Gbu57Entity extends DestroyableProjectile implements GeoEntity {
     public Gbu57Entity(EntityType<? extends Gbu57Entity> type, Level level) {
         super(type, level);
         this.noCulling = true;
-        this.explosionRadius = 22.0F;
-        this.explosionDamage = 650.0F;
+        this.setExplosionRadiusValue(22.0F);
+        this.setExplosionDamageValue(650.0F);
     }
 
     public boolean hurt(@NotNull DamageSource source, float amount) {
@@ -72,8 +72,8 @@ public class Gbu57Entity extends DestroyableProjectile implements GeoEntity {
             if (this.tickCount > 600) {
                 ProjectileTool.causeCustomExplode(
                         this,
-                        this.explosionDamage,
-                        this.explosionRadius,
+                        this.getExplosionDamageValue(),
+                        this.getExplosionRadiusValue(),
                         1.2F
                 );
                 this.discard();
@@ -117,8 +117,8 @@ public class Gbu57Entity extends DestroyableProjectile implements GeoEntity {
 
             ProjectileTool.causeCustomExplode(
                     this,
-                    this.explosionDamage * 2.0F,   // 地下爆発強化
-                    this.explosionRadius * 1.5F,
+                    this.getExplosionDamageValue() * 2.0F,
+                    this.getExplosionRadiusValue() * 1.5F,
                     1.2F
             );
 
@@ -129,8 +129,8 @@ public class Gbu57Entity extends DestroyableProjectile implements GeoEntity {
     private void explodeAndDiscard() {
         ProjectileTool.causeCustomExplode(
                 this,
-                this.explosionDamage * 2.0F,
-                this.explosionRadius * 1.5F,
+                this.getExplosionDamageValue() * 2.0F,
+                this.getExplosionRadiusValue() * 1.5F,
                 1.2F
         );
         this.discard();

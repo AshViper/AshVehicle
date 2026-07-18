@@ -29,8 +29,8 @@ public class KV2Renderer extends VehicleRenderer<KV2Entity> {
 
         // Wheel rotation speed
         float wheelSpeed = 0.5F;
-        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot());
-        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot());
+        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getLeftWheelRotO(), animatable.getLeftWheelRot());
+        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getRightWheelRotO(), animatable.getRightWheelRot());
 
         // Right wheels (wheel1-wheel11, parent "R")
         for (int i = 1; i <= 11; i++) {

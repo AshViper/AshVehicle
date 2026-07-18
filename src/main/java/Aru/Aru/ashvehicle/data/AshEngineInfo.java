@@ -27,9 +27,9 @@ public class AshEngineInfo extends EngineInfo.Helicopter {
         if (hasGear) {
             if (vehicle.upInputDown()) {
                 vehicle.setUpInputDown(false);
-                if ((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) == 0.0F && !vehicle.onGround()) {
+                if ((Float)vehicle.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) == 0.0F && !vehicle.onGround()) {
                     vehicle.getEntityData().set(VehicleEntity.GEAR_UP, true);
-                } else if ((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) == 1.0F) {
+                } else if ((Float)vehicle.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) == 1.0F) {
                     vehicle.getEntityData().set(VehicleEntity.GEAR_UP, false);
                 }
             }
@@ -39,12 +39,12 @@ public class AshEngineInfo extends EngineInfo.Helicopter {
             }
 
             if ((Boolean)vehicle.getEntityData().get(VehicleEntity.GEAR_UP)) {
-                vehicle.getEntityData().set(VehicleEntity.GEAR_ROT, org.joml.Math.min((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) + 0.05F, 1.0F));
+                vehicle.getEntityData().set(VehicleEntity.SYNCHED_GEAR_ROT, org.joml.Math.min((Float)vehicle.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) + 0.05F, 1.0F));
             } else {
-                vehicle.getEntityData().set(VehicleEntity.GEAR_ROT, Math.max((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) - 0.05F, 0.0F));
+                vehicle.getEntityData().set(VehicleEntity.SYNCHED_GEAR_ROT, Math.max((Float)vehicle.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) - 0.05F, 0.0F));
             }
 
-            vehicle.setGearRot((Float)vehicle.getEntityData().get(VehicleEntity.GEAR_ROT) * gearRotateAngle);
+            vehicle.setGearRot((Float)vehicle.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) * gearRotateAngle);
         }
     }
 }

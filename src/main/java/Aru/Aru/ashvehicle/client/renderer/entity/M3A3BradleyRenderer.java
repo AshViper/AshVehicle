@@ -29,8 +29,8 @@ public class M3A3BradleyRenderer extends VehicleRenderer<M3A3BradleyEntity> {
 
         // Wheel rotation speed
         float wheelSpeed = 0.5F;
-        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot());
-        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot());
+        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getLeftWheelRotO(), animatable.getLeftWheelRot());
+        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getRightWheelRotO(), animatable.getRightWheelRot());
 
         // Left road wheels (WHELL2-7, skip WHELL1 and WHELL8 - drive/idler wheels)
         for (int i = 2; i <= 7; i++) {

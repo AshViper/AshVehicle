@@ -47,11 +47,11 @@ public class Agm158Entity extends MissileProjectile implements GeoEntity {
     public Agm158Entity(EntityType<? extends Agm158Entity> type, Level level) {
         super(type, level);
         this.noCulling = true;
-        this.damage = 1100.0F;
-        this.explosionDamage = 180.0F;
-        this.explosionRadius = 12.0F;
+        this.setDamageValue(1100.0F);
+        this.setExplosionDamageValue(180.0F);
+        this.setExplosionRadiusValue(12.0F);
         this.distracted = false;
-        this.durability = 25;
+        this.setDurability(25);
     }
 
     protected @NotNull Item getDefaultItem() {
@@ -73,7 +73,7 @@ public class Agm158Entity extends MissileProjectile implements GeoEntity {
                     }
                 }
 
-                DamageHandler.doDamage(entity, ModDamageTypes.causeProjectileHitDamage(this.level().registryAccess(), this, this.getOwner()), this.damage);
+                DamageHandler.doDamage(entity, ModDamageTypes.causeProjectileHitDamage(this.level().registryAccess(), this, this.getOwner()), this.getDamageValue());
                 if (entity instanceof LivingEntity) {
                     entity.invulnerableTime = 0;
                 }
@@ -92,9 +92,9 @@ public class Agm158Entity extends MissileProjectile implements GeoEntity {
             float hardness = this.level().getBlockState(resultPos).getBlock().defaultDestroyTime();
             if (hardness != -1.0F) {
                 if ((Boolean)ExplosionConfig.EXPLOSION_DESTROY.get()) {
-                    if (this.firstHit) {
+                    if (this.getFirstHit()) {
                         this.causeExplode(blockHitResult.getLocation());
-                        this.firstHit = false;
+                        this.setFirstHit(false);
                         Mod.queueServerWork(3, this::discard);
                     }
 
@@ -230,15 +230,14 @@ public class Agm158Entity extends MissileProjectile implements GeoEntity {
                         this,
                         ModDamageTypes.causeProjectileExplosionDamage(this.level().registryAccess(), this, this.getOwner()),
                         this,
-                        this.explosionDamage,
-                        this.explosionRadius
+                        this.getExplosionDamageValue(),
+                        this.getExplosionRadiusValue()
                 );
             }
 
             this.discard();
         }
 
-        this.destroyBlock();
     }
 
     public float getGravity() {

@@ -34,8 +34,8 @@ public class GepardRenderer extends VehicleRenderer<GepardEntity> {
         String name = bone.getName();
 
         // Wheels
-        float leftRot = 0.5f * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot());
-        float rightRot = 0.5f * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot());
+        float leftRot = 0.5f * Mth.lerp(partialTick, animatable.getLeftWheelRotO(), animatable.getLeftWheelRot());
+        float rightRot = 0.5f * Mth.lerp(partialTick, animatable.getRightWheelRotO(), animatable.getRightWheelRot());
 
         for (int i = 1; i <= 9; i++) {
             if (name.equals("wheel" + i)) bone.setRotX(rightRot);

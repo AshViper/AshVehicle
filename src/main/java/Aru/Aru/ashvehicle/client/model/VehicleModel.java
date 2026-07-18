@@ -189,7 +189,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
 
                     };
                 case "passengerWeaponStationYaw":
-                    return (bone, vehicle, state) -> bone.setRotY(Mth.lerp(state.getPartialTick(), vehicle.gunYRotO, vehicle.getGunYRot()) * ((float)Math.PI / 180F) - this.turretYRot * ((float)Math.PI / 180F));
+                    return (bone, vehicle, state) -> bone.setRotY(Mth.lerp(state.getPartialTick(), vehicle.getGunYRotO(), vehicle.getGunYRot()) * ((float)Math.PI / 180F) - this.turretYRot * ((float)Math.PI / 180F));
                 case "passengerWeaponStationPitch":
                     return (bone, vehicle, state) -> {
                         float a = vehicle.getTurretYaw(state.getPartialTick());
@@ -203,7 +203,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
                             r2 = (180.0F - a) / 90.0F;
                         }
 
-                        bone.setRotX(Mth.clamp(-Mth.lerp(state.getPartialTick(), vehicle.gunXRotO, vehicle.getGunXRot()) * ((float)Math.PI / 180F) - r * this.pitch * ((float)Math.PI / 180F) - r2 * this.roll * ((float)Math.PI / 180F), -0.17453292F, ((float)Math.PI / 3F)));
+                        bone.setRotX(Mth.clamp(-Mth.lerp(state.getPartialTick(), vehicle.getGunXRotO(), vehicle.getGunXRot()) * ((float)Math.PI / 180F) - r * this.pitch * ((float)Math.PI / 180F) - r2 * this.roll * ((float)Math.PI / 180F), -0.17453292F, ((float)Math.PI / 3F)));
                     };
                 default:
                     Matcher trackMatcher = TRACK_PATTERN.matcher(boneName);
@@ -236,7 +236,7 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
                             boolean isL = wheelMatcher.group("direction").equals("L");
                             return boneName.endsWith("Turn") ? (bone, vehicle, state) -> {
                                 bone.setRotX(1.5F * (isL ? this.leftWheelRot : this.rightWheelRot));
-                                bone.setRotY(Mth.lerp(state.getPartialTick(), vehicle.rudderRotO, vehicle.getRudderRot()));
+                                bone.setRotY(Mth.lerp(state.getPartialTick(), vehicle.getRudderRotO(), vehicle.getRudderRot()));
                             } : (bone, vehicle, state) -> bone.setRotX(1.5F * (isL ? this.leftWheelRot : this.rightWheelRot));
                         } else {
                             return null;
@@ -268,14 +268,14 @@ public class VehicleModel<T extends VehicleEntity & GeoAnimatable> extends GeoMo
         this.pitch = vehicle.getPitch(partialTick);
         this.yaw = vehicle.getYaw(partialTick);
         this.roll = vehicle.getRoll(partialTick);
-        this.leftWheelRot = Mth.lerp(partialTick, vehicle.leftWheelRotO, vehicle.getLeftWheelRot());
-        this.rightWheelRot = Mth.lerp(partialTick, vehicle.rightWheelRotO, vehicle.getRightWheelRot());
-        this.leftTrack = Mth.lerp(partialTick, vehicle.leftTrackO, vehicle.getLeftTrack());
-        this.rightTrack = Mth.lerp(partialTick, vehicle.rightTrackO, vehicle.getRightTrack());
-        this.turretYRot = Mth.lerp(partialTick, vehicle.turretYRotO, vehicle.getTurretYRot());
-        this.turretXRot = Mth.lerp(partialTick, vehicle.turretXRotO, vehicle.getTurretXRot());
+        this.leftWheelRot = Mth.lerp(partialTick, vehicle.getLeftWheelRotO(), vehicle.getLeftWheelRot());
+        this.rightWheelRot = Mth.lerp(partialTick, vehicle.getRightWheelRotO(), vehicle.getRightWheelRot());
+        this.leftTrack = Mth.lerp(partialTick, vehicle.getLeftTrackO(), vehicle.getLeftTrack());
+        this.rightTrack = Mth.lerp(partialTick, vehicle.getRightTrackO(), vehicle.getRightTrack());
+        this.turretYRot = Mth.lerp(partialTick, vehicle.getTurretYRotO(), vehicle.getTurretYRot());
+        this.turretXRot = Mth.lerp(partialTick, vehicle.getTurretXRotO(), vehicle.getTurretXRot());
         this.turretYaw = vehicle.getTurretYaw(partialTick);
-        this.recoilShake = Mth.lerp(partialTick, (float)vehicle.recoilShakeO, (float)vehicle.getRecoilShake());
+        this.recoilShake = Mth.lerp(partialTick, (float)vehicle.getRecoilShakeO(), (float)vehicle.getRecoilShake());
         this.hideForTurretControllerWhileZooming = ClientEventHandler.zoomVehicle && vehicle.getNthEntity(vehicle.getTurretControllerIndex()) == Minecraft.getInstance().player;
         this.hideForPassengerWeaponStationControllerWhileZooming = ClientEventHandler.zoomVehicle && vehicle.getNthEntity(vehicle.getPassengerWeaponStationControllerIndex()) == Minecraft.getInstance().player;
         this.TRANSFORMS.forEach((pair) -> {

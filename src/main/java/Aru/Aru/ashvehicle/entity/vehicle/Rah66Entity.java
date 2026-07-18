@@ -66,9 +66,9 @@ public class Rah66Entity extends GeoVehicleEntity {
         if (hasGear) {
             if (this.upInputDown()) {
                 this.setUpInputDown(false);
-                if ((Float)this.getEntityData().get(VehicleEntity.GEAR_ROT) == 0.0F && !this.onGround()) {
+                if ((Float)this.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) == 0.0F && !this.onGround()) {
                     this.getEntityData().set(VehicleEntity.GEAR_UP, true);
-                } else if ((Float)this.getEntityData().get(VehicleEntity.GEAR_ROT) == 1.0F) {
+                } else if ((Float)this.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) == 1.0F) {
                     this.getEntityData().set(VehicleEntity.GEAR_UP, false);
                 }
             }
@@ -78,12 +78,12 @@ public class Rah66Entity extends GeoVehicleEntity {
             }
 
             if ((Boolean)this.getEntityData().get(VehicleEntity.GEAR_UP)) {
-                this.getEntityData().set(VehicleEntity.GEAR_ROT, org.joml.Math.min((Float)this.getEntityData().get(VehicleEntity.GEAR_ROT) + 0.05F, 1.0F));
+                this.getEntityData().set(VehicleEntity.SYNCHED_GEAR_ROT, org.joml.Math.min((Float)this.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) + 0.05F, 1.0F));
             } else {
-                this.getEntityData().set(VehicleEntity.GEAR_ROT, org.joml.Math.max((Float)this.getEntityData().get(VehicleEntity.GEAR_ROT) - 0.05F, 0.0F));
+                this.getEntityData().set(VehicleEntity.SYNCHED_GEAR_ROT, org.joml.Math.max((Float)this.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) - 0.05F, 0.0F));
             }
 
-            this.setGearRot((Float)this.getEntityData().get(VehicleEntity.GEAR_ROT) * gearRotateAngle);
+            this.setGearRot((Float)this.getEntityData().get(VehicleEntity.SYNCHED_GEAR_ROT) * gearRotateAngle);
         }
     }
 }

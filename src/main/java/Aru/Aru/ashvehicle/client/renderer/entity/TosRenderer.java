@@ -30,8 +30,8 @@ public class TosRenderer extends VehicleRenderer<TosEntity> {
 
         // Wheel rotation speed (slower for realistic tank movement)
         float wheelSpeed = 0.5F;
-        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot());
-        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot());
+        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getLeftWheelRotO(), animatable.getLeftWheelRot());
+        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getRightWheelRotO(), animatable.getRightWheelRot());
 
         // Left wheels (wheel1-wheel8)
         for (int i = 0; i <= 7; i++) {

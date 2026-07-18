@@ -29,8 +29,8 @@ public class T90Renderer extends VehicleRenderer<T90Entity> {
 
         // Wheel rotation speed (slower for realistic tank movement)
         float wheelSpeed = 0.5F;
-        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot());
-        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot());
+        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getLeftWheelRotO(), animatable.getLeftWheelRot());
+        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getRightWheelRotO(), animatable.getRightWheelRot());
 
         // Left wheels (wheel1-wheel8)
         for (int i = 1; i <= 8; i++) {

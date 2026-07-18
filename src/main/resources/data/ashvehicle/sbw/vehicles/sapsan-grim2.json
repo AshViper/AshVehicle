@@ -62,7 +62,7 @@
   },
   "VehicleIcon": "superbwarfare:textures/vehicle_icon/yx_100_icon.png",
   "ContainerIcon": "superbwarfare:textures/gui/vehicle/type/land.png",
-  "Type": "MissileLauncher",
+  "Type": "Artillery",
   "EngineSound": "superbwarfare:lav_150_engine",
   "HudType": "@Land",
   "InertiaRotateRate": 1.2,

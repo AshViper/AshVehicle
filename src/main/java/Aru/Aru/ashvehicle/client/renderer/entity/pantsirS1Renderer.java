@@ -29,31 +29,28 @@ public class pantsirS1Renderer extends VehicleRenderer<pantsirS1Entity> {
         String name = bone.getName();
 
         // Steering angle for front wheels
-        float steeringAngle = Mth.lerp(partialTick, animatable.rudderRotO, animatable.getRudderRot());
+        float steeringAngle = Mth.lerp(partialTick, animatable.getRudderRotO(), animatable.getRudderRot());
 
         // Wheel rotation speed multiplier (slower = more realistic)
         float wheelSpeedMultiplier = -0.5F;
 
         // Front left wheel (wheel1) - with steering
         if (name.equals("WHEEL")) {
-            bone.setRotX(wheelSpeedMultiplier * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot()));
-            bone.setRotY(steeringAngle); // Steering rotation
+            bone.setRotX(wheelSpeedMultiplier * Mth.lerp(partialTick, animatable.getLeftWheelRotO(), animatable.getLeftWheelRot()));
+            bone.setRotY(steeringAngle);
         }
 
-        // Other left wheels (wheel2, wheel3, wheel4, wheel5) - no steering
         if (name.equals("WHEEL3") || name.equals("WHEEL5") || name.equals("WHEEL7")) {
-            bone.setRotX(wheelSpeedMultiplier * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot()));
+            bone.setRotX(wheelSpeedMultiplier * Mth.lerp(partialTick, animatable.getLeftWheelRotO(), animatable.getLeftWheelRot()));
         }
 
-        // Front right wheel (wheel6) - with steering
         if (name.equals("WHEEL2")) {
-            bone.setRotX(wheelSpeedMultiplier * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot()));
-            bone.setRotY(steeringAngle); // Steering rotation
+            bone.setRotX(wheelSpeedMultiplier * Mth.lerp(partialTick, animatable.getRightWheelRotO(), animatable.getRightWheelRot()));
+            bone.setRotY(steeringAngle);
         }
 
-        // Other right wheels (wheel7, wheel8, wheel9, wheel10) - no steering
         if (name.equals("WHEEL4") || name.equals("WHEEL6") || name.equals("WHEEL8")) {
-            bone.setRotX(wheelSpeedMultiplier * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot()));
+            bone.setRotX(wheelSpeedMultiplier * Mth.lerp(partialTick, animatable.getRightWheelRotO(), animatable.getRightWheelRot()));
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,

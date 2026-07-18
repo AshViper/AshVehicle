@@ -95,7 +95,6 @@ public class ClientEntityHighlighter {
                     ModEntities.MELON_BOMB.get(),
                     ModEntities.MORTAR_SHELL.get(),
                     ModEntities.MORTAR.get(),
-                    ModEntities.LASER.get(),
                     ModEntities.FLARE_DECOY.get(),
                     ModEntities.SMOKE_DECOY.get(),
                     ModEntities.CLAYMORE.get(),

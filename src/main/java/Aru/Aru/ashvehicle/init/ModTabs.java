@@ -1,7 +1,7 @@
 package Aru.Aru.ashvehicle.init;
 
 import Aru.Aru.ashvehicle.AshVehicle;
-import com.atsuishio.superbwarfare.item.common.container.ContainerBlockItem;
+import com.atsuishio.superbwarfare.item.container.ContainerBlockItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;

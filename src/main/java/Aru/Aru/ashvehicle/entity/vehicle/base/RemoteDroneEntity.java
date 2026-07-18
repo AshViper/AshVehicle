@@ -2,7 +2,7 @@ package Aru.Aru.ashvehicle.entity.vehicle.base;
 
 import com.atsuishio.superbwarfare.entity.vehicle.base.GeoVehicleEntity;
 import com.atsuishio.superbwarfare.init.ModItems;
-import com.atsuishio.superbwarfare.item.Monitor;
+import com.atsuishio.superbwarfare.item.misc.MonitorItem;
 import com.atsuishio.superbwarfare.tools.EntityFindUtil;
 import com.atsuishio.superbwarfare.tools.VectorTool;
 import net.minecraft.ChatFormatting;
@@ -88,7 +88,7 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
                 boolean isUsing = stack.is(ModItems.MONITOR.get()) 
                     && stack.getOrCreateTag().getBoolean("Using")
                     && stack.getOrCreateTag().getBoolean("Linked")
-                    && stack.getOrCreateTag().getString(Monitor.LINKED_DRONE).equals(this.getStringUUID());
+                    && stack.getOrCreateTag().getString(MonitorItem.LINKED_DRONE).equals(this.getStringUUID());
                 
                 // Mount player in drone when using monitor
                 if (isUsing && !this.hasPassenger(controller)) {
@@ -190,7 +190,7 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
 
         this.entityData.set(LINKED, true);
         this.entityData.set(CONTROLLER, player.getStringUUID());
-        Monitor.link(stack, this.getStringUUID());
+        MonitorItem.link(stack, this.getStringUUID());
         
         player.displayClientMessage(Component.translatable("tips.superbwarfare.monitor.linked")
             .withStyle(ChatFormatting.GREEN), true);
@@ -226,8 +226,8 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
         
         this.entityData.set(CONTROLLER, "");
         this.entityData.set(LINKED, false);
-        Monitor.disLink(stack, player);
-        
+        MonitorItem.disLink(stack, player);
+
         player.displayClientMessage(Component.translatable("tips.superbwarfare.monitor.unlinked")
             .withStyle(ChatFormatting.GREEN), true);
 
@@ -414,7 +414,7 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
             ItemStack stack = controller.getMainHandItem();
             if (stack.is(ModItems.MONITOR.get())) {
                 stack.getOrCreateTag().putBoolean("Using", false);
-                Monitor.disLink(stack, controller);
+                MonitorItem.disLink(stack, controller);
             }
         }
         super.destroy();
@@ -437,7 +437,7 @@ public abstract class RemoteDroneEntity extends GeoVehicleEntity {
                     getShootPos("Missile", 1f),
                     getShootVec("Missile", 1f),
                     data,
-                    data.compute().spread,
+                    data.compute().getSpread(),
                     true,
                     uuid,
                     targetPos

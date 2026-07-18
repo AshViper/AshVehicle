@@ -24,8 +24,8 @@ public class Cbu87Entity extends DestroyableProjectile implements GeoEntity {
     public Cbu87Entity(EntityType<? extends Cbu87Entity> type, Level level) {
         super(type, level);
         this.noCulling = true;
-        this.explosionRadius = 22.0F;
-        this.explosionDamage = 650.0F;
+        this.setExplosionRadiusValue(22.0F);
+        this.setExplosionDamageValue(650.0F);
     }
 
     public boolean hurt(@NotNull DamageSource source, float amount) {
@@ -46,7 +46,7 @@ public class Cbu87Entity extends DestroyableProjectile implements GeoEntity {
     public void onHitBlock(@NotNull BlockHitResult blockHitResult) {
         super.onHitBlock(blockHitResult);
         if (this.level() instanceof ServerLevel) {
-            ProjectileTool.causeCustomExplode(this, this.explosionDamage, this.explosionRadius, 1.2F);
+            ProjectileTool.causeCustomExplode(this, this.getExplosionDamageValue(), this.getExplosionRadiusValue(), 1.2F);
         }
 
         this.discard();
@@ -56,7 +56,7 @@ public class Cbu87Entity extends DestroyableProjectile implements GeoEntity {
         super.tick();
         if (this.tickCount > 600 || (Float)this.entityData.get(HEALTH) <= 0.0F) {
             if (!this.level().isClientSide) {
-                ProjectileTool.causeCustomExplode(this, this.explosionDamage, this.explosionRadius, 1.2F);
+                ProjectileTool.causeCustomExplode(this, this.getExplosionDamageValue(), this.getExplosionRadiusValue(), 1.2F);
             }
 
             this.discard();

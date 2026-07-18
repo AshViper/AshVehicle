@@ -29,8 +29,8 @@ public class M1A1AbramsRenderer extends VehicleRenderer<M1A1AbramsEntity> {
 
         // Wheel rotation speed
         float wheelSpeed = 0.5F;
-        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.leftWheelRotO, animatable.getLeftWheelRot());
-        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.rightWheelRotO, animatable.getRightWheelRot());
+        float leftWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getLeftWheelRotO(), animatable.getLeftWheelRot());
+        float rightWheelRot = wheelSpeed * Mth.lerp(partialTick, animatable.getRightWheelRotO(), animatable.getRightWheelRot());
 
         // Left wheels (wheelL1-wheelL11)
         for (int i = 1; i <= 11; i++) {

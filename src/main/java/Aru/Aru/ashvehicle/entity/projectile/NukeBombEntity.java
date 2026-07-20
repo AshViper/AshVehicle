@@ -26,11 +26,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -89,15 +91,17 @@ public class NukeBombEntity extends DestroyableProjectile implements GeoEntity {
         BlockPos center = BlockPos.containing(x, y, z);
 
         // Damage explosion - NO DEFAULT PARTICLES (we use our own)
-        new CustomExplosion.Builder(this)
-                .damageSource(ModDamageTypes.causeCustomExplosionDamage(serverLevel.registryAccess(), this, this.getOwner()))
-                .damage(this.getExplosionDamageValue())
-                .radius(this.getExplosionRadiusValue())
-                .position(pos)
-                .damageMultiplier(2.0F)
-                .withParticleType(null) // Disable default SBW particles
-                .keepBlock() // Don't destroy blocks here, we do it ourselves
-                .explode();
+        CustomExplosion explosion = new CustomExplosion(
+                serverLevel, this,
+                ModDamageTypes.causeCustomExplosionDamage(serverLevel.registryAccess(), this, this.getOwner()),
+                this.getExplosionDamageValue(),
+                pos.x, pos.y, pos.z,
+                this.getExplosionRadiusValue(),
+                Explosion.BlockInteraction.KEEP
+        ).setDamageMultiplier(2.0F);
+        explosion.explode();
+        ForgeEventFactory.onExplosionStart(serverLevel, explosion);
+        explosion.finalizeExplosion(false);
 
         // Block destruction - spread over time to prevent lag
         if (ExplosionConfig.EXPLOSION_DESTROY.get()) {

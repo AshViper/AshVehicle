@@ -24,7 +24,7 @@ public class KV2Renderer extends VehicleRenderer<KV2Entity> {
     public void renderRecursively(PoseStack poseStack, KV2Entity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                   float partialTick, int packedLight, int packedOverlay,
-                                  float red, float green, float blue, float alpha) {
+                                  int packedColor) {
         String name = bone.getName();
 
         // Wheel rotation speed
@@ -47,6 +47,6 @@ public class KV2Renderer extends VehicleRenderer<KV2Entity> {
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+                partialTick, packedLight, packedOverlay, packedColor);
     }
 }

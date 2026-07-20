@@ -24,7 +24,7 @@ public class T90Renderer extends VehicleRenderer<T90Entity> {
     public void renderRecursively(PoseStack poseStack, T90Entity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                   float partialTick, int packedLight, int packedOverlay,
-                                  float red, float green, float blue, float alpha) {
+                                  int packedColor) {
         String name = bone.getName();
 
         // Wheel rotation speed (slower for realistic tank movement)
@@ -47,6 +47,6 @@ public class T90Renderer extends VehicleRenderer<T90Entity> {
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+                partialTick, packedLight, packedOverlay, packedColor);
     }
 }

@@ -24,7 +24,7 @@ public class Rah66Renderer extends VehicleRenderer<Rah66Entity> {
     public void renderRecursively(PoseStack poseStack, Rah66Entity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                                   float partialTick, int packedLight, int packedOverlay,
-                                  float red, float green, float blue, float alpha) {
+                                  int packedColor) {
         String name = bone.getName();
 
         // Weapon bay animation - opens when missiles selected
@@ -63,6 +63,6 @@ public class Rah66Renderer extends VehicleRenderer<Rah66Entity> {
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+                partialTick, packedLight, packedOverlay, packedColor);
     }
 }

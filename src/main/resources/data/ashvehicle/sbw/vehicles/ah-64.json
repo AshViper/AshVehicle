@@ -197,7 +197,7 @@
       "Crosshair": "@VehicleCommonGunDynamic",
       "CrosshairColor": "0xFFC700",
       "SoundRadius": 24,
-      "AmmoType": "superbwarfare:small_shell",
+      "AmmoType": "superbwarfare:small_shell_ap",
       "ShootPos": {
         "Transform": "Barrel",
         "Positions": [[0, 0.102, 3.013]],

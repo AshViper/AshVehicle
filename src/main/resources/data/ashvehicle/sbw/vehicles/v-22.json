@@ -175,7 +175,7 @@
       },
       "Crosshair": "@Empty",
       "SoundRadius": 24,
-      "AmmoType": "superbwarfare:small_shell",
+      "AmmoType": "superbwarfare:small_shell_ap",
       "ShootPos": {
         "Transform": "Vehicle",
         "ShootPositionForHud": [0, 0.62, 0.8],
